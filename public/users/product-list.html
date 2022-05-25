@@ -1,0 +1,1585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title></title>
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="style.css" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+<!-- اسکریپت اسلایدر تبلیغات -->
+<script src="js/jssor.slider.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    jssor_1_slider_init = function() {
+
+        var jssor_1_SlideshowTransitions = [
+          {$Duration:1200,x:-0.3,$During:{$Left:[0.3,0.7]},$Easing:{$Left:$Jease$.$InCubic,$Opacity:$Jease$.$Linear},$Opacity:2},
+          {$Duration:1200,x:0.3,$SlideOut:true,$Easing:{$Left:$Jease$.$InCubic,$Opacity:$Jease$.$Linear},$Opacity:2}
+        ];
+
+        var jssor_1_options = {
+      $FillMode: 4,
+      $AutoPlay: 1,
+      $Cols: 1,
+      $Align: 0,
+      $SlideshowOptions: {
+        $Class: $JssorSlideshowRunner$,
+        $Transitions: {$Duration:2200,x:1,$Easing:{$Left:$Jease$.$InOutQuart},$Brother:{$Duration:2200,x:-1,$Easing:{$Left:$Jease$.$InOutQuart}}},
+        $TransitionsOrder: 1
+      },
+      $ArrowNavigatorOptions: {
+        $Class: $JssorArrowNavigator$
+      },
+      $ThumbnailNavigatorOptions: {
+        $Class: $JssorThumbnailNavigator$,
+        $Cols: 1,
+        $Orientation: 2,
+        $Align: 0,
+        $NoDrag: true
+      }
+    };
+        var jssor_1_slider = new $JssorSlider$("jssor_1", jssor_1_options);
+
+        var MAX_WIDTH = 1110;
+
+        function ScaleSlider() {
+            var containerElement = jssor_1_slider.$Elmt.parentNode;
+            var containerWidth = containerElement.clientWidth;
+
+            if (containerWidth) {
+
+                var expectedWidth = Math.min(MAX_WIDTH || containerWidth, containerWidth);
+
+                jssor_1_slider.$ScaleWidth(expectedWidth);
+            }
+            else {
+                window.setTimeout(ScaleSlider, 30);
+            }
+        }
+
+        ScaleSlider();
+
+        $Jssor$.$AddEvent(window, "load", ScaleSlider);
+        $Jssor$.$AddEvent(window, "resize", ScaleSlider);
+        $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider);
+    };
+</script>
+<style>
+
+@media  (max-width: 991px) {
+
+.ribbon-wrapper-red {
+  padding-top: 10px;
+  padding-bottom: 150px;
+
+}}
+
+@media (min-width: 992px){
+.top-titr {
+    margin-top: 26px;
+}}
+
+@media (max-width: 502px){
+.top-titr {
+    margin-top: 39px;
+}}
+
+</style>
+</head>
+<body>
+
+<div class="page-wrapper rtl">
+
+         <!-- منوی اصلی -->
+         <nav class="navbar top-nav navbar-expand-lg navbar-light top-nav-2" id="navbar-top-2">
+          <div class="container">
+            <button class="all-cat-small navbar-toggler" type="button" data-toggle="collapse" data-target="#navSmall2" aria-controls="navSmall2" aria-expanded="false" aria-label="Toggle navigation">
+              همه دسته بندی ها
+            </button>
+            <div class="collapse navbar-collapse" id="navSmall2">
+              <ul class="navbar-nav">
+                <li class="nav-item dropdown hidden-mobile">
+                  <a class="nav-link" href="product-list.html" id="navItem1">
+                    <div class="nav-item-text">فلزات</div>
+                    <svg class="svg-inline--fa fa-caret-down fa-w-10 fa-sm" aria-hidden="true" data-prefix="fas" data-icon="caret-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" data-fa-i2svg=""><path fill="currentColor" d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"></path></svg>
+                  </a>
+                  <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navItem1">
+                    <a class="dropdown-item " href="product-list.html">ماشین آلات فلزکاری (33,989)</a>
+                  </div>
+                </li>
+                <li class="nav-item hidden-desktop">
+                  <a class="nav-link" href="product-list.html">ماشین آلات فلزکاری (33,989)</a>
+                </li>
+                <li class="nav-item dropdown hidden-mobile">
+                  <a class="nav-link" href="product-list.html" id="navItem2">
+                    <div class="nav-item-text">چوب</div> 
+                    <svg class="svg-inline--fa fa-caret-down fa-w-10 fa-sm" aria-hidden="true" data-prefix="fas" data-icon="caret-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" data-fa-i2svg=""><path fill="currentColor" d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"></path></svg>
+                  </a>
+                  <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navItem2">
+                    <a class="dropdown-item " href="product-list.html">ماشین آلات چوب کاری (8,688)</a>
+                  </div>
+                </li>
+                <li class="nav-item hidden-desktop">
+                  <a class="nav-link" href="product-list.html">ماشین آلات چوب کاری (8,688)</a>
+                </li>
+                <li class="nav-item dropdown hidden-mobile">
+                  <a class="nav-link" href="product-list.html" id="navItem3">
+                    <div class="nav-item-text">پلاستیک</div> 
+                    <svg class="svg-inline--fa fa-caret-down fa-w-10 fa-sm" aria-hidden="true" data-prefix="fas" data-icon="caret-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" data-fa-i2svg=""><path fill="currentColor" d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"></path></svg>
+                  </a>
+                  <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navItem3">
+                    <a class="dropdown-item " href="product-list.html">ماشین آلات برای پلاستیک (4,156)</a>
+                  </div>
+                </li>
+                <li class="nav-item hidden-desktop">
+                  <a class="nav-link" href="product-list.html">ماشین آلات کار با پلاستیک (4,156)</a>
+                </li>
+                <li class="nav-item dropdown hidden-mobile">
+                  <a class="nav-link" href="product-list.html" id="navItem4">
+                    <div class="nav-item-text">بسته بندی</div>
+                    <svg class="svg-inline--fa fa-caret-down fa-w-10 fa-sm" aria-hidden="true" data-prefix="fas" data-icon="caret-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" data-fa-i2svg=""><path fill="currentColor" d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"></path></svg>
+                  </a>
+                  <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navItem4">
+                    <a class="dropdown-item " href="product-list.html">ماشین آلات بسته بندی (2,909)</a>
+                  </div>
+                </li>
+                <li class="nav-item hidden-desktop">
+                  <a class="nav-link" href="product-list.html">ماشین آلات بسته بندی (2,909)</a>
+                </li>
+                <li class="nav-item dropdown hidden-mobile">
+                  <a class="nav-link" href="product-list.html" id="navItem5">
+                    <div class="nav-item-text">بازیافت</div> 
+                    <svg class="svg-inline--fa fa-caret-down fa-w-10 fa-sm" aria-hidden="true" data-prefix="fas" data-icon="caret-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" data-fa-i2svg=""><path fill="currentColor" d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"></path></svg>
+                  </a>
+                  <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navItem5">
+                    <a class="dropdown-item " href="product-list.html">ماشین های دفع زباله و بازیافت (1381)</a>
+                </li>
+                <li class="nav-item hidden-desktop">
+                  <a class="nav-link" href="product-list.html">ماشین آلات  دفع زباله و بازیافت (1,381)</a>   </li>
+                <li class="nav-item dropdown hidden-mobile">
+                  <a class="nav-link" href="product-list.html" id="navItem6">
+                    <div class="nav-item-text">مواد غذایی</div>
+                    <svg class="svg-inline--fa fa-caret-down fa-w-10 fa-sm" aria-hidden="true" data-prefix="fas" data-icon="caret-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" data-fa-i2svg=""><path fill="currentColor" d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"></path></svg>
+                  </a>
+                  <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navItem6">
+                    <a class="dropdown-item " href="product-list.html">ماشین آلات مواد غذایی (11,631)</a>
+                </li>
+                <li class="nav-item hidden-desktop">
+                  <a class="nav-link" href="product-list.html">ماشین آلات مواد غذایی (11,631)</a>
+                </li>
+                <li class="nav-item dropdown hidden-mobile">
+                  <a class="nav-link" href="product-list.html" id="navItem8">
+                    <div class="nav-item-text">چاپ</div>
+                    <svg class="svg-inline--fa fa-caret-down fa-w-10 fa-sm" aria-hidden="true" data-prefix="fas" data-icon="caret-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" data-fa-i2svg=""><path fill="currentColor" d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"></path></svg> 
+                  </a>
+                  <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navItem8">
+                      <a class="dropdown-item " href="product-list.html">ماشین های چاپ (5,676)</a>
+                  </div>
+                  
+                <li class="nav-item hidden-desktop">
+                  <a class="nav-link" href="product-list.html">ماشین های چاپ (5,676)</a>
+                </li>
+                <li class="nav-item dropdown hidden-mobile">
+                  <a class="nav-link" href="product-list.html" id="navItem10">
+                    <div class="nav-item-text">ساخت و ساز</div>
+                    <svg class="svg-inline--fa fa-caret-down fa-w-10 fa-sm" aria-hidden="true" data-prefix="fas" data-icon="caret-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" data-fa-i2svg=""><path fill="currentColor" d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"></path></svg>
+                  </a>
+                  <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navItem10">
+                    <a class="dropdown-item " href="product-list.html">ماشین آلات ساختمانی (1,534)</a>
+                                        </div>
+                </li>
+                <li class="nav-item hidden-desktop">
+                  <a class="nav-link" href="product-list.html">ماشین آلات ساختمانی (1534)</a>
+                                  </li>
+                <li class="nav-item dropdown hidden-mobile">
+                  <a class="nav-link" href="product-list.html" id="navItem11">
+                    <div class="nav-item-text">موتورهای انرژی</div>
+                    <svg class="svg-inline--fa fa-caret-down fa-w-10 fa-sm" aria-hidden="true" data-prefix="fas" data-icon="caret-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" data-fa-i2svg=""><path fill="currentColor" d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"></path></svg>
+                  </a>
+                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navItem11">
+                    <a class="dropdown-item " href="product-list.html">مولدهای برق، موتورها , توربین, بویلر (8,652)</a>
+                                      </div>
+                </li>
+                <li class="nav-item hidden-desktop">
+                  <a class="nav-link" href="product-list.html">ژنراتورهای برق، موتور، توربین، دیگ بخار (8652)</a>
+                                  </li>
+                <li class="nav-item dropdown hidden-mobile">
+                  <a class="nav-link" href="product-list.html" id="navItem9">
+                    <div class="nav-item-text">مهندسی فرآیند </div>
+                    <svg class="svg-inline--fa fa-caret-down fa-w-10 fa-sm" aria-hidden="true" data-prefix="fas" data-icon="caret-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" data-fa-i2svg=""><path fill="currentColor" d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"></path></svg>
+                  </a>
+                  <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navItem9">
+                    <a class="dropdown-item " href="product-list.html"> مهندسی فرآیند (6024)</a>
+                                                    </div>
+                </li>
+                <li class="nav-item dropdown hidden-mobile">
+                  <a class="nav-link" href="product-list.html" id="navItem14">
+                    <div class="nav-item-text">جابجایی و ذخیره سازی</div>
+                    <svg class="svg-inline--fa fa-caret-down fa-w-10 fa-sm" aria-hidden="true" data-prefix="fas" data-icon="caret-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" data-fa-i2svg=""><path fill="currentColor" d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"></path></svg> 
+                  </a>
+                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navItem14">
+                    <a class="dropdown-item " href="product-list.html">ماشین های جابجایی مکانیکی، تجهیزات ذخیره سازی (12829)</a>
+                                 </div>
+                </li>
+                <li class="nav-item hidden-desktop">
+                  <a class="nav-link" href="product-list.html">ماشین های مکانیکی حمل و نقل، تجهیزات ذخیره سازی (12829)</a>
+                                  </li>
+              
+                <li class="nav-item hidden-desktop">
+                  <a class="nav-link" href="product-list.html">دسته های بیشتر ...</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+          
+          <!-- منوی بالا -->
+          <nav class="navbar top-nav navbar-expand-lg navbar-dark  ">
+            <div class="container">
+              <a class="logo" href="#"><img src="logo.png" ></a>
+              <a id="sell-machinary" href="membership.html" class="btn btn-success " >ماشین خود را بفروشید 
+                <i class="fas fa-check fa-sm"></i></a>
+              <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navSmall" aria-controls="navSmall" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navSmall">
+                <ul class="navbar-nav mr-auto">
+                  <li class="nav-item  hidden-mobile">
+                    <a class="nav-link" href="machine-search.html">جستجوی دستگاه</a>
+                  </li>
+                  <li class="nav-item " >
+                    <a class="nav-link" href="dealers.html">فروشندگان</a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="membership.html">عضویت</a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="register-info.html">ثبت نام</a>
+                  </li>
+                  <li class="nav-item ">
+                    <a id="login" class="nav-link" href="login-info.html">ورود
+                        <i class="fas fa-sign-in-alt" aria-hidden="true"></i>  </a>
+                  </li>
+                 </ul>
+              </div>
+            </div>
+          </nav>
+    
+	
+    <div>
+        <div id="overlay"></div>
+          <div class="container " id="page-container">
+            <div class="inner-block bg-white">
+            <div class="ads-search bottom-pad2" style="background-color: #e9ecef;">
+              <header class="simple-search-header" style="min-height: 120px;">
+         <div style="background-color: #fff;">
+      
+   <!-- بنر تبلیغات -->
+   <div id="jssor_1" >
+    <div class="slides" data-u="slides" >
+        <div >
+            <img data-u="image" src="img/logoPagus.jpg" />
+            <div data-u="thumb">اطلاعات بنری تبلیغاتی</div>
+        </div>
+        <div>
+            <img data-u="image" src="img/bannerhoechsmann.gif" />
+            <div data-u="thumb"> اطلاعات بنری تبلیغاتی</div>
+        </div>
+        <div>
+            <img data-u="image" src="img/bannerIVW.jpg" />
+            <div data-u="thumb"> اطلاعات بنری تبلیغاتی</div>
+        </div>
+        <div>
+            <img data-u="image" src="img/logoMaynards.gif" />
+            <div data-u="thumb"> اطلاعات بنری تبلیغاتی</div>
+        </div>
+        <div>
+            <img data-u="image" src="img/logoUSEDMarket.jpg" />
+            <div data-u="thumb"> اطلاعات بنری تبلیغاتی</div>
+        </div>
+        <div>
+            <img data-u="image" src="img/banner_hamburg-machinery.jpg" />
+            <div data-u="thumb"> اطلاعات بنری تبلیغاتی</div>
+        </div>
+        <div>
+            <img data-u="image" src="img/logoKnauff.gif" />
+            <div data-u="thumb"> اطلاعات بنری تبلیغاتی</div>
+        </div>
+        <div>
+            <img data-u="image" src="img/bannerREWA.jpg" />
+            <div data-u="thumb"> اطلاعات بنری تبلیغاتی</div>
+        </div>
+        <div>
+            <img data-u="image" src="img/banner_dataTec.gif" />
+            <div data-u="thumb"> اطلاعات بنری تبلیغاتی</div>
+        </div>
+        <div>
+            <img data-u="image" src="img/bannerEPS.jpg" />
+            <div data-u="thumb"> اطلاعات بنری تبلیغاتی</div>
+        </div>
+     
+    </div>
+    <!-- متن تبلیغات اسلایدر -->
+    <div class="jssor-thumbnavigator" data-u="thumbnavigator" >
+        <div data-u="slides">
+            <div class="jssor-prototype" data-u="prototype" >
+                <div class="jssor-thumbnailtemplate" data-u="thumbnailtemplate" ></div>
+            </div>
+        </div>
+    </div>
+    <!-- فلش های اسلایدر -->
+    <div data-u="arrowleft" class="jssora061" style="width:55px;height:55px;top:0px;left:25px;" data-autocenter="2" data-scale="0.75" data-scale-left="0.75">
+      <svg viewBox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+          <path class="a" d="M11949,1919L5964.9,7771.7c-127.9,125.5-127.9,329.1,0,454.9L11949,14079"></path>
+      </svg>
+  </div>
+  <div data-u="arrowright" class="jssora061" style="width:55px;height:55px;top:0px;right:25px;" data-autocenter="2" data-scale="0.75" data-scale-right="0.75">
+      <svg viewBox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+          <path class="a" d="M5869,1919l5984.1,5852.7c127.9,125.5,127.9,329.1,0,454.9L5869,14079"></path>
+      </svg>
+  </div>
+</div>
+<!-- آخر اسلایدر تبلیغات -->
+ </div>
+
+             <div class="display-align top-titr mb-3">
+               <div class="col-lg-8 text center-align mx-auto">
+                <span class="text-muted" style="font-weight: 400;">سطح دسته اول: </span>
+                 <span class="text-muted" style="font-weight: 600;">رده 100 </span>
+                  <h1 class="center-align" style="font-size: 24px;">
+                    <span class="text-danger">ماشین آلات فلزکاری</span>
+                     <span class="text-muted" style="font-weight: 600;"> مورد استفاده برای فروش</span>
+                    </h1>
+                   </div>         
+                      </div>
+      
+              <form action="" method="get" name="">
+                <input type="hidden" name="" value="">
+                <input type="hidden" name="" value="">
+                <input type="hidden" name="" value="">
+                <input type="hidden" name="" value="">
+                <input type="hidden" name="" value="">
+                <input type="hidden" name="" value="">
+              <div class="container search-bar">
+                <div class="card" style="background-color: rgba(95, 174, 255, 0.2); margin-top: 10px;">
+                  <div class="card-body" style="padding: 0.5rem;">
+                    <div class="input-group">
+                      <input class="form-control" placeholder="جستجو در دسته " value="" maxlength="40" name="search" type="text" required="" title="">
+      
+                      <select class="custom-select hide-mobile" name="" style="border-radius: 0px; width:50%;">
+                        <option value="" selected="selected">رده</option>
+                        <option value="" selected="">1. فلز (33991)</option>
+                        <option value="">2. چوب (8688)</option>
+                        <option value="">3. پلاستیک (4156)</option>
+                        <option value="">4. بسته بندی (2909)</option>
+                        <option value="">5. بازیافت (1381)</option>
+                        <option value="">6. پارچه (334)</option>
+                        <option value="">7. مواد غذایی (11614)</option>
+                        <option value="">8. چاپ (5676)</option>
+                        <option value="">9. کشاورزی (578)</option>
+                        <option value="">10. ساخت و ساز (1534)</option>
+                        <option value="">11. متفرقه (1131)</option>
+                         </select>
+                      <span class="input-group-btn">
+                        <button id="search-button" class="btn-all btn-primary" type="submit" name="">
+                           <i class="fas fa-search"></i>
+                            <span class="search-word">جستجو</span>
+                          </button>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              </form>
+              </header>
+            </div>
+      
+            <!-- آدرس صفحه -->
+        <nav aria-label="breadcrumb" class="">
+          <ol class="address-crumb" style="border-radius: 0">
+            <li class="address-crumb-item"><a href="#">
+               <i class="fa fa-home" aria-hidden="true">
+               </i>
+              </a>
+            </li>
+            <li class="address-crumb-item"><a href="search.html">
+              <span class="cut-text">ماشین آلات فلزکاری</span>
+            </a>
+          </li>
+            <li class="address-crumb-item active" aria-current="page">
+              <span>انتخاب زیر مجموعه ها</span>
+            </li>
+           </ol>
+        </nav>
+           
+        
+        <div class="container top-margin2">
+      
+          <div class="display-align hide-mobile my-3">
+            <div class="col-12 mx-auto center-align top-margin">
+              <h3 class="center-align product-title2"><span class="text-muted">زیر مجموعه ها</span>
+                 <span> ماشین آلات فلزکاری</span>
+                </h3>
+            </div>
+          </div>
+      
+      
+        <table class="table table-hover table-sm tablecat">
+          <thead>
+            <tr>
+              <th>شماره دسته بندی</th>
+              <th>سطح دسته دوم</th>
+              <th class="right-align">نتایج</th>
+           </tr>
+          </thead>
+          <tbody>
+                <tr class="gray-bg-plus">
+                    <td>
+                      <span style="color: #acacac;" class="product-title">110</span>
+                    </td>
+                    <td>
+                      <span class="product-title">
+                        <a href="search.html">لوازم جانبی ماشین ابزار</a>
+                      </span>
+                      <button class="btn-all btn-all-small plus-icon-btn" type="button" data-toggle="collapse" data-target="#category-coll-110" aria-expanded="false" aria-controls="category-coll-110">
+                         <i class="fas fa-plus"></i> 
+                      </button>
+
+                      <div class="collapse py-1" id="category-coll-110">
+                        <ul class="list-group">
+                          <li class="list-group-item">
+                            <a href="search.html">لوازم جانبی</a> (93)</li>
+                            <li class="list-group-item">
+                              <a href="search.html">سرهای زاویه</a> 13)</li>
+                            <li class="list-group-item">
+                              <a href="search.html">جدول زاویه</a> (10)</li>
+                            <li class="list-group-item">
+                              <a href="search.html">نوار تغذیه</a> (8)</li>
+                            <li class="list-group-item">
+                              <a href="search.html">باربرها</a> (30)</li>
+                            <li class="list-group-item">
+                              <a href="search.html" rel=""nofollow""> بیشتر</a></li>                                         
+                        </ul>
+                      </div>
+                    </td>
+                    <td class="right-align">
+                      <span class="badge badge-secondary product-title2">1,415</span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                      <span style="color: #acacac;" class="product-title">112</span>
+                    </td>
+
+                    <td>
+                      <span class="product-title">
+                        <a href="search.html">ماشین آلات برش و حباب دنده</a>
+                      </span>
+                      <button class="btn-all btn-all-small plus-icon-btn" type="button" data-toggle="collapse" data-target="#category-coll-112" aria-expanded="false" aria-controls="category-coll-112">
+                        <i class="fas fa-plus"></i>
+                      </button>
+                      <div class="collapse py-1" id="category-coll-112">
+                        <ul class="list-group">
+                          <li class="list-group-item">
+                            <a href="search.html">دستگاه های برش دنده</a> (5)</li>
+                          <li class="list-group-item">
+                            <a href="search.html">ماشین‌های دنده تخلیه</a> (3)</li>
+                          <li class="list-group-item">
+                            <a href="search.html">سنگ زنی کناره های چرخ دنده ماشین ها</a> (2)</li>
+                          <li class="list-group-item">
+                            <a href="search.html">ماشین‌های سنگ‌زنی چرخ دنده</a> (13)</li>
+                          <li class="list-group-item">
+                            <a href="search.html">ماشین‌های حباب چرخ دنده</a> (37)</li>
+                          <li class="list-group-item">
+                            <a href="search.html">دستگاه های فرز چرخ دنده</a> (8)</li>
+                         <li class="list-group-item">
+                           <a href="search.html" rel=""nofollow""> بیشتر</a> (264)</li>
+                        </ul>
+                      </div>
+                    </td>
+
+                    <td class="right-align">
+                      <span class="badge badge-secondary product-title2">386</span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                      <span style="color: #acacac;" class="product-title">104</span>
+                    </td>
+                    <td>
+                      <span class="product-title">
+                        <a href="search.html">ماشین های سنگ زنی</a>
+                      </span>
+                      <button class="btn-all btn-all-small plus-icon-btn" type="button" data-toggle="collapse" data-target="#category-coll-104" aria-expanded="false" aria-controls="category-coll-104">
+                        <i class="fas fa-plus"></i>
+                      </button>
+                      <div class="collapse py-1" id="category-coll-104">
+                        <ul class="list-group">
+                          <li class="list-group-item">
+                            <a href="search.html">ماشین های برش ساینده</a> (4)</li>
+                            <li class="list-group-item">
+                              <a href="search.html">ماشین های پولیش خودکار</a> (4)</li>
+                            <li class="list-group-item">
+                              <a href="search.html"> ماشین آلات سنگ زنی و لپینگ</a> (1)</li>
+                            <li class="list-group-item">
+                              <a href="search.html">دستگاه آسیاب نواری</a> (58)</li>
+                            <li class="list-group-item">
+                              <a href="search.html"> ماشین های سنگ زنی تیغه اره</a> (2)</li>
+                          <li class="list-group-item">
+                            <a href="search.html" rel=""nofollow""> بیشتر</a></li>
+                       </ul>
+                      </div>
+                    </td>
+
+                    <td class="right-align">
+                      <span class="badge badge-secondary product-title2">2,433</span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><span style="color: #acacac;" class="product-title">102</span>
+                    </td>
+                    <td>
+                      <span class="product-title">
+                        <a href="search.html">ماشین های تراش</a></span>
+                      <button class="btn-all btn-all-small plus-icon-btn" type="button" data-toggle="collapse" data-target="#category-coll-102" aria-expanded="false" aria-controls="category-coll-102">
+                        <i class="fas fa-plus"></i>
+                      </button>
+                      <div class="collapse py-1" id="category-coll-102">
+                        <ul class="list-group">
+                          <li class="list-group-item">
+                            <a href="search.html">اتوماتیک (تراش ) برای میله ها</a> (5)</li>
+                          <li class="list-group-item">
+                            <a href="search.html">ماشین تراش برای مکانیک دقیق نیمکت  </a> (19)</li>
+                          <li class="list-group-item">
+                            <a href="search.html">ماشین های چرخ و فلک تراشکاری (تراش)</a> (56)</li>
+                          <li class="list-group-item">
+                            <a href="search.html"> ماشین های تراش مرکز درایو</a> (1)</li>
+                          <li class="list-group-item">
+                            <a href="search.html" rel=""nofollow""> بیشتر</a></li>
+                        </ul>
+                      </div>
+                    </td>
+
+                    <td class="right-align">
+                      <span class="badge badge-secondary product-title2">3,139</span>
+                    </td>
+                </tr>
+                <tr>
+      
+                    <td>
+                      <span style="color: #acacac;" class="product-title">103</span>
+                    </td>
+                    <td>
+                      <span class="product-title">
+                        <a href="search.html">ماشین های فرز</a>
+                      </span>
+                      <button class="btn-all btn-all-small plus-icon-btn" type="button" data-toggle="collapse" data-target="#category-coll-103" aria-expanded="false" aria-controls="category-coll-103">
+                        <i class="fas fa-plus"></i>
+                      </button>
+                      <div class="collapse py-1" id="category-coll-103">
+                        <ul class="list-group">
+                          <li class="list-group-item">
+                            <a href="search.html">ماشین های فرز تخت</a> (144)</li>
+                            <li class="list-group-item">
+                              <a href="search.html">ماشین های فرز تخت  </a> (49)</li>
+                            <li class="list-group-item">
+                              <a href="search.html">مراکز فرز </a> (203)</li>
+                            <li class="list-group-item">
+                              <a href="search.html">دستگاه های فرز </a> (196)</li>
+                            <li class="list-group-item">
+                              <a href="search.html">ماشین های فرز پورتال  </a> (27)</li>
+                          <li class="list-group-item">
+                            <a href="search.html" rel=""nofollow""> بیشتر</a></li>
+                        </ul>
+                      </div>
+                    </td>
+
+                    <td class="right-align">
+                      <span class="badge badge-secondary product-title2">2,241</span></td>
+                </tr>
+                <tr>
+      
+                    <td>
+                      <span style="color: #acacac;" class="product-title">109</span>
+                    </td>
+                    <td>
+                      <span class="product-title">
+                        <a href="search.html">دیگر ماشین آلات فلزکاری</a></span>
+                      <button class="btn-all btn-all-small plus-icon-btn" type="button" data-toggle="collapse" data-target="#category-coll-109" aria-expanded="false" aria-controls="category-coll-109">
+                        <i class="fas fa-plus"></i>
+                      </button>
+                      <div class="collapse py-1" id="category-coll-109">
+                        <ul class="list-group">
+                          <li class="list-group-item">
+                            <a href="search.html">چاپگرهای سه بعدی</a> (3)</li>
+                          <li class="list-group-item">
+                            <a href="search.html">جدول مونتاژ</a> (23)</li>
+                          <li class="list-group-item">
+                            <a href="search.html">ماشین های متعادل کننده</a> (11)</li>
+                          <li class="list-group-item">
+                            <a href="search.html">نوار تغذیه</a> (26)</li>
+                          <li class="list-group-item">
+                            <a href="search.html">ماشین آلات خمکاری</a> (27)</li>
+                          <li class="list-group-item">
+                            <a href="search.html">روی دنده مخروطی ماشین‌ها</a> (1)</li>
+                          <li class="list-group-item">
+                            <a href="search.html" rel=""nofollow""> بیشتر</a></li>
+                       </ul>
+                      </div>
+                    </td>
+
+                    <td class="right-align">
+                      <span class="badge badge-secondary product-title2">10,216</span>
+                    </td>
+                </tr>
+                <tr>
+      
+                    <td>
+                      <span style="color: #acacac;" class="product-title">106</span>
+                    </td>
+                    <td>
+                      <span class="product-title">
+                        <a href="search.html">ماشین پرس</a></span>
+                      <button class="btn-all btn-all-small plus-icon-btn" type="button" data-toggle="collapse" data-target="#category-coll-106" aria-expanded="false" aria-controls="category-coll-106">
+                        <i class="fas fa-plus"></i>
+                      </button>
+                      <div class="collapse py-1" id="category-coll-106">
+                        <ul class="list-group">
+                          <li class="list-group-item">
+                            <a href="search.html">پرس های توپ</a> ( 2)</li>
+                          <li class="list-group-item">
+                            <a href="search.html">پرس های غیرعادی رومیزی</a> (3)</li>
+                          <li class="list-group-item">
+                            <a href="search.html">خم شدن و صاف کردن فشار</a> (4)</li>
+                          <li class="list-group-item">
+                            <a href="search.html">پرس خمش</a> ( 115)</li>
+                          <li class="list-group-item">
+                            <a href="search.html">پرس های خالی</a> ( 15)</li>
+                          <li class="list-group-item">
+                            <a href="search.html">پرس بدنه خودرو</a> (8)</li>
+                          <li class="list-group-item">
+                            <a href="search.html" rel=""nofollow""> بیشتر</a></li>
+                       </ul>
+                      </div>
+                    </td>
+
+                    <td class="right-align">
+                      <span class="badge badge-secondary product-title2">1,903</span></td>
+                </tr>
+
+                <tr>
+                    <td>
+                      <span style="color: #acacac;" class="product-title">105</span>
+                    </td>
+
+                    <td>
+                      <span class="product-title">
+                        <a href="search.html">اره ها</a>
+                      </span>
+                      <button class="btn-all btn-all-small plus-icon-btn" type="button" data-toggle="collapse" data-target="#category-coll-105" aria-expanded="false" aria-controls="category-coll-105">
+                        <i class="fas fa-plus"></i>
+                      </button>
+                      <div class="collapse py-1" id="category-coll-105">
+                        <ul class="list-group">
+                          <li class="list-group-item">
+                            <a href="search.html">اره نواری خودکار</a> (48)</li>
+                            <li class="list-group-item">
+                              <a href="search.html">باند اره خودکار</a> (70)</li>
+                            <li class="list-group-item">
+                              <a href="search.html">ماشین اره نواری</a> (52)</li>
+                            <li class="list-group-item">
+                              <a href="search.html">تیز کردن اره نواری ماشین ها</a> (3)</li>
+                            <li class="list-group-item">
+                              <a href="search.html">اره نواری</a> ( 94)</li>
+                            <li class="list-group-item">
+                              <a href="search.html">بی -تیغه های اره نواری فلزی</a> (1)</li>
+                          <li class="list-group-item">
+                            <a href="search.html" rel=""nofollow""> بیشتر</a></li>
+                        </ul>
+                      </div>
+                    </td>
+
+                    <td class="right-align">
+                      <span class="badge badge-secondary product-title2">1,335</span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                      <span style="color: #acacac;" class="product-title">107</span>
+                    </td>
+                    <td>
+                      <span class="product-title">
+                        <a href="search.html">ورق کاری</a></span>
+                      <button class="btn-all btn-all-small plus-icon-btn" type="button" data-toggle="collapse" data-target="#category-coll-107" aria-expanded="false" aria-controls="category-coll-107">
+                         <i class="fas fa-plus"></i>
+                      </button>
+                      <div class="collapse py-1" id="category-coll-107">
+                        <ul class="list-group">
+                          <li class="list-group-item">
+                            <a href="search.html">3 -ماشین های خم گرد غلتکی</a> (27)</li>
+                          <li class="list-group-item">
+                            <a href="search.html">پردازش لیزر محوری تجهیزات</a> (1)</li>
+                          <li class="list-group-item">
+                            <a href="search.html">ماشین‌های مهره‌زنی</a> ( 39)</li>
+                          <li class="list-group-item">
+                            <a href="search.html">خم شدن و صاف کردن ماشین ها</a> (1)</li>
+                          <li class="list-group-item">
+                            <a href="search.html">ماشین آلات خمکاری</a> ( 264)</li>
+                          <li class="list-group-item">
+                            <a href="search.html">پورتال </a> ( 1)</li>
+                          <li class="list-group-item">
+                            <a href="search.html" rel=""nofollow""> بیشتر</a></li>
+                       </ul>
+                      </div>
+                    </td>
+
+                    <td class="right-align">
+                      <span class="badge badge-secondary product-title2">3,787</span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                      <span style="color: #acacac;" class="product-title">111</span>
+                    </td>
+                    <td>
+                      <span class="product-title">
+                        <a href="search.html">قطعات یدکی ماشین ابزار</a>
+                      </span>
+                      <button class="btn-all btn-all-small plus-icon-btn" type="button" data-toggle="collapse" data-target="#category-coll-111" aria-expanded="false" aria-controls="category-coll-111">
+                         <i class="fas fa-plus"></i>
+                      </button>
+                      <div class="collapse py-1" id="category-coll-111">
+                        <ul class="list-group">
+                          <li class="list-group-item">
+                            <a href="search.html">کاورهای محور</a> ( 2)</li>
+                          <li class="list-group-item">
+                            <a href="search.html">تبدیل‌های گشتاور توپ</a> (4)</li>
+                          <li class="list-group-item">
+                            <a href="search.html">ماشین‌های </a> ( 3)</li>
+                          <li class="list-group-item">
+                            <a href="search.html">موتورها</a> (10)</li>
+                          <li class="list-group-item">
+                            <a href="search.html">واحدهای پمپ</a> ( 2)</li>
+                          <li class="list-group-item">
+                            <a href="search.html">کنترل کننده های سرو</a> ( 2)</li>
+                          <li class="list-group-item">
+                            <a href="search.html">ماژول های سرو</a> ( 2)</li>
+                          <li class="list-group-item">
+                            <a href="search.html">قطعات یدکی</a> ( 155)</li>
+                          <li class="list-group-item">
+                            <a href="search.html" rel=""nofollow""> بیشتر</a> (110)</li>                                         
+                        </ul>
+                      </div>
+                    </td>
+
+                    <td class="right-align">
+                      <span class="badge badge-secondary product-title2">290</span>
+                    </td>
+                </tr>
+      
+                    <tr>
+                      <td>
+                      <span style="color: #acacac;" class="product-title">100</span>
+                    </td>
+                    <td>
+                      <span class="product-title">
+                        <a href="#">همه ماشین آلات فلزکاری</a>
+                    </span>
+                  </td>
+                    <td class="right-align">
+                      <span class="badge badge-secondary product-title2">33,991</span>
+                    </td>
+                    <td class="center-align"></td>
+                    </tr>
+                  </tbody>
+                  </table>
+
+                    <div class="bottom-pad2" style="background-color: #e9ecef;">
+                      <header class="simple-search-header" style="min-height: 80px;">
+                <div class="display-align ver-margin">
+                  <div class="col-10 mx-auto center-align top-margin">
+                    <h3><span class="text-danger product-title2">تولیدکنندگان</span>
+                      <span class="product-title2"> ماشین آلات فلزکاری</span>
+                    </h3>
+                  </div>
+                </div>
+      
+                  <div class="col-lg-12 text center-align mx-auto">
+                      <a class="btn-all btn-lg btn-green" href="manufacturer-directory.html" title="" target="_blank">فهرست سازنده</a>
+                  </div>
+              </header>
+            </div>
+        </div>
+      
+        <hr>
+      
+      <div class="top-margin2">
+        <div class="display-align">
+          <div class="col-12 mx-auto">
+        <div class="display-align mb-3">
+          <div class="col-lg-8 text center-align mx-auto">
+            <h2 style="font-size: 22px;">
+              <span class="text-danger">آخرین نتایج</span> 
+              ماشین آلات فلزکاری</h2>
+          </div>
+        </div>
+
+        <!-- توضیحات -->
+        <div class="container top-group" style="background-color: white;">
+          <div class="display-align">
+            <div class="col-lg-7 machine-top py-1">
+              <span class="category-code">107 
+                <a href="#" style="color: #5faeff;">ورق کاری</a>
+              </span>
+            </div>
+            <div class="col-lg-5 machine-top py-1">
+              <span class="category-code">تاریخ: 17.03.2022</span>
+              <span style="float: left;">
+                <a href="#" title=""  class="btn-all btn-light btn-all-small openPopup" style="font-weight: 600; font-size: 0.8rem;">
+                  <i class="fas fa-star" style="color: #f0b000;"></i> 
+                  کد دستگاه: 156640250</a>
+                </span>
+                </div>
+          </div>
+          <div class="display-align top-group-verified">
+                   <div class="ribbon-wrapper-red">
+                <div class="ribbon-red">
+                  <span>فروشنده</span>
+                  <span>تایید شده</span>
+                </div>
+              </div>
+                  <div class="col-md-12 col-lg-3">
+              <div class="display-align picture-box">
+                <div class="col-sm center-align fill">
+                  <div class="picture">
+                    <a href="product-detail.html">
+                      <img src="img/machinepics11.jpg" >                
+                    </a>
+    
+                    <div class="bottom-center">
+                      <button class="btn-all btn-all-small btn-green" style="margin: 10px; ">   
+                     <a href="send-inquiry.html" class="text-white">
+                         درخواست استعلام
+                       </a>
+                      </button>
+    
+                      <button class="btn-all btn-all-small btn-green" style="margin: 10px;font-weight: 600;">
+                        <i class="fas fa-phone"></i>
+                      </button>   
+                                   
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="display-align ver-pad my-auto">
+                <div class=" center-align mx-auto my-auto">
+                  <div class="production-year">
+                      <i class="far fa-calendar-alt"></i>
+                      <span>
+                        سال تولید:
+                      </span>
+                      <span>
+                        2021 
+                      </span>
+                    </div>
+                    <h6>
+                      نو 
+                    </h6>
+                </div>
+              </div>
+            </div>
+    
+            <div class="col-lg-9 col-md-12 ">
+              <div class="display-align pr-2">
+                  <div class="col-sm col-mobile ver-pad center-align-mobile">
+                    <a href="product-detail.html">
+                       <p class="mb-0" style="font-size: 20px;">
+                        <b>OSTAS</b> 3R OHS 2570 x 25/30</p>
+                       <b>دستگاه خم کن ورق - 3 غلتک</b>
+                       </a>
+                </div>
+              </div>
+              <div class="display-align bottom-pad pr-2" style="line-height: 2;">
+                <div class="col-sm-8 col-mobile right-align">
+                  <div class="owner" style="font-size: 0.8rem; font-weight: 650;">
+                    <span class="badge" style="background-color: #e35d6a; color: white;">رتبه بالا</span>
+                     فروشنده: 
+                     <img  style="height: 12px;"> Sperling Werkzeugmaschinen   
+               </div>
+                  <div class="location" style="font-size: 0.9rem;">
+               <b>موقعیت:: Werk</b>   
+             </div>
+                </div>
+                <div class="col-sm-4 col-mobile right-align">
+                  <div class="price">
+                    <button class="btn-all btn-primary mazane">   
+                      <a href="request-quote.html" class="text-white">
+                         درخواست مظنه
+                       </a>
+                      </button>
+                  </div>
+                </div>
+              </div>
+    
+              <div class="display-align hor-pad">
+                <div class="col-sm col-mobile ver-pad">
+                  <p class="prod-text">
+                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ،
+                     و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز،
+                      و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان
+                      جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در
+                      زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و
+                      زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.              
+                     </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    
+  <!-- توضیحات -->
+  <div class="container top-group" style="background-color: white;">
+    <div class="display-align">
+      <div class="col-lg-7 machine-top py-1">
+        <span class="category-code">107 
+          <a href="#" style="color: #5faeff;">ورق کاری</a>
+        </span>
+      </div>
+      <div class="col-lg-5 machine-top py-1">
+        <span class="category-code">تاریخ: 17.03.2022</span>
+        <span style="float: left;">
+          <a href="#" title=""  class="btn-all btn-light btn-all-small openPopup" style="font-weight: 600; font-size: 0.8rem;">
+            <i class="fas fa-star" style="color: #f0b000;"></i> 
+            کد دستگاه: 156640250</a>
+          </span>
+          </div>
+    </div>
+    <div class="display-align top-group-verified">
+             <div class="ribbon-wrapper-red">
+          <div class="ribbon-red">
+            <span>فروشنده</span>
+            <span>تایید شده</span>
+          </div>
+        </div>
+            <div class="col-md-12 col-lg-3">
+        <div class="display-align picture-box">
+          <div class="col-sm center-align fill">
+            <div class="picture">
+              <a href="product-detail.html">
+                <img src="img/machinepics11.jpg" >                
+              </a>
+
+              <div class="bottom-center">
+                <button class="btn-all btn-all-small btn-green" style="margin: 10px; ">   
+               <a href="send-inquiry.html" class="text-white">
+                   درخواست استعلام
+                 </a>
+                </button>
+
+                <button class="btn-all btn-all-small btn-green" style="margin: 10px;font-weight: 600;">
+                  <i class="fas fa-phone"></i>
+                </button>   
+                             
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="display-align ver-pad my-auto">
+          <div class=" center-align mx-auto my-auto">
+            <div class="production-year">
+                <i class="far fa-calendar-alt"></i>
+                <span>
+                  سال تولید:
+                </span>
+                <span>
+                  2021 
+                </span>
+              </div>
+              <h6>
+                نو 
+              </h6>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-9 col-md-12 ">
+        <div class="display-align pr-2">
+            <div class="col-sm col-mobile ver-pad center-align-mobile">
+              <a href="product-detail.html">
+                 <p class="mb-0" style="font-size: 20px;">
+                  <b>OSTAS</b> 3R OHS 2570 x 25/30</p>
+                 <b>دستگاه خم کن ورق - 3 غلتک</b>
+                 </a>
+          </div>
+        </div>
+        <div class="display-align bottom-pad pr-2" style="line-height: 2;">
+          <div class="col-sm-8 col-mobile right-align">
+            <div class="owner" style="font-size: 0.8rem; font-weight: 650;">
+              <span class="badge" style="background-color: #e35d6a; color: white;">رتبه بالا</span>
+               فروشنده: 
+               <img  style="height: 12px;"> Sperling Werkzeugmaschinen   
+         </div>
+            <div class="location" style="font-size: 0.9rem;">
+         <b>موقعیت:: Werk</b>   
+       </div>
+          </div>
+          <div class="col-sm-4 col-mobile right-align">
+            <div class="price">
+              <button class="btn-all btn-primary mazane">   
+                <a href="request-quote.html" class="text-white">
+                   درخواست مظنه
+                 </a>
+                </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="display-align hor-pad">
+          <div class="col-sm col-mobile ver-pad">
+            <p class="prod-text">
+              لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ،
+               و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز،
+                و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان
+                جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در
+                زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و
+                زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.              
+               </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+    <!-- توضیحات -->
+    <div class="container top-group" style="background-color: white;">
+      <div class="display-align">
+        <div class="col-lg-7 machine-top py-1">
+          <span class="category-code">107 
+            <a href="#" style="color: #5faeff;">ورق کاری</a>
+          </span>
+        </div>
+        <div class="col-lg-5 machine-top py-1">
+          <span class="category-code">تاریخ: 17.03.2022</span>
+          <span style="float: left;">
+            <a href="#" title=""  class="btn-all btn-light btn-all-small openPopup" style="font-weight: 600; font-size: 0.8rem;">
+              <i class="fas fa-star" style="color: #f0b000;"></i> 
+              کد دستگاه: 156640250</a>
+            </span>
+            </div>
+      </div>
+      <div class="display-align top-group-verified">
+               <div class="ribbon-wrapper-red">
+            <div class="ribbon-red">
+              <span>فروشنده</span>
+              <span>تایید شده</span>
+            </div>
+          </div>
+              <div class="col-md-12 col-lg-3">
+          <div class="display-align picture-box">
+            <div class="col-sm center-align fill">
+              <div class="picture">
+                <a href="product-detail.html">
+                  <img src="img/machinepics11.jpg" >                
+                </a>
+
+                <div class="bottom-center">
+                  <button class="btn-all btn-all-small btn-green" style="margin: 10px; ">   
+                 <a href="send-inquiry.html" class="text-white">
+                     درخواست استعلام
+                   </a>
+                  </button>
+
+                  <button class="btn-all btn-all-small btn-green" style="margin: 10px;font-weight: 600;">
+                    <i class="fas fa-phone"></i>
+                  </button>   
+                               
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="display-align ver-pad my-auto">
+            <div class=" center-align mx-auto my-auto">
+              <div class="production-year">
+                  <i class="far fa-calendar-alt"></i>
+                  <span>
+                    سال تولید:
+                  </span>
+                  <span>
+                    2021 
+                  </span>
+                </div>
+                <h6>
+                  نو 
+                </h6>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-9 col-md-12 ">
+          <div class="display-align pr-2">
+              <div class="col-sm col-mobile ver-pad center-align-mobile">
+                <a href="product-detail.html">
+                   <p class="mb-0" style="font-size: 20px;">
+                    <b>OSTAS</b> 3R OHS 2570 x 25/30</p>
+                   <b>دستگاه خم کن ورق - 3 غلتک</b>
+                   </a>
+            </div>
+          </div>
+          <div class="display-align bottom-pad pr-2" style="line-height: 2;">
+            <div class="col-sm-8 col-mobile right-align">
+              <div class="owner" style="font-size: 0.8rem; font-weight: 650;">
+                <span class="badge" style="background-color: #e35d6a; color: white;">رتبه بالا</span>
+                 فروشنده: 
+                 <img  style="height: 12px;"> Sperling Werkzeugmaschinen   
+           </div>
+              <div class="location" style="font-size: 0.9rem;">
+           <b>موقعیت:: Werk</b>   
+         </div>
+            </div>
+            <div class="col-sm-4 col-mobile right-align">
+              <div class="price">
+                  <button class="btn-all btn-primary mazane">   
+                    <a href="request-quote.html" class="text-white">
+                     درخواست مظنه
+                   </a>
+                  </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="display-align hor-pad">
+            <div class="col-sm col-mobile ver-pad">
+              <p class="prod-text">
+                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ،
+                 و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز،
+                  و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان
+                  جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در
+                  زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و
+                  زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.              
+                 </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      <!-- توضیحات -->
+      <div class="container top-group" style="background-color: white;">
+        <div class="display-align">
+          <div class="col-lg-7 machine-top py-1">
+            <span class="category-code">107 
+              <a href="#" style="color: #5faeff;">ورق کاری</a>
+            </span>
+          </div>
+          <div class="col-lg-5 machine-top py-1">
+            <span class="category-code">تاریخ: 17.03.2022</span>
+            <span style="float: left;">
+              <a href="#" title=""  class="btn-all btn-light btn-all-small openPopup" style="font-weight: 600; font-size: 0.8rem;">
+                <i class="fas fa-star" style="color: #f0b000;"></i> 
+                کد دستگاه: 156640250</a>
+              </span>
+              </div>
+        </div>
+        <div class="display-align top-group-verified">
+                 <div class="ribbon-wrapper-red">
+              <div class="ribbon-red">
+                <span>فروشنده</span>
+                <span>تایید شده</span>
+              </div>
+            </div>
+                <div class="col-md-12 col-lg-3">
+            <div class="display-align picture-box">
+              <div class="col-sm center-align fill">
+                <div class="picture">
+                  <a href="product-detail.html">
+                    <img src="img/machinepics11.jpg" >                
+                  </a>
+  
+                  <div class="bottom-center">
+                    <button class="btn-all btn-all-small btn-green" style="margin: 10px; ">   
+                   <a href="send-inquiry.html" class="text-white">
+                       درخواست استعلام
+                     </a>
+                    </button>
+  
+                    <button class="btn-all btn-all-small btn-green" style="margin: 10px;font-weight: 600;">
+                      <i class="fas fa-phone"></i>
+                    </button>   
+                                 
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="display-align ver-pad my-auto">
+              <div class=" center-align mx-auto my-auto">
+                <div class="production-year">
+                    <i class="far fa-calendar-alt"></i>
+                    <span>
+                      سال تولید:
+                    </span>
+                    <span>
+                      2021 
+                    </span>
+                  </div>
+                  <h6>
+                    نو 
+                  </h6>
+              </div>
+            </div>
+          </div>
+  
+          <div class="col-lg-9 col-md-12 ">
+            <div class="display-align pr-2">
+                <div class="col-sm col-mobile ver-pad center-align-mobile">
+                  <a href="product-detail.html">
+                     <p class="mb-0" style="font-size: 20px;">
+                      <b>OSTAS</b> 3R OHS 2570 x 25/30</p>
+                     <b>دستگاه خم کن ورق - 3 غلتک</b>
+                     </a>
+              </div>
+            </div>
+            <div class="display-align bottom-pad pr-2" style="line-height: 2;">
+              <div class="col-sm-8 col-mobile right-align">
+                <div class="owner" style="font-size: 0.8rem; font-weight: 650;">
+                  <span class="badge" style="background-color: #e35d6a; color: white;">رتبه بالا</span>
+                   فروشنده: 
+                   <img  style="height: 12px;"> Sperling Werkzeugmaschinen   
+             </div>
+                <div class="location" style="font-size: 0.9rem;">
+             <b>موقعیت:: Werk</b>   
+           </div>
+              </div>
+              <div class="col-sm-4 col-mobile right-align">
+                <div class="price">
+                  <button class="btn-all btn-primary mazane">   
+                    <a href="request-quote.html" class="text-white">
+                       درخواست مظنه
+                     </a>
+                    </button>
+                </div>
+              </div>
+            </div>
+  
+            <div class="display-align hor-pad">
+              <div class="col-sm col-mobile ver-pad">
+                <p class="prod-text">
+                  لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ،
+                   و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز،
+                    و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان
+                    جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در
+                    زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و
+                    زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.              
+                   </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+        <!-- توضیحات -->
+        <div class="container top-group" style="background-color: white;">
+          <div class="display-align">
+            <div class="col-lg-7 machine-top py-1">
+              <span class="category-code">107 
+                <a href="#" style="color: #5faeff;">ورق کاری</a>
+              </span>
+            </div>
+            <div class="col-lg-5 machine-top py-1">
+              <span class="category-code">تاریخ: 17.03.2022</span>
+              <span style="float: left;">
+                <a href="#" title=""  class="btn-all btn-light btn-all-small openPopup" style="font-weight: 600; font-size: 0.8rem;">
+                  <i class="fas fa-star" style="color: #f0b000;"></i> 
+                  کد دستگاه: 156640250</a>
+                </span>
+                </div>
+          </div>
+          <div class="display-align top-group-verified">
+                   <div class="ribbon-wrapper-red">
+                <div class="ribbon-red">
+                  <span>فروشنده</span>
+                  <span>تایید شده</span>
+                </div>
+              </div>
+                  <div class="col-md-12 col-lg-3">
+              <div class="display-align picture-box">
+                <div class="col-sm center-align fill">
+                  <div class="picture">
+                    <a href="product-detail.html">
+                      <img src="img/machinepics11.jpg" >                
+                    </a>
+    
+                    <div class="bottom-center">
+                      <button class="btn-all btn-all-small btn-green" style="margin: 10px; ">   
+                     <a href="send-inquiry.html" class="text-white">
+                         درخواست استعلام
+                       </a>
+                      </button>
+    
+                      <button class="btn-all btn-all-small btn-green" style="margin: 10px;font-weight: 600;">
+                        <i class="fas fa-phone"></i>
+                      </button>   
+                                   
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="display-align ver-pad my-auto">
+                <div class=" center-align mx-auto my-auto">
+                  <div class="production-year">
+                      <i class="far fa-calendar-alt"></i>
+                      <span>
+                        سال تولید:
+                      </span>
+                      <span>
+                        2021 
+                      </span>
+                    </div>
+                    <h6>
+                      نو 
+                    </h6>
+                </div>
+              </div>
+            </div>
+    
+            <div class="col-lg-9 col-md-12 ">
+              <div class="display-align pr-2">
+                  <div class="col-sm col-mobile ver-pad center-align-mobile">
+                    <a href="product-detail.html">
+                       <p class="mb-0" style="font-size: 20px;">
+                        <b>OSTAS</b> 3R OHS 2570 x 25/30</p>
+                       <b>دستگاه خم کن ورق - 3 غلتک</b>
+                       </a>
+                </div>
+              </div>
+              <div class="display-align bottom-pad pr-2" style="line-height: 2;">
+                <div class="col-sm-8 col-mobile right-align">
+                  <div class="owner" style="font-size: 0.8rem; font-weight: 650;">
+                    <span class="badge" style="background-color: #e35d6a; color: white;">رتبه بالا</span>
+                     فروشنده: 
+                     <img  style="height: 12px;"> Sperling Werkzeugmaschinen   
+               </div>
+                  <div class="location" style="font-size: 0.9rem;">
+               <b>موقعیت:: Werk</b>   
+             </div>
+                </div>
+                <div class="col-sm-4 col-mobile right-align">
+                  <div class="price">
+                    <button class="btn-all btn-primary mazane">   
+                      <a href="request-quote.html" class="text-white">
+                         درخواست مظنه
+                       </a>
+                      </button>
+                  </div>
+                </div>
+              </div>
+    
+              <div class="display-align hor-pad">
+                <div class="col-sm col-mobile ver-pad">
+                  <p class="prod-text">
+                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ،
+                     و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز،
+                      و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان
+                      جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در
+                      زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و
+                      زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.              
+                     </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+          <!-- توضیحات -->
+          <div class="container top-group" style="background-color: white;">
+            <div class="display-align">
+              <div class="col-lg-7 machine-top py-1">
+                <span class="category-code">107 
+                  <a href="#" style="color: #5faeff;">ورق کاری</a>
+                </span>
+              </div>
+              <div class="col-lg-5 machine-top py-1">
+                <span class="category-code">تاریخ: 17.03.2022</span>
+                <span style="float: left;">
+                  <a href="#" title=""  class="btn-all btn-light btn-all-small openPopup" style="font-weight: 600; font-size: 0.8rem;">
+                    <i class="fas fa-star" style="color: #f0b000;"></i> 
+                    کد دستگاه: 156640250</a>
+                  </span>
+                  </div>
+            </div>
+            <div class="display-align top-group-verified">
+                     <div class="ribbon-wrapper-red">
+                  <div class="ribbon-red">
+                    <span>فروشنده</span>
+                    <span>تایید شده</span>
+                  </div>
+                </div>
+                    <div class="col-md-12 col-lg-3">
+                <div class="display-align picture-box">
+                  <div class="col-sm center-align fill">
+                    <div class="picture">
+                      <a href="product-detail.html">
+                        <img src="img/machinepics11.jpg" >                
+                      </a>
+      
+                      <div class="bottom-center">
+                        <button class="btn-all btn-all-small btn-green" style="margin: 10px; ">   
+                       <a href="send-inquiry.html" class="text-white">
+                           درخواست استعلام
+                         </a>
+                        </button>
+      
+                        <button class="btn-all btn-all-small btn-green" style="margin: 10px;font-weight: 600;">
+                          <i class="fas fa-phone"></i>
+                        </button>   
+                                     
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="display-align ver-pad my-auto">
+                  <div class=" center-align mx-auto my-auto">
+                    <div class="production-year">
+                        <i class="far fa-calendar-alt"></i>
+                        <span>
+                          سال تولید:
+                        </span>
+                        <span>
+                          2021 
+                        </span>
+                      </div>
+                      <h6>
+                        نو 
+                      </h6>
+                  </div>
+                </div>
+              </div>
+      
+              <div class="col-lg-9 col-md-12 ">
+                <div class="display-align pr-2">
+                    <div class="col-sm col-mobile ver-pad center-align-mobile">
+                      <a href="product-detail.html">
+                         <p class="mb-0" style="font-size: 20px;">
+                          <b>OSTAS</b> 3R OHS 2570 x 25/30</p>
+                         <b>دستگاه خم کن ورق - 3 غلتک</b>
+                         </a>
+                  </div>
+                </div>
+                <div class="display-align bottom-pad pr-2" style="line-height: 2;">
+                  <div class="col-sm-8 col-mobile right-align">
+                    <div class="owner" style="font-size: 0.8rem; font-weight: 650;">
+                      <span class="badge" style="background-color: #e35d6a; color: white;">رتبه بالا</span>
+                       فروشنده: 
+                       <img  style="height: 12px;"> Sperling Werkzeugmaschinen   
+                 </div>
+                    <div class="location" style="font-size: 0.9rem;">
+                 <b>موقعیت:: Werk</b>   
+               </div>
+                  </div>
+                  <div class="col-sm-4 col-mobile right-align">
+                    <div class="price">
+                      <button class="btn-all btn-primary mazane">   
+                        <a href="request-quote.html" class="text-white">
+                           درخواست مظنه
+                         </a>
+                        </button>
+                    </div>
+                  </div>
+                </div>
+      
+                <div class="display-align hor-pad">
+                  <div class="col-sm col-mobile ver-pad">
+                    <p class="prod-text">
+                      لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ،
+                       و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز،
+                        و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان
+                        جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در
+                        زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و
+                        زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.              
+                       </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>    
+            </div>
+          </div>
+        </div>
+          </div>
+        </div>
+      </div>
+
+
+   <!-- فوتر -->
+   <footer id="footer">
+    <div class="second-bar">
+       <div class="container">
+            <div class="social-icons">
+                <span>از فروشگاه ما بازدید کنید: </span>
+                <a href="#" class="social" target="_blank" >
+                  <i class="fab fa-facebook-square" ></i>
+                 </a>
+                 <a href="#" class="social" target="_blank">
+                   <i class="fab fa-linkedin " ></i> 
+                    </a>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+      <div class="display-align">
+          <div class="col-sm-3">
+              <h5>شرکت</h5>
+              <ul>
+                  <li><a href="contact-us.html">ارتباط با ما</a></li>                
+                  <li><a href="about.html">درباره ما</a></li>
+                  <li><a href="sitemap.html">نقشه سایت</a></li>
+              </ul>
+          </div>
+          <div class="col-sm-3">
+              <h5>برای فروشندگان</h5>
+              <ul>
+                  <li><a href="membership.html">عضویت</a></li>
+                  <li><a href="register-info.html">ثبت نام</a></li>
+                  <li><a href="login-info.html">ورود</a></li>
+              </ul>
+          </div>
+          <div class="col-sm-3">
+              <h5>برای خریداران</h5>
+              <ul>
+                  <li><a href="search.html">جستجوی ماشین آلات</a></li>
+                  <li><a href="watchlist.html" target="TOP"> فهرست دلخواه </a></li>            
+                  <li><a href="newsletter.html">خبرنامه</a></li>
+                  <li><a href="manufacturers.html">تولیدکنندگان</a></li>
+                  <li><a href="dealershtml">فروشندگان</a></li>
+                  <li><a href="send-inquiry.html" target="_blank">ارسال درخواست استعلام</a></li>
+              </ul>
+          </div>
+          <div class="col-sm-3">
+              <h5>پشتیبانی</h5>
+              <ul>
+                  <li><a href="faq-agb.html">سوالات متداول و شرایط کسب و کار</a></li>
+                  <li><a href="#">چاپ کردن</a></li>
+                  <li><a href="contact-us.html">تماس با ما</a></li>
+              </ul>
+          </div>
+      </div>
+     <!-- کپی رایت -->
+      <div class="container">
+        <p id="copyright" >
+          Copyright 2022 All rights reserved</p>
+      </div>
+    </div>
+  </footer>      
+          <!-- عکس پس زمینه -->
+      <div class="parallax-background" >
+        <img src="background.jpg" ></div>
+  
+  <!-- اسکریپتها -->
+  <script src="js/jquery.js"></script> 
+  <script src="js/bootstrap.min.js"></script>
+<script> jssor_1_slider_init(); </script>
+
+
+</body>
+</html>

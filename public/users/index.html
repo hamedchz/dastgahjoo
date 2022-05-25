@@ -1,0 +1,1264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title></title>
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="style.css" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+<!-- اسکریپت اسلایدر تبلیغات -->
+<script src="js/jssor.slider.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    jssor_1_slider_init = function() {
+
+        var jssor_1_SlideshowTransitions = [
+          {$Duration:1200,x:-0.3,$During:{$Left:[0.3,0.7]},$Easing:{$Left:$Jease$.$InCubic,$Opacity:$Jease$.$Linear},$Opacity:2},
+          {$Duration:1200,x:0.3,$SlideOut:true,$Easing:{$Left:$Jease$.$InCubic,$Opacity:$Jease$.$Linear},$Opacity:2}
+        ];
+
+        var jssor_1_options = {
+      $FillMode: 4,
+      $AutoPlay: 1,
+      $Cols: 1,
+      $Align: 0,
+      $SlideshowOptions: {
+        $Class: $JssorSlideshowRunner$,
+        $Transitions: {$Duration:2200,x:1,$Easing:{$Left:$Jease$.$InOutQuart},$Brother:{$Duration:2200,x:-1,$Easing:{$Left:$Jease$.$InOutQuart}}},
+        $TransitionsOrder: 1
+      },
+      $ArrowNavigatorOptions: {
+        $Class: $JssorArrowNavigator$
+      },
+      $ThumbnailNavigatorOptions: {
+        $Class: $JssorThumbnailNavigator$,
+        $Cols: 1,
+        $Orientation: 2,
+        $Align: 0,
+        $NoDrag: true
+      }
+    };
+        var jssor_1_slider = new $JssorSlider$("jssor_1", jssor_1_options);
+
+        var MAX_WIDTH = 1110;
+
+        function ScaleSlider() {
+            var containerElement = jssor_1_slider.$Elmt.parentNode;
+            var containerWidth = containerElement.clientWidth;
+
+            if (containerWidth) {
+
+                var expectedWidth = Math.min(MAX_WIDTH || containerWidth, containerWidth);
+
+                jssor_1_slider.$ScaleWidth(expectedWidth);
+            }
+            else {
+                window.setTimeout(ScaleSlider, 30);
+            }
+        }
+
+        ScaleSlider();
+
+        $Jssor$.$AddEvent(window, "load", ScaleSlider);
+        $Jssor$.$AddEvent(window, "resize", ScaleSlider);
+        $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider);
+    };
+</script>
+
+</head>
+<body>
+<div class="page-wrapper rtl">
+    
+    <!-- منوی اصلی-->
+        <nav class="navbar top-nav navbar-expand-lg navbar-light top-nav-2" id="navbar-top-2">
+            <div class="container">
+              <button class="all-cat-small navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navSmall2" aria-controls="navSmall2" aria-expanded="false" aria-label="Toggle navigation">
+                همه دسته بندی ها
+              </button>
+              <div class="collapse navbar-collapse" id="navSmall2">
+                <ul class="navbar-nav">
+                  <li class="nav-item dropdown hidden-mobile">
+                    <a class="nav-link" href="product-list.html" id="navItem1">
+                      <div class="nav-item-text">فلزات</div>
+                      <svg class="svg-inline--fa fa-caret-down fa-w-10 fa-sm" aria-hidden="true" data-prefix="fas" data-icon="caret-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" data-fa-i2svg=""><path fill="currentColor" d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"></path></svg>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navItem1">
+                      <a class="dropdown-item disabled" href="product-list.html">ماشین آلات فلزکاری (33,989)</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="product-list.html">ورق کاری <b>(3,921)</b></a>
+                      <a class="dropdown-item" href="product-list.html">آسیاب های خسته کننده و مراکز ماشینکاری <b>(3,531)</b></a>
+                      <a class="dropdown-item" href="product-list.html">ماشین های تراش <b>(3,356)</b></a>
+                      <a class="dropdown-item" href="product-list.html">قطعات یدکی ماشین ابزار <b>(291)</b></a>
+                      <a class="dropdown-item" href="product-list.html">ماشین های فرز <b>(2,357)</b></a>
+                      <a class="dropdown-item" href="product-list.html">ماشین پرس <b>(1,946)</b></a>
+                      <a class="dropdown-item" href="product-list.html">اره ها <b>(1,386)</b></a>
+                      <a class="dropdown-item" href="product-list.html">ماشین های سنگ زنی <b>(2,514)</b></a>
+                      <a class="dropdown-item" href="product-list.html">دستگاه های جوش <b>(1,943)</b></a>
+                      <a class="dropdown-item" href="product-list.html">سایر ماشین آلات فلزکاری <b>(10,368)</b></a>
+                      <a class="dropdown-item" href="product-list.html">ماشین آلات برش و حباب دنده <b>(390)</b></a>
+                      <a class="dropdown-item" href="product-list.html">لوازم جانبی ماشین ابزار <b>(1,482)</b></a>
+                      <a class="dropdown-item disabled" href="product-list.html">تولید کنندگان فلز</a>
+                    </div>
+                  </li>
+                  <li class="nav-item hidden-desktop">
+                    <a class="nav-link" href="product-list.html">ماشین آلات فلزکاری (33,989)</a>
+                  </li>
+                  <li class="nav-item dropdown hidden-mobile">
+                    <a class="nav-link" href="product-list.html" id="navItem2">
+                      <div class="nav-item-text">چوب</div> 
+                      <svg class="svg-inline--fa fa-caret-down fa-w-10 fa-sm" aria-hidden="true" data-prefix="fas" data-icon="caret-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" data-fa-i2svg=""><path fill="currentColor" d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"></path></svg>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navItem2">
+                      <a class="dropdown-item disabled" href="product-list.html">ماشین آلات چوب کاری (8,688)</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="product-list.html">آسیاب های خسته کننده، مراکز ماشینکاری <b>(731)</b></a>
+                      <a class="dropdown-item" href="product-list.html">قطعات یدکی ماشین آلات چوب کاری <b>(595)</b></a>
+                      <a class="dropdown-item" href="product-list.html">ماشین آلات تولید پنجره <b>(128)</b></a>
+                      <a class="dropdown-item" href="product-list.html">ماشین های فرز <b>(724)</b></a>
+                      <a class="dropdown-item" href="product-list.html">ماشین آلات روکش <b>(142)</b></a>
+                      <a class="dropdown-item" href="product-list.html">ماشین های نقشه کشی <b>(563)</b></a>
+                      <a class="dropdown-item" href="product-list.html">ماشین آلات لاک <b>(507)</b></a>
+                      <a class="dropdown-item" href="product-list.html">دستگاه های چسب افشان <b>(675)</b></a>
+                      <a class="dropdown-item" href="product-list.html">تجهیزات جانبی (مانند گرمایش، انتقال، خشک کردن) <b>(650)</b></a>
+                      <a class="dropdown-item" href="product-list.html">دستگاه پرس <b>(374)</b></a>
+                      <a class="dropdown-item" href="product-list.html">اره ها <b>(1,115)</b></a>
+                      <a class="dropdown-item" href="product-list.html">ماشین های سنگ زنی <b>(722)</b></a>
+                      <a class="dropdown-item" href="product-list.html">سایر ماشین آلات کار با چوب <b>(1,632)</b></a>
+                      <a class="dropdown-item disabled" href="product-list.html">تولید کنندگان چوب</a>
+                    </div>
+                  </li>
+                  <li class="nav-item hidden-desktop">
+                    <a class="nav-link" href="product-list.html">ماشین آلات چوب کاری (8,688)</a>
+                  </li>
+                  <li class="nav-item dropdown hidden-mobile">
+                    <a class="nav-link" href="product-list.html" id="navItem3">
+                      <div class="nav-item-text">پلاستیک</div> 
+                      <svg class="svg-inline--fa fa-caret-down fa-w-10 fa-sm" aria-hidden="true" data-prefix="fas" data-icon="caret-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" data-fa-i2svg=""><path fill="currentColor" d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"></path></svg>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navItem3">
+                      <a class="dropdown-item disabled" href="product-list.html">ماشین آلات برای پلاستیک (4,156)</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="product-list.html">ماشین های قالب گیری دمشی <b>(142)</b></a>
+                      <a class="dropdown-item" href="product-list.html">قطعات یدکی ماشین آلات پلاستیک <b>(372)</b></a>
+                      <a class="dropdown-item" href="product-list.html">اکسترودرها <b>(484)</b></a>
+                      <a class="dropdown-item" href="product-list.html">قالب ها <b>(66)</b></a>
+                      <a class="dropdown-item" href="product-list.html">ماشین های لاستیکی <b>(305)</b></a>
+                      <a class="dropdown-item" href="product-list.html">آسیاب ها <b>(197)</b></a>
+                      <a class="dropdown-item" href="product-list.html">تجهیزات جانبی (مانند گرمایش، سرمایش، خشک کردن) <b>(637)</b></a>
+                      <a class="dropdown-item" href="product-list.html">ماشین آلات دیگر کار با پلاستیک <b>(730)</b></a>
+                      <a class="dropdown-item" href="product-list.html">ماشین های قالب گیری تزریقی <b>(1,075)</b></a>
+                      <a class="dropdown-item" href="product-list.html">ماشین های ترموفرمینگ <b>(71)</b></a>
+                      <a class="dropdown-item disabled" href="product-list.html">تولید کنندگان پلاستیک</a>
+                    </div>
+                  </li>
+                  <li class="nav-item hidden-desktop">
+                    <a class="nav-link" href="product-list.html">ماشین آلات کار با پلاستیک (4,156)</a>
+                  </li>
+                  <li class="nav-item dropdown hidden-mobile">
+                    <a class="nav-link" href="product-list.html" id="navItem4">
+                      <div class="nav-item-text">بسته بندی</div>
+                      <svg class="svg-inline--fa fa-caret-down fa-w-10 fa-sm" aria-hidden="true" data-prefix="fas" data-icon="caret-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" data-fa-i2svg=""><path fill="currentColor" d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"></path></svg>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navItem4">
+                      <a class="dropdown-item disabled" href="product-list.html">ماشین آلات بسته بندی (2,909)</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="product-list.html">ماشین های پرکن <b>(733)</b></a>
+                      <a class="dropdown-item" href="product-list.html">ماشین آلات بسته بندی <b>(304)</b></a>
+                      <a class="dropdown-item" href="product-list.html">قطعات یدکی ماشین آلات بسته بندی <b>(19)</b></a>
+                      <a class="dropdown-item" href="product-list.html">ماشین های برچسب زنی <b>(281)</b></a>
+                      <a class="dropdown-item" href="product-list.html">ماشین آلات بسته بندی کارتن <b>(129)</b></a>
+                      <a class="dropdown-item" href="product-list.html">ماشین آلات بسته بندی بالش <b>(271)</b></a>
+                      <a class="dropdown-item" href="product-list.html">ماشین های فشرده سازی <b>(253)</b></a>
+                      <a class="dropdown-item" href="product-list.html">سایر ماشین آلات بسته بندی <b>(671)</b></a>
+                      <a class="dropdown-item" href="product-list.html">ماشین های ترموفرمینگ <b>(66)</b></a>
+                      <a class="dropdown-item" href="product-list.html">ماشین های تسمه کش <b>(114)</b></a>
+                      <a class="dropdown-item disabled" href="product-list.html"> تولید کنندگان بسته بندی</a>
+                    </div>
+                  </li>
+                  <li class="nav-item hidden-desktop">
+                    <a class="nav-link" href="product-list.html">ماشین آلات بسته بندی (2,909)</a>
+                  </li>
+                  <li class="nav-item dropdown hidden-mobile">
+                    <a class="nav-link" href="product-list.html" id="navItem5">
+                      <div class="nav-item-text">بازیافت</div> 
+                      <svg class="svg-inline--fa fa-caret-down fa-w-10 fa-sm" aria-hidden="true" data-prefix="fas" data-icon="caret-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" data-fa-i2svg=""><path fill="currentColor" d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"></path></svg>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navItem5">
+                      <a class="dropdown-item disabled" href="product-list.html">ماشین های دفع زباله و بازیافت (1381)</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="product-list.html">  دانه بندی گیاهان <b>(64)</b></a>
+                      <a class="dropdown-item" href="product-list.html"><b>(350)</b> ماشین پرس </a>
+                      <a class="dropdown-item" href="product-list.html">خردکن <b>(355)</b> </a>
+                      <a class="dropdown-item" href="product-list.html">ماشین الک <b>(177)</b></a>
+                      <a class="dropdown-item" href="product-list.html" >سایر ماشین آلات برای دفع زباله و بازیافت <b>(415)</b></a>
+                      <a class="dropdown-item disabled" href="product-list.html">بازیافت تولیدکنندگان</a>  </div>
+                  </li>
+                  <li class="nav-item hidden-desktop">
+                    <a class="nav-link" href="product-list.html">ماشین آلات  دفع زباله و بازیافت (1,381)</a>   </li>
+                  <li class="nav-item dropdown hidden-mobile">
+                    <a class="nav-link" href="product-list.html" id="navItem6">
+                      <div class="nav-item-text">مواد غذایی</div>
+                      <svg class="svg-inline--fa fa-caret-down fa-w-10 fa-sm" aria-hidden="true" data-prefix="fas" data-icon="caret-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" data-fa-i2svg=""><path fill="currentColor" d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"></path></svg>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navItem6">
+                      <a class="dropdown-item disabled" href="product-list.html">ماشین آلات مواد غذایی (11,631)</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="product-list.html">ماشین آلات نان و شیرینی سازی <b>(3151)</b></a>
+                      <a class="dropdown-item" href="product-list.html">قطعات یدکی برای ماشین آلات مواد غذایی <b>(12)</b></a>
+                      <a class="dropdown-item" href="product-list.html">گوشت و ماهی ماشین‌های پردازش <b>(1482)</b></a>
+                      <a class="dropdown-item" href="product-list.html">ماشین های پذیرایی <b>(222)</b></a>
+                      <a class="dropdown-item" href="product-list.html">ماشین های نوشیدنی <b>(3,003)</b></a>
+                      <a class="dropdown-item" href="product-list.html">مهندسی تبرید <b>(807)</b></a>
+                      <a class="dropdown-item" href="product-list.html">پایه ماشین آلات مواد غذایی و خوراک دام <b>(1231)</b></a>
+                      <a class="dropdown-item" href="product-list.html">میوه ها ، سبزیجات، اغذیه فروشی ها، دستگاه های غذای فوری <b>(294)</b></a>
+                      <a class="dropdown-item" href="product-list.html">دستگاه های دارویی و آرایشی < b>(270)</b></a>
+                      <a class="dropdown-item" href="product-list.html">سایر ماشین آلات مواد غذایی <b>( 1071)</b></a>
+                      <a class="dropdown-item disabled" href="product-list.html">غذای تولیدکنندگان</a>                    </div>
+                  </li>
+                  <li class="nav-item hidden-desktop">
+                    <a class="nav-link" href="product-list.html">ماشین آلات مواد غذایی (11,631)</a>
+                  </li>
+                  <li class="nav-item dropdown hidden-mobile">
+                    <a class="nav-link" href="product-list.html" id="navItem8">
+                      <div class="nav-item-text">چاپ</div>
+                      <svg class="svg-inline--fa fa-caret-down fa-w-10 fa-sm" aria-hidden="true" data-prefix="fas" data-icon="caret-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" data-fa-i2svg=""><path fill="currentColor" d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"></path></svg> 
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navItem8">
+                      <li class="dropdown-submenu">
+                        <a class="dropdown-item disabled" href="product-list.html">ماشین های چاپ (5,676)</a>
+                        <div class="dropdown-divider"></div>
+                      </li>
+                      <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#">چاپ</a>
+                        <ul class="dropdown-menu" style="top: -25px;right: 99%;" role="menu" aria-labelledby="dLabel">
+                          <li><a tabindex="-1"  class="dropdown-item" href="product-list.html">پرس: ورق 1 رنگ <b>(138)</b></a></li>
+                          <li><a class="dropdown-item" href="product-list.html">پرس: ورق 2 رنگ <b>(189)</b></a></li>
+                          <li><a class="dropdown-item" href="product-list.html">پرس: ورق 3 رنگ <b>(2)</b></a></li>
+                          <li><a class="dropdown-item" href="product-list.html">پرس: ورق 4 رنگ <b>(173)</b></a></li>
+                          <li><a class="dropdown-item" href="product-list.html">پرس: ورق 5 رنگ <b>(115)</b></a></li>
+                          <li><a class="dropdown-item" href="product-list.html">پرس: ورق 6 رنگ <b>(26)</b></a></li>
+                          <li><a class="dropdown-item" href="product-list.html">پرس: ورق 7 رنگ <b>(3)</b></a></li>
+                          <li><a class="dropdown-item" href="product-list.html">پرس: ورق 8 رنگ <b>(23)</b></a></li>
+                          <li><a class="dropdown-item" href="product-list.html">پرس: ورق 10 رنگ <b>(6)</b></a></li>
+                          <li><a class="dropdown-item" href="product-list.html">پرس : تبلیغات تحت وب <b>(23)</b></a></li>
+                          <li><a class="dropdown-item" href="product-list.html">پرس: روزنامه تحت وب <b>(30)</b></a></li>
+                          <li><a class="dropdown-item" href="product-list.html">پرس: دیجیتال <b>(275)</b></a></li>
+                          <li><a class="dropdown-item" href="product-list.html">پرس: فلکسو و روتوگراور <b>(108)</b></a></li>
+                          <li><a class="dropdown-item" href="product-list.html">پرس: پرس حروف  <b>(143)</b></a></li>
+                          <li><a class="dropdown-item" href="product-list.html">پرس: دیگر <b>(595)</b></a></li>
+                        </ul>
+                      </li>
+                      <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#">پیش چاپ</a>
+                        <ul class="dropdown-menu" style="top: -25px;right: 99%;">
+                          <li><a class="dropdown-item" href="product-list.html">پیش چاپ: اسکنرها <b>(15)</b></a></li>
+                          <li><a class="dropdown-item" href="product-list.html">پیش چاپ: لوازم جانبی <b>(8)</b></a></li>
+                          <li><a class="dropdown-item" href="product-list.html">پیش چاپ: نرم افزار <b>(42)</b></a></li>
+                          <li><a class="dropdown-item" href="product-list.html">پیش چاپ: دیگر <b>(79)</b></a></li>     </ul>
+                      </li>
+                      <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#">پس از چاپ</a>
+                        <ul class="dropdown-menu" style="top: -25px;right: 99%;">
+                          <li><a class="dropdown-item" href="product-list.html">پس از چاپ: کاتر و گیوتین <b>(487)</b></a></li>
+                          <li><a class="dropdown-item" href="product-list.html">پس از چاپ: پوشه ها <b>(630)</b></a></li>
+                          <li><a class="dropdown-item" href="product-list.html">پس از چاپ: گردآورندگان <b>(152)</b></a></li>
+                          <li><a class="dropdown-item" href="product-list.html">پس از چاپ: کلاسورهای کامل <b>(266)</b></a></li>
+                          <li><a class="dropdown-item" href="product-list.html">پس از چاپ: دوزنده ها <b>(199)</b></a></li>
+                          <li><a class="dropdown-item" href="product-list.html">پس از چاپ: دیگر <b>(756)</b></a></li>
+                        </ul>
+                      </li>
+                      <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#">پردازش کاغذ</a>
+                        <ul class="dropdown-menu" style="top: -25px;right: 99%;">
+                          <li><a class="dropdown-item" href="product-list.html">تبدیل کاغذ : چسب کارتن <b>(58)</b></a></li>
+                          <li><a class="dropdown-item" href="product-list.html">تبدیل کاغذ : کاترهای قالب <b>(144)</b></a></li>
+                          <li><a class="dropdown-item" href="product-list.html"> تبدیل کاغذ: لمینیت و پوشش <b>(51)</b></a></li>
+                          <li><a class="dropdown-item" href="product-list.html">تبدیل کاغذ : slitter rewinders <b>(51)</b></a></li>
+                          <li><a class="dropdown-item" href="product-list.html">تبدیل کاغذ: سایر <b>(214)</b></a></li>                        </ul>
+                      </li>
+                      <a class="dropdown-item disabled" href="product-list.html">تولیدکنندگان ماشین آلات چاپ</a>
+                    </ul>
+                  </li>
+                  <li class="nav-item hidden-desktop">
+                    <a class="nav-link" href="product-list.html">ماشین های چاپ (5,676)</a>
+                  </li>
+                  <li class="nav-item dropdown hidden-mobile">
+                    <a class="nav-link" href="product-list.html" id="navItem10">
+                      <div class="nav-item-text">ساخت و ساز</div>
+                      <svg class="svg-inline--fa fa-caret-down fa-w-10 fa-sm" aria-hidden="true" data-prefix="fas" data-icon="caret-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" data-fa-i2svg=""><path fill="currentColor" d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"></path></svg>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navItem10">
+                      <a class="dropdown-item disabled" href="product-list.html">ماشین آلات ساختمانی (1,534)</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="product-list.html">کارخانه های تولید و تبدیل مصالح ساختمانی <b>(132)</b></a>
+                      <a class="dropdown-item" href="product-list.html">کارخانه های بتن و فناوری پیش ساخته <b>(68)</b></a>
+                      <a class="dropdown-item" href="product-list.html">سکوهای کاری <b>(27)</b></a>
+                      <a class="dropdown-item" href="product-list.html">ماشین آلات آسفالت <b>(10)</b></a>
+                        <a class="dropdown-item" href="product-list.html">بیل مکانیکی <b>(215)</b> </a>
+                        <a class="dropdown-item" href="product-list.html">ماشین آلات بتن <b>(48)</b></a>
+                        <a class="dropdown-item" href="product-list.html">ماشین آلات حفاری <b>(26)</b></a>
+                        <a class="dropdown-item" href="product-list.html">دامپر <b>(45)</b> </a>
+                        <a class="dropdown-item" href="product-list.html">قطعات یدکی <b>(40)</b></a>
+                        <a class="dropdown-item" href="product-list.html">تجهیزات داربست <b>(10)</b></a>
+                        <a class="dropdown-item" href="product-list.html">کمپرسورها <b>(48)</b> </a>
+                        <a class="dropdown-item" href="product-list.html">جرثقیل <b>(33)</b> </a>
+                        <a class="dropdown-item" href="product-list.html">لودرها <b>(44)</b> </a>
+                        <a class="dropdown-item" href="product-list.html">پمپ ها <b>(154)</b> </a>
+                        <a class="dropdown-item" href="product-list.html">دوزر و گریدر <b>(5)</b></a>
+                        <a class="dropdown-item" href="product-list.html">صفحات و غلتک های ارتعاشی <b>(6)</b></a>
+                        <a class="dropdown-item" href="product-list.html">سایر ماشین آلات ساختمانی <b>(464)</b></a>
+                        <a class="dropdown-item" href="product-list.html">غلتک <b>(11)</b> </a>
+                        <a class="dropdown-item" href="product-list.html">لوازم جانبی <b>(58)</b> </a>
+                        <a class="dropdown-item disabled" href="product-list.html">تولیدکنندگان ماشین آلات ساختمانی</a>
+                                          </div>
+                  </li>
+                  <li class="nav-item hidden-desktop">
+                    <a class="nav-link" href="product-list.html">ماشین آلات ساختمانی (1534)</a>
+                                    </li>
+                  <li class="nav-item dropdown hidden-mobile">
+                    <a class="nav-link" href="product-list.html" id="navItem11">
+                      <div class="nav-item-text">موتورهای انرژی</div>
+                      <svg class="svg-inline--fa fa-caret-down fa-w-10 fa-sm" aria-hidden="true" data-prefix="fas" data-icon="caret-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" data-fa-i2svg=""><path fill="currentColor" d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"></path></svg>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navItem11">
+                      <a class="dropdown-item disabled" href="product-list.html">مولدهای برق، موتورها , توربین, بویلر (8,652)</a>
+                                            <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="product-list.html">بویلر <b>(86)</b> </a>
+                      <a class="dropdown-item" href="product-list.html"">موتورهای الکتریکی <b>(100)</b></a>
+                      <a class="dropdown-item" href="product-list.html">قطعات یدکی <b>(3,282)</b></a>
+                      <a class="dropdown-item" href="product-list.html">موتورهای محرک <b>(42)</b></a>
+                      <a class="dropdown-item" href="product-list.html">موتورها <b>(1,912)</b> </a>
+                      <a class="dropdown-item" href="product-list.html">فناوری خورشیدی <b>(25)</b></a>
+                      <a class="dropdown-item" href="product-list.html">سایر ماشین آلات انرژی <b>( 1,418)</b></a>
+                      <a class="dropdown-item" href="product-list.html">مولد برق <b>(1545)</b></a>
+                      <a class="dropdown-item" href="product-list.html">توربین ها <b>(105)</b> </a>
+                      <a class="dropdown-item" href="product-list.html">توربین های بادی <b>(7)</b></a>
+                      <a class="dropdown-item" href="product-list.html">موتورهای کشتی <b>(71)</b></a>
+                      <a class="dropdown-item disabled" href="product-list.html"> تولیدکنندگان موتورهای انرژی</a>
+                                        </div>
+                  </li>
+                  <li class="nav-item hidden-desktop">
+                    <a class="nav-link" href="product-list.html">ژنراتورهای برق، موتور، توربین، دیگ بخار (8652)</a>
+                                    </li>
+                  <li class="nav-item dropdown hidden-mobile">
+                    <a class="nav-link" href="product-list.html" id="navItem9">
+                      <div class="nav-item-text">مهندسی فرآیند </div>
+                      <svg class="svg-inline--fa fa-caret-down fa-w-10 fa-sm" aria-hidden="true" data-prefix="fas" data-icon="caret-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" data-fa-i2svg=""><path fill="currentColor" d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"></path></svg>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navItem9">
+                      <a class="dropdown-item disabled" href="product-list.html"> مهندسی فرآیند (6024)</a>
+                                  <div class="dropdown-divider"></div>
+                                  <a class="dropdown-item" href="product-list.html">ظروف پردازش <b>(114)</b></a>
+                                    <a class="dropdown-item" href="product-list.html">قطعات یدکی <b>(21)</b></a>
+                                    <a class="dropdown-item" href="product-list.html">فیلترها <b>(123)</b> </a>
+                                    <a class="dropdown-item" href="product-list.html">دمنده ها <b>(64)</b> </a>
+                                    <a class="dropdown-item" href="product-list.html">دیگ های بخار <b>(18)</b> </a>
+                                    <a class="dropdown-item" href="product-list.html">خمیرزن <b>(12)</b> </a>
+                                    <a class="dropdown-item" href="product-list.html">میکسرها <b>(272)</b> </a>
+                                    <a class="dropdown-item" href="product-list.html">آسیاب <b>(135)</b> </a>
+                                    <a class="dropdown-item" href="product-list.html"><b>(142) دستگاه پرس</b> </a>
+                                    <a class="dropdown-item" href="product-list.html">پمپ ها <b>(552)</b> </a>
+                                    <a class="dropdown-item" href="product-list.html">راکتورها <b>(26)</b> </a>
+                                    <a class="dropdown-item" href="product-list.html">چرخ دنده و پیچ ها <b>(85)</b></a>
+                                    <a class="dropdown-item" href="product-list.html">غربال <b>(81)</b> </a>
+                                    <a class="dropdown-item" href="product-list.html">خشک کن <b>(41)</b> </a>
+                                    <a class="dropdown-item" href="product-list.html">او اپراتورها <b>(14)</b> </a>
+                                    <a class="dropdown-item" href="product-list.html">مبدلهای حرارتی <b>(79)</b></a>
+                                    <a class="dropdown-item" href="product-list.html">سانتریفیوژها <b>(89)</b> </a>
+                                    <a class="dropdown-item" href="product-list.html">بیشتر <b>(4124)</b></a>
+                                    <a class="dropdown-item disabled" href="product-list.html">تولید کنندگان فرآیندهای مهندسی</a>
+                                     </div>
+                                  </li>
+                  <li class="nav-item dropdown hidden-mobile">
+                    <a class="nav-link" href="product-list.html" id="navItem14">
+                      <div class="nav-item-text">جابجایی و ذخیره سازی</div>
+                      <svg class="svg-inline--fa fa-caret-down fa-w-10 fa-sm" aria-hidden="true" data-prefix="fas" data-icon="caret-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" data-fa-i2svg=""><path fill="currentColor" d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"></path></svg> 
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navItem14">
+                      <a class="dropdown-item disabled" href="product-list.html">ماشین های جابجایی مکانیکی، تجهیزات ذخیره سازی (12829)</a>
+                       <div class="dropdown-divider"></div>
+                     <a class="dropdown-item" href="product-list.html">درایو <b>(2,426)</b> </a>
+                     <a class="dropdown-item" href="product-list.html">ظروف <b>(104)</b> </a>
+                     <a class="dropdown-item" href="product-list.html" >قطعات یدکی برای جابجایی مکانیکی، تجهیزات ذخیره سازی <b>(52)</b></a>
+                     <a class="dropdown-item" href="product-list.html">تسمه نقاله <b>(503)</b></a>
+                     <a class="dropdown-item" href="product-list.html">هیدرولیک <b>(291)</b> </a>
+                     <a class="dropdown-item" href="product-list.html">جرثقیل <b>(192)</b> </a>
+                     <a class="dropdown-item" href="product-list.html">پنوماتیک <b>(907)</b> </a>
+                     <a class="dropdown-item" href="product-list.html">پمپ ها <b>(717)</b> </a>
+                     <a class="dropdown-item" href="product-list.html">قفسه <b>(820)</b> </a>
+                     <a class="dropdown-item" href="product-list.html">نقاله های غلتکی <b>(248)</b></a>
+                     <a class="dropdown-item" href="product-list.html">ماشین های دیگر برای جابجایی مکانیکی <b>(4875)</b></a>
+                     <a class="dropdown-item" href="product-list.html">سایر تجهیزات ذخیره سازی <b>( 1620)</b></a>
+                     <a class="dropdown-item disabled" href="product-list.html">تولیدکنندگان دستگاههای ذخیره سازی</a>
+                                   </div>
+                  </li>
+                  <li class="nav-item hidden-desktop">
+                    <a class="nav-link" href="product-list.html">ماشین های مکانیکی حمل و نقل، تجهیزات ذخیره سازی (12829)</a>
+                                    </li>
+                  <li class="nav-item dropdown hidden-mobile">
+                    <a class="nav-link dropdown-toggle" href="#" id="navItemweitere" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <div class="nav-item-text" style="max-width: 80px;">دسته های بیشتر ...</div> 
+                      <svg class="svg-inline--fa fa-caret-down fa-w-10 fa-sm" aria-hidden="true" data-prefix="fas" data-icon="caret-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" data-fa-i2svg=""><path fill="currentColor" d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"></path></svg>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navItemweitere">
+                      <a class="dropdown-item" href="product-list.html">ماشین های نساجی <b>(334)</b> </a>
+                        <a class="dropdown-item" href="product-list.html">ماشین های کشاورزی <b>(578)</b> </a>
+                        <a id="EnergieKat" class="dropdown-item" href="product-list.html"> ژنراتورهای برق، موتورها، توربین‌ها، دیگ‌های بخار <b>(8652)</b></a>
+                        <a class="dropdown-item" href="product-list.html">ماشین‌ها و کارخانه‌های دیگر <b>(8686)</b></a>
+                        <a id="LagertechnikKat" class="dropdown-item" href="product-list.html ">دستگاه های مکانیکی، تجهیزات ذخیره سازی <b>(12829)</b></a>
+                        <a class="dropdown-item" href="product-list.html">لیفتراک، بالابر <b>(1202 )</b></a>
+                        <a class="dropdown-item" href="product-list.html">فناوری هوای فشرده <b>(804) </b></a>
+                        <a class="dropdown-item" href="product-list.html">کامپیوتر و تجهیزات اداری <b> (203)</b></a>
+                        <a class="dropdown-item" href="product-list.html">تجهیزات پزشکی <b>(407)</b></a>
+                        <a class="dropdown-item" href="product-list.html">موجودی عمومی <b>(2805)</b></a>
+                        <a class="dropdown-item" href="product-list.html">قطعات یدکی <b>(8710)</b></a>
+                        <a class="dropdown-item" href="product-list.html">قطعات الکتریکی <b>(370)</b> </a>
+                        <a class="dropdown-item" href="product-list.html">کالاهای مازاد <b>(742)</b> </a>
+                        <a class="dropdown-item" href="product-list.html">تجهیزات اتوماسیون <b>(9512)</b> </a>
+                        <a class="dropdown-item" href="product-list.html">وسایل نقلیه تجاری <b>(135)</b> </a>
+                        <a class="dropdown-item" href="product-list.html">متفرقه <b>(1,132)</b> </a>
+                                          </div>
+                  </li>
+                  <li class="nav-item hidden-desktop">
+                    <a class="nav-link" href="product-list.html">دسته های بیشتر ...</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+        
+         <!-- منوی بالا -->
+         <nav class="navbar top-nav navbar-expand-lg navbar-dark  ">
+          <div class="container">
+            <a class="logo" href="#"><img src="logo.png" ></a>
+            <a id="sell-machinary" href="membership.html" class="btn-all btn-green " >ماشین خود را بفروشید 
+              <i class="fas fa-check fa-sm"></i></a>
+            <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navSmall" aria-controls="navSmall" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navSmall">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item  hidden-mobile">
+                  <a class="nav-link" href="machine-search.html">جستجوی دستگاه</a>
+                </li>
+                <li class="nav-item " >
+                  <a class="nav-link" href="dealers.html">فروشندگان</a>
+                </li>
+                <li class="nav-item ">
+                  <a class="nav-link" href="membership.html">عضویت</a>
+                </li>
+                <li class="nav-item ">
+                  <a class="nav-link" href="register-info.html">ثبت نام</a>
+                </li>
+                <li class="nav-item ">
+                  <a id="login" class="nav-link" href="login-info.html">ورود
+                      <i class="fas fa-sign-in-alt" aria-hidden="true"></i>  </a>
+                </li>
+               </ul>
+            </div>
+          </div>
+        </nav>
+
+    <header class="page-head">
+        <div class="overlay"></div>
+        <div class="container head-title">
+          <div class="display-align">
+            <div class="col-lg-12 d-flex justify-content-center align-items-center" style="flex-direction: column;">
+              <h1 class="center-align text-white">
+                <strong>بازار ماشین آلات دسته دوم</strong>
+              </h1>
+              <h2 class="center-align text-white" id="machine-number"><strong>
+                <span class="text-white">133,125</span>
+                 <a class="text-dark" href="sitemap.html">ماشین آلات دست دوم برای فروش</a>
+                </strong>
+              </h2>
+            </div>
+          </div>
+        </div>
+
+        <form action="" method="get" name="">
+          <input type="hidden" name="" value="">
+          <input type="hidden" name="" value="">
+        <div class="container search-bar">
+          <div class="card ver-margin2" style="background: rgba(50, 54, 57, .5);">
+            <div class="card-body">
+              <div class="input-group">
+                <input class="form-control" placeholder="مثال: Maho MH 600" maxlength="40" name="" type="text" required="" >
+                <span class="input-group-btn">
+                  <button id="search-button" class="btn-all btn-primary" type="submit" name="">
+                    <i class="fas fa-search"></i>
+                    <span class="search-word">جستجو</span>
+                  </button>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        </form>
+
+          <div class="container search-bar bottom-margin2 d-flex justify-content-center" style="margin-top: -10px;">
+            <div class="display-align d-flex justify-content-between w-100">
+            <div class="col-auto text" style="z-index:1000;">
+              <strong style="font-size: 20px;"><a class="text-white" href="send-inquiry.html" target="_blank">ارسال درخواست استعلام</a>
+              </strong>
+            </div>
+            <div class="col-auto right-align" style="z-index:1000;">
+              <strong style="font-size: 20px;"><a class="text-white" href="advanced-search.html">جستجوی پیشرفته</a>
+              </strong>
+            </div>
+          </div>
+        </div>
+        
+        
+        <div class="container search-bar d-flex justify-content-center" style="margin-top: -10px;">
+          <div class="display-align d-flex justify-content-between w-100">
+          <div class="col-auto text" style="z-index:1000;">
+            <strong style="font-size: 20px;"><a class="text-white" href="manufacturers.html" target="_blank">تولیدکنندگان</a></strong>
+            </div>
+            <div class="col-auto right-align d-none d-lg-block" style="z-index:1000;">
+              <img alt="check" src="img/escrow-verified.png" style="width: 40px; height: 40px;">
+              <a class="text-white" href="#" > <strong> پرداخت سپرده ایمن</strong></a>
+            </div>
+          </div>
+        </div>
+           </header>
+
+      <div class="container" id="resale-market">
+        <div class="display-align top-pad">
+          <div class="col-lg-12">
+  
+              <div class="hide-mobile">
+               <h2>جستجوی آنلاین ماشین آلات</h2>
+               <p>
+                چه به دنبال نوع خاصی از ماشین باشید و چه سال ساخت خاص: کافی است نام یا مشخصات دستگاه مورد نظر را در ماسک جستجو وارد کنید تا پیشنهادات مربوط به ماشین های دست دوم نمایش داده شود. در RESALE می توانید به عنوان مثال زیر را در دسته های ماشین های دست دوم جستجو کنید: </p>              </div>
+              <div class="display-align bottom-pad">
+                <div class="col-lg-6   mx-auto">
+    <table class="table table-hover table-bordered table-sm tablecat">
+      <tbody>
+                    <tr>
+                      <td>
+                        <span style="color: #acacac;">100.</span>
+                      <a href="product-list.html">ماشین آلات فلزکاری</a>
+                   <span class="badge badge-secondary">33,989</span>
+                  </td>
+                </tr>
+
+                    <tr>
+                      <td>
+                        <span style="color: #acacac;">200.</span>
+                <a href="product-list.html">ماشین آلات کار چوب</a>
+                    <span class="badge badge-secondary">8,688</span>
+                  </td>
+                </tr>
+                  
+                    <tr>
+                      <td>
+                        <span style="color: #acacac;">300.</span>
+                      <a href="product-list.html">ماشین‌های کار با پلاستیک</a>  
+                    <span class="badge badge-secondary">4,156</span>
+                  </td>
+                </tr>
+  
+                    <tr>
+                      <td>
+                        <span style="color: #acacac;">400.</span>
+                      <a href="product-list.html">ماشین آلات بسته بندی</a>
+                    <span class="badge badge-secondary">2,909</span>
+                  </td>
+                </tr>
+  
+                    <tr>
+                      <td>
+                        <span style="color: #acacac;">500.</span>
+                    <a href="product-list.html">ماشین آلات دفع زباله و بازیافت</a>
+                    <span class="badge badge-secondary">1,381</span></td></tr>
+
+                    <tr>
+                      <td>
+                        <span style="color: #acacac;">600.</span>
+                      <a href="product-list.html">ماشین‌های نساجی</a>
+                    <span class="badge badge-secondary">334</span>
+                  </td>
+                </tr>
+
+                    <tr>
+                      <td>
+                        <span style="color: #acacac;">700.</span>
+                      <a href="product-list.html">ماشین‌های مواد غذایی</a>  
+                    <span class="badge badge-secondary">11,631</span>
+                  </td>
+                </tr>
+  
+                    <tr>
+                      <td>
+                        <span style="color: #acacac;">800.</span>
+  
+                      <a href="product-list.html">ماشین‌های چاپ</a>  
+                    <span class="badge badge-secondary">5,676</span>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    <span style="color: #acacac;">900.</span>
+                      <a href="product-list.html">ماشین‌های کشاورزی</a>  
+                    <span class="badge badge-secondary">578</span>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    <span style="color: #acacac;">1000.</span>
+                      <a href="product-list.html">ماشین آلات ساختمانی</a>
+                      <span class="badge badge-secondary">1534</span>
+                    </td>
+                  </tr>
+
+                      <tr>
+                        <td>
+                          <span style="color: #acacac;">1100.</span>
+                      <a href="product-list.html">مولدهای برق، موتورها، توربین ها، بویلر</a>
+                      <span class="badge badge-secondary">8652</span>
+                    </td>
+                  </tr>
+
+                      <tr>
+                        <td>
+                          <span style="color: #acacac;">1200.</span>
+                      <a href="product-list.html">مهندسی فرآیند</a>
+                      <span class="badge badge-secondary">6024</span>
+                    </td>
+                  </tr>
+    
+                      <tr>
+                        <td>
+                          <span style="color: #acacac;">1300.</span>
+                      <a href="product-list.html">ماشین‌ها و کارخانه‌های دیگر</a>
+                      <span class="badge badge-secondary">8686</span>
+                    </td>
+                  </tr>  
+                  </tbody>
+                </table>
+                </div>
+
+                <div class="col-lg-6 mx-auto">
+              <table class="table table-hover table-bordered table-sm tablecat">
+                <tbody>
+    
+                    <tr>
+                      <td>
+                        <span style="color: #acacac;">1400.</span>
+  
+                      <a href="product-list.html">ماشین‌های جابجایی مکانیکی، تجهیزات ذخیره‌سازی</a>
+  
+                      <span class="badge badge-secondary">12829</span>
+                    </td>
+                  </tr>
+   
+                      <tr>
+                        <td>
+                          <span style="color: #acacac;">1500.</span>
+                      <a href="product-list.html">لیفتراک، بالابر</a>
+                      <span class="badge badge-secondary">1202</span>
+                    </td>
+                  </tr>
+    
+                      <tr>
+                        <td>
+                          <span style="color: #acacac;">1600.</span>
+                      <a href="product-list.html">فناوری هوای فشرده</a>
+    
+                      <span class="badge badge-secondary">804</span>
+                    </td>
+                  </tr>
+
+                      <tr>
+                        <td>
+                          <span style="color: #acacac;">1700.</span>
+                      <a href="product-list.html">کامپیوتر و تجهیزات اداری</a>
+                      <span class="badge badge-secondary">203</span>
+                    </td>
+                  </tr>
+
+                      <tr>
+                        <td>
+                          <span style="color: #acacac;">1800.</span>
+                      <a href="product-list.html">تجهیزات پزشکی</a>
+                      <span class="badge badge-secondary">407</span>
+                    </td>
+                  </tr>
+    
+                      <tr>
+                        <td>
+                          <span style="color: #acacac;">1900.</span>
+                      <a href="product-list.html">موجودی عمومی</a>
+                      <span class="badge badge-secondary">2805</span>
+                    </td>
+                  </tr>
+    
+                      <tr>
+                        <td>
+                          <span style="color: #acacac;">2000.</span>
+                      <a href="product-list.html">قطعات یدکی</a>
+                      <span class="badge badge-secondary">8710</span>
+                    </td>
+                  </tr>
+
+                      <tr>
+                        <td>
+                          <span style="color: #acacac;">2100.</span>
+                      <a href="product-list.html">قطعات الکتریکی</a>
+                      <span class="badge badge-secondary">370</span>
+                    </td>
+                  </tr>
+
+                      <tr>
+                        <td>
+                          <span style="color: #acacac;">2200.</span>
+                      <a href="product-list.html">کالاهای مازاد</a>
+                      <span class="badge badge-secondary">742</span>
+                    </td>
+                  </tr>
+
+                      <tr>
+                        <td>
+                          <span style="color: #acacac;">2300.</span>
+                      <a href="product-list.html">تجهیزات اتوماسیون</a>
+                      <span class="badge badge-secondary">9512</span>
+                    </td>
+                  </tr>
+    
+                      <tr>
+                        <td><span style="color: #acacac;">2400.</span>
+                      <a href="product-list.html">وسایل نقلیه تجاری</a>
+                      <span class="badge badge-secondary">135</span>
+                    </td>
+                  </tr>
+    
+                      <tr>
+                        <td>
+                          <span style="color: #acacac;">2500.</span>
+                      <a href="product-list.html">متفرقه</a>
+                      <span class="badge badge-secondary">1132</span>
+                    </td>
+                  </tr>  
+
+      </tbody>
+    </table>
+                </div>
+              </div>
+  
+              <p>
+                علاوه بر این، می توانید زیر شاخه های پویا ما را نیز مرور کنید. 
+                <b>اگر آنچه را که در بازار ماشین آلات دست دوم ما به دنبال آن هستید کشف نکردید، می‌توانید درخواستی را نیز ارسال کنید:</b>      
+                      </p>
+              <div class="col-lg-12   text center-align mx-auto">
+                 <a class="btn-all btn-green" href="send-inquiry.html" target="_blank">ارسال درخواست استعلام</a>
+              </div>
+        </div>
+      </div>
+        <hr>
+  
+        <!-- قسمت آمار -->
+        <div class="display-align">
+          <div class="col-lg-4 bottom-margin2">
+            <div class="card center-align h-100">
+              <h3 class="card-header custom-group">آمار
+                <i class="fas fa-chart-line" aria-hidden="true" style="color:#008fff;"></i> </h3>
+           <div class="card-body">
+             <ul class="list-group list-group-flush">
+               <li class="list-group-item">مورد جدید ماشین آلات این هفته<strong>4303</strong> </li>
+               <li class="list-group-item">بازدید کننده ماهانه تا <strong>2 میلیون.</strong> </li>
+               <li class="list-group-item">فروشنده ثبت شده<strong>51,141</strong>  </li>
+               <li class="list-group-item">خریدار در سراسر جهان<strong>192654</strong>  </li>
+               </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- قسمت درباره ما -->
+          <div class="col-lg-4 bottom-margin2">
+            <div class="card center-align h-100">
+              <h3 class="card-header custom-group"><strong>درباره ما</strong>
+                <i class="fas fa-trophy" aria-hidden="true" style="color:#f0b000;"></i> </h3>
+            <div class="card-body">
+              <p class="card-text"> در سال 1996 به صورت آنلاین راه اندازی شد و آن را به قدیمی ترین بازار ماشین های دست دوم در سراسر جهان تبدیل کرد.
+                 از آن زمان ما دائماً در تلاش هستیم تا عملکرد و تجربه بصری وب سایت خود را افزایش دهیم.</p>
+            </div>
+            <div class="card-footer">
+              <a href="#more" class="btn-all btn-all-small btn-primary show-more">بیشتر بخوانید</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- قسمت خبرنامه -->
+          <div class="col-lg-4 bottom-margin2">
+            <div class="card center-align h-100">
+              <h3 class="card-header custom-group">خبرنامه
+                <i class="far fa-newspaper" aria-hidden="true"></i> </h3>
+           <div class="card-body">
+             <p class="card-text">از سرویس خبرنامه ما استفاده کنید</p>
+             <p class="card-text">بدون تعهد در خبرنامه ما مشترک شوید و لیست های جدید هفتگی را از طریق ایمیل دریافت کنید.</p>
+           </div>
+           <div class="card-footer">
+             <a href="newsletter.html" class="btn-all btn-all-small btn-primary">اشتراک</a>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        
+        <!-- قسمت حراج ها -->
+        <div class="display-align">
+          <div class="col-lg-4 bottom-margin2">
+            <div class="card h-100">
+  
+              <h3 class="card-header custom-group center-align">حراج ها
+                <i class="far fa-calendar-alt" aria-hidden="true" style="color:#e52d00;"></i> </h3>
+           <div class="card-body">
+             <p class="card-text center-align" style="font-size: 1.2em;"><strong>7821</strong>
+               <a href="#">موارد حراج</a></p>
+                <p class="card-text" style="font-size: 0.8em; padding: 0.2em 0;">
+                   <strong>17.03.22 11:03</strong> <a href="#" target="TOP" rel="nofollow">Terex / Donati DMK 1</a><br>
+                   <strong>17.03.22 19:03</strong> <a href="#" target="TOP" rel="nofollow">CTS Fahrzeug Dachsys</a><br>
+                   <strong>22.03.22 14:03</strong> <a href="#" target="TOP" rel=" nofollow">Posiflex XT-5315 Mul</a><br>
+                   <a href="#" rel="nofollow">موارد حراج بیشتر ...</a>
+             </p>
+             <p class="card-text center-align" style="font-size: 1.2em;"><strong><a href="#">تقویم مزایده ها</a>
+             </strong>
+            </p>
+             <p class="card-text" style="font-size: 0.8em; padding: 0.2em 0;">
+                   <a href="#">تاریخ های بیشتر حراج ...</a><br>
+                    </p>
+              </div>
+            </div>
+          </div>
+  
+        <!-- قسمت مجله -->
+
+          <div class="col-lg-4 bottom-margin2">
+            <div class="card center-align h-100">
+              <h3 class="card-header custom-group"><strong>مجله شرکت</strong> 
+              </h3>
+              <div class="card-body">
+                <div class="center-align">
+                  <a href="magazin.html">
+                    <img class="img-fluid" style="width: 160px; height: 240px;" src="img/frontcovermagazine.jpg" alt=""></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+                  <!-- قسمت پرداخت ایمن -->
+
+          <div class="col-lg-4 bottom-margin2">
+            <div class="card center-align h-100">
+              <h3 class="card-header custom-group">پرداخت سپرده ایمن 
+                <img alt="check" src="img/escrow-verified.png" height="26" width="26">
+              </h3>
+              <div class="center-align mt-3">
+                <p style="font-size: 0.8em;">اکنون می توان پرداخت را به صورت ایمن از طریق سرویس امانی یکپارچه ما انجام داد.</p>
+              </div>
+              <div class="right-align">
+                <p style="font-size: 0.8em;" class="mr-3">
+                  <strong>مزایا:</strong>
+                </p>
+                <ul>
+                  <li><p style="font-size: 0.8em;">حداکثر امنیت برای خریداران و فروشندگان</p></li>
+                  <li><p style="font-size: 0.8em;">محافظت در برابر ورشکستگی شریک تجاری</p></li>
+                  <li><p style="font-size: 0.8em;">حفظ وجوه شما در حساب های امانی محافظت شده در برابر ورشکستگی</p></li>
+                </ul>
+              </div>
+              <div class="card-footer">
+                <a href="escrow-info.html" class="btn-all btn-all-small btn-primary" target="_blank">جزئیات بیشتر</a>
+                 </div>
+            </div>
+          </div>
+        </div>
+  
+         <hr>
+
+   <!-- بنر تبلیغات -->
+   <div id="jssor_1" >
+    <div class="slides" data-u="slides" >
+        <div >
+            <img data-u="image" src="img/logoPagus.jpg" />
+            <div data-u="thumb">اطلاعات بنری تبلیغاتی</div>
+        </div>
+        <div>
+            <img data-u="image" src="img/bannerhoechsmann.gif" />
+            <div data-u="thumb"> اطلاعات بنری تبلیغاتی</div>
+        </div>
+        <div>
+            <img data-u="image" src="img/bannerIVW.jpg" />
+            <div data-u="thumb"> اطلاعات بنری تبلیغاتی</div>
+        </div>
+        <div>
+            <img data-u="image" src="img/logoMaynards.gif" />
+            <div data-u="thumb"> اطلاعات بنری تبلیغاتی</div>
+        </div>
+        <div>
+            <img data-u="image" src="img/logoUSEDMarket.jpg" />
+            <div data-u="thumb"> اطلاعات بنری تبلیغاتی</div>
+        </div>
+        <div>
+            <img data-u="image" src="img/banner_hamburg-machinery.jpg" />
+            <div data-u="thumb"> اطلاعات بنری تبلیغاتی</div>
+        </div>
+        <div>
+            <img data-u="image" src="img/logoKnauff.gif" />
+            <div data-u="thumb"> اطلاعات بنری تبلیغاتی</div>
+        </div>
+        <div>
+            <img data-u="image" src="img/bannerREWA.jpg" />
+            <div data-u="thumb"> اطلاعات بنری تبلیغاتی</div>
+        </div>
+        <div>
+            <img data-u="image" src="img/banner_dataTec.gif" />
+            <div data-u="thumb"> اطلاعات بنری تبلیغاتی</div>
+        </div>
+        <div>
+            <img data-u="image" src="img/bannerEPS.jpg" />
+            <div data-u="thumb"> اطلاعات بنری تبلیغاتی</div>
+        </div>
+     
+    </div>
+    <!-- متن تبلیغات اسلایدر -->
+    <div class="jssor-thumbnavigator" data-u="thumbnavigator" >
+        <div data-u="slides">
+            <div class="jssor-prototype" data-u="prototype" >
+                <div class="jssor-thumbnailtemplate" data-u="thumbnailtemplate" ></div>
+            </div>
+        </div>
+    </div>
+    <!-- فلش های اسلایدر -->
+    <div data-u="arrowleft" class="jssora061" style="width:55px;height:55px;top:0px;left:25px;" data-autocenter="2" data-scale="0.75" data-scale-left="0.75">
+      <svg viewBox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+          <path class="a" d="M11949,1919L5964.9,7771.7c-127.9,125.5-127.9,329.1,0,454.9L11949,14079"></path>
+      </svg>
+  </div>
+  <div data-u="arrowright" class="jssora061" style="width:55px;height:55px;top:0px;right:25px;" data-autocenter="2" data-scale="0.75" data-scale-right="0.75">
+      <svg viewBox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+          <path class="a" d="M5869,1919l5984.1,5852.7c127.9,125.5,127.9,329.1,0,454.9L5869,14079"></path>
+      </svg>
+  </div>
+</div>
+
+<!-- آخر اسلایدر تبلیغات -->
+
+      <div class="container des-text">
+        <div class="display-align">
+          <div class="col-md-12 mt-3">
+            <h3>ماشین های دست دوم را با قیمت های مناسب بخرید</h3>
+            <p>
+              هزینه‌های خرید بالا و چرخه عمر کوتاه:
+               <b>ماشین‌های مستعمل صرف نظر از اندازه شرکت اهمیت فزاینده‌ای برای شرکت‌ها پیدا می‌کنند.</b>
+                به‌ویژه زمانی که یک دستگاه در فرآیند تولید خراب می‌شود و زمان آن به پایان می‌رسد، زیرا یک تولید تولید می‌شود. توقف تهدید می کند، ماشین های مستعمل جایگزینی واقعی برای دستگاه های جدید می شوند.
+              اما حتی اگر بخواهید پارک ماشین خود را گسترش دهید تا کارایی را بیش از پیش افزایش دهید، کالاهای دست دوم جایگزینی عالی در مقایسه با ماشین آلات جدید می شوند. چه 
+              <a href="product-list.html" title="">ماشین های چاپ</a>،
+              <a href="../en/agriculture-machines/rs-9/" title="">ماشین آلات کشاورزی</a>
+               یا <a href="product-list.html" title="">دستگاه های بسته بندی</a>:
+              ماشین های دست دوم نه تنها مقرون به صرفه تر هستند، بلکه به سرعت در دسترس هستند. علاوه بر این، اغلب می توانند از نظر کیفیت با تجهیزات جدید رقابت کنند.
+            </p>
+
+            <h3>خرید و فروش در قدیمی ترین بازار ماشین آلات دست دوم</h3>
+            <p>
+              شما به <a href="product-list.html" title="">فلزکاری</a>
+               یا 
+              <a href="product-list.html" title=""> ماشین آلات نجاری</a>
+              و آیا به دنبال ماشین آلات دست دوم مناسب هستید؟
+              یا <a href="product-list.html" title="">ماشین ساخت و ساز</a> 
+              یا تجهیزات پردازش کاغذی دارید که می خواهید بفروشید؟
+            </p>
+            <p>
+              <b> قدیمی‌ترین بازار ماشین‌های کارکرده در سراسر جهان است و تامین‌کنندگان و فروشندگان را گرد هم می‌آورد.</b>
+               به عنوان اولین بازار ماشین‌های دست دوم در اینترنت، ما در سال 1996 آنلاین شدیم و از آن زمان با تقلیدکنندگان زیادی مخالفت کردیم. ما فقط بستر را برای فروشندگان تجهیزات دست دوم فراهم می کنیم - اما هیچ محصولی را برای فروش ارائه نمی دهیم.
+            </p>
+
+            <h4>ماشین آلات دست دوم: کیفیت با قیمت بالا</h4>
+            <p>
+              ماشین‌آلات یا ماشین‌های چاپ: در  ماشین‌آلات تولیدکنندگان معروف را با قیمت‌های منصفانه خواهید یافت. 
+              <b>به‌عنوان یک پلت‌فرم پیشرو ماشین‌آلات دست دوم برای صنایع ماشین‌آلات متعدد، ما بیش از 100000 ماشین‌آلات و تجهیزات مستعمل و همچنین بیش از 20000 فروشنده ثبت‌شده ارائه می‌دهیم.</b>
+              می‌توانید ماشین‌های دست دوم را در  با قیمت ثابت بخرید یا می‌توانید در مزایده برنده شوید. ما خودمان هزینه های خود را با کار کارآمد پایین نگه می داریم و می توانیم این هزینه ها را مستقیماً در قالب قیمت های مطلوب به مشتریان خود منتقل کنیم.
+            </p>  
+          </div>
+        </div>
+      </div>
+  
+        <!-- قسمت نظرات -->
+        <div id="comments" class="display-align bottom-margin2">
+          <div class="col-md-8 show-more" id="more">
+            <div data-ride="carousel">
+              <div class="carousel-inner" role="listbox">
+                <div class="carousel-item align-middle customer_quote">
+          <blockquote>
+          <div class="wrappers">
+            <div class="left">
+              <img class="user-comment-img" src="https://www.resale.de/flaggen/nl.gif" alt="">
+            </div>
+            <div class="right">
+              <p> بله، ما آن را از طریق وب سایت شما فروختیم. این در مورد دهمین دستگاهی است که مستقیماً از طریق وب سایت شما فروخته ایم.</p>         
+            </div>
+          </div>
+          </blockquote>
+        </div>
+      <div class="carousel-item align-middle customer_quote">
+          <blockquote>
+          <div class="wrappers">
+            <div class="left">
+              <img class="user-comment-img" src="https://www.resale.de/flaggen/au.gif" alt="">
+            </div>
+            <div class="right">
+              <p> نتایج بسیار خوب، پرس و جوهای زیاد، برخی فروش ها.</p>
+              <small>
+             </small>
+            </div>
+          </div>
+          </blockquote>
+        </div>
+      <div class="carousel-item align-middle customer_quote">
+          <blockquote>
+          <div class="wrappers">
+            <div class="left">
+              <img class="user-comment-img" src="https://www.resale.de/flaggen/it.gif" alt="">
+            </div>
+            <div class="right">
+              <p> تعداد مشتریانی که در عرض چند روز به آگهی آزمایشی ما پاسخ دادند باورنکردنی است. سیستم شما واقعاً یک ابزار فروش عالی است!!</p>
+            </div>
+          </div>
+          </blockquote>
+        </div>
+      <div class="carousel-item align-middle customer_quote">
+          <blockquote>
+          <div class="wrappers">
+            <div class="left">
+              <img class="user-comment-img" src="https://www.resale.de/flaggen/fr.gif" alt="">
+            </div>
+            <div class="right">
+              <p> من این مجموعه را با وب سایت شما به هلند فروخته ام</p>
+            </div>
+          </div>
+          </blockquote>
+        </div>
+      <div class="carousel-item align-middle customer_quote">
+          <blockquote>
+          <div class="wrappers">
+            <div class="left">
+              <img class="user-comment-img" src="https://www.resale.de/flaggen/nl.gif" alt="">
+            </div>
+            <div class="right">
+              <p> مایلیم از فروشگاه ما یک مکان ملاقات بسیار موفق برای GOS با بسیاری از مشتریان جدید تا کنون تشکر کنیم.</p>
+            </div>
+          </div>
+          </blockquote>
+        </div>
+      <div class="carousel-item align-middle customer_quote">
+          <blockquote>
+          <div class="wrappers">
+            <div class="left">
+              <img class="user-comment-img" src="https://www.resale.de/flaggen/se.gif" alt="">
+            </div>
+            <div class="right">
+              <p> با تشکر از یک وب سایت بسیار خوب، ما چند هفته است که آن را با نتایج فوق العاده 
+                آزمایش کرده ایم، قبلاً برخی از تجهیزات را فروخته ایم و سؤالات زیادی در مورد تجهیزات دیگر داریم.</p>     
+            </div>
+          </div>
+          </blockquote>
+        </div>
+      <div class="carousel-item align-middle customer_quote">
+          <blockquote>
+          <div class="wrappers">
+            <div class="left">
+              <img class="user-comment-img" src="https://www.resale.de/flaggen/fr.gif" alt="">
+            </div>
+            <div class="right">
+              <p> زمان برده است اما همه چیز خوب است</p>
+            </div>
+          </div>
+          </blockquote>
+        </div>
+      <div class="carousel-item align-middle customer_quote">
+          <blockquote>
+          <div class="wrappers">
+            <div class="left">
+              <img class="user-comment-img" src="https://www.resale.de/flaggen/se.gif" alt="">
+            </div>
+            <div class="right">
+              <p> دستگاه من بعد از دو روز فروخته شد. بسیار راضی.</p>
+            </div>
+          </div>
+          </blockquote>
+        </div>
+      <div class="carousel-item align-middle customer_quote">
+          <blockquote>
+          <div class="wrappers">
+            <div class="left">
+              <img class="user-comment-img" src="https://www.resale.de/flaggen/nl.gif" alt="">
+            </div>
+            <div class="right">
+              <p> دستگاه 35 را از طریق وب سایت فروش مجدد فروخت.
+                گرانولاتور CMB 90 KW.</p>
+            </div>
+          </div>
+          </blockquote>
+        </div>
+      <div class="carousel-item align-middle customer_quote">
+          <blockquote>
+          <div class="wrappers">
+            <div class="left">
+              <img class="user-comment-img" src="https://www.resale.de/flaggen/nl.gif" alt="">
+            </div>
+            <div class="right">
+              <p> فروش مجدد ثابت کرده است که یک بازار B2B بسیار قدرتمند است.</p>
+            </div>
+          </div>
+          </blockquote>
+        </div>
+      <div class="carousel-item align-middle customer_quote active">
+          <blockquote>
+          <div class="wrappers">
+            <div class="left">
+              <img class="user-comment-img" src="https://www.resale.de/flaggen/us.gif" alt="">
+            </div>
+            <div class="right">
+              <p> سایت جالب</p>
+            </div>
+          </div>
+          </blockquote>
+        </div>
+      <div class="carousel-item align-middle customer_quote">
+          <blockquote>
+          <div class="wrappers">
+            <div class="left">
+              <img class="user-comment-img" src="https://www.resale.de/flaggen/nl.gif" alt="">
+            </div>
+            <div class="right">
+              <p> این باعث می شود حداقل بیست و پنجمین دستگاه به دلیل این وب سایت فروخته شود</p>
+            </div>
+          </div>
+          </blockquote>
+        </div>
+      <div class="carousel-item align-middle customer_quote">
+          <blockquote>
+          <div class="wrappers">
+            <div class="left">
+              <img class="user-comment-img" src="https://www.resale.de/flaggen/us.gif" alt="">
+            </div>
+            <div class="right">
+              <p> خدمات خوب</p>
+            </div>
+          </div>
+          </blockquote>
+        </div>
+      <div class="carousel-item align-middle customer_quote">
+          <blockquote>
+          <div class="wrappers">
+            <div class="left">
+              <img class="user-comment-img" src="https://www.resale.de/flaggen/in.gif" alt="">
+            </div>
+            <div class="right">
+              <p> با تشکر</p>
+            </div>
+          </div>
+          </blockquote>
+        </div>
+      <div class="carousel-item align-middle customer_quote">
+          <blockquote>
+          <div class="wrappers">
+            <div class="left">
+              <img class="user-comment-img" src="https://www.resale.de/flaggen/fr.gif" alt="">
+            </div>
+            <div class="right">
+              <p> وب سایت بسیار خوبی است، من سوالات زیادی از طریق  دارم.
+                با تشکر</p>
+            </div>
+          </div>
+          </blockquote>
+        </div>
+      <div class="carousel-item align-middle customer_quote">
+          <blockquote>
+          <div class="wrappers">
+            <div class="left">
+              <img class="user-comment-img" src="https://www.resale.de/flaggen/ru.gif" alt="">
+            </div>
+            <div class="right">
+              <p> ماشین تراش SKJ-12 از طریق تبلیغات  فروخته شد.</p>
+            </div>
+          </div>
+          </blockquote>
+        </div>
+       </div>
+            </div>
+          </div>
+          <div class="col-md-4" id="register-btn">
+            <a class="btn-all btn-green" href="membership.html">عضویت</a>
+          </div>
+        </div>
+      </div>
+ 
+   <!-- فوتر -->
+   <footer id="footer">
+    <div class="second-bar">
+       <div class="container">
+            <div class="social-icons">
+                <span>از فروشگاه ما بازدید کنید: </span>
+                <a href="#" class="social" target="_blank" >
+                  <i class="fab fa-facebook-square" ></i>
+                 </a>
+                 <a href="#" class="social" target="_blank">
+                   <i class="fab fa-linkedin " ></i> 
+                    </a>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+      <div class="display-align">
+          <div class="col-sm-3">
+              <h5>شرکت</h5>
+              <ul>
+                  <li><a href="contact-us.html">ارتباط با ما</a></li>                
+                  <li><a href="about.html">درباره ما</a></li>
+                  <li><a href="sitemap.html">نقشه سایت</a></li>
+              </ul>
+          </div>
+          <div class="col-sm-3">
+              <h5>برای فروشندگان</h5>
+              <ul>
+                  <li><a href="membership.html">عضویت</a></li>
+                  <li><a href="register-info.html">ثبت نام</a></li>
+                  <li><a href="login-info.html">ورود</a></li>
+              </ul>
+          </div>
+          <div class="col-sm-3">
+              <h5>برای خریداران</h5>
+              <ul>
+                  <li><a href="search.html">جستجوی ماشین آلات</a></li>
+                  <li><a href="watchlist.html" target="TOP"> فهرست دلخواه </a></li>            
+                  <li><a href="newsletter.html">خبرنامه</a></li>
+                  <li><a href="manufacturers.html">تولیدکنندگان</a></li>
+                  <li><a href="dealershtml">فروشندگان</a></li>
+                  <li><a href="send-inquiry.html" target="_blank">ارسال درخواست استعلام</a></li>
+              </ul>
+          </div>
+          <div class="col-sm-3">
+              <h5>پشتیبانی</h5>
+              <ul>
+                  <li><a href="faq-agb.html">سوالات متداول و شرایط کسب و کار</a></li>
+                  <li><a href="#">چاپ کردن</a></li>
+                  <li><a href="contact-us.html">تماس با ما</a></li>
+              </ul>
+          </div>
+      </div>
+     <!-- کپی رایت -->
+      <div class="container">
+        <p id="copyright" >
+          Copyright 2022 All rights reserved</p>
+      </div>
+    </div>
+  </footer>      
+       
+  <!-- اسکریپتها -->
+  <script src="js/jquery.js"></script> 
+  <script src="js/bootstrap.min.js"></script>
+  <script>jssor_1_slider_init();</script>
+
+
+</body>
+</html>

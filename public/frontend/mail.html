@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title></title>
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="style.css" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+
+  <div class="page-wrapper rtl">
+
+      <!-- منوی بالا -->
+      <nav class="navbar top-nav navbar-expand-lg navbar-dark  ">
+        <div class="container">
+          <a class="logo" href="#"><img src="logo.png" ></a>
+          <a id="sell-machinary" href="membership.html" class="btn-all btn-green " >ماشین خود را بفروشید 
+            <i class="fas fa-check fa-sm"></i></a>
+          <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navSmall" aria-controls="navSmall" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navSmall">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item  hidden-mobile">
+                <a class="nav-link" href="machine-search.html">جستجوی دستگاه</a>
+              </li>
+              <li class="nav-item " >
+                <a class="nav-link" href="dealers.html">فروشندگان</a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="membership.html">عضویت</a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="register-info.html">ثبت نام</a>
+              </li>
+              <li class="nav-item ">
+                <a id="login" class="nav-link" href="login-info.html">ورود
+                    <i class="fas fa-sign-in-alt" aria-hidden="true"></i>  </a>
+              </li>
+             </ul>
+          </div>
+        </div>
+      </nav>
+        
+        <!-- بدنه محتوا -->
+        <div class="top-content">
+          <div id="overlay"></div>
+          <div class="inner-bg">
+            <div class="container">
+              <div class="display-align top-titr">
+                <div class="col-lg-8   text center-align mx-auto">
+                  <h1><b>استعلام</b></h1>
+                  <div class="description">
+                    <p>لطفاً برای هرگونه سؤالی با ما تماس بگیرید!</p>
+                  </div>
+                </div>
+              </div>
+        
+               <div class="display-align">
+                  <div class="col-lg-8 col-sm-offset-3 form-box mx-auto">
+                  <form id="mail_form" method="post" action="#" accept-charset="utf-8">
+
+                    <fieldset>
+                              <div class="form-top">
+                        <div class="icon-form">
+                          <h2>اطلاعات شرکت شما</h2>
+                          <p><b>کد:</b> 157247578</p>
+                        </div>
+                        <div class="title-form">
+                          <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="form-top-description float-right">
+                            <b>دستگاه:</b> 
+                             (دستگاه کنترل عناصر گرمایشی)
+                            <b>فروش ماشین آلات:</b>
+                                <b>قیمت:</b>
+                                 750 یورو
+                            </div>
+                      </div>
+                      <div class="form-middle"></div>
+                      <div class="form-bottom">
+                        <div class="display-align">
+                          <div class="col-lg-6">
+                            <div class="align-form">
+                              <label class="label-input" for="company-label">شرکت:</label>
+                              <div class="input-group bottom-margin mr-sm-2 mb-sm-0">
+                                <div class="input-group-addon" style="width: 2.6rem">
+                                  <i class="fas fa-building fa-lg"></i>
+                                </div>
+                                <input type="text" name="visitorcompany" class="form-control" placeholder="شرکت" required="">
+                              </div>
+                            </div>
+                            <div class="align-form">
+                              <label class="label-input" for="company-label">نام:</label>
+                              <div class="input-group bottom-margin mr-sm-2 mb-sm-0">
+                                <div class="input-group-addon" style="width: 2.6rem">
+                                  <i class="fas fa-user fa-lg"></i>
+                                </div>
+                                <select name="" class="custom-select rounded-0">
+                                  <option value="Mr" selected="">آقا</option>
+                                  <option value="Ms">خانم</option>
+                                </select>
+                                <input type="text" name="" class="form-control" placeholder="نام" required="">
+                              </div>
+                            </div>
+                            <div class="align-form">
+                              <label class="label-input" for="company-label">آدرس:</label>
+                              <div class="input-group bottom-margin mr-sm-2 mb-sm-0">
+                                <div class="input-group-addon" style="width: 2.6rem">
+                                  <i class="fas fa-home fa-lg"></i>
+                                </div>
+                                <input type="text" name="visitoraddress1" class="form-control" placeholder="آدرس" required="">
+                              </div>
+                            </div>
+                            <div class="align-form">
+                              <label class="label-input" for="company-label">کد و شهر:</label>
+                              <div class="input-group bottom-margin mr-sm-2 mb-sm-0">
+                                <div class="input-group-addon" style="width: 2.6rem">
+                                  <i class="fas fa-home fa-lg"></i>
+                                </div>
+                                <input type="text" name="visitoraddress2" class="form-control" placeholder="کد و شهر" required="">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-6">
+                            <div class="align-form">
+                              <label class="label-input" for="company-label">کشور:</label>
+                              <div class="input-group bottom-margin mr-sm-2 mb-sm-0">
+                                <div class="input-group-addon" style="width: 2.6rem">
+                                  <i class="fas fa-globe fa-lg"></i>
+                                </div>
+                                <input type="text" name="visitorcountry" class="form-control" placeholder="کشور" required="">
+                              </div>
+                            </div>
+                            <div class="align-form">
+                              <label class="label-input" for="company-label">ایمیل:</label>
+                              <div class="input-group bottom-margin mr-sm-2 mb-sm-0">
+                                <div class="input-group-addon" style="width: 2.6rem">
+                                  <i class="fas fa-at fa-lg"></i>
+                                </div>
+                                <input type="text" name="visitoremail" class="form-control" placeholder="ایمیل" required="">
+                              </div>
+                            </div>
+                            <div class="align-form">
+                              <label class="label-input" for="company-label">تلفن:</label>
+                              <div class="input-group bottom-margin mr-sm-2 mb-sm-0">
+                                <div class="input-group-addon" style="width: 2.6rem">
+                                  <i class="fas fa-phone fa-lg"></i>
+                                </div>
+                                <input type="text" name="visitortel" class="form-control" placeholder="تلفن" required="">
+                              </div>
+                            </div>                   
+                            <div class="align-form right-align">
+                              <p class="d-inline">فروشنده ماشین آلات؟</p>
+                              <p class="d-inline ml-3">
+                                <input type="radio" id="yes" name="" value="">
+                                <label for="yes">بله</label>
+                              </p>
+                              <p class="d-inline ml-3">
+                                <input type="radio" id="no" name="" value="">
+                                <label for="no">خیر</label>
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="display-align right-align">
+                          <div class="col-lg-12">
+                            <div class="align-form">
+                              <p class="d-inline">لطفا با من تماس بگیرید:</p>
+                              <div class="form-check d-inline ml-4">
+                                          <label class="options">
+                                  <input type="checkbox" name="" value=""> 
+                                          </label>
+                                      </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="display-align right-align">
+                          <div class="col-lg-12">
+                            <div class="align-form">
+                              <p class="d-inline">لطفا ارسال کنید:</p>
+                                          <div class="form-check d-inline ml-2">
+                                          <label class="options">
+                                  <input type="checkbox" name="" value="1" checked="checked"> <span class="label-text">اطلاعات بیشتر</span>
+                                          </label>
+                                      </div>
+                                      <div class="form-check d-inline ml-2">
+                                          <label class="options">
+                                  <input type="checkbox" name="" value="1"> <span class="label-text">عکسهای بیشتر</span>
+                                          </label>
+                                      </div>
+                                      <div class="form-check d-inline ml-2">
+                                          <label class="options">
+                                              <input type="checkbox" name="" value="1"> <span class="label-text">پیشنهاد</span>
+                                          </label>
+                                      </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="display-align right-align">
+                          <div class="col-lg-12">
+                            <div class="align-form">
+                              <label class="label-input" for="form-about-yourself">متن پیام</label>
+                              <textarea name="msg" placeholder="Message..." class="form-about-yourself form-control" id="form-about-yourself">جناب آقای ابرلی عزیز
+        
+                                من به دستگاه شما "GGT&nbsp;Regler Schreiber (دستگاه کنترل عناصر گرمایشی)" پیشنهاد شده در RESALE علاقه مند هستم. ...
+                             
+                          </textarea>
+        
+                            </div>
+                          </div>
+                        </div>
+                        <div class="display-align right-align">
+                          <div class="col-lg-12">
+                            <div class="align-form mb-0">
+                                  <p class="d-inline">ارسال درخواست استعلام؟</p>
+                              <p class="d-inline ml-3">
+                                <input type="radio" id="anfrage-ja" name="gesuch" value="1">
+                                <label for="anfrage-ja">بله</label>
+                              </p>
+                              <p class="d-inline ml-3">
+                                <input type="radio" id="anfrage-nein" name="gesuch" value="0">
+                                <label for="anfrage-nein">خیر</label>
+                              </p>
+                                </div>
+                          </div>
+                        </div>
+                        <div class="display-align mb-3 right-align">
+                          <div class="col-lg-12">
+                            <p class="d-inline text-muted" style="font-size: 14px;">(به همه فروشندگان چنین ماشینی)</p>
+                          </div>
+                        </div>
+                        <div class="display-align right-align">
+                          <div class="col-lg-8">
+                            <div class="align-form mb-0">
+                              <p class="d-inline">کپی کردن</p>
+                              <p class="d-inline ml-3">
+                                <input type="radio" id="copy-ja" name="kopie2you" value="1">
+                                <label for="copy-ja">بله</label>
+                              </p>
+                              <p class="d-inline ml-3">
+                                <input type="radio" id="copy-nein" name="kopie2you" value="0">
+                                <label for="copy-nein">خیر</label>
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="display-align mb-3 right-align">
+                          <div class="col-lg-12">
+                            <p class="d-inline text-muted" style="font-size: 14px;">(کپی درخواست شما به آدرس ایمیل شما ارسال خواهد شد)</p>
+                                                  </div>
+                        </div>
+                      <div class="display-align right-align">
+                        <div class="col-lg-8">
+                          <div class="align-form mb-0">
+                            <p class="d-inline">داده های ورودی ذخیره شود؟</p>
+                            <p class="d-inline ml-3">
+                              <input type="radio" id="save-ja" name="" value="" checked="">
+                              <label for="save-ja">بله</label>
+                            </p>
+                            <p class="d-inline ml-3">
+                              <input type="radio" id="save-nein" name="" value="">
+                              <label for="save-nein">خیر</label>
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="display-align right-align">
+                        <div class="col-lg-12">
+                            <p class="d-inline text-muted" style="font-size: 14px;">(داده های ورودی را برای سوالات بیشتر ذخیره کنید)</p>
+                            </div>
+                      </div>                 
+                        <div class="display-align top-margin2">
+                          <div class="col-lg-12 center-align">
+                              <button type="submit" name="" value="1" class="btn-all btn-green " style="cursor: pointer;">ارسال استعلام</button>
+                          </div>
+                        </div>
+                      </div>
+                    </fieldset>
+                  </form>
+                </div>
+              </div>
+        
+            </div>
+          </div>
+        </div>
+        
+   <!-- فوتر -->
+   <footer id="footer">
+    <div class="second-bar">
+       <div class="container">
+            <div class="social-icons">
+                <span>از فروشگاه ما بازدید کنید: </span>
+                <a href="#" class="social" target="_blank" >
+                  <i class="fab fa-facebook-square" ></i>
+                 </a>
+                 <a href="#" class="social" target="_blank">
+                   <i class="fab fa-linkedin " ></i> 
+                    </a>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+      <div class="display-align">
+          <div class="col-sm-3">
+              <h5>شرکت</h5>
+              <ul>
+                  <li><a href="contact-us.html">ارتباط با ما</a></li>                
+                  <li><a href="about.html">درباره ما</a></li>
+                  <li><a href="sitemap.html">نقشه سایت</a></li>
+              </ul>
+          </div>
+          <div class="col-sm-3">
+              <h5>برای فروشندگان</h5>
+              <ul>
+                  <li><a href="membership.html">عضویت</a></li>
+                  <li><a href="register-info.html">ثبت نام</a></li>
+                  <li><a href="login-info.html">ورود</a></li>
+              </ul>
+          </div>
+          <div class="col-sm-3">
+              <h5>برای خریداران</h5>
+              <ul>
+                  <li><a href="search.html">جستجوی ماشین آلات</a></li>
+                  <li><a href="watchlist.html" target="TOP"> فهرست دلخواه </a></li>            
+                  <li><a href="newsletter.html">خبرنامه</a></li>
+                  <li><a href="manufacturers.html">تولیدکنندگان</a></li>
+                  <li><a href="dealershtml">فروشندگان</a></li>
+                  <li><a href="send-inquiry.html" target="_blank">ارسال درخواست استعلام</a></li>
+              </ul>
+          </div>
+          <div class="col-sm-3">
+              <h5>پشتیبانی</h5>
+              <ul>
+                  <li><a href="faq-agb.html">سوالات متداول و شرایط کسب و کار</a></li>
+                  <li><a href="#">چاپ کردن</a></li>
+                  <li><a href="contact-us.html">تماس با ما</a></li>
+              </ul>
+          </div>
+      </div>
+     <!-- کپی رایت -->
+      <div class="container">
+        <p id="copyright" >
+          Copyright 2022 All rights reserved</p>
+      </div>
+    </div>
+  </footer>      
+          <!-- عکس پس زمینه -->
+      <div class="parallax-background" >
+        <img src="background.jpg" ></div>
+  
+  <!-- اسکریپتها -->
+  <script src="js/jquery.js"></script> 
+  <script src="js/bootstrap.min.js"></script>
+
+</body>
+</html>
