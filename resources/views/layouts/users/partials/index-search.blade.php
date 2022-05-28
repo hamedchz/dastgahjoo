@@ -38,7 +38,7 @@
       <div class="container search-bar bottom-margin2 d-flex justify-content-center" style="margin-top: -10px;">
         <div class="display-align d-flex justify-content-between w-100">
         <div class="col-auto text" style="z-index:1000;">
-          <strong style="font-size: 20px;"><a class="text-white" href="" target="_blank">ارسال درخواست استعلام</a>
+          <strong style="font-size: 20px;"><a class="text-white" href="{{route('contact-us')}}" >ارسال درخواست استعلام</a>
           </strong>
         </div>
         <div class="col-auto right-align" style="z-index:1000;">
@@ -52,7 +52,7 @@
     <div class="container search-bar d-flex justify-content-center" style="margin-top: -10px;">
       <div class="display-align d-flex justify-content-between w-100">
       <div class="col-auto text" style="z-index:1000;">
-        <strong style="font-size: 20px;"><a class="text-white" href="{{route('manufacturer')}}" target="_blank">تولیدکنندگان</a></strong>
+        {{-- <strong style="font-size: 20px;"><a class="text-white" href="{{route('manufacturer')}}" target="_blank">تولیدکنندگان</a></strong> --}}
         </div>
         <div class="col-auto right-align d-none d-lg-block" style="z-index:1000;">
           <img alt="check" src="{{asset('frontend/img/escrow-verified.png')}}" style="width: 40px; height: 40px;">

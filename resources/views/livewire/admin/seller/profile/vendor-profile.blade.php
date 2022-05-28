@@ -53,7 +53,9 @@
                                             <div class="form-group col-lg-6 col-md-6"></div>
                                             <div class="form-group col-lg-6 col-md-6">
                                                 <label for="province">استان  :</label>
+                                                @if(!is_null($user[0]->province))
                                                 <input class="form-control" type="text" value="{{$user[0]->province->title}}" readonly>
+                                                @endif
                                                 {{-- <select class="form-select form-select-sm form-control" aria-label=".form-select-sm example"  readonly>
                                                     @foreach ($provinces as $province)
                                                       <option value="{{$province->id}}" {{ $province->id == $user[0]->province_id ? 'selected' : ''}}>{{$province->title}}</option>
@@ -68,8 +70,9 @@
                                             </div>
                                             <div class="form-group col-lg-6 col-md-6">
                                                 <label for="city">شهر  :</label>
+                                                @if(!is_null($user[0]->city))
                                                 <input class="form-control" type="text" value="{{$user[0]->city->title}}" readonly>
-
+                                                @endif
                                                   <select class="form-select form-select-sm form-control mt-2" aria-label=".form-select-sm example" id="city">
                                                     <option selected> انتخاب کنید</option>
                                                     @foreach ($cities as $city)

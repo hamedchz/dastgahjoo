@@ -131,7 +131,7 @@
             <div class="description">
               <p>
                 شرکت خود را تبلیغ کنید: به سادگی 
-                <a target="TOP" class="btn-all btn-all-small btn-green" href={{route('register')}}">ثبت نام کنید</a>
+                <a target="TOP" class="btn-all btn-all-small btn-green" href="{{route('register')}}">ثبت نام کنید</a>
                  به عنوان فروشنده لوگو و مشخصات شرکت خود را آپلود کنید.        </p>
             </div>
           </div>

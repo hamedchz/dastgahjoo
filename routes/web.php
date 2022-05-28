@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Livewire\Admin\Advertises\AdverisesList;
 use App\Http\Livewire\Admin\Category\CategoryList;
 use App\Http\Livewire\Admin\Category\SubcategoryList;
+use App\Http\Livewire\Admin\IndexEdit\IndexEdit;
 use App\Http\Livewire\Admin\Location\City\CityList;
 use App\Http\Livewire\Admin\Location\Province\ProvinceList;
 use App\Http\Livewire\Admin\Logs\LogsList;
@@ -44,6 +46,7 @@ use App\Http\Livewire\Users\Manufaturer\Manufaturer;
 use App\Http\Livewire\Users\MemberShip\Membership;
 use App\Http\Livewire\Users\ProductList\ProductDetail;
 use App\Http\Livewire\Users\ProductList\ProductUserList;
+use App\Http\Livewire\Users\ProductList\SubcategoryProducts;
 use App\Http\Livewire\Users\Products\ProductsLists;
 use App\Http\Livewire\Users\Registration\Form;
 use App\Http\Livewire\Users\SearchMachine\SearchMachine;
@@ -79,6 +82,8 @@ Route::group(['namespace'=> '','prefix'=> 'dashboard'], function(){
     Route::get('products/{id}',ProductInfo::class)->name('admin.products-info');
     Route::get('contactus',ContactList::class)->name('admin.contactus');
     Route::get('orders',OrderList::class)->name('admin.orders');
+    Route::get('index-edit',IndexEdit::class)->name('admin.index-edit');
+    Route::get('advetises',AdverisesList::class)->name('admin.advertises');
 
     //sellers
     Route::get('user-product',UserProductsLists::class)->name('user.products');
@@ -127,11 +132,13 @@ Route::namespace('App\Http\Controllers\Auth')->group(function () {
     Route::get('/manufacturer',Manufaturer::class)->name('manufacturer');
     Route::get('/advance-search',AdvanceSearch::class)->name('advance-search');
     Route::get('/product-list/{slug}',ProductUserList::class)->name('product-list');
+    Route::get('/subcategory-product/{slug}', SubcategoryProducts::class)->name('subcategory.product-list');
     Route::get('/product/detail/{id}',ProductDetail::class)->name('product.detail');
     Route::get('/contact-us',Contact::class)->name('contact-us');
     Route::get('/aboutus',AboutUs::class)->name('about-us');
     Route::get('/faq',Faq::class)->name('faq');
-    
+    // Route::get('/sold-products',AboutUs::class)->name('about-us');
+
 
 // Route::get('/', function () {
 //     return view('welcome');

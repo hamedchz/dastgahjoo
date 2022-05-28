@@ -4,9 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Discounts;
 use App\Models\Order;
+use App\Models\PackageHistory;
 use App\Models\Packages;
+use App\Models\Setting;
 use App\Models\Transaction;
 use App\Models\User;
+use App\Models\Vendors;
+use Carbon\Carbon;
 use Exception;
 use Hekmatinasser\Verta\Verta;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -16,10 +20,25 @@ use Shetabit\Multipay\Exceptions\InvalidPaymentException;
 use Shetabit\Multipay\Exceptions\PurchaseFailedException;
 use Shetabit\Multipay\Invoice;
 use Shetabit\Payment\Facade\Payment;
+use SoapClient;
 use SoapFault;
 
 class PurchaseController extends Controller
 {
+    public function sendSmsCode($mobile,$code)
+    {
+        $client = new SoapClient("http://188.0.240.110/class/sms/wsdlservice/server.php?wsdl");
+        $user = Setting::where('name','user_panel_for_sms')->pluck('value')->first();
+        $pass = Setting::where('name','password_panel_for_sms')->pluck('value')->first();
+        $fromNum = Setting::where('name','lineNumber_panel_for_sms')->pluck('value')->first();
+        $toNum = $mobile;
+        $pattern_code = "4itbwfw7pt";
+        $input_data = array(
+            "code" => $code,
+        );
+        return $client ->sendPatternSms($fromNum, $toNum, $user, $pass, $pattern_code, $input_data);
+    }
+  
     public function purchase(Packages $package){
         $user = Auth::user();
         $discount = Discounts::select('percentage')->where('package_id',$package->id)->first();
@@ -166,6 +185,69 @@ class PurchaseController extends Controller
                     'price' => $price,
                     'status' => 'PAID'
                 ]);
+                $existPackage = PackageHistory::where('user_id',$user->id)->where('package_id',$package->id)->first();
+       
+                // $package = Packages::findOrFail($id);
+        
+                if($existPackage){
+                    
+                $existPackage->update([
+                    'products' => $package->products,
+                    'duration' => $package->duration,
+                    'images' => $package->images,
+                    'logo' => $package->logo,
+                    'banner' => $package->banner,
+                    'video' => $package->video,
+                    'site' => $package->site,
+                    'file' => $package->file,
+                    'startDate' => Carbon::now(),
+                    'endDate' => Carbon::now()->addDay($package->duration),
+                    ]);
+                    // $vendor = Vendors::where('user_id',$user->id)->first();
+                    $user->vendor->update([
+                        'package_id' => $package->id
+                    ]);
+                    $this->sendSmsCode($user->mobile, $package->title);
+        
+                }else{
+                   
+                    PackageHistory::create([
+                        'user_id' => $user->id,
+                        'email' => $user->email,
+                        'package_id' => $package->id,
+                        'price'=> $package->price,
+                        'products' => $package->products,
+                        'duration' => $package->duration,
+                        'images' => $package->images,
+                        'logo' => $package->logo,
+                        'banner' => $package->banner,
+                        'video' => $package->video,
+                        'site' => $package->site,
+                        'file' => $package->file,
+                        'startDate' => Carbon::now(),
+                        'endDate' => Carbon::now()->addDay($package->duration),
+                    ]);
+                    // $vendor = Vendors::where('user_id',$user->id)->first();
+                    if($user->vendor){
+                        $user->vendor->update([
+                            'package_id' => $package->id
+                        ]);
+                        $this->sendSmsCode($user->mobile, $package->title);
+        
+                    }else{
+                        $vendor = Vendors::create([
+                            'user_id' => $user->id,
+                            'mobile' => $user->mobile,
+                            'package_id' => $package->id,
+                            'email' => $user->email,
+                            'identityNumber' => mt_rand(10000,9999999),
+                        ]);
+                        $user->roles()->sync('2');
+                        $this->sendSmsCode($user->mobile, $package->title);
+        
+                    }
+                   
+                }
                 // $orders = Order::where('cart_id',$request->cart_id)->first();
                 // $purchasedServicesSuccess = PurchasedService::where('cart_id',$request->cart_id)->get();
                 // $purchasedServicesSuccess->each->update([

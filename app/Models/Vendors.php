@@ -60,7 +60,7 @@ class Vendors extends Model
     {
         return [
             'slug' => [
-                'source' => 'slug'
+                'source' => 'user.name'
             ]
         ];
     }

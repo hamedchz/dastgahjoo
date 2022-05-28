@@ -96,7 +96,7 @@
                   </h1>
                   <div class="description2">
                       <p>
-                        <strong>عضویت مناسب خود را سفارش دهید و مانند هزاران فروشنده قبل از شما بهره مند شوید!</strong>
+                        <strong>عضویت مناسب خود را  انتخاب کنید و مانند هزاران فروشنده قبل از امکانات ما بهره مند شوید!</strong>
                     </p>
                   </div>
               </div>
@@ -112,7 +112,7 @@
                     0933333333333</p>
             </div>
       </div>
-  
+{{--   
       <div class="counters section">
         <div class="container">
           <div class="display-align">
@@ -181,7 +181,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> --}}
   
             <div class="section" style="background-color: #323639;">
           <div class="container">
@@ -192,11 +192,11 @@
                   <tr>
                     <th class="table-head1 table-head2"></th>
                     <th class="t-head1">
-                      برای فروشندگان مهمان 
+                      پکیجهای موجود
                       </th>
-                    <th colspan="3" class="t-head2">
+                    {{-- <th colspan="3" class="t-head2">
                       برای فروشندگان ماشین آلات           
-                    </th>
+                    </th> --}}
                   </tr>
 
                   <tr>
@@ -205,19 +205,11 @@
                       <div class="contact-info" style="color: black;"> 0933333333 <span style="color: green;">
                         <i class="fas fa-phone-square fa-lg"></i> </span></div>
                     </th>
+                    @foreach($packages as $pack)
                     <th class="compare-heading">
-                      مالکان              
-                     </th>
-                    <th class="compare-heading">
-                      <span style="font-size: 0.9rem; font-weight: 600; color: Red;">پیشنهاد ویژه!</span><br>                    
-                      فروشندگان استاندارد         
+                      {{$pack->name}}              
                     </th>
-                    <th class="compare-heading">
-                      فروشندگان پایه              
-                    </th>
-                    <th class="compare-heading">
-                      تبلیغات بنری                
-                      </th>
+                    @endforeach
                   </tr>
 
                   <tr>
@@ -231,12 +223,13 @@
                         <i class="fas fa-ardisplay-align-left"></i>
                        </div>
                       </th>
+                      @foreach($packages as $pack)
                     <th class="cost-info">
-                      <div class="cost-now"><span>€ 2</span>
+                      <div class="cost-now"><span>تومان {{$pack->price}}</span>
                       </div>
-                      <div class="cost-try bottom-margin"><b>در هر آگهی ماهانه</b>
+                      <div class="cost-try bottom-margin"><b> ماهانه</b>
                       </div>
-                      <div class="cost-try bottom-margin">(29.90 € در ماه)</div>
+                      <div class="cost-try bottom-margin">({{$pack->price}} تومان در ماه)</div>
                       <div><a class="btn-all btn-all-small cost-buy" href="register-info.html"> سفارش 
                       </a>
                       <a class="hide-desktop" href="register-info.html"> سفارش 
@@ -246,42 +239,7 @@
                         <a href="#owners" data-toggle="modal" data-target="#owners">جزئیات بیشتر</a>
                        </div>
                    </th>
-                    <th class="cost-info">
-                      <div class="cost-now"><span>0 €</span>
-                      </div>
-                      <div class="cost-try bottom-margin"><b>در هر آگهی ماهانه</b>
-                      </div>
-                      <div class="cost-try bottom-margin">(24.90 € در ماه)</div>
-                      <div>
-                        <a class="btn btn-sm cost-buy" href="register-info.html">سفارش </a>
-                         <a class="hide-desktop" href="register-info.html"> سفارش 
-                      </a>
-                    </div>
-                      <div class="cost-try" style="margin-top: 10px;">
-                        <a href="#dealerstandard" data-toggle="modal" data-target="#dealerstandard">جزئیات بیشتر</a>
-                       </div>
-                    </th>
-
-                    <th class="cost-info">
-                      <div class="cost-now"><span>3 €</span></div>
-                      <div class="cost-try bottom-margin"><b>در هر آگهی ماهانه</b></div>
-                      <div class="cost-try bottom-margin">(16.50 € در ماه)</div>
-                      <div><a class="btn-all btn-all-small cost-buy" href="register-info.html">سفارش </a> <a class="hide-desktop" href="register-info.html"> سفارش 
-                      </a></div>
-                      <div class="cost-try" style="margin-top: 10px;">
-                        <a href="#dealerbasic" data-toggle="modal" data-target="#dealerbasic">جزئیات بیشتر</a> 
-                      </div>
-                  </th>
-
-                    <th class="cost-info">
-                      <div class="cost-now"><span>99 €</span></div>
-                      <div class="cost-try bottom-margin"><b>در هر ماه</b></div>
-                      <div><a class="btn btn-sm cost-buy" href="register-info.html">سفارش </a> <a class="hide-desktop" href="register-info.html"> سفارش 
-                      </a></div>
-                      <div class="cost-try" style="margin-top: 10px;">
-                        <a href="#bannertarif" data-toggle="modal" data-target="#bannertarif">جزئیات بیشتر</a>
-                       </div>
-                  </th>
+                   @endforeach
                   </tr>
                 </thead>
                 <tbody>
@@ -289,8 +247,9 @@
                     <td>&nbsp;</td>
                     <td colspan="4">تعداد اقلام ماشین آلات (همزمان)</td>
                   </tr>
+                  @foreach($packages as $pack)
                   <tr>
-                    <td>تعداد اقلام ماشین آلات 
+                    <td> کالای قابل آپلود   
                       <span data-title="" tabindex="0">
                       <i class="far fa-question-circle fa-sm"></i>
                     </span>
@@ -309,10 +268,10 @@
                    </tr>
                   <tr>
                     <td>&nbsp;</td>
-                    <td colspan="4">قیمت 100 مورد دیگر</td>
+                    <td colspan="4">تعداد عکس</td>
                   </tr>
                   <tr>
-                    <td>قیمت 100 مورد دیگر</td>
+                    <td>تعداد عکس</td>
                     <td></td>
                     <td>10 یورو در ماه<br>
                       <span style="font-size: 0.9rem; font-weight: 600; color: Green;">0.10 € / دستگاه</span>

@@ -26,6 +26,8 @@ class Inquiries extends Model
         'user_id',
         'email',
         'phone',
+        'address',
+        'postal',
     ];
 
     public function parents(){

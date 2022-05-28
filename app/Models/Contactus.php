@@ -15,11 +15,13 @@ class Contactus extends Model
 
     protected $fillable =[
         'name',
-        'mobile	',
+        'mobile',
         'email',
         'subject',
         'description',
         'seen',
+        'postal',
+        'address',
 
     ];
 

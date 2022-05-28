@@ -175,7 +175,7 @@ class UserLists extends Component
             ->orWhere('email','Like','%'.$this->searchTerm.'%');
         })->when($this->status,function($query,$status){
             return $query->where('id',$status);
-        })->paginate(21); 
+        })->orderBy('id','desc')->paginate(21); 
     }
     public function changeRole(User $user,$role){
         $update =  $user->roles[0]['pivot']->update(['role_id'=>$role]);
@@ -184,6 +184,20 @@ class UserLists extends Component
             $this->dispatchBrowserEvent('editUserStatus',['message'=>' نقش کاربر با موفقیت ویرایش شد', 'action'=>'success']);
         }else{
             (new \App\Models\Log)->storeLog($user->id,'   خطا تغییر نقش کاربر ','ویرایش ');
+            $this->dispatchBrowserEvent('editUserStatus',['message'=>'مشکلی وجود دارد', 'action'=>'error']);
+
+        }
+    }
+
+    public function changeApproved(Vendors $vendor,$value){
+        $update = $vendor->update([
+            'isApproved' => $value
+        ]);
+        if($update){
+            (new \App\Models\Log)->storeLog($vendor->id,'  تغییر وضعیت کاربر ','ویرایش ');
+            $this->dispatchBrowserEvent('editUserStatus',['message'=>'کاربر با موفقیت ویرایش شد', 'action'=>'success']);
+        }else{
+            (new \App\Models\Log)->storeLog($$vendor->id,'   خطا تغییر وضعیت کاربر ','ویرایش ');
             $this->dispatchBrowserEvent('editUserStatus',['message'=>'مشکلی وجود دارد', 'action'=>'error']);
 
         }
@@ -235,9 +249,10 @@ class UserLists extends Component
         $this->authorize('users',User::class);
         $allPermissions = Permission::where('isActive',1)->get();
         $users = $this->roles;
+        
         $roles = DB::table('roles')->selectRaw('roles.id, roles.name, count(role_user.user_id) as count')
         ->leftjoin('role_user', 'roles.id', '=', 'role_user.role_id')
-        ->groupByRaw('roles.id,roles.name')
+        ->groupByRaw('roles.id,roles.name')->orderBy('id','desc')
         ->get();
         $userRoles = Role::all();
         return view('livewire.admin.users.user-lists',['allPermissions'=>$allPermissions,'users' => $users,'userRoles'=>$userRoles,'roles'=>$roles])->layout('layouts.admin.app');

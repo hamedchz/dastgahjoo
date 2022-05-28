@@ -62,7 +62,7 @@ class VendorProfile extends Component
 
     public function updateVendor(){
       
-        $user = User::where('id',auth()->user()->id)->first();
+        $user = User::findOrFail(auth()->user()->id);
         $vendor = Vendors::where('user_id',auth()->user()->id)->first();
         $validatedData = Validator::make($this->state,[
             'name'=>'required',
@@ -80,9 +80,11 @@ class VendorProfile extends Component
         ])->validate();
        
         if($this->avatar){
-            if($this->oldAvatar <> 'N\A'){
+            if($this->oldAvatar <> 'N/A'){
                 // Storage::disk('avatars')->delete($this->oldAvatar);
-                Storage::delete($this->oldAvatar);
+                // Storage::delete($this->oldAvatar);
+                $image_path = public_path().'/'.$this->oldAvatar;
+                unlink($image_path);
            
                 
             }
@@ -103,7 +105,7 @@ class VendorProfile extends Component
 
         ];
         if($this->logo){
-            if($this->oldLogo <> 'N\A'){
+            if($this->oldLogo <> 'N/A'){
                 Storage::disk('logos')->delete($this->oldLogo);
             }
             $vendorData['logo'] = $this->logo->store('/','logos');

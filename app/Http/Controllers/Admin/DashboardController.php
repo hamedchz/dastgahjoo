@@ -30,7 +30,7 @@ class DashboardController extends Controller
         $logs = Log::with('user')->latest()->take(5)->get();
         $roles = User::with('roles')->get();
         $tickets =Ticket::with('user')->where('parent',0)->where('status','OPEN')->take(5)->get();
-        $unansweredComment = Inquiries::with('user')->with('products')->where('status','OPEN')->where('parent',0)->latest()->take(5)->get();
+        $unansweredComment = Inquiries::with('user')->with('products')->where('status','PENDING')->where('parent',0)->latest()->take(5)->get();
        //users
          $userTicket = Ticket::where('user_id',auth()->user()->id)->where('parent',0)->latest()->take(5)->get();
         $userOrders = Order::where('user_id',auth()->user()->id)->latest()->take(5)->get();

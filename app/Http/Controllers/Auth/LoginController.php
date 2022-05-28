@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ForgetPasswordRequest;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
+use App\Models\Setting;
 use App\Models\Token;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
@@ -17,6 +18,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use SoapClient;
 
 class LoginController extends Controller
 {
@@ -65,14 +67,30 @@ class LoginController extends Controller
          
        ]);
     
-       Token::create([
+       $tokenSave = Token::create([
         'code' => $token,
         'user_id' => $userStore->id,
         'expired_at' => now()->addMinute(10)
        ]);
        //send sms function
+       
+        $this->sendSmsCode($request->mobile, $token);
+      
         $userStore->roles()->sync('5');
         return view('auth.verifyToken',compact('userStore'));
+    }
+    public function sendSmsCode($mobile,$code)
+    {
+        $client = new SoapClient("http://188.0.240.110/class/sms/wsdlservice/server.php?wsdl");
+        $user = Setting::where('name','user_panel_for_sms')->pluck('value')->first();
+        $pass = Setting::where('name','password_panel_for_sms')->pluck('value')->first();
+        $fromNum = Setting::where('name','lineNumber_panel_for_sms')->pluck('value')->first();
+        $toNum = $mobile;
+        $pattern_code = "e48nfe0upd5bwzv";
+        $input_data = array(
+            "code" => $code,
+        );
+        return $client ->sendPatternSms($fromNum, $toNum, $user, $pass, $pattern_code, $input_data);
     }
     public function tokenVerify(Request $request){
        $userStore = User::findOrFail($request->id);
@@ -150,6 +168,7 @@ class LoginController extends Controller
                         'expired_at' => now()->addMinute(10)
                        ]);
                        //send sms
+                       $this->sendSmsCode($request->mobile, $tokenCode);
                        $errorSend = true;
                        return view('auth.forgetPasswordSendToken',compact('user','errorSend'));
                 }elseif(is_null($token)){
@@ -160,6 +179,8 @@ class LoginController extends Controller
                         'expired_at' => now()->addMinute(10)
                        ]);
                        //send sms
+                       $this->sendSmsCode($request->mobile, $tokenCode);
+
                        $errorNull = true;
                        return view('auth.forgetPasswordSendToken',compact('user','errorNull'));
                 }elseif($token && $user->expire_at > now()){

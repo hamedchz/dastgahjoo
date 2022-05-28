@@ -47,7 +47,7 @@
                               <th scope="display-align">تلفن:</th>
                               <td>
                               <i class="fa fa-phone" style="color: #28a745;"></i> 
-                             <a href="tel:{{$vendor->phone}}" target="TOP" >{{$vendor->phone}}</a></td>
+                             <a href="tel:{{$vendor->phone  ? $vendor->phone : $vendor->mobile}}" target="TOP" >{{$vendor->phone ? $vendor->phone : $vendor->mobile}}</a></td>
                             </tr>
                              <tr>
                               <th scope="display-align">نام فروشنده:</th>
@@ -64,12 +64,12 @@
                        </tbody>
                         </table>
                        </div>
-                      <div class="col-lg-4 center-align">
+                      {{-- <div class="col-lg-4 center-align">
                         <img class="img-fluid rounded" alt="" src="https://maps.googleapis.com/maps/api/staticmap?center=83395%20Freilassing,%20Deutschland&amp;zoom=6&amp;size=300x400&amp;markers=color:red%7C83395%20Freilassing,%20Deutschland&amp;sensor=false&amp;key=AIzaSyD3q69Zu2KpR4eJXYjh0uHfB8EpGF_367E">
                         <div class="top-margin2">
-                          <a href="{{route('dealer-inquiry')}}" class="btn-all btn-green" target="TOP">درخواست استعلام</a>
+                          <a href="" class="btn-all btn-green" target="TOP">درخواست استعلام</a>
                         </div>
-                      </div>
+                      </div> --}}
                     </div>
                   </div>
       

@@ -69,8 +69,8 @@
                                                 <th class="account" scope="col">کاربر</th>
                                                 <th class="semat" scope="col">سمت</th>
                                                 <th class="mobile" scope="col">موبایل</th>
-                                                <th class="accept" scope="col">وضعیت تایید</th>
-                                                <th class="email-semat" scope="col">ایمیل</th>
+                                                <th class="accept" scope="col"> احراز هویت</th>
+                                                <th class="email-semat" scope="col">تایید</th>
                                                 <th class="status-semat " scope="col">وضعیت</th>
                                                 <th class="amaliat" scope="col">عملیات</th>
                                                  </tr>
@@ -96,7 +96,16 @@
                                                     <div class="badge badge-success">تایید شده</div>
                                                     @endif
                                                 </td>
-                                                <td class="email-semat">{{$us->email}}</td>
+                                                <td class="accept">
+                                                    @if($user->name == 'seller')
+                                                    <select class="form-control" wire:change = "changeApproved({{$us->vendor}},event.target.value)">
+                                                        <option value="1" {{$us->vendor->isApproved == 1 ? 'selected':''}} >در حال بررسی</option>
+                                                        <option value="2" {{$us->vendor->isApproved == 2 ? 'selected':''}}>تایید شده</option>
+                                                        <option value="3" {{$us->vendor->isApproved == 3 ? 'selected':''}}>تایید نشده</option>
+
+                                                    </select>
+                                                    @endif
+                                                </td>
                                                 <td class="status-semat">
                                                     <select class="form-control" wire:change = "changeStatus({{$us}},event.target.value)">
                                                         <option value="1" {{$us->isActive == 1 ? 'selected':''}} >فعال</option>
@@ -283,6 +292,6 @@
  <script src="/admin/js/default-assets/datatables.select.min.js"></script> 
  <script src="/admin/js/default-assets/demo.datatable-init.js"></script> 
 <script src="/admin/js/default-assets/bootstrap-growl.js"></script>
-<script src="/admin/js/default-assets/notification-active.js"></script>
+{{-- <script src="/admin/js/default-assets/notification-active.js"></script> --}}
 
 @endpush

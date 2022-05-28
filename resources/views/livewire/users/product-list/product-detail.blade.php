@@ -115,15 +115,15 @@
       <nav aria-label="breadcrumb" class="navigationbar">
         <ol class="address-crumb">
           <li class="address-crumb-item">
-            <a href="#">
+            <a href="{{route('index')}}">
               <span class="hidden-desktop">
                 <i class="fas fa-home"></i>
               </span>
-              <span class="hidden-mobile">شروع</span>
+              <span class="hidden-mobile">خانه</span>
             </a>
           </li>
           <li class="address-crumb-item">
-            <a  href="{{route('product-list',$product->category->title)}}">
+            <a  href="{{route('product-list',$product->category->slug)}}">
               <span >{{$product->category->title}}</span>
             </a>
           </li>
@@ -139,45 +139,41 @@
       <fieldset>
                   <div class="profile-title profile-title-general">
                       <div class="display-align top-margin2">
-                          <div class="container ver-pad col-lg-8 " >
-                            <div class="display-align min-vh-100 " >
-                                    <div id="myCarousel" class="carousel slide  ">
-                                        <!-- اسلایدر آیتم ها -->
-                                        <div class="carousel-inner" style="height:80%;">
-                                            @foreach ($product->images as $image)
-                                            <div class="{{$loop->iteration == 1 ? 'active': ''}} carousel-item" data-slide-number="0">
+
+                        <div class="container ver-pad col-lg-8 " >
+                          <div class="display-align min-vh-100 " >
+                                  <div id="myCarousel" class="carousel slide  ">
+                                      <!-- اسلایدر آیتم ها -->
+                                      <div class="carousel-inner" style="height:80%;">
+                                          @foreach ($product->images as $image)
+                                          <div class="{{$loop->iteration == 1 ? 'active': ''}} carousel-item" data-slide-number="{{$loop->iteration - 1}}">
+                                              <img src="{{asset($image->image)}}" class="img-fluid">
+                                          </div>
+                                          @endforeach
+                                          <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+                                              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                              <span class=" label-input">قبل</span>
+                                          </a>
+                                          <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+                                              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                              <span class=" label-input">بعد</span>
+                                          </a>
+                                      </div>
+                      
+                      
+                                      <ul class="carousel-indicators list-inline mx-auto border hor-pad">
+                                          @foreach ($product->images as $image)
+                                          <li class="list-inline-item {{$loop->iteration == 1 ? 'active': ''}}">
+                                              <a id="carousel-selector-{{$loop->iteration - 1}}" {{$loop->iteration == 1 ? 'class="selected"': ''}} data-slide-to="{{$loop->iteration - 1}}" data-target="#myCarousel">
                                                 <img src="{{asset($image->image)}}" class="img-fluid">
-                                            </div>
-                                            @endforeach
-                                            <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
-                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                                <span class=" label-input">قبل</span>
-                                            </a>
-                                            <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
-                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                                <span class=" label-input">بعد</span>
-                                            </a>
-                                        </div>
-                       
-                        
-                                        <ul class="carousel-indicators list-inline mx-auto border hor-pad">
-                                            @foreach ($product->images as $image)
-                                            <li class="list-inline-item {{$loop->iteration == 1 ? 'active': ''}}">
-                                                <a id="carousel-selector-0" class="{{$loop->iteration == 1 ? 'selected': ''}}" data-slide-to="{{$loop->iteration - 1}}" data-target="#myCarousel">
-                                                  <img src="{{asset($image->image)}}" class="img-fluid">
-                                                </a>
-                                            </li>
-                                            @endforeach
-                                     
-                                          
-                                         
-                                         
-                                   
-                                        </ul>
-                                    </div>
-                                </div>
-                        
-                            </div>
+                                              </a>
+                                          </li>
+                                          @endforeach
+                                      </ul>
+                                  </div>
+                              </div>
+                      
+                          </div>
                             <!--پایان کاروسل آیتمها-->
                         
       <div class="col-lg-4 text center-align mx-auto" style="display:flex;">
@@ -253,7 +249,7 @@
                             <i class="far fa-envelope fa-lg"></i> درخواست استعلام</a>
                         </div>
                         <div class="col-xs-4 center-align mx-auto bottom-margin">
-                         <button class="btn-all btn-all-small btn-light" > 
+                         <button class="btn-all btn-all-small btn-light" onclick="window.print();"> 
                            <span class="hidden-mobile">چاپ کردن</span>
                             <i class="fas fa-print fa-lg"></i>
                           </button>
@@ -293,15 +289,15 @@
                           <tr>
                             <th scope="row">قیمت:</th>
                             <td class="three-button display-align">
-                              <button href="request-quote.html" class="btn-all btn-primary btn-all-small my-1"  >
-                                <a href="request-quote.html" class="text-white ">
+                              <button href="" class="btn-all btn-primary btn-all-small my-1"  >
+                                <a href="{{route('dealer-inquiry',$product->itemNo)}}" class="text-white ">
                                درخواست مظنه
                               </a>
                             </button> 
-                             <button class="btn-all btn-primary btn-all-small" data-toggle="modal" data-target="#modalForm" style="cursor: pointer;"> پیشنهاد قیمت    </button>
-                            <button class="btn-all btn-all-small btn-green my-1">
+                             {{-- <button class="btn-all btn-primary btn-all-small" data-toggle="modal" data-target="#modalForm" style="cursor: pointer;"> پیشنهاد قیمت    </button> --}}
+                            {{-- <button class="btn-all btn-all-small btn-green my-1">
                               <a href="escrew-payment.html" class="text-white">پرداخت امانی</a>
-                              </button>
+                              </button> --}}
                             </td>
                           </tr>
 
@@ -376,10 +372,10 @@
           <div class="container  " id="inquiry-form">
             <div class="display-align">
               <div class="col-lg-12 form-box mx-auto">
-              <form method="post" action="#" accept-charset="utf-8">
-                <fieldset>
+                <form id="mail_form" method="post" action="#"  wire:submit.prevent="store" accept-charset="utf-8">
+                    <fieldset>
                   <div class="form-middle ">
-                    <h3 class="text-white ">استعلام</h3></div>
+                    <h3 class="text-white text-center">استعلام</h3></div>
                   <div class="form-bottom">
                     <div class="display-align">
                       <div class="col-lg-6">
@@ -585,7 +581,7 @@
             </form>
           </div>
 
-          <div class="container  " id="inquiry-form">
+          {{-- <div class="container  " id="inquiry-form">
             <div class="display-align">
               <div class="col-lg-12 form-box mx-auto">
                   <div class="sell-middle">
@@ -658,7 +654,7 @@
                    </div>
               </div>
             </div>
-          </div>
+          </div> --}}
            </div>
           </div>
           </div>

@@ -10,7 +10,7 @@ use Livewire\Component;
 class ProductDetail extends Component
 {
 
-    public $product;
+    public $product,$state=[];
 
     public function mount($id){
         $product = Product::with('images')->where('id',$id)->first();
@@ -35,8 +35,8 @@ class ProductDetail extends Component
             'phone.numeric' => 'لطفا تلفن صحیح وارد کنید',
             'phone.min' => ' تلفن باید 11 عدد باشد  ',
         ])->validate();
-        $validatedData['product_id'] = $this->productInfo->id;
-        $validatedData['vendor_id'] = $this->productInfo->vendor_id;
+        $validatedData['product_id'] = $this->product->id;
+        $validatedData['vendor_id'] = $this->product->vendor_id;
         $validatedData['status'] = 'PENDING';
           
         $store  = Inquiries::create($validatedData);

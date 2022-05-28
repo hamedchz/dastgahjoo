@@ -57,6 +57,28 @@
                             <input type="text" name="" wire:model.defer="state.title" class="form-control" placeholder="نام" required="">
                           </div>
                         </div>
+                        <div class="align-form">
+                          <label class="label-input" for="company-label">آدرس:</label>
+                          <div class="input-group bottom-margin mr-sm-2 mb-sm-0">
+                            <div class="input-group-addon" style="width: 2.6rem">
+                              <i class="fas fa-home fa-lg"></i>
+                            </div>
+                            <input type="text" name="" wire:model = "state.address" class="form-control @error('address') is-invalid @enderror" placeholder="آدرس">
+                            @error('address')<div class="invalid-feedback">{{ $message }}</div> @enderror
+
+                          </div>
+                        </div>
+                        <div class="align-form">
+                          <label class="label-input" for="company-label">  کدپستی:</label>
+                          <div class="input-group bottom-margin mr-sm-2 mb-sm-0">
+                            <div class="input-group-addon" style="width: 2.6rem">
+                              <i class="fas fa-mailbox fa-lg"></i>
+                            </div>
+                            <input type="number" name="" class="form-control  @error('postal') is-invalid @enderror" wire:model = "state.postal" placeholder="  کدپستی" required="">
+                            @error('postal')<div class="invalid-feedback">{{ $message }}</div> @enderror
+
+                          </div>
+                        </div>
                         {{-- <div class="align-form">
                           <label class="label-input" for="company-label">آدرس:</label>
                           <div class="input-group bottom-margin mr-sm-2 mb-sm-0">
@@ -87,18 +109,20 @@
                             @error('email')<div class="invalid-feedback">{{ $message }}</div> @enderror
 
                           </div>
+
                         </div>
                         <div class="align-form">
-                          <label class="label-input" for="company-label">تلفن:</label>
+                          <label class="label-input" for="company-label">موبایل:</label>
                           <div class="input-group bottom-margin mr-sm-2 mb-sm-0">
                             <div class="input-group-addon" style="width: 2.6rem">
                               <i class="fas fa-phone fa-lg"></i>
                             </div>
-                            <input type="number" name="" wire:model.defer="state.phone" class="form-control  @error('phone') is-invalid @enderror" placeholder="تلفن" required="">
+                            <input type="number" name="" wire:model.defer="state.phone" class="form-control  @error('phone') is-invalid @enderror" placeholder="موبایل" required="">
                             @error('phone')<div class="invalid-feedback">{{ $message }}</div> @enderror
 
                           </div>
                         </div>  
+                   
                         {{-- <div class="align-form">
                           <label class="label-input" for="company-label">کشور:</label>
                           <div class="input-group bottom-margin mr-sm-2 mb-sm-0">
@@ -171,7 +195,7 @@
                         <div class="align-form">
                           <label class="label-input" for="msg-text">متن پیام</label>
                           <textarea  placeholder=" جناب {{$productInfo->vendor->user->name}} عزیز من به اطلاعاتی در مورد دستگاه شما نیاز مند هستم     . ..." wire:model.defer="state.comment" class="msg-text form-control" id="msg-text">
-                           
+                          
                            </textarea>
                         </div>
                       </div>

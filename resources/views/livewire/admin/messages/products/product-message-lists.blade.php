@@ -32,7 +32,6 @@
                             <table id="datatable-buttons" class="table table-striped dt-responsive nowrap w-100">
                                 <thead>
                                     <tr>
-                                        <th class="status-semat">خریدار</th>
                                         <th class="status-semat">فروشنده</th>
                                         <th class="status-semat">عنوان</th>
                                         <th>موضوع</th>
@@ -46,7 +45,6 @@
                                 <tbody>
                                     @forelse($messages as $msg)
                                     <tr>
-                                        <td class="status-semat">{{$msg->user->name}}</td>
                                         <td class="status-semat">{{$msg->vendor->user->name}}</td>
                                         <td class="status-semat">{{$msg->title}}</td>
                                         <td>

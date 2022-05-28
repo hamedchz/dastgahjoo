@@ -76,9 +76,9 @@
         </div>
     </div>
     {{-- @include('livewire.admin.product.delete') --}}
-    
+    @if($products->count()>0)
     @include('livewire.admin.seller.product.show')
-    
+    @endif
     @push('scripts')
     <script>
          $(document).ready(function(){

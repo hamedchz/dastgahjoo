@@ -34,13 +34,8 @@
 
                 @endcan
                 @can('advertise')
-                {{-- <li class="treeview">
-                    <a href="javascript:void(0)"><i class="fa fa-file-image-o"></i> <span>رسانه ها</span> <i class="fa fa-angle-left"></i></a>
-                    <ul class="treeview-menu">
-                        <li><a href="banners.html">بنر ها</a></li>
-                        <li><a href="sliders.html">اسلایدر ها</a></li>
-                    </ul>
-                </li> --}}
+                <li class="{{ request()->is('dashboard/advertises') == true ? 'active':''}}"><a href="{{route('admin.advertises')}}"><i class="fa fa-file"></i><span> بنرهای تبلیغاتی </span></a></li>
+
                 @endcan
                 @canany('orders')
                 <li class="{{ request()->is('dashboard/orders') == true ? 'active':''}}"><a href="{{route('admin.orders')}}"><i class="fa fa-shopping-cart"></i><span> سفارشات </span></a></li>
@@ -61,12 +56,14 @@
                 @canany(['users','vendors-surveillance'])
                 <li class="{{ request()->is('dashboard/users') == true ? 'active':''}}"><a href="{{route('admin.users')}}"><i class="fa fa-users"></i><span>کاربران</span></a></li>
                 @endcanany
-                @canany(['settings','location'])
-                <li class="treeview {{ request()->is('dashboard/provinces') == true ? 'menu-open':''}}  {{ request()->is('dashboard/cities/*') == true ? 'menu-open':''}} ">
+                @canany(['settings','location','edit-homepage'])
+                <li class="treeview {{ request()->is('dashboard/index-edit') == true ? 'menu-open':''}}  {{ request()->is('dashboard/provinces') == true ? 'menu-open':''}}  {{ request()->is('dashboard/cities/*') == true ? 'menu-open':''}} ">
                     <a href="javascript:void(0)"><i class="zmdi zmdi-settings" ></i> <span>تنظیمات</span> <i class="fa fa-angle-left"></i></a>
-                    <ul class="treeview-menu"  {{ request()->is('dashboard/provinces') == true ? "style=display:block;":''}}  {{ request()->is('dashboard/cities/*') == true ? "style=display:block;":''}}>
+                    <ul class="treeview-menu"   {{ request()->is('dashboard/index-edit') == true ? "style=display:block;":''}} {{ request()->is('dashboard/provinces') == true ? "style=display:block;":''}}  {{ request()->is('dashboard/cities/*') == true ? "style=display:block;":''}}>
                         <!-- تنظیمات فوتر-برچسب ها-تنظیمات عمومی(لوگو و ...) -  -->
-                        {{-- <li><a href="#">تنظیمات عمومی</a></li> --}}
+                        @can('edit-homepage')
+                        <li  class="{{ request()->is('dashboard/index-edit') == true ? 'active':''}}"><a href="{{route('admin.index-edit')}}">تنظیمات صفحه اول</a></li>
+                        @endcan
                         @can('location')
                         <!-- استان و شهر و ... -  -->
                         <li class="{{ request()->is('dashboard/provinces') == true ? 'active':''}}  {{ request()->is('dashboard/cities/*') == true ? 'active':''}}"><a href="{{route('admin.provinces')}}">استان هاو شهرها</a></li>

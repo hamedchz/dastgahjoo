@@ -18,7 +18,7 @@
                                 <thead>
                                     <tr>
                                         <th> محصول</th>
-                                        <th>کاربر </th>
+                                        <th>نام فروشنده </th>
                                         <th> عنوان</th>
                                         <th> موضوع</th>
                                         <th>تاریخ</th>
@@ -28,7 +28,7 @@
                                     @forelse($unansweredComment as $comment)
                                     <tr>
                                         <td>{{$comment->products->type_of_machine}}</td>
-                                        <td>{{$comment->user->name}}</td>
+                                        <td>{{$comment->vendor->user->name}}</td>
                                         <td>{{$comment->title}}</td>
                                         <td>@if($comment->isPrice == 1)
                                             <div class="badge badge-primary">  قیمت  </div>

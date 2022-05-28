@@ -2,13 +2,16 @@
 
 namespace App\Http\Livewire\Admin\Messages\Tickets;
 
+use App\Models\Setting;
 use App\Models\Ticket;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
 use Livewire\WithPagination;
+use SoapClient;
 
 class TicketsList extends Component
 {
@@ -70,6 +73,8 @@ class TicketsList extends Component
                         'status' => 'CLOSED'
                 ]);
                 if ($answer && $update) {
+                    $userInfo = User::where('id',$this->ticket->user_id)->first();
+                    $this->sendSmsCode($userInfo->mobile, $this->ticket->title);
                     $this->resetInputAnswer();
                     $this->resetValidation();
                     $this->dispatchBrowserEvent('hide-editticket',['message' => 'تیکت با موفقیت فرستاده شد', 'action' => 'success']);
@@ -106,6 +111,19 @@ class TicketsList extends Component
         return Ticket::with('user')->where('parent',0)->when($this->status,function($query,$status){
            return $query->where('status',$status);
         })->latest()->paginate(20);
+    }
+    public function sendSmsCode($mobile,$code)
+    {
+        $client = new SoapClient("http://188.0.240.110/class/sms/wsdlservice/server.php?wsdl");
+        $user = Setting::where('name','user_panel_for_sms')->pluck('value')->first();
+        $pass = Setting::where('name','password_panel_for_sms')->pluck('value')->first();
+        $fromNum = Setting::where('name','lineNumber_panel_for_sms')->pluck('value')->first();
+        $toNum = $mobile;
+        $pattern_code = "4itbwfw7pt";
+        $input_data = array(
+            "code" => $code,
+        );
+        return $client ->sendPatternSms($fromNum, $toNum, $user, $pass, $pattern_code, $input_data);
     }
     public function render()
     {
