@@ -17,16 +17,14 @@
             <!-- آدرس صفحه -->
           <nav aria-label="breadcrumb" class="address-bar">
             <ol class="address-crumb style="border-radius: 0">
-              <li class="address-crumb-item"><a href="#">
+              <li class="address-crumb-item"><a href="{{route('index')}}">
                 <i class="fa fa-home" aria-hidden="true"></i>
               </a>
             </li>
               <li class="address-crumb-item">
-                <a href="machine-search.html">جستجوی ماشین آلات</a>
+                <a href="#">جستجوی ماشین آلات</a>
               </li>
-              <li class="address-crumb-item">
-                <a href="#" style="cursor: pointer;">بازگشت</a>
-              </li>
+           
             </ol>
           </nav>  
           
@@ -59,14 +57,14 @@
             </div>
           </div>
           
-          <form action="" method="get" name="">
+          <form action="{{route('user.search')}}" method="get"  >
             <input type="hidden" name="" value="">
             <input type="hidden" name="" value="">
           <div class="container search-bar">
             <div class="card ver-margin2" style="background: rgba(50, 54, 57, .5);">
               <div class="card-body">
                 <div class="input-group">
-                  <input class="form-control" placeholder="" maxlength="40" name="" type="text" required="" title="">
+                  <input class="form-control" name="name" placeholder="" maxlength="40" name="" type="text" required>
                   <span class="input-group-btn">
                     <button id="search-button" class="btn-all btn-primary" type="submit" name="">
                       <i class="fas fa-search"></i>
@@ -94,25 +92,21 @@
             <div class="display-align">
               <div class="col-lg-4 text center-align mx-auto">     
               </div>   
-              <div class="col-lg-4 text center-align mx-auto">
+              {{-- <div class="col-lg-4 text center-align mx-auto">
                 <div class="hidden-mobile">
                   <form role="form-inline" style="text-align: center">
-                    <select class="custom-select form-control" id="arrange-by" style="width: 82%; font-size: 0.8rem; font-weight: 600;">
-                      <option value="#">استاندارد</option>
-                      <option value="#">فاصله</option>
-                      <option value="#">سال ساخت نزولی</option>
-                      <option value="#">سال ساخت</option>
-                      <option selected="" value="#">تاریخ ورود نزولی</option>
-                      <option value="#">به روز رسانی تاریخ نزولی</option>
-                      <option value="#">سازنده، مدل</option>
-                      <option value="#">کشور</option>
-                      <option value="#">نوع ماشین آلات</option>
-                      <option value="#">قیمت</option>
-                      <option value="#">قیمت نزولی</option>
+                    <select class="custom-select form-control" id="arrange-by" style="width: 80%; font-size: 0.8rem; font-weight: 600;" name="sort">
+                      <option selected="selected" >موارد مرتب شده توسط: استاندارد</option>
+                      <option value="{{url()->full()}}?name={{request('name')}}&sort=price,desc">موارد مرتب شده بر اساس: قیمت صعودی</option>
+                      <option  value="{{url()->full()}}?name={{request('name')}}&sort=price,asc">موارد مرتب شده بر اساس: قیمت نزولی</option>
+                      <option  value="{{url()->full()}}?name={{request('name')}}&sort=created_at,desc">موارد مرتب شده بر اساس: تاریخ صعودی</option>
+                      <option  value="{{url()->full()}}?name={{request('name')}}&sort=created_at,asc">موارد مرتب شده بر اساس: تاریخ نزولی</option >
+                      <option  value="{{url()->full()}}?name={{request('name')}}&sort=year_of_manufacture,desc">اقلام به ترتیب: سال ساخت نزولی</option>
+                      <option  value="{{url()->full()}}?name={{request('name')}}&sort=year_of_manufacture,asc">اقلام سفارش داده شده بر اساس: سال ساخت صعودی</option> 
                     </select>
                   </form>
                 </div>  
-              </div>   
+              </div>    --}}
     
               <div class="col-lg-4 text center-align mx-auto" style="display:table;">  
               </div>
@@ -121,7 +115,7 @@
     
     
       <div class="container" id="filter-row">
-        <form class="p-2" method="get" id="filter_form" action="" accept-charset="utf-8">
+        <form class="p-2"  id="filter_form" method="get" action="{{route('user.search')}}" accept-charset="utf-8">
           <input type="hidden" name="" value="">
           <input type="hidden" name="" value="">
           <div class="form-row"> 
@@ -129,61 +123,56 @@
               <div class="align-form">
                 <div class="input-group">
                   <span class="input-group-addon" style="min-width: 160px;"><small>دسته:</small></span>
-                  <select name="" class="custom-select form-control" style="font-size: 0.8rem;">
-                          <option value="0" selected="">همه دسته ها</option>
-                          <option value="1">1. فلز (33319)</option>
-                          <option value="2">2. چوب (8586)</option>
-                          <option value="3">3. پلاستیک (3996)</option>
-                          <option value="4">4. بسته بندی (2736)</option>
-                          <option value="5">5. بازیافت (1373)</option>
-                          <option value="6">6. پارچه (248)</option>
-                          <option value="7">7. غذا (11297)</option>
-                          <option value="8">8. چاپ (5624)</option>
-                          <option value="9">9. کشاورزی (575)</option>
-                          <option value="10">10. ساخت و ساز (1456)</option>
-                          <option value="11">11. انرژی &amp; موتور (8524)</option>
-                          <option value="12">12. مهندسی فرآیند (5916)</option>
-                          <option value="13">13. ماشین های دیگر (8430)</option>
-                          <option value="14">14. هندلینگ &amp; ذخیره سازی (12810)</option>
-                          <option value="15">15. لیفتراک (1200)</option>
-                          <option value="16">16. فن آوری هوای فشرده (818)</option>
-                          <option value="17">17. کامپیوتر &amp; دفتر (202)</option>
-                          <option value="18">18. پزشکی (408)</option>
-                          <option value="19">19. موجودی (2805)</option>
-                          <option value="20">20. شرکت ها (8692)</option>
-                          <option value="21">21. قطعات الکتریکی (370)</option>
-                          <option value="22">22. کالاهای مازاد (742)</option>
-                          <option value="23">23. تجهیزات اتوماسیون (9503)</option>
-                          <option value="24">24. وسایل نقلیه تجاری (133)</option>
-                          <option value="25">25. متفرقه (1129)</option>                    
+                  <select name="category" class="url_params custom-select form-control" style="font-size: 0.8rem;">
+                    <option value="" selected="">همه دسته ها</option>
+                    @foreach($categories as $category)
+                    <option value="{{$category->id}}">{{$category->title}}</option>
+                    @endforeach
                   </select>
                 </div>
               </div>          
             
+            
               <div class="align-form">
                 <div class="input-group">
-                  <span class="input-group-addon" style="min-width: 160px;"><small>سازنده:</small></span>
-                  <input type="text" id="maker-input" onchange="ajax_change(this.value)" name="" list="maker" value="" class="form-control form-control-sm" placeholder="" autocomplete="off">
-                </div> 
-              </div> 
-                       
+                  <span class="input-group-addon" style="min-width: 120px;">
+                    <small>قیمت:</small>
+                  </span>
+                  <input type="text" name="pricemin" value="" class="url_params  form-control form-control-sm" placeholder="از">
+                  <span class="input-group-addon" style="border-left: 0; border-right: 0;">
+                    <small>-</small>
+                  </span>
+                  <input type="text" name="pricemax" value="" class="url_params form-control form-control-sm" placeholder="تا">
+                </div>
+              </div>
+    
               <div class="align-form">
                 <div class="input-group">
-                  <span class="input-group-addon" style="min-width: 160px;">
+                  <span class="input-group-addon" style="min-width: 120px;">
+                    <small>آدرس :</small>
+                  </span>
+                  <input type="text" name="location"  class="url_params form-control form-control-sm" placeholder="">
+                </div>
+              </div>
+              <div class="align-form">
+                <div class="input-group">
+                  <span class="input-group-addon" style="min-width: 120px;">
+                    <small>تولید کننده:</small>
+                  </span>
+                  <input type="text" name="manufacturer"  class="url_params form-control form-control-sm" placeholder="">
+                </div>
+              </div>
+    
+              <div class="align-form">
+                <div class="input-group">
+                  <span class="input-group-addon" style="min-width: 120px;">
                     <small>مدل:</small>
-                  </span>                
-                  <input type="text" id="modell-input" name="" list="modell" value="" class="form-control form-control-sm" placeholder="" >
-                </div> 
-              </div> 
+                  </span>
+                  <input type="text" name="model" value="" class="url_params form-control form-control-sm" placeholder="">
+                </div>
+              </div>
               
-              <div class="align-form">
-                <div class="input-group">
-                  <span class="input-group-addon" style="min-width: 160px;"><small>مشخصات:</small></span>
-                  <input type="text" name="beschreibungstext" value="" class="form-control form-control-sm" placeholder="">
-                </div> 
-              </div> 
-              
-              <div class="align-form">
+              {{-- <div class="align-form">
                 <div class="input-group">
                   <span class="input-group-addon" style="min-width: 160px;"><small>نو یا دست دوم:</small></span>
                   <select name="" class="custom-select form-control" style="font-size: 0.8rem;">
@@ -192,9 +181,9 @@
                     <option value="">فقط پیشنهادهای جدید</option>
                       </select>
                 </div>                        
-              </div>  
+              </div>   --}}
               
-              <div class="align-form">
+              {{-- <div class="align-form">
                 <div class="input-group">
                   <span class="input-group-addon" style="min-width: 160px;"><small>جستجو براساس شعاع:</small></span>
                   <select name="" class="custom-select form-control" style="font-size: 0.8rem;">
@@ -210,36 +199,42 @@
                   </select>
                 </div>                        
               </div>                                 
-                                   
+                                    --}}
             
             </div>  
             <div class="col-md-6 mx-auto">
               <div class="align-form">
-                <div class="input-group">     
-                  <span class="input-group-addon" style="min-width: 160px;"><small>قیمت:</small></span>
-                  <input type="text" name="" value="" class="form-control form-control-sm" placeholder="از">
-                  <span class="input-group-addon" style="border-left: 0; border-right: 0;"><small>-</small></span>
-                  <input type="text" name="" value="" class="form-control form-control-sm" placeholder="تا">
+                <div class="input-group">
+                  <span class="input-group-addon" style="min-width: 120px;">
+                    <small>کد دستگاه:</small>
+                  </span>
+                  <input type="text" name="itemNo" value="" class="url_params form-control form-control-sm" placeholder="">
+                </div>
+              </div>
+    
+              <div class="align-form">
+                <div class="input-group">
+                  <span class="input-group-addon" style="min-width: 120px;">
+                    <small>کد فروشنده:</small>
+                  </span>
+                  <input type="text" name="dealer" value="" class="url_params form-control form-control-sm" placeholder="">
+                </div>
+              </div>
+    
+              <div class="align-form">
+                <div class="input-group">
+                  <span class="input-group-addon" style="min-width: 120px;">
+                    <small>دست دوم یا نو:</small>
+                  </span>
+                  <select name="stock" class="url_params custom-select form-control" style="font-size: 0.8rem;">
+                    <option   value="" >همه پیشنهادات</option>
+                    <option value="1">نو</option>
+                    <option value="0">دست دوم  </option>
+                  </select>
                 </div>
               </div>
               
-              <div class="align-form">
-                <div class="input-group">
-                  <span class="input-group-addon" style="min-width: 160px;"><small>سال تولید:</small></span>
-                  <input type="text" name="yearmin" value="" class="form-control form-control-sm" placeholder="از">
-                  <span class="input-group-addon" style="border-left: 0; border-right: 0;"><small>-</small></span>
-                  <input type="text" name="yearmax" value="" class="form-control form-control-sm" placeholder="تا">
-                </div> 
-              </div>                              
-                      
-              <div class="align-form">
-                <div class="input-group">
-                  <span class="input-group-addon" style="min-width: 160px;"><small>کد دستگاه:</small></span>
-                  <input type="text" name="itemsnr" value="" class="form-control form-control-sm" placeholder="...">
-                </div> 
-              </div>
-              
-              <div class="align-form">
+              {{-- <div class="align-form">
                 <div class="input-group">
                   <span class="input-group-addon" style="min-width: 160px;"><small>کد فروشنده:</small></span>
                   <input type="text" name="refnr" value="" class="form-control form-control-sm" placeholder="...">
@@ -256,14 +251,14 @@
                     <option value="3">فقط از غیر فروشنده</option>
                  </select>
                 </div>                        
-              </div>             
+              </div>              --}}
               
             </div> 
           </div>
           
           <div class="form-row">
             <div class="col-12 text center-align mx-auto">
-              <button type="submit" class="btn-all btn-all-small btn-primary" style="cursor: pointer; min-width: 200px;"> جستجو </button>
+              <button type="submit" class="btn-all btn-all-small btn-primary" id ="submitSearch" style="cursor: pointer; min-width: 200px;"> جستجو </button>
             </div>
           </div>
         </form>  
@@ -287,120 +282,23 @@
           <div class="display-align top-pad">
             <div class="col-lg-12">
                 <div class="display-align bottom-pad">
+                  @foreach ($categories as $category )
+          
                   <div class="col-lg-6 mx-auto">
                     <ul class="catlistall list-group">
                       <li class="list-group-item list-group-item-action">
-                        <span style="color: #acacac;">100.</span>
-                        <a href="product-list.html">ماشین آلات فلزکاری</a>
-                        <span class="machine-no">(33319)</span></li>
-                        <li class="list-group-item list-group-item-action">
-                          <span style="color: #acacac;">200.</span>
-                        <a href="product-list.html">ماشین آلات کار چوب</a>
-                        <span class="machine-no">(8586)</span></li>
-                        <li class="list-group-item list-group-item-action">
-                          <span style="color: #acacac;">300.</span>
-                        <a href="product-list.html">ماشین‌های پلاستیک</a>
-                        <span class="machine-no">(3996)</span></li>
-                        <li class="list-group-item list-group-item-action">
-                          <span style="color: #acacac;">400.</span>
-                        <a href="product-list.html">ماشین آلات بسته بندی</a>
-                        <span class="machine-no">(2736)</span></li>
-                        <li class="list-group-item list-group-item-action">
-                          <span style="color: #acacac;">500.</span>
-                        <a href="product-list.html">ماشین آلات دفع زباله و بازیافت</a>
-                        <span class="machine-no">(1373)</span></li>
-                        <li class="list-group-item list-group-item-action">
-                          <span style="color: #acacac;">600.</span>
-                        <a href="product-list.html">ماشین‌های نساجی</a>
-                        <span class="machine-no">(248)</span></li>
-                        <li class="list-group-item list-group-item-action">
-                          <span style="color: #acacac;">700.</span>
-                        <a href="product-list.html">ماشین‌های غذا</a>                       
-                      <span class="machine-no">(11297)</span></li>
-                      <li class="list-group-item list-group-item-action">
-                        <span style="color: #acacac;">800.</span>
-                        <a href="product-list.html">ماشین‌های چاپ</a>
-                        <span class="machine-no">(5624)</span></li>
-                        <li class="list-group-item list-group-item-action">
-                          <span style="color: #acacac;">900.</span>
-                        <a href="product-list.html">ماشین‌های کشاورزی</a>
-                        <span class="machine-no">(575)</span></li>
-                        <li class="list-group-item list-group-item-action">
-                          <span style="color: #acacac;">1000.</span>
-                        <a href="product-list.html">ماشین آلات ساختمانی</a>
-                        <span class="machine-no">(1456)</span></li>
-                        <li class="list-group-item list-group-item-action">
-                          <span style="color: #acacac;">1100.</span>
-                        <a href="product-list.html">مولدهای برق، موتورها، توربین ها، بویلر</a>
-                        <span class="machine-no">(8524)</span></li>
-                        <li class="list-group-item list-group-item-action">
-                          <span style="color: #acacac;">1200.</span>
-                        <a href="product-list.html">مهندسی فرآیند</a>                       
-                      <span class="machine-no">(5916)</span></li>
-                      <li class="list-group-item list-group-item-action">
-                        <span style="color: #acacac;">1300.</span>
-                        <a href="product-list.html">ماشین‌ها و کارخانه‌های دیگر</a>
-                        <span class="machine-no">(8430)</span></li>
+                        <span style="color: #acacac;">{{$loop->iteration}}.</span>
+                        <a href="{{route('product-list',$category->slug)}}">{{$category->title}} </a>
+                        <span class="machine-no">({{$category->products->count()}})</span></li>
+                       
                       </ul>
                     </div>
-
-                    <div class="col-lg-6   mx-auto">
-                      <ul class="catlistall list-group">
-                        <li class="list-group-item list-group-item-action">
-                          <span style="color: #acacac;">1400.</span>
-                        <a href="product-list.html">ماشین‌های جابجایی مکانیکی، تجهیزات ذخیره‌سازی</a>
-                        <span class="machine-no">(12810)</span></li>
-                        <li class="list-group-item list-group-item-action">
-                          <span style="color: #acacac;">1500.</span>
-                        <a href="product-list.html">لیفتراک، بالابر</a>
-                        <span class="machine-no">(1200)</span></li>
-                        <li class="list-group-item list-group-item-action">
-                          <span style="color: #acacac;">1600.</span>
-                         <a href="product-list.html">فناوری هوای فشرده</a>
-                        <span class="machine-no">(818)</span></li>
-                        <li class="list-group-item list-group-item-action">
-                          <span style="color: #acacac;">1700.</span>
-                        <a href="product-list.html">کامپیوتر و تجهیزات اداری</a>                       
-                        <span class="machine-no">(202)</span></li>
-                        <li class="list-group-item list-group-item-action">
-                          <span style="color: #acacac;">1800.</span>
-                        <a href="product-list.html">تجهیزات پزشکی</a>
-                        <span class="machine-no">(408)</span></li>
-                        <li class="list-group-item list-group-item-action">
-                          <span style="color: #acacac;">1900.</span>
-                        <a href="product-list.html">موجودی عمومی</a>
-                        <span class="machine-no">(2805)</span></li>
-                        <li class="list-group-item list-group-item-action">
-                          <span style="color: #acacac;">2000.</span>
-                        <a href="product-list.html">قطعات یدکی</a>
-                        <span class="machine-no">(8692)</span></li>
-                        <li class="list-group-item list-group-item-action">
-                          <span style="color: #acacac;">2100.</span>
-                        <a href="product-list.html">قطعات الکتریکی</a>
-                        <span class="machine-no">(370)</span></li>
-                        <li class="list-group-item list-group-item-action">
-                          <span style="color: #acacac;">2200.</span>
-                        <a href="product-list.html">کالاهای مازاد</a>
-                        <span class="machine-no">(742)</span></li>
-                        <li class="list-group-item list-group-item-action">
-                          <span style="color: #acacac;">2300.</span>
-                        <a href="product-list.html">تجهیزات اتوماسیون</a>
-                        <span class="machine-no">(9503)</span></li>
-                        <li class="list-group-item list-group-item-action">
-                          <span style="color: #acacac;">2400.</span>
-                        <a href="product-list.html">وسایل نقلیه تجاری</a>                       
-                      <span class="machine-no">(133)</span></li>
-                      <li class="list-group-item list-group-item-action">
-                        <span style="color: #acacac;">2500.</span>
-                      <a href="product-list.html">متفرقه</a>
-                      <span class="machine-no">(1129)</span></li>
-                    </ul>
-                  </div>
+                 @endforeach
                 </div>     
             </div>
           </div>   
           </div>     
-           
+{{--            
           <div class="container head-title">
             <div class="display-align">
               <div class="col-lg-12">
@@ -427,7 +325,7 @@
                   </div>
                 </div>        
             </div>
-          </div>   
+          </div>    --}}
           
           <div class="container head-title">
             <div class="display-align">
@@ -445,7 +343,7 @@
           <div class="display-align top-pad">
             <div class="col-lg-12">            
                 <div class="col-lg-12 text center-align mx-auto">
-                    <a class="btn-all btn-green" href="send-inquiry.html" target="_blank">درخواست ارسال استعلام</a>
+                    <a class="btn-all btn-green" href="{{route('contact-us')}}" target="_blank">درخواست ارسال استعلام</a>
                 </div>          
             </div>
           </div>    
@@ -465,4 +363,26 @@
           </div>
         </div>
       </div>
+      @push('footer-scripts')
+      <script>
+        $(document).ready(function () {
+     $("#submitSearch").on("click", function(e) {
+         e.preventDefault();
+         var url = '{{ url("/result") }}?';
+         var total = $(".url_params").length;
+         $(".url_params").each(function (index) {
+             if ($(this).val().trim().length) {
+                    if (index === total - 1) {
+                       url += $(this).attr('name') + '=' + $(this).val();
+                    } else {
+                       url += $(this).attr('name') + '=' + $(this).val() + "&"; 
+                    }                        
+             }
+         });
+         window.location.href = url;
+     });
+ });
+     </script>
+     
+      @endpush
 </div>

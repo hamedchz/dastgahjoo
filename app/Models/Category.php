@@ -25,7 +25,7 @@ class Category extends Model
         return $this->hasMany(Product::class,'category_id','id');
     }
     public function advertises(){
-        return $this->hasMany(Advertises::class,'category_id','id');
+        return $this->belongsTo(Advertises::class,'id','category_id');
     }
     public function subproducts(){
         return $this->hasMany(Product::class,'subcategory_id','id');

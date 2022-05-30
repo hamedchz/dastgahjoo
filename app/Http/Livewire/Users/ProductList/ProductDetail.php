@@ -20,8 +20,11 @@ class ProductDetail extends Component
     public function store(){
         $validatedData = Validator::make($this->state,[
             'title' => 'required',
+            'address' => 'required',
+            'postal' => 'required',
+            'title' => 'required',
             'email' => 'required|email',
-            'phone' => 'required|numeric|min:11',
+            'phone' => 'required|min:11',
             'isPrice' => 'sometimes',
             'moreInformation' => 'sometimes',
             'offer' => 'sometimes',
@@ -29,6 +32,8 @@ class ProductDetail extends Component
             'comment' => 'sometimes'
         ],[
             'title.required' => 'این فیلد نمیتواند خالی باشد',
+            'address.required' => 'این فیلد نمیتواند خالی باشد',
+            'postal.required' => 'این فیلد نمیتواند خالی باشد',
             'email.required' => 'این فیلد نمیتواند خالی باشد',
             'email.email' => 'لطفا ایمیل صحیح وارد کنید',
             'phone.required' => 'این فیلد نمیتواند خالی باشد',

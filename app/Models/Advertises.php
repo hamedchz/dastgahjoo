@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Advertises extends Model
 {
     use HasFactory;
-
+    protected $table = 'advertises';
     protected $fillable = [
         'category_id',
         'banner',
@@ -27,4 +27,7 @@ class Advertises extends Model
         $v1 = $v1->format('H:i:s - Y/m/d');
         return $v1;
     }
+    protected $casts = [
+        'expire_at' => 'datetime',
+    ];
 }

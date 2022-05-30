@@ -46,6 +46,7 @@ use App\Http\Livewire\Users\Manufaturer\Manufaturer;
 use App\Http\Livewire\Users\MemberShip\Membership;
 use App\Http\Livewire\Users\ProductList\ProductDetail;
 use App\Http\Livewire\Users\ProductList\ProductUserList;
+use App\Http\Livewire\Users\ProductList\SoldProducts;
 use App\Http\Livewire\Users\ProductList\SubcategoryProducts;
 use App\Http\Livewire\Users\Products\ProductsLists;
 use App\Http\Livewire\Users\Registration\Form;
@@ -137,7 +138,8 @@ Route::namespace('App\Http\Controllers\Auth')->group(function () {
     Route::get('/contact-us',Contact::class)->name('contact-us');
     Route::get('/aboutus',AboutUs::class)->name('about-us');
     Route::get('/faq',Faq::class)->name('faq');
-    // Route::get('/sold-products',AboutUs::class)->name('about-us');
+    Route::get('/sold-products',SoldProducts::class)->name('sold-products');
+    Route::get('/result','\App\Http\Controllers\SearchResultController@result')->name('user.search');
 
 
 // Route::get('/', function () {

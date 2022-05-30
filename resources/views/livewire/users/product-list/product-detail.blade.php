@@ -93,6 +93,26 @@
     .ribbon-wrapper-red {
     left: 10px;
     }}
+
+
+    /* #myCarousel .carousel-indicators > li{
+
+
+      width: initial;
+    height: 70px;
+    text-indent: initial;
+    } */
+
+    .img-fluid {
+    width: 500px;
+    }
+
+    .img-fluid2 {
+    width: 100px;
+    height: 100px;
+    object-fit: cover
+}
+
     </style>
 @endpush
    <!-- بدنه مختوا -->
@@ -141,7 +161,7 @@
                       <div class="display-align top-margin2">
 
                         <div class="container ver-pad col-lg-8 " >
-                          <div class="display-align min-vh-100 " >
+                          <div class="display-align min-vh-100 " style="display:flex;justify-content:center;align-items:center;">
                                   <div id="myCarousel" class="carousel slide  ">
                                       <!-- اسلایدر آیتم ها -->
                                       <div class="carousel-inner" style="height:80%;">
@@ -161,14 +181,15 @@
                                       </div>
                       
                       
-                                      <ul class="carousel-indicators list-inline mx-auto border hor-pad">
+                                      <ul class="carousel-indicators list-inline mx-auto  hor-pad mt-3" >
                                           @foreach ($product->images as $image)
                                           <li class="list-inline-item {{$loop->iteration == 1 ? 'active': ''}}">
                                               <a id="carousel-selector-{{$loop->iteration - 1}}" {{$loop->iteration == 1 ? 'class="selected"': ''}} data-slide-to="{{$loop->iteration - 1}}" data-target="#myCarousel">
-                                                <img src="{{asset($image->image)}}" class="img-fluid">
+                                                <img src="{{asset($image->image)}}" class="img-fluid img-fluid2">
                                               </a>
                                           </li>
                                           @endforeach
+                                         
                                       </ul>
                                   </div>
                               </div>
@@ -402,6 +423,29 @@
                               <input type="text" name="" wire:model.defer="state.title" class="form-control" placeholder="نام" required="">
                             </div>
                           </div>
+                          <div class="align-form">
+                            <label class="label-input" for="company-label">آدرس:</label>
+                            <div class="input-group bottom-margin mr-sm-2 mb-sm-0">
+                              <div class="input-group-addon" style="width: 2.6rem">
+                                <i class="fas fa-home fa-lg"></i>
+                              </div>
+                              <input type="text" name="" wire:model = "state.address" class="form-control @error('address') is-invalid @enderror" placeholder="آدرس">
+                              @error('address')<div class="invalid-feedback">{{ $message }}</div> @enderror
+  
+                            </div>
+                          </div>
+                          <div class="align-form">
+                            <label class="label-input" for="company-label">  کدپستی:</label>
+                            <div class="input-group bottom-margin mr-sm-2 mb-sm-0">
+                              <div class="input-group-addon" style="width: 2.6rem">
+                                {{-- <i class="fas fa-mailbox fa-lg"></i> --}}
+                                <i class="fas fa-mailbox fa-lg"></i>
+                              </div>
+                              <input type="number" name="" class="form-control  @error('postal') is-invalid @enderror" wire:model = "state.postal" placeholder="  کدپستی" required="">
+                              @error('postal')<div class="invalid-feedback">{{ $message }}</div> @enderror
+  
+                            </div>
+                          </div>
                         {{-- <div class=" align-form">
                           <label class=" label-input" for="company-label">آدرس</label>
                           <div class="input-group bottom-margin mr-sm-2 mb-sm-0">
@@ -443,7 +487,7 @@
                           </div>
                         </div>
                         <div class="align-form">
-                            <label class="label-input" for="company-label">تلفن:</label>
+                            <label class="label-input" for="company-label">موبایل:</label>
                             <div class="input-group bottom-margin mr-sm-2 mb-sm-0">
                               <div class="input-group-addon" style="width: 2.6rem">
                                 <i class="fas fa-phone fa-lg"></i>

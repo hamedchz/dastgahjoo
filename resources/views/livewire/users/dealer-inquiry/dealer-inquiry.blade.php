@@ -72,6 +72,7 @@
                           <label class="label-input" for="company-label">  کدپستی:</label>
                           <div class="input-group bottom-margin mr-sm-2 mb-sm-0">
                             <div class="input-group-addon" style="width: 2.6rem">
+                              {{-- <i class="fas fa-mailbox fa-lg"></i> --}}
                               <i class="fas fa-mailbox fa-lg"></i>
                             </div>
                             <input type="number" name="" class="form-control  @error('postal') is-invalid @enderror" wire:model = "state.postal" placeholder="  کدپستی" required="">

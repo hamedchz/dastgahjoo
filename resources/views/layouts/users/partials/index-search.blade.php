@@ -15,14 +15,14 @@
       </div>
     </div>
 
-    <form action="" method="get" name="">
+    <form action="{{route('user.search')}}" method="get" name="">
       <input type="hidden" name="" value="">
       <input type="hidden" name="" value="">
     <div class="container search-bar">
       <div class="card ver-margin2" style="background: rgba(50, 54, 57, .5);">
         <div class="card-body">
           <div class="input-group">
-            <input class="form-control" placeholder="مثال: Maho MH 600" maxlength="40" name="" type="text" required="" >
+            <input class="form-control" placeholder="مثال: Maho MH 600" maxlength="40" name="name" type="text" required >
             <span class="input-group-btn">
               <button id="search-button" class="btn-all btn-primary" type="submit" name="">
                 <i class="fas fa-search"></i>

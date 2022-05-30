@@ -35,17 +35,48 @@
          <div style="background-color: #fff;">
       
    <!-- بنر تبلیغات -->
-   @if($advertise ->count() > 0)
    <div id="jssor_1" >
     <div class="slides" data-u="slides" >
-      @foreach($advertise as $ad)
-        <div>
-            <img data-u="image" src="{{asset($ad->banner)}}" />
-            <div data-u="thumb">{{$ad->description}}</div>
+        <div >
+            <img data-u="image" src="img/logoPagus.jpg" />
+            <div data-u="thumb">اطلاعات بنری تبلیغاتی</div>
         </div>
-        @endforeach
-       
-     
+        <div>
+            <img data-u="image" src="img/bannerhoechsmann.gif" />
+            <div data-u="thumb"> اطلاعات بنری تبلیغاتی</div>
+        </div>
+        <div>
+            <img data-u="image" src="img/bannerIVW.jpg" />
+            <div data-u="thumb"> اطلاعات بنری تبلیغاتی</div>
+        </div>
+        <div>
+            <img data-u="image" src="img/logoMaynards.gif" />
+            <div data-u="thumb"> اطلاعات بنری تبلیغاتی</div>
+        </div>
+        <div>
+            <img data-u="image" src="img/logoUSEDMarket.jpg" />
+            <div data-u="thumb"> اطلاعات بنری تبلیغاتی</div>
+        </div>
+        <div>
+            <img data-u="image" src="img/banner_hamburg-machinery.jpg" />
+            <div data-u="thumb"> اطلاعات بنری تبلیغاتی</div>
+        </div>
+        <div>
+            <img data-u="image" src="img/logoKnauff.gif" />
+            <div data-u="thumb"> اطلاعات بنری تبلیغاتی</div>
+        </div>
+        <div>
+            <img data-u="image" src="img/bannerREWA.jpg" />
+            <div data-u="thumb"> اطلاعات بنری تبلیغاتی</div>
+        </div>
+        <div>
+            <img data-u="image" src="img/banner_dataTec.gif" />
+            <div data-u="thumb"> اطلاعات بنری تبلیغاتی</div>
+        </div>
+        <div>
+            <img data-u="image" src="img/bannerEPS.jpg" />
+            <div data-u="thumb"> اطلاعات بنری تبلیغاتی</div>
+        </div>
      
     </div>
     <!-- متن تبلیغات اسلایدر -->
@@ -68,7 +99,6 @@
       </svg>
   </div>
 </div>
-@endif
 <!-- آخر اسلایدر تبلیغات -->
  </div>
 
@@ -560,7 +590,7 @@
         <div class="display-align mb-3">
           <div class="col-lg-8 text center-align mx-auto">
             <h2 style="font-size: 22px;">
-              <span class="text-danger">آخرین نتایج</span> 
+              <span class="text-danger">محصولات فروخته شده</span> 
              </h2>
           </div>
         </div>
@@ -570,8 +600,8 @@
         <div class="container top-group" style="background-color: white;">
           <div class="display-align">
             <div class="col-lg-7 machine-top py-1">
-              <span class="category-code">{{$category->id}} 
-                <a href="#" style="color: #5faeff;">{{$category->title}} </a>
+              <span class="category-code">
+                <a href="#" style="color: #5faeff;"> </a>
               </span>
             </div>
             <div class="col-lg-5 machine-top py-1">
@@ -607,15 +637,15 @@
                     </a>
     
                     <div class="bottom-center">
-                      <button class="btn-all btn-all-small btn-green" style="margin: 10px; ">   
-                     <a href="{{route('dealer-inquiry',$product->itemNo)}}" class="text-white">
-                         درخواست استعلام
+                      <button class="btn-all btn-all-small bg-danger" style="margin: 10px; ">   
+                     <a href="" class="text-white">
+                         فروخته شده
                        </a>
                       </button>
     
-                      <a href="tel:{{$product->vendor->phone}}" class="btn-all btn-all-small btn-green text-white" style="margin: 10px;font-weight: 600;">
+                      {{-- <a href="tel:{{$product->vendor->phone}}" class="btn-all btn-all-small btn-green text-white" style="margin: 10px;font-weight: 600;">
                         <i class="fas fa-phone"></i>
-                      </a>   
+                      </a>    --}}
                                    
                     </div>
                   </div>
@@ -667,11 +697,11 @@
                 </div>
                 <div class="col-sm-4 col-mobile right-align">
                   <div class="price">
-                    <button class="btn-all btn-primary mazane">   
+                    {{-- <button class="btn-all btn-primary mazane">   
                       <a href="{{route('dealer-inquiry',$product->itemNo)}}" class="text-white">
                          درخواست مظنه
                        </a>
-                      </button>
+                      </button> --}}
                   </div>
                 </div>
               </div>
@@ -697,64 +727,6 @@
           </div>
         </div>
       </div>
-      @push('scripts')
-      <script src="js/jssor.slider.min.js" type="text/javascript"></script>
-      <script type="text/javascript">
-          jssor_1_slider_init = function() {
-      
-              var jssor_1_SlideshowTransitions = [
-                {$Duration:1200,x:-0.3,$During:{$Left:[0.3,0.7]},$Easing:{$Left:$Jease$.$InCubic,$Opacity:$Jease$.$Linear},$Opacity:2},
-                {$Duration:1200,x:0.3,$SlideOut:true,$Easing:{$Left:$Jease$.$InCubic,$Opacity:$Jease$.$Linear},$Opacity:2}
-              ];
-      
-              var jssor_1_options = {
-            $FillMode: 4,
-            $AutoPlay: 1,
-            $Cols: 1,
-            $Align: 0,
-            $SlideshowOptions: {
-              $Class: $JssorSlideshowRunner$,
-              $Transitions: {$Duration:2200,x:1,$Easing:{$Left:$Jease$.$InOutQuart},$Brother:{$Duration:2200,x:-1,$Easing:{$Left:$Jease$.$InOutQuart}}},
-              $TransitionsOrder: 1
-            },
-            $ArrowNavigatorOptions: {
-              $Class: $JssorArrowNavigator$
-            },
-            $ThumbnailNavigatorOptions: {
-              $Class: $JssorThumbnailNavigator$,
-              $Cols: 1,
-              $Orientation: 2,
-              $Align: 0,
-              $NoDrag: true
-            }
-          };
-              var jssor_1_slider = new $JssorSlider$("jssor_1", jssor_1_options);
-      
-              var MAX_WIDTH = 1110;
-      
-              function ScaleSlider() {
-                  var containerElement = jssor_1_slider.$Elmt.parentNode;
-                  var containerWidth = containerElement.clientWidth;
-      
-                  if (containerWidth) {
-      
-                      var expectedWidth = Math.min(MAX_WIDTH || containerWidth, containerWidth);
-      
-                      jssor_1_slider.$ScaleWidth(expectedWidth);
-                  }
-                  else {
-                      window.setTimeout(ScaleSlider, 30);
-                  }
-              }
-      
-              ScaleSlider();
-      
-              $Jssor$.$AddEvent(window, "load", ScaleSlider);
-              $Jssor$.$AddEvent(window, "resize", ScaleSlider);
-              $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider);
-          };
-      </script>
-      @endpush
       @push('footer-scripts')
       <div class="parallax-background" >
         <img src="{{asset('frontend/background.jpg')}}" ></div>
