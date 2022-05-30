@@ -34,6 +34,28 @@ direction: rtl;
   src: url('./fonts/IRANSansWeb(FaNum).eot');
   src: url('./fonts/IRANSansWeb(FaNum).ttf') format('truetype')
 }
+
+
+
+#accept_access_notification{
+  transition-duration: .2s; 
+  font-weight: 700;
+   color: white;
+   padding:.5rem 2.5rem ;
+   background-color: #a40a1a;
+   border: none;
+   border-radius: 0.25rem;
+   
+}
+
+
+#accept_access_notification:hover {
+    background-color: rgba(186, 32, 47, 0.8);
+    
+}
+
+
+
 text {
   font-family: iransans !important;
 }

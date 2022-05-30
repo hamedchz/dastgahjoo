@@ -74,7 +74,7 @@ class LoginController extends Controller
        ]);
        //send sms function
        
-        $this->sendSmsCode($request->mobile, $token);
+        // $this->sendSmsCode($request->mobile, $token);
       
         $userStore->roles()->sync('5');
         return view('auth.verifyToken',compact('userStore'));

@@ -54,7 +54,7 @@
                                             @if (auth()->user()->vendor->package->packageHistories->logo = 'YES')
                                             <a href="{{route('user.editProductLogo',$product->id)}}" style="font-size:20px;"><i class="fa fa-image"  style="color:#279623;" title="لوگو"></i></a>
                                             @endif --}}
-                                            <a href="{{route('user.editProductImage',$product->id)}}" style="font-size:20px;"><i class="fa fa-image"  style="color:#000000;" title="انتخاب عکس کاور"></i></a>
+                                            {{-- <a href="{{route('user.editProductImage',$product->id)}}" style="font-size:20px;"><i class="fa fa-image"  style="color:#000000;" title="انتخاب عکس کاور"></i></a> --}}
                                             <a href="{{route('user.editProduct',$product->id)}}"  style="font-size:20px;"><i class="fa fa-edit"  style="color:#0468aa;"  title="ویرایش"></i></a>
                                             <a href="" style="font-size:20px;"><i class="fa fa-trash" style="color:#dc3545;"  title="حذف"></i></a>
                                             </td>

@@ -92,7 +92,7 @@
                                     @error('isStock')<div class="invalid-feedback">{{ $message }}</div> @enderror
                                   </div>
                                   <div class="form-group col-md-6">
-                                    <label for="isInstallments">اقساط</label>
+                                    <label for="isInstallments">امکان اقساط وجود دارد</label>
                                     <select class="custom-select" id="isInstallments"  wire:model.defer="state.isInstallments">
                                       
                                       <option value="0" {{$product->isInstallments == 0 ?'selected':''}}>خیر</option>
@@ -217,6 +217,6 @@
  <script src="/admin/js/default-assets/datatables.select.min.js"></script> 
  <script src="/admin/js/default-assets/demo.datatable-init.js"></script> 
 <script src="/admin/js/default-assets/bootstrap-growl.js"></script>
-<script src="/admin/js/default-assets/notification-active.js"></script>
+{{-- <script src="/admin/js/default-assets/notification-active.js"></script> --}}
     @endpush
 </div>

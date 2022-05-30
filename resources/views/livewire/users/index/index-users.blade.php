@@ -295,7 +295,7 @@
         </div>
       </div>
   
-        <!-- قسمت نظرات -->
+        {{-- <!-- قسمت نظرات -->
         <div id="comments" class="display-align bottom-margin2" style="width:100%;">
           <div class="col-md-8 show-more" id="more">
             <div data-ride="carousel">
@@ -503,7 +503,7 @@
           <div class="col-md-4" id="register-btn">
             <a class="btn-all btn-green" href="{{route('membership')}}">عضویت</a>
           </div>
-        </div>
+        </div> --}}
       </div>
       @push('footer-scripts')
       <script>jssor_1_slider_init();</script>

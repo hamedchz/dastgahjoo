@@ -2,6 +2,67 @@
     @push('categoriesheader')
     @include('layouts.users.partials.underheader')
     @endpush  
+    @push('header-scripts')
+    <script src="/frontend/js/jssor.slider.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      jssor_1_slider_init = function() {
+    
+          var jssor_1_SlideshowTransitions = [
+            {$Duration:1200,x:-0.3,$During:{$Left:[0.3,0.7]},$Easing:{$Left:$Jease$.$InCubic,$Opacity:$Jease$.$Linear},$Opacity:2},
+            {$Duration:1200,x:0.3,$SlideOut:true,$Easing:{$Left:$Jease$.$InCubic,$Opacity:$Jease$.$Linear},$Opacity:2}
+          ];
+    
+          var jssor_1_options = {
+        $FillMode: 4,
+        $AutoPlay: 1,
+        $Cols: 1,
+        $Align: 0,
+        $SlideshowOptions: {
+          $Class: $JssorSlideshowRunner$,
+          $Transitions: {$Duration:2200,x:1,$Easing:{$Left:$Jease$.$InOutQuart},$Brother:{$Duration:2200,x:-1,$Easing:{$Left:$Jease$.$InOutQuart}}},
+          $TransitionsOrder: 1
+        },
+        $ArrowNavigatorOptions: {
+          $Class: $JssorArrowNavigator$
+        },
+        $ThumbnailNavigatorOptions: {
+          $Class: $JssorThumbnailNavigator$,
+          $Cols: 1,
+          $Orientation: 2,
+          $Align: 0,
+          $NoDrag: true
+        }
+      };
+          var jssor_1_slider = new $JssorSlider$("jssor_1", jssor_1_options);
+    
+          /*#region responsive code begin*/
+    
+          var MAX_WIDTH = 1110;
+    
+          function ScaleSlider() {
+              var containerElement = jssor_1_slider.$Elmt.parentNode;
+              var containerWidth = containerElement.clientWidth;
+    
+              if (containerWidth) {
+    
+                  var expectedWidth = Math.min(MAX_WIDTH || containerWidth, containerWidth);
+    
+                  jssor_1_slider.$ScaleWidth(expectedWidth);
+              }
+              else {
+                  window.setTimeout(ScaleSlider, 30);
+              }
+          }
+    
+          ScaleSlider();
+    
+          $Jssor$.$AddEvent(window, "load", ScaleSlider);
+          $Jssor$.$AddEvent(window, "resize", ScaleSlider);
+          $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider);
+          /*#endregion responsive code end*/
+      };
+    </script>
+        @endpush
     @push('styles')
     <style>
 
@@ -16,12 +77,18 @@
         @media (min-width: 992px){
         .top-titr {
             margin-top: 26px;
-        }}
+        }
+        .inner-block{
+          padding-top: 126px;
+        }
+
+      }
         
         @media (max-width: 502px){
         .top-titr {
             margin-top: 39px;
         }}
+        
         
         </style>
     @endpush
@@ -32,20 +99,51 @@
             <div class="inner-block bg-white">
             <div class="ads-search bottom-pad2" style="background-color: #e9ecef;">
               <header class="simple-search-header" style="min-height: 120px;">
-         <div style="background-color: #fff;">
-      
+    
+
    <!-- بنر تبلیغات -->
-   @if($advertise ->count() > 0)
-   <div id="jssor_1" >
+   {{-- <div id="jssor_1" >
     <div class="slides" data-u="slides" >
-      @foreach($advertise as $ad)
-        <div>
-            <img data-u="image" src="{{asset($ad->banner)}}" />
-            <div data-u="thumb">{{$ad->description}}</div>
+        <div >
+            <img data-u="image" src="{{asset('frontend/img/logoPagus.jpg')}}" />
+            <div data-u="thumb">اطلاعات بنری تبلیغاتی</div>
         </div>
-        @endforeach
-       
-     
+        <div>
+            <img data-u="image" src={{asset('frontend/"img/bannerhoechsmann.gif')}}" />
+            <div data-u="thumb"> اطلاعات بنری تبلیغاتی</div>
+        </div>
+        <div>
+            <img data-u="image" src="{{asset('frontend/img/bannerIVW.jpg')}}" />
+            <div data-u="thumb"> اطلاعات بنری تبلیغاتی</div>
+        </div>
+        <div>
+            <img data-u="image" src="{{asset('frontend/img/logoMaynards.gif')}}" />
+            <div data-u="thumb"> اطلاعات بنری تبلیغاتی</div>
+        </div>
+        <div>
+            <img data-u="image" src="{{asset('frontend/img/logoUSEDMarket.jpg')}}" />
+            <div data-u="thumb"> اطلاعات بنری تبلیغاتی</div>
+        </div>
+        <div>
+            <img data-u="image" src="{{asset('frontend/img/banner_hamburg-machinery.jpg')}}" />
+            <div data-u="thumb"> اطلاعات بنری تبلیغاتی</div>
+        </div>
+        <div>
+            <img data-u="image" src="{{asset('frontend/img/logoKnauff.gif')}}" />
+            <div data-u="thumb"> اطلاعات بنری تبلیغاتی</div>
+        </div>
+        <div>
+            <img data-u="image" src="{{asset('frontend/img/bannerREWA.jpg')}}" />
+            <div data-u="thumb"> اطلاعات بنری تبلیغاتی</div>
+        </div>
+        <div>
+            <img data-u="image" src="{{asset('frontend/img/banner_dataTec.gif')}}" />
+            <div data-u="thumb"> اطلاعات بنری تبلیغاتی</div>
+        </div>
+        <div>
+            <img data-u="image" src="{{asset('frontend/img/bannerEPS.jpg')}}" />
+            <div data-u="thumb"> اطلاعات بنری تبلیغاتی</div>
+        </div>
      
     </div>
     <!-- متن تبلیغات اسلایدر -->
@@ -55,9 +153,9 @@
                 <div class="jssor-thumbnailtemplate" data-u="thumbnailtemplate" ></div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- فلش های اسلایدر -->
-    <div data-u="arrowleft" class="jssora061" style="width:55px;height:55px;top:0px;left:25px;" data-autocenter="2" data-scale="0.75" data-scale-left="0.75">
+    {{-- <div data-u="arrowleft" class="jssora061" style="width:55px;height:55px;top:0px;left:25px;" data-autocenter="2" data-scale="0.75" data-scale-left="0.75">
       <svg viewBox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
           <path class="a" d="M11949,1919L5964.9,7771.7c-127.9,125.5-127.9,329.1,0,454.9L11949,14079"></path>
       </svg>
@@ -67,10 +165,9 @@
           <path class="a" d="M5869,1919l5984.1,5852.7c127.9,125.5,127.9,329.1,0,454.9L5869,14079"></path>
       </svg>
   </div>
-</div>
-@endif
+</div> --}}
+
 <!-- آخر اسلایدر تبلیغات -->
- </div>
 
              <div class="display-align top-titr mb-3">
                <div class="col-lg-8 text center-align mx-auto">
@@ -83,7 +180,7 @@
                    </div>         
                       </div>
       
-              <form action="" method="get" name="">
+              <form action="{{route('user.search')}}" method="get" >
                 <input type="hidden" name="" value="">
                 <input type="hidden" name="" value="">
                 <input type="hidden" name="" value="">
@@ -94,22 +191,14 @@
                 <div class="card" style="background-color: rgba(95, 174, 255, 0.2); margin-top: 10px;">
                   <div class="card-body" style="padding: 0.5rem;">
                     <div class="input-group">
-                      <input class="form-control" placeholder="جستجو در دسته " value="" maxlength="40" name="search" type="text" required="" title="">
+                      <input class="form-control" placeholder="جستجو در دسته " value="" maxlength="40" name="name" type="text" required="" title="">
       
-                      <select class="custom-select hide-mobile" name="" style="border-radius: 0px; width:50%;">
-                        <option value="" selected="selected">رده</option>
-                        <option value="" selected="">1. فلز (33991)</option>
-                        <option value="">2. چوب (8688)</option>
-                        <option value="">3. پلاستیک (4156)</option>
-                        <option value="">4. بسته بندی (2909)</option>
-                        <option value="">5. بازیافت (1381)</option>
-                        <option value="">6. پارچه (334)</option>
-                        <option value="">7. مواد غذایی (11614)</option>
-                        <option value="">8. چاپ (5676)</option>
-                        <option value="">9. کشاورزی (578)</option>
-                        <option value="">10. ساخت و ساز (1534)</option>
-                        <option value="">11. متفرقه (1131)</option>
-                         </select>
+                      <select class="custom-select" name="category" style="border-radius: 0px; width: 120px;">
+                        <option disabled value="" selected="selected">دسته بندی</option>
+                        @foreach($categories as $category)
+                        <option value="{{$category->id}}">{{$category->title}}</option>
+                        @endforeach
+                      </select>
                       <span class="input-group-btn">
                         <button id="search-button" class="btn-all btn-primary" type="submit" name="">
                            <i class="fas fa-search"></i>
@@ -125,9 +214,9 @@
             </div>
       
             <!-- آدرس صفحه -->
-        <nav aria-label="breadcrumb" class="">
+        {{-- <nav aria-label="breadcrumb" class="">
           <ol class="address-crumb" style="border-radius: 0">
-            <li class="address-crumb-item"><a href="#">
+            <li class="address-crumb-item"><a href="{{}}">
                <i class="fa fa-home" aria-hidden="true">
                </i>
               </a>
@@ -140,7 +229,7 @@
               <span>انتخاب زیر مجموعه ها</span>
             </li>
            </ol>
-        </nav>
+        </nav> --}}
            
         
         <div class="container top-margin2">
@@ -553,31 +642,259 @@
         </div>
       
         <hr>
-      
+
       <div class="top-margin2">
         <div class="display-align">
           <div class="col-12 mx-auto">
-        <div class="display-align mb-3">
-          <div class="col-lg-8 text center-align mx-auto">
-            <h2 style="font-size: 22px;">
-              <span class="text-danger">آخرین نتایج</span> 
-             </h2>
-          </div>
-        </div>
+            @if($advertise->count()>0)
+            <div style="background-color: #fff;">
+          
+              <div id="jssor_1" style="position:relative;margin:0 auto;top:0px;left:0px;width:1110px;height:150px;overflow:hidden;visibility:hidden;">
+                <div data-u="slides" style="cursor:default;position:relative;top:0px;left:0px;width:1110px;height:150px;overflow:hidden;object-fit: cover;">
+                    @foreach($advertise as $ad)
+                    <div>
+                        <img data-u="image" src="{{asset($ad->banner)}}" />
+                        <div data-u="thumb">{{$ad->description}}</div>
+                    </div>
+                    @endforeach
+                   
+                 
+                </div>
+                <!-- Thumbnail Navigator -->
+                <div data-u="thumbnavigator" style="position:absolute;bottom:0px;left:0px;width:1110px;height:25px;color:#FFF;overflow:hidden;cursor:default;background-color:rgba(0,0,0,.5);">
+                    <div data-u="slides">
+                        <div data-u="prototype" style="position:absolute;top:0;left:0;width:1110px;height:25px;">
+                            <div data-u="thumbnailtemplate" style="position:absolute;top:0;left:0;width:100%;padding-right:15px;height:100%;font-family:verdana;font-weight:normal;line-height:25px;font-size:16px;padding-left:10px;box-sizing:border-box;"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Arrow Navigator -->
+                <div data-u="arrowleft" class="jssora061" style="width:55px;height:55px;top:0px;left:25px;" data-autocenter="2" data-scale="0.75" data-scale-left="0.75">
+                    <svg viewBox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                        <path class="a" d="M11949,1919L5964.9,7771.7c-127.9,125.5-127.9,329.1,0,454.9L11949,14079"></path>
+                    </svg>
+                </div>
+                <div data-u="arrowright" class="jssora061" style="width:55px;height:55px;top:0px;right:25px;" data-autocenter="2" data-scale="0.75" data-scale-right="0.75">
+                    <svg viewBox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                        <path class="a" d="M5869,1919l5984.1,5852.7c127.9,125.5,127.9,329.1,0,454.9L5869,14079"></path>
+                    </svg>
+                </div>
+            </div>
+            </div>
+            @endif
+            <nav aria-label="address-crumb" class="">
+              <ol class="address-crumb" style="border-radius: 0">
+                <li class="address-crumb-item"><a href="{{route('index')}}">
+                  <i class="fa fa-home" aria-hidden="true"></i>
+                </a>
+              </li>
+                 {{-- <li class="address-crumb-item">همه دسته بندی ها</li> --}}
+                
+                  <li class="address-crumb-item">
+                    
+                      {{$cat->title}}
+                   
+                  </li>
+                 
+                {{-- <li class="address-crumb-item">نتایج</li> --}}
+              </ol>
+            </nav>
+          
+            <div class="container">
+              <div class="display-align">
+          
+                <div class="col-lg-5 text center-align mx-auto">
+                  <div class="hidden-moble">
+                    {{-- <form role="form-inline center-align" action="">
+                      <select class="custom-select form-control" id="arrange-by" style="width: 80%; font-size: 0.8rem; font-weight: 600;" name="sort">
+                        <option selected="selected" >موارد مرتب شده توسط: استاندارد</option>
+                        <option value="{{url()->full()}}?name={{request('name')}}&sort=price,desc">موارد مرتب شده بر اساس: قیمت صعودی</option>
+                        <option  value="{{url()->full()}}?name={{request('name')}}&sort=price,asc">موارد مرتب شده بر اساس: قیمت نزولی</option>
+                        <option  value="{{url()->full()}}?name={{request('name')}}&sort=created_at,desc">موارد مرتب شده بر اساس: تاریخ صعودی</option>
+                        <option  value="{{url()->full()}}?name={{request('name')}}&sort=created_at,asc">موارد مرتب شده بر اساس: تاریخ نزولی</option >
+                        <option  value="{{url()->full()}}?name={{request('name')}}&sort=year_of_manufacture,desc">اقلام به ترتیب: سال ساخت نزولی</option>
+                        <option  value="{{url()->full()}}?name={{request('name')}}&sort=year_of_manufacture,asc">اقلام سفارش داده شده بر اساس: سال ساخت صعودی</option> 
+                      </select>
+                    </form> --}}
+                  </div>
+                </div>
+        
+                <div class="col-lg-2 text center-align mx-auto">
+                  <h3 class="ver-margin mr-2">
+                    پیشنهادات <span class="text-danger">{{$products->count()}}
+                    </span> </h3>
+                </div>
+          
+                <div class="col-lg-5 text center-align mx-auto">
+                  <button class="btn-all btn-all-small btn-green" onclick="selectFilters()" style="cursor: pointer; min-width: 120px;"> فیلتر </button>
+                </div>
+          
+              </div>
+            </div>
+          
+            <div class="container"  id="filter-display-align" style="display: none;">
+              <form class="p-2" id="filter_form" method="get" action="{{route('user.search')}}" accept-charset="utf-8">
+                <input type="hidden" name="" value="">
+                <input type="hidden" name="" value="">
+                <input type="hidden" name="" value="">
+                <input type="hidden" name="" value="">
+                <input type="hidden" name="" value="">
+                <input type="hidden" name="" value="">
+          
+                <div class="form-row">
+                  <div class="col-md-6 mx-auto">
+                    <div class="align-form">
+                      <div class="input-group">
+                        <span class="input-group-addon" style="min-width: 120px;">
+                          <small>قیمت:</small>
+                        </span>
+                        <input type="text" name="pricemin" value="" class="url_params  form-control form-control-sm" placeholder="از">
+                        <span class="input-group-addon" style="border-left: 0; border-right: 0;">
+                          <small>-</small>
+                        </span>
+                        <input type="text" name="pricemax" value="" class="url_params form-control form-control-sm" placeholder="تا">
+                      </div>
+                    </div>
+          
+                    {{-- <div class="align-form">
+                      <div class="input-group">
+                        <span class="input-group-addon" style="min-width: 120px;">
+                          <small>جدید در:</small>
+                        </span>
+                        <input type="text" name="" value="" class="form-control form-control-sm" placeholder="از">
+                        <span class="input-group-addon" style="border-left: 0; border-right: 0;">
+                          <small>-</small>
+                        </span>
+                        <input type="text" name="" value="" class="form-control form-control-sm" placeholder="تا">
+                      </div>
+                    </div> --}}
+                    <div class="align-form">
+                      <div class="input-group">
+                        <span class="input-group-addon" style="min-width: 120px;">
+                          <small>آدرس :</small>
+                        </span>
+                        <input type="text" name="location"  class="url_params form-control form-control-sm" placeholder="">
+                      </div>
+                    </div>
+                    <div class="align-form">
+                      <div class="input-group">
+                        <span class="input-group-addon" style="min-width: 120px;">
+                          <small>تولید کننده:</small>
+                        </span>
+                        <input type="text" name="manufacturer"  class="url_params form-control form-control-sm" placeholder="">
+                      </div>
+                    </div>
+          
+                    <div class="align-form">
+                      <div class="input-group">
+                        <span class="input-group-addon" style="min-width: 120px;">
+                          <small>مدل:</small>
+                        </span>
+                        <input type="text" name="model" value="" class="url_params form-control form-control-sm" placeholder="">
+                      </div>
+                    </div>
+          
+                    {{-- <div class="align-form">
+                      <div class="input-group">
+                        <span class="input-group-addon" style="min-width: 120px;">
+                          <small>نوع ماشین:</small>
+                        </span>
+                        <input type="text" name="" value="" class="form-control form-control-sm" placeholder="">
+                      </div>
+                    </div>--}}
+                  </div> 
+        
+                  <div class="col-md-6 mx-auto">
+                    <div class="align-form">
+                      <div class="input-group">
+                        <span class="input-group-addon" style="min-width: 120px;">
+                          <small>کد دستگاه:</small>
+                        </span>
+                        <input type="text" name="itemNo" value="" class="url_params form-control form-control-sm" placeholder="">
+                      </div>
+                    </div>
+          
+                    <div class="align-form">
+                      <div class="input-group">
+                        <span class="input-group-addon" style="min-width: 120px;">
+                          <small>کد فروشنده:</small>
+                        </span>
+                        <input type="text" name="dealer" value="" class="url_params form-control form-control-sm" placeholder="">
+                      </div>
+                    </div>
+          
+                    <div class="align-form">
+                      <div class="input-group">
+                        <span class="input-group-addon" style="min-width: 120px;">
+                          <small>دست دوم یا نو:</small>
+                        </span>
+                        <select name="stock" class="url_params custom-select form-control" style="font-size: 0.8rem;">
+                          <option   value="" >همه پیشنهادات</option>
+                          <option value="1">نو</option>
+                          <option value="0">دست دوم  </option>
+                        </select>
+                      </div>
+                    </div>
+          
+                    {{-- <div class="align-form">
+                      <div class="input-group">
+                        <span class="input-group-addon" style="min-width: 120px;">
+                          <small>جستجوی شعاع:</small>
+                        </span>
+                        <select name="" class="custom-select form-control" style="font-size: 0.8rem;">
+                          <option value="" selected="">...</option>
+                          <option value="">10 کیلومتر</option>
+                          <option value="">20 کیلومتر</option>
+                          <option value="">50 کیلومتر</option>
+                          <option value="">100 کیلومتر</option>
+                          <option value="">200 کیلومتر</option>
+                          <option value="">300 کیلومتر</option>
+                          <option value="">500 کیلومتر</option>
+                          <option value="">1000 کیلومتر</option>
+                        </select>
+                      </div>
+                    </div> --}}
+                  </div>
+                </div>
+          
+                <div class="form-row">
+                  <div class="col-12 text center-align mx-auto">
+                    <button type="submit" id ="submitSearch" class="btn-all btn-all-small btn-primary" style="cursor: pointer;"> فیلتر کردن نتایج </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+        
+                <div class="container">
+                  <div class="display-align">
+                    <div class="col-lg-2 text center-align mx-auto">
+                    </div>
+                    <div class="col-lg-8 text center-align mx-auto">
+            <!-- صفحه بندی -->
+                      {{$products->links()}}
+              </div>
+                    <div class="col-lg-2 text center-align mx-auto ver-margin">
+                       <a class="btn-all btn-all-small btn-danger" href="watchlist.html" style="cursor: pointer; min-width: 100px;" target="TOP">
+                         <i class="fas fa-star" style="color: #f0b000;"></i> 
+                         لیست دلخواه </a>
+                    </div>
+                  </div>
+                </div>
 
+      {{-- @dump(Session::get('watchList')->count()) --}}
         <!-- توضیحات -->
        @foreach($products as $product)
         <div class="container top-group" style="background-color: white;">
           <div class="display-align">
             <div class="col-lg-7 machine-top py-1">
-              <span class="category-code">{{$category->id}} 
-                <a href="#" style="color: #5faeff;">{{$category->title}} </a>
+              <span class="category-code">{{$product->category->id}} 
+                <a href="{{route('product-list',$product->category->slug)}}" style="color: #5faeff;">{{$product->category->title}} </a>
               </span>
             </div>
             <div class="col-lg-5 machine-top py-1">
               <span class="category-code">تاریخ: {{$product->created_at}}</span>
               <span style="float: left;">
-                <a href="#" title=""  class="btn-all btn-light btn-all-small openPopup" style="font-weight: 600; font-size: 0.8rem;">
+                <a href="#" wire:click.prevent = "pashmak"  class="btn-all btn-light btn-all-small " style="font-weight: 600; font-size: 0.8rem;">
                   <i class="fas fa-star" style="color: #f0b000;"></i> 
                   کد دستگاه: {{$product->itemNo}} </a>
                 </span>
@@ -697,67 +1014,59 @@
           </div>
         </div>
       </div>
-      @push('scripts')
-      <script src="js/jssor.slider.min.js" type="text/javascript"></script>
-      <script type="text/javascript">
-          jssor_1_slider_init = function() {
-      
-              var jssor_1_SlideshowTransitions = [
-                {$Duration:1200,x:-0.3,$During:{$Left:[0.3,0.7]},$Easing:{$Left:$Jease$.$InCubic,$Opacity:$Jease$.$Linear},$Opacity:2},
-                {$Duration:1200,x:0.3,$SlideOut:true,$Easing:{$Left:$Jease$.$InCubic,$Opacity:$Jease$.$Linear},$Opacity:2}
-              ];
-      
-              var jssor_1_options = {
-            $FillMode: 4,
-            $AutoPlay: 1,
-            $Cols: 1,
-            $Align: 0,
-            $SlideshowOptions: {
-              $Class: $JssorSlideshowRunner$,
-              $Transitions: {$Duration:2200,x:1,$Easing:{$Left:$Jease$.$InOutQuart},$Brother:{$Duration:2200,x:-1,$Easing:{$Left:$Jease$.$InOutQuart}}},
-              $TransitionsOrder: 1
-            },
-            $ArrowNavigatorOptions: {
-              $Class: $JssorArrowNavigator$
-            },
-            $ThumbnailNavigatorOptions: {
-              $Class: $JssorThumbnailNavigator$,
-              $Cols: 1,
-              $Orientation: 2,
-              $Align: 0,
-              $NoDrag: true
-            }
-          };
-              var jssor_1_slider = new $JssorSlider$("jssor_1", jssor_1_options);
-      
-              var MAX_WIDTH = 1110;
-      
-              function ScaleSlider() {
-                  var containerElement = jssor_1_slider.$Elmt.parentNode;
-                  var containerWidth = containerElement.clientWidth;
-      
-                  if (containerWidth) {
-      
-                      var expectedWidth = Math.min(MAX_WIDTH || containerWidth, containerWidth);
-      
-                      jssor_1_slider.$ScaleWidth(expectedWidth);
-                  }
-                  else {
-                      window.setTimeout(ScaleSlider, 30);
-                  }
-              }
-      
-              ScaleSlider();
-      
-              $Jssor$.$AddEvent(window, "load", ScaleSlider);
-              $Jssor$.$AddEvent(window, "resize", ScaleSlider);
-              $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider);
-          };
-      </script>
-      @endpush
       @push('footer-scripts')
       <div class="parallax-background" >
         <img src="{{asset('frontend/background.jpg')}}" ></div>
-      <script>jssor_1_slider_init();</script>
-      @endpush
+        <script>jssor_1_slider_init();</script>
+        @push('footer-scripts')
+        <div class="parallax-background" >
+          <img src="{{asset('frontend/background.jpg')}}" ></div>
+          <script>
+             $(document).ready(function () {
+          $("#submitSearch").on("click", function(e) {
+              e.preventDefault();
+              var url = '{{ url("/result") }}?';
+              var total = $(".url_params").length;
+              $(".url_params").each(function (index) {
+                  if ($(this).val().trim().length) {
+                         if (index === total - 1) {
+                            url += $(this).attr('name') + '=' + $(this).val();
+                         } else {
+                            url += $(this).attr('name') + '=' + $(this).val() + "&"; 
+                         }                        
+                  }
+              });
+              window.location.href = url;
+          });
+      });
+          </script>
+          <script>
+            $(function(){
+                 // bind change event to select
+               
+                 $('#arrange-by').on('change', function () {
+                 
+                     var url = $(this).val(); // get selected value
+                     if (url) { // require a URL
+                         window.location = url; // redirect
+                     }
+                     return false;
+                 });
+               });
+           
+                 </script>
+        <script>
+            function selectFilters() {
+      var x = document.getElementById("filter-display-align");
+      if (x.style.display === "none") {
+          x.style.display = "block";
+      } else {
+          x.style.display = "none";
+      }
+      }
+     
+        // jssor_1_slider_init();
+        </script>
+        <script src="/frontend/js/addfavorite.js"></script>
+        @endpush
 </div>

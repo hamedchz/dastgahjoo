@@ -58,7 +58,7 @@
                       @foreach($categories as $category)
                       <option value="{{$category->id}}">{{$category->title}}</option>
                       @endforeach
-                       </select>
+                    </select>
 
                     <span class="input-group-btn">
                       <button id="search-button" class="btn-all btn-primary" type="submit" >

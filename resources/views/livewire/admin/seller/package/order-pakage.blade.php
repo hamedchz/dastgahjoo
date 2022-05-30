@@ -1,93 +1,160 @@
-
 <div>
-    @push('header-scripts')
-    <script src="/frontend/js/jssor.slider.min.js" type="text/javascript"></script>
-    <script type="text/javascript">
-        jssor_1_slider_init = function() {
-    
-            var jssor_1_SlideshowTransitions = [
-              {$Duration:1200,x:-0.3,$During:{$Left:[0.3,0.7]},$Easing:{$Left:$Jease$.$InCubic,$Opacity:$Jease$.$Linear},$Opacity:2},
-              {$Duration:1200,x:0.3,$SlideOut:true,$Easing:{$Left:$Jease$.$InCubic,$Opacity:$Jease$.$Linear},$Opacity:2}
-            ];
-    
-            var jssor_1_options = {
-          $FillMode: 4,
-          $AutoPlay: 1,
-          $Cols: 1,
-          $Align: 0,
-          $SlideshowOptions: {
-            $Class: $JssorSlideshowRunner$,
-            $Transitions: {$Duration:2200,x:1,$Easing:{$Left:$Jease$.$InOutQuart},$Brother:{$Duration:2200,x:-1,$Easing:{$Left:$Jease$.$InOutQuart}}},
-            $TransitionsOrder: 1
-          },
-          $ArrowNavigatorOptions: {
-            $Class: $JssorArrowNavigator$
-          },
-          $ThumbnailNavigatorOptions: {
-            $Class: $JssorThumbnailNavigator$,
-            $Cols: 1,
-            $Orientation: 2,
-            $Align: 0,
-            $NoDrag: true
-          }
-        };
-            var jssor_1_slider = new $JssorSlider$("jssor_1", jssor_1_options);
-    
-            var MAX_WIDTH = 1110;
-    
-            function ScaleSlider() {
-                var containerElement = jssor_1_slider.$Elmt.parentNode;
-                var containerWidth = containerElement.clientWidth;
-    
-                if (containerWidth) {
-    
-                    var expectedWidth = Math.min(MAX_WIDTH || containerWidth, containerWidth);
-    
-                    jssor_1_slider.$ScaleWidth(expectedWidth);
-                }
-                else {
-                    window.setTimeout(ScaleSlider, 30);
-                }
-            }
-    
-            ScaleSlider();
-    
-            $Jssor$.$AddEvent(window, "load", ScaleSlider);
-            $Jssor$.$AddEvent(window, "resize", ScaleSlider);
-            $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider);
-        };
-    </script>
-    @endpush
-    @push('styles')
-    <style>
+  @push('header-scripts')
+  <script src="/frontend/js/jssor.slider.min.js" type="text/javascript"></script>
+  <script type="text/javascript">
+    jssor_1_slider_init = function() {
 
-        .inner-bg {
-          padding: 0;
+        var jssor_1_SlideshowTransitions = [
+          {$Duration:1200,x:-0.3,$During:{$Left:[0.3,0.7]},$Easing:{$Left:$Jease$.$InCubic,$Opacity:$Jease$.$Linear},$Opacity:2},
+          {$Duration:1200,x:0.3,$SlideOut:true,$Easing:{$Left:$Jease$.$InCubic,$Opacity:$Jease$.$Linear},$Opacity:2}
+        ];
+
+        var jssor_1_options = {
+      $FillMode: 4,
+      $AutoPlay: 1,
+      $Cols: 1,
+      $Align: 0,
+      $SlideshowOptions: {
+        $Class: $JssorSlideshowRunner$,
+        $Transitions: {$Duration:2200,x:1,$Easing:{$Left:$Jease$.$InOutQuart},$Brother:{$Duration:2200,x:-1,$Easing:{$Left:$Jease$.$InOutQuart}}},
+        $TransitionsOrder: 1
+      },
+      $ArrowNavigatorOptions: {
+        $Class: $JssorArrowNavigator$
+      },
+      $ThumbnailNavigatorOptions: {
+        $Class: $JssorThumbnailNavigator$,
+        $Cols: 1,
+        $Orientation: 2,
+        $Align: 0,
+        $NoDrag: true
       }
-      
-      .hide-desktop{
-        display: none;
-      }
-      
-      
-      .btn .btn-sm .cost-buy{
-        display: block;
-      }
-      
-      @media (max-width: 490px) {
-        .hide-desktop{
-        display: block;
-      }
-      
-      .cost-info .cost-buy {
-        display: none;
-      
-      }
-      }
-      
-      </style> 
+    };
+        var jssor_1_slider = new $JssorSlider$("jssor_1", jssor_1_options);
+
+        /*#region responsive code begin*/
+
+        var MAX_WIDTH = 1110;
+
+        function ScaleSlider() {
+            var containerElement = jssor_1_slider.$Elmt.parentNode;
+            var containerWidth = containerElement.clientWidth;
+
+            if (containerWidth) {
+
+                var expectedWidth = Math.min(MAX_WIDTH || containerWidth, containerWidth);
+
+                jssor_1_slider.$ScaleWidth(expectedWidth);
+            }
+            else {
+                window.setTimeout(ScaleSlider, 30);
+            }
+        }
+
+        ScaleSlider();
+
+        $Jssor$.$AddEvent(window, "load", ScaleSlider);
+        $Jssor$.$AddEvent(window, "resize", ScaleSlider);
+        $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider);
+        /*#endregion responsive code end*/
+    };
+</script>
     @endpush
-    <div class="top-content" style="min-height: 400px;">
+  @push('styles')
+  <style>
+    .inner-bg {
+      padding: 0;
+  }
+  
+  .hide-desktop{
+    display: none;
+  }
+  
+  
+  .btn .btn-sm .cost-buy{
+    display: block;
+  }
+  
+  @media (max-width: 490px) {
+    .hide-desktop{
+    display: block;
+  }
+  
+  .cost-info .cost-buy {
+    display: none;
+  
+  }
+  }
+  
+  
+  
+  
+  
+  
+  
+  .table-title-sm{
+    display: none;
+  }
+  
+  /* .qbse{
+      width: 20%;
+   } */
+   .qbo{
+      width: 60%; 
+   }
+  
+  
+   .cost-info{
+      width: 20%;padding: 5px 0px 15px 0px;border-bottom: 1px solid #CCC; }
+  
+  @media (max-width: 767px){
+      .table-title-lg{
+          display: none;
+      }
+  
+      .table-title-sm{
+          border: 1px solid #CCC;
+      background-color: #f7f7f7;
+      display: flex;
+      justify-content: center;
+      align-items: center; 
+      padding: 10px;
+   }
+   .contact-info-col , .tl{
+       display: none;
+  
+   }
+   /* .qbse{
+      width: 22.3%;
+   } */
+   .qbo{
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+   
+   }
+   .cost-info{
+      border-bottom: none;
+   }
+   .table-row{
+    border-right: 1px solid #CCC;
+    border-leftphp artisan serv: 1px solid #CCC;
+   }
+  }
+  
+  .onsale {
+    display: block;
+    text-decoration: line-through;
+    font-size: 20px !important;
+    color: #c03!important;
+    font-weight: 400;
+    line-height: 20px;
+}
+  </style>
+  @endpush
+       <!-- بدنه محتوا -->
+       <div class="top-content" style="min-height: 400px;">
         <div class="inner-bg">
           <div class="container" >
             <div class="display-align top-titr">
@@ -114,7 +181,7 @@
             </div>
       </div>
   
-      <div class="counters section">
+      {{-- <div class="counters section">
         <div class="container">
           <div class="display-align">
             <div class="col-sm-6 col-md-3 col-lg-3">
@@ -182,571 +249,166 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> --}}
   
-            <div class="section" style="background-color: #323639;">
+
+<!-- table -->
+
+              <div class="section" style="background-color: #323639;">
           <div class="container">
             <div class="comparison" style="border: 2px solid #ccc!important; border-radius: 5px;">
-              <table>
+              <table >
                 <thead>
-
-                  <tr>
-                    <th class="table-head1 table-head2"></th>
-                    <th class="t-head1">
-                      برای فروشندگان مهمان 
-                      </th>
-                    <th colspan="3" class="t-head2">
-                      برای فروشندگان ماشین آلات           
-                    </th>
-                  </tr>
-
-                  <tr>
-                    <th class="table-head1">
+                  <div style="display: flex;justify-content: center;">
+                    <div class="tl tl2 table-head1 table-head2" style="width: 20%;padding: 10px 0;"></div>
+                    {{-- <div class="qbse t-head1" style="padding: 10px 0;">
+                      برای فروشندگان مهمان                  </div> --}}
+                    <div colspan="3" class="qbo t-head2" style="padding: 10px 0;">
+                      برای فروشندگان ماشین آلات                  </div>
+                  </div>
+                  <div class="table-row" style="display: flex;justify-content: center;">
+                    <div class="tl table-head1" style="width: 20%;padding: 10px 0;border-right: 1px solid #CCC;">
                       <div class="contact-info" style="color: black;">ما با کمال میل به سوالات شما پاسخ خواهیم داد:</div>
                       <div class="contact-info" style="color: black;"> 0933333333 <span style="color: green;">
                         <i class="fas fa-phone-square fa-lg"></i> </span></div>
-                    </th>
-                    <th class="compare-heading">
-                      مالکان              
-                     </th>
-                    <th class="compare-heading">
-                      <span style="font-size: 0.9rem; font-weight: 600; color: Red;">پیشنهاد ویژه!</span><br>                    
-                      فروشندگان استاندارد         
-                    </th>
-                    <th class="compare-heading">
-                      فروشندگان پایه              
-                    </th>
-                    <th class="compare-heading">
-                      تبلیغات بنری                
-                      </th>
-                  </tr>
-
-                  <tr>
-                    <th>
+                    </div>
+                    @foreach($packages as $package)
+                    <div class="compare-heading" style="width: 20%;border-left: 1px solid #CCC;">
+                      {{$package->title}}  
+                    </div>
+                   @endforeach
+                  </div>
+                  <div class="table-row" style="display: flex;
+                   justify-content: center;
+                     ">
+                    <div class="contact-info-col " style="width: 20%;border-left: 1px solid #CCC;border-bottom: 1px solid #CCC;border-right: 1px solid #CCC;">
                       <div class="contact-info " style="margin-top: -10px;">
-                        <button class="email-btn-sm" >
+                        <button  class="px-2" style=" padding-right: 0.5rem!important; padding-left: 0.5rem!important;font-size: 0.8em; border: 2px solid #0888d3; border-radius: 10px; width: auto;height: 45px;  background-image: linear-gradient(#3ac0f3, #0888d3);color:white;">
+
                             post@resale.info
                           </button>
-                       </div>
-                      <div class="reg-text">بسته عضویت خود را انتخاب کنید 
-                        <i class="fas fa-ardisplay-align-left"></i>
-                       </div>
-                      </th>
-                    <th class="cost-info">
-                      <div class="cost-now"><span>€ 2</span>
-                      </div>
-                      <div class="cost-try bottom-margin"><b>در هر آگهی ماهانه</b>
-                      </div>
-                      <div class="cost-try bottom-margin">(29.90 € در ماه)</div>
-                      <div><a class="btn-all btn-all-small cost-buy" href="{{route('payment.package',$package)}}"> سفارش 
-                      </a>
-                      <a class="hide-desktop" href="register-info.html"> سفارش 
-                      </a>
+                             </div>
+                      <div class="contact-info" style="font-weight: 600; margin-top: 60px;">بسته عضویت خود را انتخاب کنید 
+                        <i class="fas fa-arrow-left"></i> </div>
                     </div>
-                      <div class="cost-try" style="margin-top: 10px;">
-                        <a href="#owners" data-toggle="modal" data-target="#owners">جزئیات بیشتر</a>
-                       </div>
-                   </th>
-                    <th class="cost-info">
-                      <div class="cost-now"><span>0 €</span>
-                      </div>
-                      <div class="cost-try bottom-margin"><b>در هر آگهی ماهانه</b>
-                      </div>
-                      <div class="cost-try bottom-margin">(24.90 € در ماه)</div>
-                      <div>
-                        <a class="btn btn-sm cost-buy" href="register-info.html">سفارش </a>
-                         <a class="hide-desktop" href="register-info.html"> سفارش 
-                      </a>
+               
+                     @foreach($packages as $package)
+                    <div class="cost-info" style="padding: 5px 0px 15px 0px;border-left: 1px solid #CCC;">
+                      <div class="cost-now">
+                        @if($package->discount->percentage <> 0)
+                        <span class="onsale">{{$package->price}} تومان</span>
+                      
+                        @endif
+                        <span>{{($package->price)-(($package->price)*($package->discount->percentage/100))}} تومان</span></div>
+                      <div class="cost-try mb-2"><b>در هر آگهی ماهانه</b></div>
+                      <div class="cost-try mb-2">({{($package->price)-(($package->price)*($package->discount->percentage/100))}} تومان در ماه)</div>
+                      <div><a class="btn btn-sm cost-buy" href="{{route('payment.package',$package)}}">سفارش </a> <a class="hide-desktop" href="{{route('register')}}" > سفارش 
+                      </a></div>
+                      <div class="cost-try" style="margin-top: 10px;"><a href="#dealerstandard" data-toggle="modal" data-target="#dealerstandard"></a> </div>
                     </div>
-                      <div class="cost-try" style="margin-top: 10px;">
-                        <a href="#dealerstandard" data-toggle="modal" data-target="#dealerstandard">جزئیات بیشتر</a>
-                       </div>
-                    </th>
-
-                    <th class="cost-info">
-                      <div class="cost-now"><span>3 €</span></div>
-                      <div class="cost-try bottom-margin"><b>در هر آگهی ماهانه</b></div>
-                      <div class="cost-try bottom-margin">(16.50 € در ماه)</div>
-                      <div><a class="btn-all btn-all-small cost-buy" href="register-info.html">سفارش </a> <a class="hide-desktop" href="register-info.html"> سفارش 
-                      </a></div>
-                      <div class="cost-try" style="margin-top: 10px;">
-                        <a href="#dealerbasic" data-toggle="modal" data-target="#dealerbasic">جزئیات بیشتر</a> 
-                      </div>
-                  </th>
-
-                    <th class="cost-info">
-                      <div class="cost-now"><span>99 €</span></div>
-                      <div class="cost-try bottom-margin"><b>در هر ماه</b></div>
-                      <div><a class="btn btn-sm cost-buy" href="register-info.html">سفارش </a> <a class="hide-desktop" href="register-info.html"> سفارش 
-                      </a></div>
-                      <div class="cost-try" style="margin-top: 10px;">
-                        <a href="#bannertarif" data-toggle="modal" data-target="#bannertarif">جزئیات بیشتر</a>
-                       </div>
-                  </th>
-                  </tr>
+                    @endforeach
+                  </div>
                 </thead>
-                <tbody>
-                  <tr>
-                    <td>&nbsp;</td>
-                    <td colspan="4">تعداد اقلام ماشین آلات (همزمان)</td>
-                  </tr>
-                  <tr>
-                    <td>تعداد اقلام ماشین آلات 
-                      <span data-title="" tabindex="0">
-                      <i class="far fa-question-circle fa-sm"></i>
-                    </span>
-                  </td>
-                    <td>
-                      <strong>10</strong>
-                    </td>
-                    <td>
-                      <strong>100</strong>
-                    </td>
-                    <td>
-                      <strong>5</strong>
-                    </td>
-                    <td></td>
-
-                   </tr>
-                  <tr>
-                    <td>&nbsp;</td>
-                    <td colspan="4">قیمت 100 مورد دیگر</td>
-                  </tr>
-                  <tr>
-                    <td>قیمت 100 مورد دیگر</td>
-                    <td></td>
-                    <td>10 یورو در ماه<br>
-                      <span style="font-size: 0.9rem; font-weight: 600; color: Green;">0.10 € / دستگاه</span>
-                    </td>
-                    <td></td>
-                    <td></td>
-
-                  </tr>
-                  <tr>
-                    <td>&nbsp;</td>
-                    <td colspan="4">حداقل مدت زمان</td>
-                  </tr>
+                <div>
+                  <div class="table-title-sm">
+                    <div>تعداد   کالا</div>
+                  </div>
+                  <div class="table-row" style="display: flex; justify-content: center; line-height: 4;
+                 ">
+                    <div class="table-title-lg" style="width: 20%;border-left: 1px solid #CCC;border-right: 1px solid #CCC;">تعداد   کالا <span data-title="(همزمان)" tabindex="0">
+                      <i class="far fa-question-circle fa-sm"></i></span></div>
+                      @foreach($packages as $package)
+                    <div style="width: 20%;border-left: 1px solid #CCC;"><strong>{{$package->products}}</strong></div>
                   
-                  <tr>
-                    <td>حداقل مدت</td>
-                    <td><strong>3 ماه</strong></td>
-                    <td><strong>12 ماه</strong></td>
-                    <td><strong>12 ماه</strong></td>
-                    <td><strong>3 ماه</strong></td>
-                  </tr>
+                    @endforeach
+                    {{-- <div style="width: 20%;"><strong></strong></div> --}}
+                  </div>
+                  <div class="table-title-sm">
+                    <div> مدت زمان </div>
+                  </div>
+                  <div class="table-row" style="display: flex; justify-content: center; 
+                  ">
+                  <div class="table-title-lg" style="width: 20%;border-left: 1px solid #CCC;line-height: 4;border-right: 1px solid #CCC;"> مدت زمان </div>
+                  @foreach($packages as $package)
+                  <div style="width: 20%;border-left: 1px solid #CCC;"><strong>{{$package->duration}} روز</strong></div>
+                
+                  @endforeach
+                    {{-- <div style="width: 20%;"></div> --}}
+                  </div>
 
-                  <tr>
-                    <td colspan="4">عکس‌ها، اسناد و 1 ویدیو (برای هر دستگاه)</td>
-                  </tr>
-
-                  <tr>
-                    <td>عکس‌ها، اسناد و 1 ویدیو 
-                      <span data-title="(حداکثر 8 عکس برای هر دستگاه)" tabindex="0">
-                     <i class="far fa-question-circle fa-sm"></i>
-                    </span>
-                    </td>
-                    <td><img alt="" src="{{asset('frontend/img/check-mark-16.png')}}"></td>
-                    <td><img alt="" src="{{asset('frontend/img/check-mark-16.png')}}"></td>
-                    <td><img alt="" src="{{asset('frontend/img/check-mark-16.png')}}"></td>
-                    <td></td>
-
-                  </tr>
-
-                  <tr>
-                    <td>&nbsp;</td>
-                    <td colspan="4">خبرنامه ماشین‌های اخیر (دستگاه‌های شما به خبرنامه هفتگی ما اضافه خواهند شد)</td>
-                  </tr>
-                  <tr>
-                    <td>خبرنامه ماشین‌های اخیر 
-                      <span data-title="(دستگاه‌های شما به خبرنامه هفتگی ما اضافه خواهند شد)" tabindex="0">
-                      <i class="far fa-question-circle fa-sm"></i></span></td>
-                    <td><img alt="" src="{{asset('frontend/img/check-mark-16.png')}}"></td>
-                    <td><img alt="" src="{{asset('frontend/img/check-mark-16.png')}}"></td>
-                    <td><img alt="" src="{{asset('frontend/img/check-mark-16.png')}}"></td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td>&nbsp;</td>
-                    <td colspan="4">پرداخت سپرده</td>
-                  </tr>
-                  <tr>
-                    <td>پرداخت سپرده <img alt="" src="{{asset('frontend/img/escdisplay-align-verified.png')}}" height="20" width="20"></td>
-                    <td><img alt="" src="{{asset('frontend/img/check-mark-16.png')}}"></td>
-                    <td><img alt="" src="{{asset('frontend/img/check-mark-16.png')}}"></td>
-                    <td><img alt="" src="{{asset('frontend/img/check-mark-16.png')}}"></td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td>&nbsp;</td>
-                    <td colspan="4">آرم شرکت خود را در فهرست فروشندگان نمایش دهید</td>
-                                      </tr>
-                  <tr>
-                    <td>نمایش آرم شرکت شما <span data-title="(در فهرست فروشندگان)" tabindex="0">
-                      <i class="far fa-question-circle fa-sm"></i></span></td>
-                    <td></td>
-                    <td><img alt="" src="{{asset('frontend/img/check-mark-16.png')}}"></td>
-                    <td><img alt="" src="{{asset('frontend/img/check-mark-16.png')}}"></td>
-                    <td><img alt="" src="{{asset('frontend/img/check-mark-16.png')}}"></td>
-                  </tr>
-                  <tr>
-                    <td>&nbsp;</td>
-                    <td colspan="4">نمایه دایرکتوری فروشندگان</td>
-                  </tr>
-                  <tr>
-                    <td>نمایه فهرست فروشندگان</td>
-                    <td></td>
-                    <td><img alt="" src="{{asset('frontend/img/check-mark-16.png')}}"></td>
-                    <td><img alt="" src="{{asset('frontend/img/check-mark-16.png')}}"></td>
-                    <td><img alt="" src="{{asset('frontend/img/check-mark-16.png')}}"></td>
-                  </tr>
-                  <tr>
-                    <td>&nbsp;</td>
-                    <td colspan="4">لیست ماشین (پیوندی به لیست ماشین شما در پست های شما نمایش داده می شود)</td>
-                  </tr>
-                  <tr>
-                    <td>فهرست ماشین <span data-title="(پیوندی به لیست ماشین شما در پست های شما نمایش داده می شود)" tabindex="0">
-                      <i class="far fa-question-circle fa-sm"></i></span></td>
-                    <td></td>
-                    <td><img alt="" src="{{asset('frontend/img/check-mark-16.png')}}"></td>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td>&nbsp;</td>
-                    <td colspan="4">ماشین ها را در وب سایت خود نمایش دهید</td>
-                  </tr>
-                  <tr>
-                    <td>نمایش ماشین ها در وب سایت شما</td>
-                    <td></td>
-                    <td><img alt="" src="{{asset('frontend/img/check-mark-16.png')}}"></td>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td>&nbsp;</td>
-                    <td colspan="4">دستگاه های خود را از طریق API (مستقیماً از سرور خود) آپلود کنید</td>
-                                      </tr>
-                  <tr>
-                    <td>دستگاه های خود را از طریق API آپلود کنید <span data-title="" tabindex="0">
-                      <i class="far fa-question-circle fa-sm"></i>
-                    </span></td>
-                    <td></td>
-                    <td><img alt="" src="{{asset('frontend/img/check-mark-16.png')}}"></td>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td>&nbsp;</td>
-                    <td colspan="4">پرس و جوهای مورد نظر (شما سوالات مربوط به ماشین آلات مورد نظر را دریافت می کنید)</td>
-                  </tr>
-                  <tr>
-                    <td>پرسش های مورد نظر <span data-title="" tabindex="0">
-                      <svg class="svg-inline--fa fa-question-circle fa-w-16 fa- sm" aria-hidden="true" data-prefix="far" data-icon="question-circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox=" 0 0 512 512 "Data-fa-i2svg ="> <path fill = "currrecolor" d = "M256 8C119.043 8 8 119.083 8 256C0 136.997 248s248-111.003 248 248-248C504 119.083 392.957 8 256 8ZM0 448C- 110.532 0-200-89.431-200-89.431-200-89.495 89.472-200 200-200 110.491 0 200 89.471 2000 0 110.53-89.431 200-200 2002 2002/08/2014 2002 68.052-72.421 68.052-72.421 68.084-72.421 68.084-72.421 92.863V300C0 92.863V300C0 6.627-5.373 12 -12 12H-45.647C-6.627 0-12-5.373-12-12V-8.659C0-35.745 27.1-5034 47.579-616 06.561-9.9.845 28.324-29.579 06.324-29.579 0-1724-29.579 0-17.246-21.9999-28.693-39.999-28.693-39.189-28.693-39.189 0-33.894 10.977-48.942 29.969-4.057 5.12-11.46 6.071-16.666 2.124L-27.824-21.098C-5107-3.872-646-11.0666-25-16.3666-2646 131-1383 1311-1391 0184.846 131.491 214.94 112 0 101.794 112C49.071 0 101.45 38.304 101.45 88 0 101.45 88 . دایره سوال fa-sm"></i>
-                         <span>
-                         </td>
-                    <td><img alt="" src="{{asset('frontend/img/check-mark-16.png')}}"></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                  </tr>
-                  <tr>
-                    <td>&nbsp;</td>
-                    <td colspan="4">تبلیغات بنری</td>
-                  </tr>
-                  <tr>
-                    <td>تبلیغات بنری</td>
-                    <td><img alt="" src="{{asset('frontend/img/check-mark-16.png')}}"></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td>&nbsp;</td>
-                    <td colspan="4">پشتیبانی در هر ایمیل و  تلفن</td>
-                  </tr>
-                  <tr>
-                    <td>پشتیبانی در هر ایمیل و  تلفن</td>
-                     <td><img alt="" src="{{asset('frontend/img/check-mark-16.png')}}"></td>
-                    <td><img alt="" src="{{asset('frontend/img/check-mark-16.png')}}"></td>
-                    <td><img alt="" src="{{asset('frontend/img/check-mark-16.png')}}"></td>
-                    <td><img alt="" src="{{asset('frontend/img/check-mark-16.png')}}"></td>
-                  </tr>
+                  <div class="table-title-sm">
+                    <div>  تعداد عکس</div>
+                  </div>
+                  <div class="table-row" style="display: flex; justify-content: center; line-height: 4;
+                 ">
+                    <div class="table-title-lg" style="width: 20%;border-left: 1px solid #CCC;border-right: 1px solid #CCC;"> تعداد عکس </div>
+                    @foreach($packages as $package)
+                    <div style="width: 20%;border-left: 1px solid #CCC;"><strong>{{$package->images}} </strong></div>
+                  
+                    @endforeach
+                  </div>
+                  <div class="table-title-sm">
+                    <div> ویدیو </div>
+                  </div>
+                  <div class="table-row" style="display: flex;justify-content: center;  line-height: 4;
+                  ">
+                    <div class="table-title-lg" style="width: 20%;border-left: 1px solid #CCC;border-right: 1px solid #CCC;">  ویدیو  <span data-title="(حداکثر 8 عکس برای هر دستگاه)" tabindex="0">
+                               <i class="far fa-question-circle fa-sm"></i></span></div>
+                               @foreach($packages as $package)
+                               @if($package->video == 'YES')
+                               <div style="width: 20%;border-left: 1px solid #CCC;"><img alt="check" src="{{asset('frontend/img/check-mark-16.png')}}"></div>
+                              @else
+                              <div style="width: 20%;border-left: 1px solid #CCC;">-</div>
+                               @endif
+                               @endforeach         
+            
+                    {{-- <div style="width: 20%;"></div> --}}
+                  </div>
+                
+              
+                 
+                
+                  <div class="table-title-sm">
+                    <div>ارتباط با سایت فروشنده</div>
+                  </div>
+                  <div class="table-row" style="display: flex; justify-content: center; line-height: 4;
+                 ">
+                    <div class="table-title-lg" style="width: 20%;border-left: 1px solid #CCC;border-right: 1px solid #CCC;">ارتباط با سایت فروشنده  </div>
+                    {{-- <div style="width: 20%;border-left: 1px solid #CCC;"></div> --}}
+                    @foreach($packages as $package)
+                    @if($package->site == 'YES')
+                    <div style="width: 20%;border-left: 1px solid #CCC;"><img alt="check" src="{{asset('frontend/img/check-mark-16.png')}}"></div>
+                   @else
+                   <div style="width: 20%;border-left: 1px solid #CCC;">-</div>
+                    @endif
+                    @endforeach  
+                  </div>
+                  <div class="table-title-sm">
+                    <div >امکان اضافه کردن لوگو</div>
+                  </div>
+                  <div class="table-row" style="display: flex; justify-content: center; line-height: 4;
+                  ">
+                    <div class="table-title-lg" style="width: 20%;border-left: 1px solid #CCC;border-right: 1px solid #CCC;">امکان اضافه کردن لوگو  <span data-title="(پیوندی به لیست ماشین شما در پست های شما نمایش داده می شود)" tabindex="0">
+                      <i class="far fa-question-circle fa-sm"></i></span></div>
+                    {{-- <div style="width: 20%;border-left: 1px solid #CCC;"></div> --}}
+                    @foreach($packages as $package)
+                    @if($package->logo == 'YES')
+                    <div style="width: 20%;border-left: 1px solid #CCC;"><img alt="check" src="{{asset('frontend/img/check-mark-16.png')}}"></div>
+                    @else
+                    <div style="width: 20%;border-left: 1px solid #CCC;">-</div>
+                    @endif
+                    @endforeach                     
+                       {{-- <div style="width: 20%;border-left: 1px solid #CCC;"></div>
+                    <div style="width: 20%;"></div> --}}
+                  </div>
+                
                 </tbody>
               </table>
             </div>
           </div>
           </div>
   
- <!-- بنر تبلیغات -->
- <div id="jssor_1" >
-  <div class="slides" data-u="slides" >
-      <div >
-          <img data-u="image" src="{{asset('frontend/img/logoPagus.jpg')}}" />
-          <div data-u="thumb">اطلاعات بنری تبلیغاتی</div>
-      </div>
-      <div>
-          <img data-u="image" src="{{asset('frontend/img/bannerhoechsmann.gif')}}" />
-          <div data-u="thumb"> اطلاعات بنری تبلیغاتی</div>
-      </div>
-      <div>
-          <img data-u="image" src="{{asset('frontend/img/bannerIVW.jpg')}}" />
-          <div data-u="thumb"> اطلاعات بنری تبلیغاتی</div>
-      </div>
-      <div>
-          <img data-u="image" src="{{asset('frontend/img/logoMaynards.gif')}}" />
-          <div data-u="thumb"> اطلاعات بنری تبلیغاتی</div>
-      </div>
-      <div>
-          <img data-u="image" src="{{asset('frontend/img/logoUSEDMarket.jpg')}}" />
-          <div data-u="thumb"> اطلاعات بنری تبلیغاتی</div>
-      </div>
-      <div>
-          <img data-u="image" src="{{asset('frontend/img/banner_hamburg-machinery.jpg')}}" />
-          <div data-u="thumb"> اطلاعات بنری تبلیغاتی</div>
-      </div>
-      <div>
-          <img data-u="image" src="{{asset('frontend/img/logoKnauff.gif')}}" />
-          <div data-u="thumb"> اطلاعات بنری تبلیغاتی</div>
-      </div>
-      <div>
-          <img data-u="image" src="{{asset('frontend/img/bannerREWA.jpg')}}" />
-          <div data-u="thumb"> اطلاعات بنری تبلیغاتی</div>
-      </div>
-      <div>
-          <img data-u="image" src="{{asset('frontend/img/banner_dataTec.gif')}}" />
-          <div data-u="thumb"> اطلاعات بنری تبلیغاتی</div>
-      </div>
-      <div>
-          <img data-u="image" src="{{asset('frontend/img/bannerEPS.jpg')}}" />
-          <div data-u="thumb"> اطلاعات بنری تبلیغاتی</div>
-      </div>
-   
-  </div>
-  <!-- متن تبلیغات اسلایدر -->
-  <div class="jssor-thumbnavigator" data-u="thumbnavigator" >
-      <div data-u="slides">
-          <div class="jssor-prototype" data-u="prototype" >
-              <div class="jssor-thumbnailtemplate" data-u="thumbnailtemplate" ></div>
-          </div>
-      </div>
-  </div>
-  <!-- فلش های اسلایدر -->
-  <div data-u="arrowleft" class="jssora061" style="width:55px;height:55px;top:0px;left:25px;" data-autocenter="2" data-scale="0.75" data-scale-left="0.75">
-    <svg viewBox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
-        <path class="a" d="M11949,1919L5964.9,7771.7c-127.9,125.5-127.9,329.1,0,454.9L11949,14079"></path>
-    </svg>
-</div>
-<div data-u="arrowright" class="jssora061" style="width:55px;height:55px;top:0px;right:25px;" data-autocenter="2" data-scale="0.75" data-scale-right="0.75">
-    <svg viewBox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
-        <path class="a" d="M5869,1919l5984.1,5852.7c127.9,125.5,127.9,329.1,0,454.9L5869,14079"></path>
-    </svg>
-</div>
-</div>
-
-<!-- آخر اسلایدر تبلیغات -->
-
-<!-- نظرات کاربران -->
-    <div class="user-comment">
-          <div class="container">
-            <div class="display-align">
-              <div class="col-lg-6 text center-align mx-auto bottom-pad2">
-           <div class="carousel" data-ride="carousel">
-            <div class="carousel-inner">
-             <h4>آنچه مشتریان ما در مورد ما می گویند:</h4>
-            <div id="comment-quote" class="carousel-item ">
-          <blockquote>
-
-          <div id="wrapper">
-            <div id="left"><img src="https://www.resale.de/flaggen/nl.gif" alt=""></div>
-            <div id="right">
-              <p> این باعث می شود حداقل بیست و پنجمین دستگاه به دلیل این وب سایت فروخته شود</p>
-            </div>
-          </div>
-          </blockquote>
+<!-- end table -->
         </div>
-
-      <div id="comment-quote" class="carousel-item ">
-          <blockquote>
-          <div id="wrapper">
-            <div id="left"><img src="https://www.resale.de/flaggen/us.gif" alt=""></div>
-            <div id="right">
-              <p> خدمات خوب</p>
-            </div>
-          </div>
-          </blockquote>
-        </div>
-
-      <div id="comment-quote" class="carousel-item ">
-          <blockquote>
-          <div id="wrapper">
-            <div id="left"><img src="https://www.resale.de/flaggen/nl.gif" alt=""></div>
-            <div id="right">
-              <p> مایلیم از Resale-Marketplace، محل ملاقات بسیار موفق GOS با بسیاری از مشتریان جدید تا کنون تشکر کنیم.</p>       
-              </div>
-          </div>
-          </blockquote>
-        </div>
-
-      <div id="comment-quote" class="carousel-item ">
-          <blockquote>
-          <div id="wrapper">
-            <div id="left"><img src="https://www.resale.de/flaggen/nl.gif" alt=""></div>
-            <div id="right">
-              <p> بله، ما آن را از طریق وب سایت شما فروختیم. این در مورد دهمین دستگاهی است که مستقیماً از طریق وب سایت شما فروخته ایم.</p>
-                 </div>
-          </div>
-          </blockquote>
-        </div>
-      <div id="comment-quote" class="carousel-item  active">
-          <blockquote>
-          <div id="wrapper">
-            <div id="left"><img src="https://www.resale.de/flaggen/in.gif" alt=""></div>
-            <div id="right">
-              <p> با تشکر</p>
-                 </div>
-          </div>
-          </blockquote>
-        </div>
-      <div id="comment-quote" class="carousel-item ">
-          <blockquote>
-          <div id="wrapper">
-            <div id="left"><img src="https://www.resale.de/flaggen/fr.gif" alt=""></div>
-            <div id="right">
-              <p> من این ژنراتور را با وب سایت شما به هلند فروخته ام</p>
-                 </div>
-          </div>
-          </blockquote>
-        </div>
-      <div id="comment-quote" class="carousel-item ">
-          <blockquote>
-          <div id="wrapper">
-            <div id="left"><img src="https://www.resale.de/flaggen/nl.gif" alt=""></div>
-            <div id="right">
-              <p> فروش مجدد ثابت کرده است که بازار B2B بسیار قدرتمندی است.</p>
-                 </div>
-          </div>
-          </blockquote>
-        </div>
-      <div id="comment-quote" class="carousel-item ">
-          <blockquote>
-          <div id="wrapper">
-            <div id="left"><img src="https://www.resale.de/flaggen/au.gif" alt=""></div>
-            <div id="right">
-              <p> نتایج بسیار خوب، پرسش‌های فراوان، فروش‌های کمی.</p>
-                 </div>
-          </div>
-          </blockquote>
-        </div>
-      <div id="comment-quote" class="carousel-item ">
-          <blockquote>
-          <div id="wrapper">
-            <div id="left"><img src="https://www.resale.de/flaggen/it.gif" alt=""></div>
-            <div id="right">
-              <p> تعداد مشتریانی که در عرض چند روز به آگهی آزمایشی ما پاسخ دادند باورنکردنی است. سیستم شما واقعاً یک ابزار فروش عالی است!!</p>      
-               </div>
-          </div>
-          </blockquote>
-        </div>
-      <div id="comment-quote" class="carousel-item ">
-          <blockquote>
-          <div id="wrapper">
-            <div id="left"><img src="https://www.resale.de/flaggen/nl.gif" alt=""></div>
-            <div id="right">
-              <p> سی و پنجمین دستگاه را از طریق وب سایت فروش مجدد فروخت.
-                گرانولاتور CMB 90 KW.</p>
-                          </div>
-                        </div>
-                        </blockquote>
-                      </div>
-                    <div id="comment-quote" class="carousel-item ">
-                        <blockquote>
-                        <div id="wrapper">
-                          <div id="left"><img src="https://www.resale.de/flaggen/fr.gif" alt=""></div>
-                          <div id="right">
-                            <p> وب سایت بسیار خوبی است، من از طریق RESALE سوالات زیادی دارم.
-                با تشکر</p>
-                      </div>
-                        </div>
-                        </blockquote>
-                      </div>
-                    <div id="comment-quote" class="carousel-item ">
-                        <blockquote>
-                        <div id="wrapper">
-                          <div id="left"><img src="https://www.resale.de/flaggen/se.gif" alt=""></div>
-                          <div id="right">
-                            <p> با تشکر از وب سایت بسیار خوب، ما چند هفته است که آن را با نتایج فوق العاده آزمایش کرده ایم، ما قبلاً برخی از تجهیزات را فروخته ایم و سوالات زیادی در مورد آن داریم. تجهیزات دیگر.</p>
-                          </div>
-                        </div>
-                        </blockquote>
-                      </div>
-                    <div id="comment-quote" class="carousel-item ">
-                        <blockquote>
-                        <div id="wrapper">
-                          <div id="left"><img src="https://www.resale.de/flaggen/ru.gif" alt=""></div>
-                          <div id="right">
-                            <p> ماشین تراش SKJ-12 از طریق تبلیغات در RESALE.INFO فروخته شد.</p>
-                            </div>
-                        </div>
-                        </blockquote>
-                      </div>
-                    <div id="comment-quote" class="carousel-item ">
-                        <blockquote>
-                        <div id="wrapper">
-                          <div id="left"><img src="https://www.resale.de/flaggen/us.gif" alt=""></div>
-                          <div id="right">
-                            <p> سایت جالب</p>
-                        </div>
-                      </div>
-                  </blockquote>
-                  </div>
-
-      <div id="comment-quote" class="carousel-item ">
-          <blockquote>
-          <div id="wrapper">
-            <div id="left"><img src="https://www.resale.de/flaggen/se.gif" alt=""></div>
-            <div id="right">
-              <p> دستگاه من بعد از دو روز فروخته شد. بسیار راضی.</p>
-            </div>
-          </div>
-          </blockquote>
-        </div>
-
-      <div id="comment-quote" class="carousel-item ">
-          <blockquote>
-          <div id="wrapper">
-            <div id="left"><img src="https://www.resale.de/flaggen/fr.gif" alt=""></div>
-            <div id="right">
-              <p> زمان برد اما همه چیز خوب است</p>
-            </div>
-          </div>
-          </blockquote>
-        </div>
-             </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- توضیحات  -->
-        <div class="grey-back section">
-          <div class="container">
-            <div class="comment more">
-                <h3 class="title-font" >ما اصیل هستیم</h3>
-                پس از چندین سال توسعه، RESALE در سال 1996 آنلاین شد. بنابراین ما قدیمی ترین و اولین بازار ماشین آلات مستعمل در سراسر جهان هستیم. از آن زمان ما رفت و آمد مداوم مقلدین مختلف را دنبال کردیم. آنها با نیروی کار عظیم خود توانستند اقلام ماشین آلات زیادی را از دلالان خریداری کنند.
-                در نهایت آنها از صحنه ناپدید شدند، اما به دلیل عدم تامین هزینه های زیاد.
-                <br><br>
-                در طی دو سال گذشته موج دومی از رقبا به وجود آمدند که کمتر در خرید اقلام ماشین آلات برای بازار خود مراقبت می کردند. آنها ترجیح می دهند فقط تبلیغات ما را بدون هیچ مجوزی کپی کنند. بنابراین ما از همه فروشندگان می خواهیم که مراقب باشند و یا حتی اجازه این روش را بدهند.
-                با توجه به نرم افزارهای خودکار که برای کپی استفاده می شود، نمی توان از کپی صحیح اطمینان حاصل کرد. اغلب جزئیات فنی کاملا نادرست منتشر می شود. این امر منجر به سردرگمی خریداران احتمالی می شود. اگر برخی از رقبا یک کمیسیون پنهان اضافه کنند، قیمت های متفاوتی برای یک ماشین وجود دارد.
-                بنابراین ما به همه خریداران احتمالی توصیه می کنیم که منحصراً از طریق RESALE با ارائه دهنده تماس بگیرند. به این ترتیب می توان از پرداخت کمیسیون پنهان یا هزینه اضافی سایر رقبا جلوگیری کرد.
-                <h3 class="title-font ver-margin" >وعده ما به شما</h3>
-                در مقایسه با مدعیانی که هدفشان کسب امتیاز بزرگ بود، هدف ما کارآمد بودن بوده است. از آنجایی که ما همیشه هزینه ها را پایین نگه می داریم، می توانیم به طور مداوم قیمت های مطلوبی را به شما ارائه دهیم. هزینه های مشتریان فعلی هرگز افزایش نیافته است. از نظر افزایش شدید قیمت ها نباید از غافلگیری ناخوشایند بترسید.
-                <br><br>
-                علاوه بر این، ما قول می دهیم که پلتفرم خود را به طور پیوسته توسعه دهیم. این جایی است که منابع ما در آن سرمایه گذاری می شود. ما همیشه مشغول بهبود دامنه عملکردها و نمایش بصری وب سایت هستیم. مهمتر از همه، بازار و به طور کلی توسعه تجارت موتور مبتنی بر وب، به قلب بنیانگذار و مدیر عامل شرکت ما که یک مهندس مکانیک است نزدیک است.
-                             </div>
-          </div>
-        </div>
-          </div>
-      </div>
+    </div>
 </div>

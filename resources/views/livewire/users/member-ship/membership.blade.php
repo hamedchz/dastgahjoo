@@ -141,9 +141,28 @@
       border-right: 1px solid #CCC;
       border-leftphp artisan serv: 1px solid #CCC;
      }
+     .cost-now{
+      margin-top: 20px;
+     }
+     .cost-info{ 
+      width: 33.33%;
+     }
+     .compare-heading{
+      width: 33.33% !important;
+
+     }
     }
     
+     .onsale {
+    display: block;
+    text-decoration: line-through;
+    font-size: 20px !important;
+    color: #c03!important;
+    font-weight: 400;
+    line-height: 20px;
+}
     
+
     </style>
     @endpush
          <!-- بدنه محتوا -->
@@ -287,8 +306,13 @@
                  
                        @foreach($packages as $package)
                       <div class="cost-info" style="padding: 5px 0px 15px 0px;border-left: 1px solid #CCC;">
-                        <div class="cost-now"><span>{{($package->price)-(($package->price)*($package->discount->percentage/100))}} تومان</span></div>
-                        <div class="cost-try mb-2"><b>در هر آگهی ماهانه</b></div>
+                        <div class="cost-now">
+                          @if($package->discount->percentage <> 0)
+                          <span class="onsale">{{$package->price}} تومان</span>
+                        
+                          @endif
+                          <span>{{($package->price)-(($package->price)*($package->discount->percentage/100))}} تومان</span></div>
+                        <div class="cost-try mb-2"><b>   ماهانه</b></div>
                         <div class="cost-try mb-2">({{($package->price)-(($package->price)*($package->discount->percentage/100))}} تومان در ماه)</div>
                         <div><a class="btn btn-sm cost-buy" href="{{route('register')}}">سفارش </a> <a class="hide-desktop" href="{{route('register')}}" > سفارش 
                         </a></div>
@@ -378,12 +402,12 @@
                     ">
                       <div class="table-title-lg" style="width: 20%;border-left: 1px solid #CCC;border-right: 1px solid #CCC;">امکان اضافه کردن لوگو  <span data-title="(پیوندی به لیست ماشین شما در پست های شما نمایش داده می شود)" tabindex="0">
                         <i class="far fa-question-circle fa-sm"></i></span></div>
-                      <div style="width: 20%;border-left: 1px solid #CCC;"></div>
+                      {{-- <div style="width: 20%;border-left: 1px solid #CCC;"></div> --}}
                       @foreach($packages as $package)
                       @if($package->logo == 'YES')
                       <div style="width: 20%;border-left: 1px solid #CCC;"><img alt="check" src="{{asset('frontend/img/check-mark-16.png')}}"></div>
                      @else
-                     {{-- <div style="width: 20%;border-left: 1px solid #CCC;">-</div> --}}
+                     <div style="width: 20%;border-left: 1px solid #CCC;">-</div>
                       @endif
                       @endforeach                     
                          {{-- <div style="width: 20%;border-left: 1px solid #CCC;"></div>
@@ -468,7 +492,7 @@
 <!-- آخر اسلایدر تبلیغات -->
 
 <!-- نظرات کاربران -->
-      <div class="user-comment">
+      {{-- <div class="user-comment">
             <div class="container">
               <div class="display-align">
                 <div class="col-lg-6 text center-align mx-auto bottom-pad2">
@@ -669,9 +693,9 @@
             </div>
           </div>
             </div>
-        </div>
+        </div> --}}
  <!-- بنر تبلیغات -->
- <div id="jssor_1" >
+ {{-- <div id="jssor_1" >
   <div class="slides" data-u="slides" >
       <div >
           <img data-u="image" src="{{asset('frontend/img/logoPagus.jpg')}}" />
@@ -734,12 +758,12 @@
         <path class="a" d="M5869,1919l5984.1,5852.7c127.9,125.5,127.9,329.1,0,454.9L5869,14079"></path>
     </svg>
 </div>
-</div>
+</div> --}}
 
 <!-- آخر اسلایدر تبلیغات -->
 
 <!-- نظرات کاربران -->
-    <div class="user-comment">
+    {{-- <div class="user-comment">
           <div class="container">
             <div class="display-align">
               <div class="col-lg-6 text center-align mx-auto bottom-pad2">
@@ -919,7 +943,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> --}}
 
         <!-- توضیحات  -->
         <div class="grey-back section">

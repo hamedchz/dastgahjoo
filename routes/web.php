@@ -52,6 +52,7 @@ use App\Http\Livewire\Users\Products\ProductsLists;
 use App\Http\Livewire\Users\Registration\Form;
 use App\Http\Livewire\Users\SearchMachine\SearchMachine;
 use App\Http\Livewire\Users\Sitmap\Sitemap;
+use App\Http\Livewire\Users\WatchList\WachList;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -66,7 +67,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Auth::routes();
-Route::group(['namespace'=> '','prefix'=> 'dashboard'], function(){
+Route::group(['namespace'=> '','prefix'=> 'dashboard','middleware' => [ 'auth' ]], function(){
 
     Route::get('index', DashboardController::class)->name('admin.dashboard.index');
     Route::get('packages-list',PackagesList::class)->name('admin.packages-list');
@@ -139,6 +140,8 @@ Route::namespace('App\Http\Controllers\Auth')->group(function () {
     Route::get('/aboutus',AboutUs::class)->name('about-us');
     Route::get('/faq',Faq::class)->name('faq');
     Route::get('/sold-products',SoldProducts::class)->name('sold-products');
+    Route::get('/watchlist',WachList::class)->name('watch-list');
+
     Route::get('/result','\App\Http\Controllers\SearchResultController@result')->name('user.search');
 
 

@@ -9,7 +9,7 @@ class OrderPakage extends Component
 {
     public function render()
     {
-        $package = Packages::findOrFail(1);
-        return view('livewire.admin.seller.package.order-pakage',['package'=>$package])->layout('layouts.users.app');
+        $packages = Packages::with('discount')->where('isActive',1)->latest()->get();
+        return view('livewire.admin.seller.package.order-pakage',['packages'=>$packages])->layout('layouts.users.app');
     }
 }

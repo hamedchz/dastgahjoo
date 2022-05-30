@@ -244,7 +244,7 @@ class PurchaseController extends Controller
                         ]);
                         $user->roles()->sync('2');
                         $this->sendSmsCode($user->mobile, $package->title);
-        
+                       
                     }
                    
                 }
@@ -254,7 +254,7 @@ class PurchaseController extends Controller
                 //     'status' => Transaction::STATUS_SUCCESS,
                 // ]);
                 
-               return 'پرداخت با موفقیت انجام شد';
+             
                $date = Verta::now();
                $date = date('d m Y',strtotime($date));
                return view('user.transaction.success-paid',compact('reciept','orders','date'));
