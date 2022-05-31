@@ -180,6 +180,7 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         Anetwork\Validation\PersianValidationServiceProvider::class,
         Shetabit\Payment\Provider\PaymentServiceProvider::class,
+        Artesaos\SEOTools\Providers\SEOToolsServiceProvider::class,
 
 
     ],
@@ -240,6 +241,7 @@ return [
         'SEO' => Artesaos\SEOTools\Facades\SEOTools::class,
         'Image' => Intervention\Image\Facades\Image::class,
         'Payment' => Shetabit\Payment\Facade\Payment::class,
+        'SEO' => Artesaos\SEOTools\Facades\SEOTools::class,
 
     ],
 

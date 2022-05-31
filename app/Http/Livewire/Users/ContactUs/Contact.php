@@ -6,9 +6,13 @@ use App\Models\Category;
 use App\Models\Contactus;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
+use Artesaos\SEOTools\Traits\SEOTools as SEOToolsTrait;
+
 
 class Contact extends Component
 {
+
+    use SEOToolsTrait;
 
      public $state = [];
 
@@ -49,6 +53,9 @@ class Contact extends Component
     }
     public function render()
     {
+        $this->seo()
+        ->setTitle('تماس با ما ',false)
+        ->setDescription('تماس با ما');
         // $categories = Category::where('parent',0)->where('isActive',1)->get();
         return view('livewire.users.contact-us.contact')->layout('layouts.users.app');
     }

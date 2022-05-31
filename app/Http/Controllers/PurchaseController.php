@@ -12,6 +12,7 @@ use App\Models\User;
 use App\Models\Vendors;
 use Carbon\Carbon;
 use Exception;
+use Facade\Ignition\Support\Packagist\Package;
 use Hekmatinasser\Verta\Verta;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
@@ -25,16 +26,17 @@ use SoapFault;
 
 class PurchaseController extends Controller
 {
-    public function sendSmsCode($mobile,$code)
+    public function sendSmsCode($mobile,$package,$name)
     {
         $client = new SoapClient("http://188.0.240.110/class/sms/wsdlservice/server.php?wsdl");
         $user = Setting::where('name','user_panel_for_sms')->pluck('value')->first();
         $pass = Setting::where('name','password_panel_for_sms')->pluck('value')->first();
         $fromNum = Setting::where('name','lineNumber_panel_for_sms')->pluck('value')->first();
         $toNum = $mobile;
-        $pattern_code = "4itbwfw7pt";
+        $pattern_code = "f3izhx50reyb92h";
         $input_data = array(
-            "code" => $code,
+            "name" => $name,
+            "package" => $package,
         );
         return $client ->sendPatternSms($fromNum, $toNum, $user, $pass, $pattern_code, $input_data);
     }
@@ -207,7 +209,7 @@ class PurchaseController extends Controller
                     $user->vendor->update([
                         'package_id' => $package->id
                     ]);
-                    $this->sendSmsCode($user->mobile, $package->title);
+                    $this->sendSmsCode($user->mobile, $package->title,$user->name);
         
                 }else{
                    
@@ -232,7 +234,7 @@ class PurchaseController extends Controller
                         $user->vendor->update([
                             'package_id' => $package->id
                         ]);
-                        $this->sendSmsCode($user->mobile, $package->title);
+                        $this->sendSmsCode($user->mobile, $package->title,$user->name);
         
                     }else{
                         $vendor = Vendors::create([
@@ -243,7 +245,7 @@ class PurchaseController extends Controller
                             'identityNumber' => mt_rand(10000,9999999),
                         ]);
                         $user->roles()->sync('2');
-                        $this->sendSmsCode($user->mobile, $package->title);
+                        $this->sendSmsCode($user->mobile, $package->title,$user->name);
                        
                     }
                    
@@ -253,11 +255,12 @@ class PurchaseController extends Controller
                 // $purchasedServicesSuccess->each->update([
                 //     'status' => Transaction::STATUS_SUCCESS,
                 // ]);
-                
+                return redirect('/logout');
+
              
-               $date = Verta::now();
-               $date = date('d m Y',strtotime($date));
-               return view('user.transaction.success-paid',compact('reciept','orders','date'));
+            //    $date = Verta::now();
+            //    $date = date('d m Y',strtotime($date));
+            //    return view('user.transaction.success-paid',compact('reciept','orders','date'));
 
             }catch(Exception|InvalidPaymentException $e){
                 if($e->getCode() < 0 ){

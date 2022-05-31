@@ -5,9 +5,11 @@ namespace App\Http\Livewire\Users\Registration;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
+use Artesaos\SEOTools\Traits\SEOTools as SEOToolsTrait;
 
 class Form extends Component
 {
+    use SEOToolsTrait;
     public $state = [];
 
     public function addNewUser(){
@@ -31,6 +33,9 @@ class Form extends Component
     }
     public function render()
     {
+        $this->seo()
+        ->setTitle('ثبت نام',false)
+        ->setDescription('ثبت نام');
         return view('livewire.users.registration.form')->layout('layouts.users.app');
     }
 }

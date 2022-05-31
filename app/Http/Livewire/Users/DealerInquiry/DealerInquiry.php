@@ -9,9 +9,12 @@ use App\Models\Vendors;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
 use SoapClient;
+use Artesaos\SEOTools\Traits\SEOTools as SEOToolsTrait;
+
 
 class DealerInquiry extends Component
 {
+    use SEOToolsTrait;
 
     public $productInfo,$state=[];
 
@@ -71,6 +74,9 @@ class DealerInquiry extends Component
     }
     public function render()
     {
+        $this->seo()
+        ->setTitle('پرسش محصولات',false)
+        ->setDescription('پرسش محصولات');
         return view('livewire.users.dealer-inquiry.dealer-inquiry')->layout('layouts.users.app');
     }
 }

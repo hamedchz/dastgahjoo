@@ -6,9 +6,11 @@ use App\Models\Inquiries;
 use App\Models\Product;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
+use Artesaos\SEOTools\Traits\SEOTools as SEOToolsTrait;
 
 class ProductDetail extends Component
 {
+    use SEOToolsTrait;
 
     public $product,$state=[];
 
@@ -53,6 +55,9 @@ class ProductDetail extends Component
     }
     public function render()
     {
+        $this->seo()
+        ->setTitle($this->product->name,false)
+        ->setDescription($this->product->description);
         return view('livewire.users.product-list.product-detail')->layout('layouts.users.app');
     }
 }

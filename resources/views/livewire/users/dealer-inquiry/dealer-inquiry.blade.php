@@ -64,9 +64,11 @@
                               <i class="fas fa-home fa-lg"></i>
                             </div>
                             <input type="text" name="" wire:model = "state.address" class="form-control @error('address') is-invalid @enderror" placeholder="آدرس">
-                            @error('address')<div class="invalid-feedback">{{ $message }}</div> @enderror
+                            {{-- @error('address')<div class="invalid-feedback">{{ $message }}</div> @enderror --}}
 
                           </div>
+                          @error('address')<div class="text-danger " style="text-align:right;padding-top:5px;padding-right:10px;">{{ $message }}</div> @enderror
+
                         </div>
                         <div class="align-form">
                           <label class="label-input" for="company-label">  کدپستی:</label>
@@ -76,9 +78,11 @@
                               <i class="fas fa-mailbox fa-lg"></i>
                             </div>
                             <input type="number" name="" class="form-control  @error('postal') is-invalid @enderror" wire:model = "state.postal" placeholder="  کدپستی" required="">
-                            @error('postal')<div class="invalid-feedback">{{ $message }}</div> @enderror
+                            {{-- @error('postal')<div class="invalid-feedback">{{ $message }}</div> @enderror --}}
 
                           </div>
+                          @error('postal')<div class="text-danger " style="text-align:right;padding-top:5px;padding-right:10px;">{{ $message }}</div> @enderror
+
                         </div>
                         {{-- <div class="align-form">
                           <label class="label-input" for="company-label">آدرس:</label>
@@ -107,9 +111,10 @@
                               <i class="fas fa-at fa-lg"></i>
                             </div>
                             <input type="email" name="" wire:model.defer="state.email" class="form-control  @error('email') is-invalid @enderror" placeholder="ایمیل" required="">
-                            @error('email')<div class="invalid-feedback">{{ $message }}</div> @enderror
+                            {{-- @error('email')<div class="invalid-feedback">{{ $message }}</div> @enderror --}}
 
                           </div>
+                          @error('email')<div class="text-danger " style="text-align:right;padding-top:5px;padding-right:10px;">{{ $message }}</div> @enderror
 
                         </div>
                         <div class="align-form">
@@ -119,9 +124,11 @@
                               <i class="fas fa-phone fa-lg"></i>
                             </div>
                             <input type="number" name="" wire:model.defer="state.phone" class="form-control  @error('phone') is-invalid @enderror" placeholder="موبایل" required="">
-                            @error('phone')<div class="invalid-feedback">{{ $message }}</div> @enderror
+                            {{-- @error('phone')<div class="invalid-feedback">{{ $message }}</div> @enderror --}}
 
                           </div>
+                          @error('phone')<div class="text-danger " style="text-align:right;padding-top:5px;padding-right:10px;">{{ $message }}</div> @enderror
+
                         </div>  
                    
                         {{-- <div class="align-form">

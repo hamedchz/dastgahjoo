@@ -39,7 +39,9 @@ class Product extends Model
         'isActive'
     ];
 
-
+    public function favorites(){
+        return $this->hasMany(Favorites::class,'product_id','id');
+    }
     public function orders(){
         return $this->morphToMany(Order::class,'orderable');
     }

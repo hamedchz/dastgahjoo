@@ -15,6 +15,10 @@
                 <label for="mobile"> موبایل</label>
                 <input type="text" wire:model.defer="state.mobile" class="form-control" id="mobile" readonly>
             </div>
+            <div class="form-group col-md-12">
+              <label for="mobile"> ایمیل</label>
+              <input type="text" wire:model.defer="state.email" class="form-control" id="mobile" readonly>
+          </div>
               <div class="form-group col-md-12">
               <label for="messageBody">متن پیام</label>
               <textarea class="form-control" id="messageBody" rows="6" wire:model.defer="state.description" readonly></textarea>

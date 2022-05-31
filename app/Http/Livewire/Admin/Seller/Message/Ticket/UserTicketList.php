@@ -2,10 +2,13 @@
 
 namespace App\Http\Livewire\Admin\Seller\Message\Ticket;
 
+use App\Models\Setting;
 use App\Models\Ticket;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
+use SoapClient;
 
 class UserTicketList extends Component
 {
@@ -33,6 +36,7 @@ class UserTicketList extends Component
 
     }
     public function storeTicket(){
+       
         $validatedData = Validator::make($this->state,
             [
                 'title' => 'required',
@@ -48,6 +52,8 @@ class UserTicketList extends Component
                     'description' => $this->state['description'],
                     'parent' => 0,
                 ]);
+                
+                $this->sendSmsCode(auth()->user()->mobile,$this->state['title'],auth()->user()->name);
                 if ($save) {
                     $this->dispatchBrowserEvent('hide-newTicket',['message'=> 'تیکت با موفقیت فرستاده شد','action'=>'success']);
                     (new \App\Models\Log)->storeLog($this->state['title'],'تیکت جدید','ایجاد');
@@ -58,6 +64,20 @@ class UserTicketList extends Component
         
 
            
+    }
+    public function sendSmsCode($mobile,$subject,$name)
+    {
+        $client = new SoapClient("http://188.0.240.110/class/sms/wsdlservice/server.php?wsdl");
+        $user = Setting::where('name','user_panel_for_sms')->pluck('value')->first();
+        $pass = Setting::where('name','password_panel_for_sms')->pluck('value')->first();
+        $fromNum = Setting::where('name','lineNumber_panel_for_sms')->pluck('value')->first();
+        $toNum = $mobile;
+        $pattern_code = "fsomamzmde8q1dy";
+        $input_data = array(
+            "name" => $name,
+            "subject" => $subject,
+        );
+        return $client ->sendPatternSms($fromNum, $toNum, $user, $pass, $pattern_code, $input_data);
     }
     public function render()
     {

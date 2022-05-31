@@ -40,7 +40,7 @@
 
         <!-- Top Bar Nav -->
         <ul class="right-side-content d-flex align-items-center">
-            <li class="nav-item dropdown">
+            {{-- <li class="nav-item dropdown">
                 <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="zmdi zmdi-volume-up" aria-hidden="true"></i> <span class="active-status"></span></button>
                 <div class="dropdown-menu dropdown-menu-right">
                     <!-- Top Notifications Area -->
@@ -58,7 +58,7 @@
                         </div>
                     </div>
                 </div>
-            </li>
+            </li> --}}
 
             <li class="nav-item dropdown">
                 <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> @if(auth()->user()->avatar <> 'N/A')

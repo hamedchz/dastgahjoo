@@ -22,21 +22,30 @@
                       </tr>
                     </thead>
                     <tbody>
-                     @foreach(Session::get('watchList') as $product)
+                     @forelse($favorites as $favorite)
                       <tr>
-                        <th scope="row">{{$product->id}}</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
+                        <th scope="row">{{$favorite->product->category->title}}</th>
+                        <td>
+                          <div >
+                            <img src="{{asset($favorite->product->images[0]->image)}}" alt="{{$favorite->product->name}}" style="width: 100px; height: 70px;">
+                          </div>
+                        </td>
+                        <td><a href="{{route('product.detail',$favorite->product->id)}}">{{$favorite->product->type_of_machine}}</a></td>
+                        <td><a href="{{route('product.detail',$favorite->product->id)}}">{{$favorite->product->manufacturer}}</a></td>
+                        <td><a href="{{route('product.detail',$favorite->product->id)}}">{{$favorite->product->model}}</a></td>
+                        <td>{{$favorite->product->year_of_manufacture}}</td>
+                        <td>{{$favorite->product->vendor->identityNumber}}</td>
+                        <td>{{$favorite->product->itemNo}}</td>
+                        @empty
+                        <td align="center" colspan="8">   
+                          هیچ موردی در لیست  دلخواه شما وجود ندارد!
+                        </td>
                       </tr>
-                      @endforeach
+                      @endforelse
                     </tbody>
                   </table>
             </div>
-            <div class="col-6 text center-align top-margin2 mx-auto">
-                {{-- <h1>هیچ موردی در لیست  دلخواه شما وجود ندارد!</h1> --}}
-                
-              </div>
+        
           </div>
         </div>
           </div>

@@ -74,7 +74,7 @@ class TicketsList extends Component
                 ]);
                 if ($answer && $update) {
                     $userInfo = User::where('id',$this->ticket->user_id)->first();
-                    $this->sendSmsCode($userInfo->mobile, $this->ticket->title);
+                    $this->sendSmsCode($this->ticket->user->mobile,$this->ticket->title,$this->ticket->user->name);
                     $this->resetInputAnswer();
                     $this->resetValidation();
                     $this->dispatchBrowserEvent('hide-editticket',['message' => 'تیکت با موفقیت فرستاده شد', 'action' => 'success']);
@@ -112,16 +112,17 @@ class TicketsList extends Component
            return $query->where('status',$status);
         })->latest()->paginate(20);
     }
-    public function sendSmsCode($mobile,$code)
+    public function sendSmsCode($mobile,$subject,$name)
     {
         $client = new SoapClient("http://188.0.240.110/class/sms/wsdlservice/server.php?wsdl");
         $user = Setting::where('name','user_panel_for_sms')->pluck('value')->first();
         $pass = Setting::where('name','password_panel_for_sms')->pluck('value')->first();
         $fromNum = Setting::where('name','lineNumber_panel_for_sms')->pluck('value')->first();
         $toNum = $mobile;
-        $pattern_code = "4itbwfw7pt";
+        $pattern_code = "5epx4qq254x43f8";
         $input_data = array(
-            "code" => $code,
+            "name" => $name,
+            "subject" => $subject,
         );
         return $client ->sendPatternSms($fromNum, $toNum, $user, $pass, $pattern_code, $input_data);
     }
