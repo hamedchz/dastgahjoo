@@ -143,6 +143,7 @@ Route::namespace('App\Http\Controllers\Auth')->group(function () {
     Route::get('/watchlist',WachList::class)->name('watch-list');
 
     Route::get('/result','\App\Http\Controllers\SearchResultController@result')->name('user.search');
+    Route::get('success-payment','App\Http\Controllers\PurchaseController@successPayment')->name('payment.success');
 
 
 // Route::get('/', function () {

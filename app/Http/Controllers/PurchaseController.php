@@ -255,12 +255,10 @@ class PurchaseController extends Controller
                 // $purchasedServicesSuccess->each->update([
                 //     'status' => Transaction::STATUS_SUCCESS,
                 // ]);
-                return redirect('/logout');
-
-             
-            //    $date = Verta::now();
-            //    $date = date('d m Y',strtotime($date));
-            //    return view('user.transaction.success-paid',compact('reciept','orders','date'));
+                auth()->logout();
+               $date = Verta::now();
+               $date = date('d m Y',strtotime($date));
+               return view('admin.payment-success',compact('reciept',$package->title,'date'));
 
             }catch(Exception|InvalidPaymentException $e){
                 if($e->getCode() < 0 ){
@@ -276,5 +274,10 @@ class PurchaseController extends Controller
             }
 
 
+    }
+
+    public function successPayment(){
+        
+        return view('admin.payment-success');
     }
 }
