@@ -25,11 +25,11 @@ class DashboardController extends Controller
     {
         $unreadMessages = Contactus::where('seen','unread')->latest()->take(5)->get();
         $newUsers = User::with('roles')->where('isActive',1)->where('mobile_verified_at','!=',"")->where('isAdmin',0)->latest()->take(5)->get();
-        $paidOrders = Order::with('user')->where('status','PAID')->where('isActive',1)->take(5)->get();
+        $paidOrders = Order::with('user')->where('status','PAID')->where('isActive',1)->latest()->take(5)->get();
         $packages = Packages::with('vendors')->where('isActive',1)->latest()->get();
         $logs = Log::with('user')->latest()->take(5)->get();
         $roles = User::with('roles')->get();
-        $tickets =Ticket::with('user')->where('parent',0)->where('status','OPEN')->take(5)->get();
+        $tickets =Ticket::with('user')->where('parent',0)->where('status','OPEN')->latest()->take(5)->get();
         $unansweredComment = Inquiries::with('user')->with('products')->where('status','PENDING')->where('parent',0)->latest()->take(5)->get();
        //users
          $userTicket = Ticket::where('user_id',auth()->user()->id)->where('parent',0)->latest()->take(5)->get();

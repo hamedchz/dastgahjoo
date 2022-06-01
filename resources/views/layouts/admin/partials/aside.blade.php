@@ -91,7 +91,7 @@
                 
               {{-- @if(Carbon\Carbon::now() < auth()->user()->vendor->package->packageHistories->endDate && auth()->user()->vendor->isApproved == 2 && App\Models\Product::whereBetween('created_at',[auth()->user()->vendor->package->packageHistories->startDate,auth()->user()->vendor->package->packageHistories->endDate])->count() <= auth()->user()->vendor->package->packageHistories->products) --}}
                 {{-- @if(auth()->user()->vendor->isApproved == 2) --}}
-                <li class="{{ request()->is('dashboard/user-product') == true ? 'active':''}} "><a href="{{route('user.products')}}"><i class="zmdi zmdi-layers"></i>محصولات</a></li>
+                <li class="{{ request()->is('dashboard/user-product') == true ? 'active':''}} "><a href="{{route('user.products')}}"><i class="zmdi zmdi-layers"></i><span>محصولات</span></a></li>
                 {{-- @endif --}}
                 {{-- @endif --}}
                 @endcan

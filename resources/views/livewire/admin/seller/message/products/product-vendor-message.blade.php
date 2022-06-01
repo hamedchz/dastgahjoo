@@ -33,13 +33,13 @@
                             <table id="datatable-buttons" class="table table-striped dt-responsive nowrap w-100">
                                 <thead>
                                     <tr>
-                                        <th class="status-semat">فرستنده</th>
+                                        <th >فرستنده</th>
                                         <th>محصول</th>
                                         <th>تلفن</th>
                                         <th>متن پیام</th>
                                         <th>نوع استعلام</th>
-                                        <th class="status-semat">وضعیت</th>
-                                        <th class="status-semat">تاریخ </th>
+                                        <th >وضعیت</th>
+                                        <th >تاریخ </th>
                                        
                                     </tr>
                                 </thead>
@@ -47,7 +47,7 @@
                                 <tbody>
                                     @forelse($messages as $msg)
                                     <tr>
-                                        <td class="status-semat">{{$msg->title}}</td>
+                                        <td >{{$msg->title}}</td>
                                         <td>{{$msg->products->name}}</td>
                                         <td>{{$msg->phone}}</td>
                                         <td>{{$msg->comment}}</td>
@@ -68,7 +68,7 @@
                                         </td>
                                         
                                         
-                                        <td class="status-semat">
+                                        <td >
                                             <select class="form-control form-select form-select-sm" aria-label=".form-select-sm example" wire:change="changeStatus({{$msg}},event.target.value)" >
                                                 
                                                 <option value="OPEN" {{$msg->status == 'OPEN' ? 'selected': ''}}>باز</option>
@@ -79,7 +79,7 @@
                                               </select>
                                         
                                         </td>
-                                        <td class="status-semat">{{$msg->created_at}}</td>
+                                        <td >{{$msg->created_at}}</td>
                                
                                         {{-- <td>
                                             <a href="" class="bg-success p-1 text-white" wire:click.prevent="showMessage({{$msg->id}})" style="font-size:10px;"> متن پیام</a>
@@ -106,6 +106,11 @@
 
 </div>
 @push('styles')
+<link rel="stylesheet" href="{{asset('admin/css/default-assets/datatables.bootstrap4.css')}}">
+<link rel="stylesheet" href="{{asset('admin/css/default-assets/responsive.bootstrap4.css')}}">
+<link rel="stylesheet" href="{{asset('admin/css/default-assets/buttons.bootstrap4.css')}}">
+<link rel="stylesheet" href="{{asset('admin/css/default-assets/select.bootstrap4.css')}}">
+
 <style>
     @media only screen and (max-width: 767px){
    .status-semat{
@@ -158,7 +163,7 @@
             $('#deleteProductMessage').modal('show')
         })
     </script>
-
+ {{-- <script src="/admin/js/default-assets/active.js"></script> --}}
 <script src="/admin/js/default-assets/jquery.datatables.min.js"></script>
 <script src="/admin/js/default-assets/datatables.bootstrap4.js"></script>
 <script src="/admin/js/default-assets/datatable-responsive.min.js"></script>
@@ -172,5 +177,5 @@
  <script src="/admin/js/default-assets/datatables.select.min.js"></script> 
  <script src="/admin/js/default-assets/demo.datatable-init.js"></script> 
 <script src="/admin/js/default-assets/bootstrap-growl.js"></script>
-<script src="/admin/js/default-assets/notification-active.js"></script>
+{{-- <script src="/admin/js/default-assets/notification-active.js"></script> --}}
 @endpush

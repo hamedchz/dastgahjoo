@@ -99,6 +99,11 @@
 
 </div>
 @push('styles')
+<link rel="stylesheet" href="{{asset('admin/css/default-assets/datatables.bootstrap4.css')}}">
+<link rel="stylesheet" href="{{asset('admin/css/default-assets/responsive.bootstrap4.css')}}">
+<link rel="stylesheet" href="{{asset('admin/css/default-assets/buttons.bootstrap4.css')}}">
+<link rel="stylesheet" href="{{asset('admin/css/default-assets/select.bootstrap4.css')}}">
+
 <style>
     @media only screen and (max-width: 767px){
    .status-semat{
@@ -142,4 +147,17 @@
             $('#newTicket').modal('show')
         })
     </script>
+    <script src="/admin/js/default-assets/jquery.datatables.min.js"></script>
+    <script src="/admin/js/default-assets/datatables.bootstrap4.js"></script>
+    <script src="/admin/js/default-assets/datatable-responsive.min.js"></script>
+    <script src="/admin/js/default-assets/responsive.bootstrap4.min.js"></script>
+    <script src="/admin/js/default-assets/datatable-button.min.js"></script>
+    <script src="/admin/js/default-assets/button.bootstrap4.min.js"></script>
+    <script src="/admin/js/default-assets/button.html5.min.js"></script>
+    <script src="/admin/js/default-assets/button.flash.min.js"></script>
+    <script src="/admin/js/default-assets/button.print.min.js"></script>
+     <script src="/admin/js/default-assets/datatables.keytable.min.js"></script> 
+     <script src="/admin/js/default-assets/datatables.select.min.js"></script> 
+     <script src="/admin/js/default-assets/demo.datatable-init.js"></script> 
+    <script src="/admin/js/default-assets/bootstrap-growl.js"></script>
 @endpush

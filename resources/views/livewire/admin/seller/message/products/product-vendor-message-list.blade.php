@@ -33,14 +33,14 @@
                             <table id="datatable-buttons" class="table table-striped dt-responsive nowrap w-100">
                                 <thead>
                                     <tr>
-                                        <th class="status-semat">فرستنده</th>
+                                        <th >فرستنده</th>
                                         <th>محصول</th>
-                                        <th class="status-semat">عنوان</th>
+                                        <th >عنوان</th>
                                         <th>موضوع</th>
                                         <th>متن پیام</th>
                                         <th>شماره محصول</th>
-                                        <th class="status-semat">وضعیت</th>
-                                        <th class="status-semat">تاریخ </th>
+                                        <th >وضعیت</th>
+                                        <th >تاریخ </th>
                                        
                                     </tr>
                                 </thead>
@@ -48,9 +48,9 @@
                                 <tbody>
                                     @forelse($messages as $msg)
                                     <tr>
-                                        <td class="status-semat">{{$msg->user->name}}</td>
+                                        <td >{{$msg->user->name}}</td>
                                         <td >{{$msg->products->name}}</td>
-                                        <td class="status-semat">{{$msg->title}}</td>
+                                        <td >{{$msg->title}}</td>
                                         <td>
                                           
                                             @if($msg->isPrice == 1)
@@ -68,7 +68,7 @@
                                         </td>
                                         <td>{{$msg->comment}}</td>
                                         <td>{{$msg->products->itemNo}}</td>
-                                        <td class="status-semat">
+                                        <td >
                                             <select class="form-control form-select form-select-sm" aria-label=".form-select-sm example" wire:change="changeStatus({{$msg}},event.target.value)" >
                                                 
                                                 <option value="OPEN" {{$msg->status == 'OPEN' ? 'selected': ''}}>باز</option>
@@ -79,7 +79,7 @@
                                               </select>
                                         
                                         </td>
-                                        <td class="status-semat">{{$msg->created_at}}</td>
+                                        <td >{{$msg->created_at}}</td>
                                
                                         {{-- <td>
                                             <a href="" class="bg-success p-1 text-white" wire:click.prevent="showMessage({{$msg->id}})" style="font-size:10px;"> متن پیام</a>

@@ -34,7 +34,7 @@ class Packages extends Model
     }
     public function vendors(){
 
-        return $this->belongsTo(Vendors::class);
+        return $this->hasMany(Vendors::class,'package_id','id');
     }
     
     public function packageHistories(){

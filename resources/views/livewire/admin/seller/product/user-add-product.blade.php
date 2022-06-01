@@ -124,27 +124,48 @@
                               @endif
                                 <div class="form-group col-lg-12 col-md-12">
                                   <label for="image">عکس  :(شما مجاز به آپلود {{$vendor->package->packageHistories->images}} عکس هستید)</label>
-                                  <input class="form-control form-control-sm @error('image') is-invalid @enderror" id="image" type="file" multiple wire:model.defer="state.image">
-                                  @error('image')<div class="invalid-feedback">{{ $message }}</div> @enderror
+                                  <div class="input-group cust-file-button mb-3">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input form-control  @error('image') is-invalid @enderror" id="inputGroupFile03" multiple wire:model.defer="state.image">
+                                        <label class="custom-file-label" for="inputGroupFile03">عکس محصولات </label>
+                                      </div>
+                                </div>
+                                {{-- @error('image')<div class="text-danger">{{ $message }}</div> @enderror
+                                <div class="col-md-12 mt-2">
+                                  @if ($state->image)
+                                    <div class="mt-5 justify-content-center align-items-center">
+                                    @foreach ($state->image as $ph)
+                                    <img src="{{ $ph->temporaryUrl() }}"  class='pr-2 mb-1 shadow mr-3' style='width:70px;height:70px;' >
+                                    @endforeach
+                                    </div>
+                                  @endif
+                                </div> --}}
                                 </div>
                                 @if($vendor->package->packageHistories->logo == 'YES')
                                 <div class="form-group col-lg-12 col-md-12">
                                   <label for="logo">لوگو </label>
-                                  <input class="form-control form-control-sm @error('logo') is-invalid @enderror" id="logo" type="file"  wire:model.defer="logo">
-                                  @error('logo')<div class="invalid-feedback">{{ $message }}</div> @enderror
+                                  <div class="input-group cust-file-button mb-3">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input form-control  @error('logo') is-invalid @enderror" id="inputGroupFile03" wire:model.defer="logo">
+                                        <label class="custom-file-label" for="inputGroupFile03">عکس لوگو </label>
+                                      </div>
+                                </div>
+                                @error('logo')<div class="text-danger">{{ $message }}</div> @enderror
                                 </div>
                                 @endif
                                 @if($vendor->package->packageHistories->video == 'YES')
                                 <div class="form-group col-lg-12 col-md-12">
                                   <label for="video">ویدیو  :</label>
-                                  <input class="form-control form-control-sm @error('video') is-invalid @enderror" id="video" type="file"  wire:model.defer="video">
-                                  @error('video')<div class="invalid-feedback">{{ $message }}</div> @enderror
+                                  <div class="input-group cust-file-button mb-3">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input form-control  @error('video') is-invalid @enderror" id="inputGroupFile03" wire:model.defer="video">
+                                        <label class="custom-file-label" for="inputGroupFile03"> ویدیو </label>
+                                      </div>
                                 </div>
+                                @error('video')<div class="text-danger">{{ $message }}</div> @enderror
+                                </div>
+                                
                                 @endif
-                                {{-- <div class="custom-file col-lg-8 col-md-8">
-                                  <input type="file" class="custom-file-input" id="customFile">
-                                  <label class="custom-file-label" for="customFile">Choose file</label>
-                                </div> --}}
                                 <div class="form-group col-md-12" wire:ignore>
                                     <label for="description"> توضیحات </label>
                                     <textarea class="form-control" id="description" rows="15" cols="15" wire:model.defer="state.description" data-description="@this"></textarea>    
@@ -373,6 +394,6 @@
  <script src="/admin/js/default-assets/datatables.select.min.js"></script> 
  <script src="/admin/js/default-assets/demo.datatable-init.js"></script> 
 <script src="/admin/js/default-assets/bootstrap-growl.js"></script>
-<script src="/admin/js/default-assets/notification-active.js"></script>
+{{-- <script src="/admin/js/default-assets/notification-active.js"></script> --}}
     @endpush
 </div>

@@ -67,7 +67,7 @@
                                             {{-- <a href="" wire:click.prevent="removeConfirmation({{$order->id}})" style="font-size:20px;"><i class="fa fa-trash" style="color:#dc3545;"></i></a> --}}
                                          </td>
                                         @empty
-                                        <td align="center" colspan="4" style="background-color:#e1e1e1;">داده ای وجود ندارد</td>
+                                        <td align="center" colspan="4"  style="background-color:#e1e1e1;">داده ای وجود ندارد</td>
                                     </tr>
                                     @endforelse
                                 </tbody>

@@ -55,7 +55,7 @@
                                         <td class="status-semat">{{$package->file}}</td>
                                         <td style="font-size:10px;" class="status-semat badge  p-3 {{$package->isActive == 1 ? 'badge-success': 'badge-danger'}}">{{$package->isActive == 1 ? 'فعال': 'غیرفعال'}}</td>
                                         <td>
-                                            <a href="" wire:click.prevent="editPackage({{$package}})" style="font-size:20px;"><i class="fa fa-percent" style="color:#0cf504;" title="اعمال تخفیف"></i></a>
+                                            {{-- <a href="" wire:click.prevent="editPackage({{$package}})" style="font-size:20px;"><i class="fa fa-percent" style="color:#0cf504;" title="اعمال تخفیف"></i></a> --}}
                                             <a href="" wire:click.prevent="editPackage({{$package}})" style="font-size:20px;"><i class="fa fa-edit" style="color:#04a9f5;"></i></a>
                                             <a href="" wire:click.prevent="removeConfirmation({{$package->id}})" style="font-size:20px;"><i class="fa fa-trash" style="color:#dc3545;"></i></a>
                                         </td>

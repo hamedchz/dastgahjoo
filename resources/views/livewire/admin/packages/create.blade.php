@@ -16,11 +16,17 @@
                   <input type="text" wire:model.defer="state.title" class="form-control @error('title') is-invalid @enderror" id="title" placeholder="نام پکیج">
                   @error('title')<div class="invalid-feedback">{{ $message }}</div> @enderror
               </div>
+
               <div class="form-group col-md-6">
                   <label for="price">قیمت</label>
                   <input type="number" wire:model.defer="state.price" class="form-control @error('price') is-invalid @enderror" id="price" placeholder="قیمت">
                   @error('price')<div class="invalid-feedback">{{ $message }}</div> @enderror
               </div>
+              <div class="form-group col-md-6">
+                <label for="discount">تخفیف</label>
+                <input type="number" wire:model.defer="discount" class="form-control @error('discount') is-invalid @enderror" id="discount" placeholder="تخفیف">
+                @error('discount')<div class="invalid-feedback">{{ $message }}</div> @enderror
+            </div>
               <div class="form-group col-md-6">
                   <label for="label">برچسب</label>
                   <input type="text" wire:model.defer="state.label" class="form-control @error('label') is-invalid @enderror" id="label" placeholder="برچسب">

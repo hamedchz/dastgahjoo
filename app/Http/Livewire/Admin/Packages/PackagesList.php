@@ -14,7 +14,7 @@ class PackagesList extends Component
     
     public $state = [];
     public $editStatus = false;
-    public $package;
+    public $package,$discount;
     public $removePackageId = null;
 
     public function resetInputForm(){
@@ -77,7 +77,7 @@ class PackagesList extends Component
             $discount = Discounts::create([
                 'package_id' => $packageStore->id,
                 'name' => $validatedData['title'],
-                'percentage' => 0,
+                'percentage' => $this->discount,
             ]);
             $this->resetInputForm();
             $this->dispatchBrowserEvent('closeNewPackage', ['message' => 'پکیج جدید با موفقیت اضافه شد','action'=>'success']);
@@ -94,6 +94,7 @@ class PackagesList extends Component
         $this->editStatus = true;
         $this->package = $package;
         $this->state = $package->toArray();
+        $this->discount = $package->discount->percentage;
         $this->dispatchBrowserEvent('addNewPackage');
 
     }
@@ -138,8 +139,13 @@ class PackagesList extends Component
         ])->validate();
 
         $update = $this->package->update($validatedData);
-        $this->resetInputForm();
         if($update) {
+            $update = $this->package->discount->update([
+                'package_id' => $this->package->id,
+                'name' => $validatedData['title'],
+                'percentage' => $this->discount,
+            ]);
+            $this->resetInputForm();
             $this->dispatchBrowserEvent('closeNewPackage', ['message' => 'پکیج  با موفقیت ویرایش شد' ,'action' => 'success']);
             (new \App\Models\Log)->storeLog($validatedData['title'],'آپدیت کردن پکیج','ویرایش ');
         }else{
