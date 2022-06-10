@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Str;
+use Intervention\Image\ImageManagerStatic as Image;
+
 
 class UserAddProduct extends Component
 {
@@ -36,6 +38,7 @@ class UserAddProduct extends Component
 
     public function addNew(){
         $ValidateData = Validator::make($this->state,[
+            'category_id' => 'required',
             'quantity' => 'required',
             'year_of_manufacture' => 'required',
             'price' => 'required',
@@ -53,6 +56,7 @@ class UserAddProduct extends Component
             'description' => 'sometimes',
             'site_url' => 'sometimes'
         ],[
+           'category_id.required' => 'این فیلد نمیتواند خالی باشد',
            'quantity.required' => 'این فیلد نمیتواند خالی باشد',
            'year_of_manufacture.required' => 'این فیلد نمیتواند خالی باشد',
            'price.required' => 'این فیلد نمیتواند خالی باشد',
@@ -87,7 +91,11 @@ class UserAddProduct extends Component
             $ValidateData['category_id'] = $this->state['category'];
             $cat = Category::where('id',$this->state['category'])->first();
             $ValidateData['slug'] = $cat->slug.'/'. $this->slugify($ValidateData['name']);
-            $ValidateData['subcategory_id'] = null;
+            if($this->state['subcategory_id']){ 
+                $ValidateData['subcategory_id'] = $this->state['subcategory_id'];
+            }else{
+                $ValidateData['subcategory_id'] = null;
+            }
         // }
         //$ValidateData['vandor_id'] = $this->vendor->id;
         if(empty($ValidateData['site_url'])){
@@ -183,14 +191,16 @@ class UserAddProduct extends Component
           }
       public function uploadImage($image)
       {
-          $year = now()->year;
-          $month = now()->month;
+        //   $year = now()->year;
+        //   $month = now()->month;
         //   $directory = "/storage/images/products/$year/$month";
-          $directory = "/images/products/$year/$month";
+        //   $directory = "/images/products/$year/$month/";
           $name = time() . '-' . Str::random(15).$image->getClientOriginalName();
           $name = str_replace(' ', '-', $name);
-          $image->storeAs($directory, $name);
-          return "/storage$directory/$name";
+          Image::make($image)->resize(600,600)->insert(public_path('admin/img/watermarknew.png'),'center')->save(public_path("/images/products/" . $name));
+
+        //   $image->storeAs($directory, $name);
+          return "/images/products/$name";
       }
       public function uploadVideo($image)
       {

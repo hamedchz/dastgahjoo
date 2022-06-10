@@ -16,6 +16,9 @@ class ProductDetail extends Component
 
     public function mount($id){
         $product = Product::with('images')->where('id',$id)->first();
+        $product->update([
+            'view' => ($product->view)+1,
+       ]);
         $this->product = $product;
 
     }

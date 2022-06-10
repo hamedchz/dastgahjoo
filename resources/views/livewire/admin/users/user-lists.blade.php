@@ -97,11 +97,11 @@
                                                     @endif
                                                 </td>
                                                 <td class="accept">
+                                                    
                                                     @if($user->name == 'seller')
                                                     <select class="form-control" wire:change = "changeApproved({{$us->vendor}},event.target.value)">
-                                                        <option value="1" {{$us->vendor->isApproved == 1 ? 'selected':''}} >در حال بررسی</option>
-                                                        <option value="2" {{$us->vendor->isApproved == 2 ? 'selected':''}}>تایید شده</option>
-                                                        <option value="3" {{$us->vendor->isApproved == 3 ? 'selected':''}}>تایید نشده</option>
+                                                        <option value="1" {{$us->vendor->isQualified == 1 ? 'selected' :''}}>تایید شده</option>
+                                                        <option value="0" {{$us->vendor->isQualified == 0 ? 'selected' :''}}>تایید نشده</option>
 
                                                     </select>
                                                     @endif

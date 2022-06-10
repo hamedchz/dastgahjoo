@@ -143,8 +143,10 @@ class CategoryList extends Component
     }
 
     public function removeCategory(){
+       
         $cat = Category::findOrFail($this->removeId);
-        $sub = $cat->parent()->delete();
+       
+        $sub = $cat->parents()->delete();
         // $products = $cat->products()->
         $delete = $cat->delete();
         if($delete){

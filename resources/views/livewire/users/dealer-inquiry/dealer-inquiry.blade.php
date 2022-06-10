@@ -171,9 +171,9 @@
                       <div class="col-lg-12">
                         <div class="align-form">
                           <p class="d-inline">لطفا نوع استعلام را انتخاب کنید:</p>
-                              <div class="category-checkbox d-inline ml-4">
+                              <div class="category-checkbox d-inline ml-4" >
                                       <label class="options">
-                              <input type="checkbox" name="" checked value=""  wire:model.defer="state.isPrice">
+                              <input type="checkbox"   checked value="1"  wire:model="state.isPrice">
                                <span class="label-text">قیمت</span>
                                       </label>
                                   </div>

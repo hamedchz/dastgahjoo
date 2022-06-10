@@ -16,10 +16,10 @@
                 @if(auth()->user()->isAdmin == 1)
                 @canany(['category','products'])
                 <li class="treeview {{ request()->is('dashboard/products') == true ? 'menu-open':''}} {{ request()->is('dashboard/categories') == true ? 'menu-open':''}} {{ request()->is('dashboard/subcategories-list/*') == true ? 'menu-open':''}}">
-                    <a href="javascript:void(0)"><i class="fa fa-shopping-bag"></i> <span>محصولات</span> <i class="fa fa-angle-left"></i></a>
+                    <a href="javascript:void(0)"><i class="fa fa-shopping-bag"></i> <span>ماشین آلات</span> <i class="fa fa-angle-left"></i></a>
                     <ul class="treeview-menu"  {{ request()->is('dashboard/categories') == true ? "style=display:block;":''}} {{ request()->is('dashboard/subcategories-list/*') == true ? "style=display:block;":''}} {{ request()->is('dashboard/products') == true ? "style=display:block;":''}}>
-                        <li class="{{ request()->is('dashboard/categories') ? 'active':''}} {{ request()->is('dashboard/subcategories-list/*') ? 'active':''}}"><a href="{{route('admin.category')}}">دسته بندی</a></li>
-                        <li class="{{ request()->is('dashboard/products') ? 'active':''}}"><a href="{{route('admin.products')}}">لیست محصولات</a></li>
+                        <li class="{{ request()->is('dashboard/categories') ? 'active':''}} {{ request()->is('dashboard/subcategories-list/*') ? 'active':''}}"><a href="{{route('admin.category')}}">گروه اصلی </a></li>
+                        <li class="{{ request()->is('dashboard/products') ? 'active':''}}"><a href="{{route('admin.products')}}">لیست ماشین آلات</a></li>
                     </ul>
                 </li>
                 @endcanany
@@ -57,9 +57,9 @@
                 <li class="{{ request()->is('dashboard/users') == true ? 'active':''}}"><a href="{{route('admin.users')}}"><i class="fa fa-users"></i><span>کاربران</span></a></li>
                 @endcanany
                 @canany(['settings','location','edit-homepage'])
-                <li class="treeview {{ request()->is('dashboard/index-edit') == true ? 'menu-open':''}}  {{ request()->is('dashboard/provinces') == true ? 'menu-open':''}}  {{ request()->is('dashboard/cities/*') == true ? 'menu-open':''}} ">
+                <li class="treeview {{ request()->is('dashboard/about-us') == true ? 'menu-open':''}} {{ request()->is('dashboard/faq') == true ? 'menu-open':''}}  {{ request()->is('dashboard/index-edit') == true ? 'menu-open':''}}  {{ request()->is('dashboard/provinces') == true ? 'menu-open':''}}  {{ request()->is('dashboard/cities/*') == true ? 'menu-open':''}} ">
                     <a href="javascript:void(0)"><i class="zmdi zmdi-settings" ></i> <span>تنظیمات</span> <i class="fa fa-angle-left"></i></a>
-                    <ul class="treeview-menu"   {{ request()->is('dashboard/index-edit') == true ? "style=display:block;":''}} {{ request()->is('dashboard/provinces') == true ? "style=display:block;":''}}  {{ request()->is('dashboard/cities/*') == true ? "style=display:block;":''}}>
+                    <ul class="treeview-menu" {{ request()->is('dashboard/about-us') == true ? "style=display:block;":''}} {{ request()->is('dashboard/faq') == true ? "style=display:block;":''}} {{ request()->is('dashboard/index-edit') == true ? "style=display:block;":''}} {{ request()->is('dashboard/provinces') == true ? "style=display:block;":''}}  {{ request()->is('dashboard/cities/*') == true ? "style=display:block;":''}}>
                         <!-- تنظیمات فوتر-برچسب ها-تنظیمات عمومی(لوگو و ...) -  -->
                         @can('edit-homepage')
                         <li  class="{{ request()->is('dashboard/index-edit') == true ? 'active':''}}"><a href="{{route('admin.index-edit')}}">تنظیمات صفحه اول</a></li>
@@ -67,6 +67,12 @@
                         @can('location')
                         <!-- استان و شهر و ... -  -->
                         <li class="{{ request()->is('dashboard/provinces') == true ? 'active':''}}  {{ request()->is('dashboard/cities/*') == true ? 'active':''}}"><a href="{{route('admin.provinces')}}">استان هاو شهرها</a></li>
+                        @endcan
+                        @can('faq')
+                        <li class="{{ request()->is('dashboard/faq') == true ? 'active':''}}"><a href="{{route('admin.faq')}}"> سؤالات متداول </a></li>
+                        @endcan
+                        @can('aboutus')
+                        <li class="{{ request()->is('dashboard/about-us') == true ? 'active':''}}"><a href="{{route('admin.about-us')}}"> درباره ما  </a></li>
                         @endcan
                     </ul>
                 </li>
@@ -91,7 +97,7 @@
                 
               {{-- @if(Carbon\Carbon::now() < auth()->user()->vendor->package->packageHistories->endDate && auth()->user()->vendor->isApproved == 2 && App\Models\Product::whereBetween('created_at',[auth()->user()->vendor->package->packageHistories->startDate,auth()->user()->vendor->package->packageHistories->endDate])->count() <= auth()->user()->vendor->package->packageHistories->products) --}}
                 {{-- @if(auth()->user()->vendor->isApproved == 2) --}}
-                <li class="{{ request()->is('dashboard/user-product') == true ? 'active':''}} "><a href="{{route('user.products')}}"><i class="zmdi zmdi-layers"></i><span>محصولات</span></a></li>
+                <li class="{{ request()->is('dashboard/user-product') == true ? 'active':''}} "><a href="{{route('user.products')}}"><i class="zmdi zmdi-layers"></i><span>ماشین آلات</span></a></li>
                 {{-- @endif --}}
                 {{-- @endif --}}
                 @endcan

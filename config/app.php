@@ -161,6 +161,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        
 
         /*
          * Package Service Providers...
@@ -181,7 +182,7 @@ return [
         Anetwork\Validation\PersianValidationServiceProvider::class,
         Shetabit\Payment\Provider\PaymentServiceProvider::class,
         Artesaos\SEOTools\Providers\SEOToolsServiceProvider::class,
-
+        Intervention\Image\ImageServiceProvider::class
 
     ],
 
@@ -242,6 +243,7 @@ return [
         'Image' => Intervention\Image\Facades\Image::class,
         'Payment' => Shetabit\Payment\Facade\Payment::class,
         'SEO' => Artesaos\SEOTools\Facades\SEOTools::class,
+        'Image' => Intervention\Image\Facades\Image::class
 
     ],
 

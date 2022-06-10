@@ -8,7 +8,7 @@
                 <h1 class="text-white"><strong>درباره ما</strong></h1>
                 <div class="description">
                   <p>
-                    <strong><a id="login" class="btn-all btn-green " href="contact-us.html">تماس با ما</a>
+                    <strong><a id="login" class="btn-all btn-green " href="{{route('contact-us')}}">تماس با ما</a>
                     </strong>
                   </p>
                 </div>
@@ -23,19 +23,12 @@
                       <svg class="svg-inline--fa fa-building fa-w-14 fa-lg" aria-hidden="true" data-prefix="fas" data-icon="building" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M436 480h-20V24c0-13.255-10.745-24-24-24H56C42.745 0 32 10.745 32 24v456H12c-6.627 0-12 5.373-12 12v20h448v-20c0-6.627-5.373-12-12-12zM128 76c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v40c0 6.627-5.373 12-12 12h-40c-6.627 0-12-5.373-12-12V76zm0 96c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v40c0 6.627-5.373 12-12 12h-40c-6.627 0-12-5.373-12-12v-40zm52 148h-40c-6.627 0-12-5.373-12-12v-40c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v40c0 6.627-5.373 12-12 12zm76 160h-64v-84c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v84zm64-172c0 6.627-5.373 12-12 12h-40c-6.627 0-12-5.373-12-12v-40c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v40zm0-96c0 6.627-5.373 12-12 12h-40c-6.627 0-12-5.373-12-12v-40c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v40zm0-96c0 6.627-5.373 12-12 12h-40c-6.627 0-12-5.373-12-12V76c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v40z"></path></svg>
                     </div>
                     <div class="about-label">
-                      <h2>پایه گذاری</h2>
-                      <p>
-                        هنگامی که شبکه جهانی وب در اوایل دهه 1990 بوجود آمد، ایده ای توسط دو بنیانگذار Edgar Keser و
-                         Thomas Grün مطرح شد تا از فرصت های جدید برای 
-                         مفاهیم جدید فروش و بازاریابی استفاده کنند. پس از یک دوره طولانی تجزیه و تحلیل و بررسی، به نظر ما رسید
-                          که به ویژه تجارت ماشینی برای مقاصد ما مقدر شده است. در مقایسه با سایر کالاها مانند اتومبیل یا املاک،
-                          بازار کوچکتر و در درجه اول خاص تر برای خریداران در دسترس بود که اغلب به صورت محلی از هم جدا می شد.
-                          به عنوان یک مهندس مکانیک واجد شرایط، این انتخاب به قلب آخرین بنیانگذار، توماس گرون، نزدیک بود. </p>   
-                       </div>
+                       {!!$about->body!!}
+                    </div>
                   </div>
                 </article>
                     <!-- بخش دوم -->
-                <article class="about-entry">
+                {{-- <article class="about-entry">
                   <div class="about-entry-inner">
                     <div class="about-icon bg-primary">
                       <svg class="svg-inline--fa fa-trophy fa-w-18 fa-lg" aria-hidden="true" data-prefix="fas" data-icon="trophy" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M552 64H448V24c0-13.3-10.7-24-24-24H152c-13.3 0-24 10.7-24 24v40H24C10.7 64 0 74.7 0 88v56c0 35.7 22.5 72.4 61.9 100.7 31.5 22.7 69.8 37.1 110 41.7C203.3 338.5 240 360 240 360v72h-48c-35.3 0-64 20.7-64 56v12c0 6.6 5.4 12 12 12h296c6.6 0 12-5.4 12-12v-12c0-35.3-28.7-56-64-56h-48v-72s36.7-21.5 68.1-73.6c40.3-4.6 78.6-19 110-41.7 39.3-28.3 61.9-65 61.9-100.7V88c0-13.3-10.7-24-24-24zM99.3 192.8C74.9 175.2 64 155.6 64 144v-16h64.2c1 32.6 5.8 61.2 12.8 86.2-15.1-5.2-29.2-12.4-41.7-21.4zM512 144c0 16.1-17.7 36.1-35.3 48.8-12.5 9-26.7 16.2-41.8 21.4 7-25 11.8-53.6 12.8-86.2H512v16z"></path></svg>
@@ -52,9 +45,9 @@
                           اینترنت آسان تر از پیاده سازی یک مدل جدید و به ویژه مطرح کردن این مفهوم به عنوان یک شروع است. </p>        
                      </div>
                   </div>
-                </article>
+                </article> --}}
                     <!-- بخش سوم -->
-                <article class="about-entry">
+                {{-- <article class="about-entry">
                   <div class="about-entry-inner">
                     <div class="about-icon bg-primary">
                       <svg class="svg-inline--fa fa-chart-line fa-w-16 fa-lg" aria-hidden="true" data-prefix="fas" data-icon="chart-line" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
@@ -71,9 +64,9 @@
                          و مسافت های طولانی را بین فعالان بازار دربر گرفت. </p>
                        </div>
                   </div>
-                </article>
+                </article> --}}
                     <!-- بخش چهارم -->
-                <article class="about-entry">
+                {{-- <article class="about-entry">
                   <div class="about-entry-inner">
                     <div class="about-icon bg-primary">
                       <svg class="svg-inline--fa fa-thumbs-up fa-w-16 fa-lg" aria-hidden="true" data-prefix="far" data-icon="thumbs-up" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
@@ -108,7 +101,7 @@
                          <a href="membership.html" target="TOP" >قیمت‌ها و شرایط تبلیغات بنری</a> ما را ببینید. </p>
                       </div>
                   </div>
-                </article>
+                </article> --}}
                 <article class="about-entry begin">
                   <div class="about-entry-inner">
                     <div class="about-icon" >

@@ -191,7 +191,7 @@ class UserLists extends Component
 
     public function changeApproved(Vendors $vendor,$value){
         $update = $vendor->update([
-            'isApproved' => $value
+            'isQualified' => $value
         ]);
         if($update){
             (new \App\Models\Log)->storeLog($vendor->id,'  تغییر وضعیت کاربر ','ویرایش ');

@@ -308,8 +308,13 @@
                       <div class="cost-info" style="padding: 5px 0px 15px 0px;border-left: 1px solid #CCC;">
                         <div class="cost-now">
                           @if($package->discount->percentage <> 0)
-                          <span class="onsale">{{$package->price}} تومان</span>
-                        
+                          <span class="onsale">
+                          {{$package->price}} تومان
+                          </span>
+                          @else
+                          <span class="onsale" style="opacity:0;">
+                            {{$package->price}} تومان
+                          </span>
                           @endif
                           <span>{{($package->price)-(($package->price)*($package->discount->percentage/100))}} تومان</span></div>
                         <div class="cost-try mb-2"><b>   ماهانه</b></div>
@@ -328,7 +333,7 @@
                     <div class="table-row" style="display: flex; justify-content: center; line-height: 4;
                    ">
                       <div class="table-title-lg" style="width: 20%;border-left: 1px solid #CCC;border-right: 1px solid #CCC;">تعداد   کالا <span data-title="(همزمان)" tabindex="0">
-                        <i class="far fa-question-circle fa-sm"></i></span></div>
+                        <i class="far fa-question-circle fa-sm" title="تعداد کالاهای قابل آپلود هر پکیج"></i></span></div>
                         @foreach($packages as $package)
                       <div style="width: 20%;border-left: 1px solid #CCC;"><strong>{{$package->products}}</strong></div>
                     
@@ -365,7 +370,7 @@
                     <div class="table-row" style="display: flex;justify-content: center;  line-height: 4;
                     ">
                       <div class="table-title-lg" style="width: 20%;border-left: 1px solid #CCC;border-right: 1px solid #CCC;">  ویدیو  <span data-title="(حداکثر 8 عکس برای هر دستگاه)" tabindex="0">
-                                 <i class="far fa-question-circle fa-sm"></i></span></div>
+                                 <i class="far fa-question-circle fa-sm" title="تعداد ویدیوهای قابل آپلود هر پکیج"></i></span></div>
                                  @foreach($packages as $package)
                                  @if($package->video == 'YES')
                                  <div style="width: 20%;border-left: 1px solid #CCC;"><img alt="check" src="{{asset('frontend/img/check-mark-16.png')}}"></div>
@@ -401,7 +406,7 @@
                     <div class="table-row" style="display: flex; justify-content: center; line-height: 4;
                     ">
                       <div class="table-title-lg" style="width: 20%;border-left: 1px solid #CCC;border-right: 1px solid #CCC;">امکان اضافه کردن لوگو  <span data-title="(پیوندی به لیست ماشین شما در پست های شما نمایش داده می شود)" tabindex="0">
-                        <i class="far fa-question-circle fa-sm"></i></span></div>
+                        <i class="far fa-question-circle fa-sm" title="امکان اضافه کردن لوگوی فروشنده"></i></span></div>
                       {{-- <div style="width: 20%;border-left: 1px solid #CCC;"></div> --}}
                       @foreach($packages as $package)
                       @if($package->logo == 'YES')

@@ -229,12 +229,14 @@
             </ul> 
   
         <div class="card ribbon-card mx-auto" >
+          @if($product->vendor->isQualified == 1)
            <div class="ribbon-wrapper-red ribbon-dealer">
             <div class="ribbon-red">
               <span>فروشنده</span>
               <span>تایید شده</span>
             </div>
           </div>
+          @endif
 
           <div class="seller-header">
         <div class="center-align">

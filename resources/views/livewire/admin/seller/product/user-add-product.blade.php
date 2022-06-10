@@ -23,7 +23,7 @@
                                
                                 <div class="form-group col-md-6">
                                     <label for="category">دسته بندی</label>
-                                    <select class="custom-select" id="category" wire:change.defer = "changeCategory(event.target.value)">
+                                    <select class="custom-select @error('category_id') is-invalid @enderror" id="category" wire:model.defer="state.category_id" wire:change.defer = "changeCategory(event.target.value)">
                                         <option selected>انتخاب کنید</option>
                                         @forelse($categories as $category)
                                         <option value="{{$category->id}}">{{$category->title}}</option>
@@ -31,12 +31,12 @@
                                         <option>دسته بندی وجود ندارد</option>
                                         @endforelse
                                     </select>
-                                    @error('category')<div class="invalid-feedback">{{ $message }}</div> @enderror
+                                    @error('category_id')<div class="invalid-feedback">{{ $message }}</div> @enderror
                                 </div>
                     
                                 <div class="form-group col-md-6">
                                   <label for="subcategory"> زیر دسته بندی</label>
-                                  <select class="custom-select" wire:model.defer="state.subcategory">
+                                  <select class="custom-select" wire:model.defer="state.subcategory_id">
                                     @if($subCategory <> null)
                                       <option  value="" selected>انتخاب کنید</option>
                                       @forelse($subCategory as $category)
@@ -46,7 +46,7 @@
                                       @endforelse
                                     @endif
                                 </select>
-                                 @error('subcategory')<div class="invalid-feedback">{{ $message }}</div> @enderror
+                                 @error('subcategory_id')<div class="invalid-feedback">{{ $message }}</div> @enderror
                                 </div>
                                 <div class="form-group col-md-6">
                                   <label for="slug">نام دستگاه</label>
@@ -86,8 +86,8 @@
                                   <div class="form-group col-md-6">
                                     <label for="isStock">نوع کالا</label>
                                     <select class="custom-select" id="isStock">
-                                      <option selected>انتخاب کنید</option>
-                                      <option value="1">نو</option>
+                                      
+                                      <option value="1" selected>نو</option>
                                       <option value="2">دست دوم</option>
                                   </select>                                  
                                     @error('isStock')<div class="invalid-feedback">{{ $message }}</div> @enderror
@@ -95,8 +95,8 @@
                                   <div class="form-group col-md-6">
                                     <label for="isInstallments">امکان اقساط وجود دارد</label>
                                     <select class="custom-select" id="isInstallments">
-                                      <option selected>انتخاب کنید</option>
-                                      <option value="0">خیر</option>
+                                    
+                                      <option value="0" selected>خیر</option>
                                       <option value="1">بله </option>
                                   </select>                                  
                                     @error('isInstallments')<div class="invalid-feedback">{{ $message }}</div> @enderror
@@ -104,8 +104,8 @@
                                   <div class="form-group col-md-6">
                                     <label for="isSold">وضعیت فروش</label>
                                     <select class="custom-select" id="isSold">
-                                      <option selected>انتخاب کنید</option>
-                                      <option value="0">فروشی </option>
+                                      
+                                      <option value="0" selected>فروشی </option>
                                       <option value="1">فروخته شده</option>
                                   </select>                                  
                                     @error('isSold')<div class="invalid-feedback">{{ $message }}</div> @enderror

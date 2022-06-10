@@ -31,6 +31,7 @@ class DashboardController extends Controller
         $roles = User::with('roles')->get();
         $tickets =Ticket::with('user')->where('parent',0)->where('status','OPEN')->latest()->take(5)->get();
         $unansweredComment = Inquiries::with('user')->with('products')->where('status','PENDING')->where('parent',0)->latest()->take(5)->get();
+        $newProducts = Product::where('status','pending')->latest()->take(5)->get();
        //users
          $userTicket = Ticket::where('user_id',auth()->user()->id)->where('parent',0)->latest()->take(5)->get();
         $userOrders = Order::where('user_id',auth()->user()->id)->latest()->take(5)->get();
@@ -48,7 +49,7 @@ class DashboardController extends Controller
         )->latest()->take(5)->get();
         return view('admin.dashboard',compact('vendororders','vendorInqueries','userTicket','userOrders','packages','logs','roles','unansweredComment','tickets','paidOrders','newUsers','unreadMessages'));
        }else{
-        return view('admin.dashboard',compact('userTicket','userOrders','packages','logs','roles','unansweredComment','tickets','paidOrders','newUsers','unreadMessages'));
+        return view('admin.dashboard',compact('newProducts','userTicket','userOrders','packages','logs','roles','unansweredComment','tickets','paidOrders','newUsers','unreadMessages'));
    
        }
     }

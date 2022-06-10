@@ -926,12 +926,14 @@
                 </div> --}}
           </div>
           <div class="display-align top-group-verified">
+            @if($product->vendor->isQualified == 1)
                    <div class="ribbon-wrapper-red">
                 <div class="ribbon-red">
                   <span>فروشنده</span>
                   <span>تایید شده</span>
                 </div>
               </div>
+            @endif  
                   <div class="col-md-12 col-lg-3">
               <div class="display-align picture-box">
                 <div class="col-sm center-align fill">
@@ -991,7 +993,9 @@
               <div class="display-align bottom-pad pr-2" style="line-height: 2;">
                 <div class="col-sm-8 col-mobile right-align">
                   <div class="owner" style="font-size: 0.8rem; font-weight: 650;">
+                    @if($product->vendor->isQualified == 1)
                     <span class="badge" style="background-color: #e35d6a; color: white;">رتبه بالا</span>
+                    @endif
                      فروشنده: 
                      <img  style="height: 12px;"> {{$product->vendor->user->name}} 
                </div>

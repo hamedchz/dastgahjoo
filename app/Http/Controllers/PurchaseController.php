@@ -44,6 +44,9 @@ class PurchaseController extends Controller
     public function purchase(Packages $package){
         $user = Auth::user();
         $discount = Discounts::select('percentage')->where('package_id',$package->id)->first();
+        if(($package->price)-(($package->price)*($discount->percentage/100)) == 0){
+        $this->freePackage($package->id);
+        }else{
         
         // $package = Packages::findOrFail($id);
         // $existPackage = Order::where('user_id',Auth::id())->whereHasMorph('orderable',[Packages::class],
@@ -140,7 +143,8 @@ class PurchaseController extends Controller
             $transaction->save();
             return 'خطا در پرداخت وجود دارد';
 
-        }
+          }
+         }
         }
 
         public function result(Request $request,$id){
@@ -258,7 +262,8 @@ class PurchaseController extends Controller
                 auth()->logout();
                $date = Verta::now();
                $date = date('d m Y',strtotime($date));
-               return view('admin.payment-success',compact('reciept',$package->title,'date'));
+               $status = 'PAID';
+               return view('admin.payment-success',compact('reciept',$package->title,'date','status'));
 
             }catch(Exception|InvalidPaymentException $e){
                 if($e->getCode() < 0 ){
@@ -275,7 +280,97 @@ class PurchaseController extends Controller
 
 
     }
+    public function freePackage($id){
+          $package = Packages::findOrFail($id);
+          $discount = Discounts::select('percentage')->where('package_id',$package->id)->first();
+           $price = ($package->price)-(($package->price)*($discount->percentage/100));
 
+            $user = Auth::user();
+            
+                $package->order()->create([ 
+                    'user_id' => $user->id,
+                    'price' => $price,
+                    'status' => 'PAID'
+                ]);
+                $existPackage = PackageHistory::where('user_id',$user->id)->where('package_id',$package->id)->first();
+       
+               
+        
+                if($existPackage){
+                    
+                $existPackage->update([
+                    'products' => $package->products,
+                    'duration' => $package->duration,
+                    'images' => $package->images,
+                    'logo' => $package->logo,
+                    'banner' => $package->banner,
+                    'video' => $package->video,
+                    'site' => $package->site,
+                    'file' => $package->file,
+                    'startDate' => Carbon::now(),
+                    'endDate' => Carbon::now()->addDay($package->duration),
+                    ]);
+                    // $vendor = Vendors::where('user_id',$user->id)->first();
+                    $user->vendor->update([
+                        'package_id' => $package->id
+                    ]);
+                    $this->sendSmsCode($user->mobile, $package->title,$user->name);
+        
+                }else{
+                   
+                    PackageHistory::create([
+                        'user_id' => $user->id,
+                        'email' => $user->email,
+                        'package_id' => $package->id,
+                        'price'=> $package->price,
+                        'products' => $package->products,
+                        'duration' => $package->duration,
+                        'images' => $package->images,
+                        'logo' => $package->logo,
+                        'banner' => $package->banner,
+                        'video' => $package->video,
+                        'site' => $package->site,
+                        'file' => $package->file,
+                        'startDate' => Carbon::now(),
+                        'endDate' => Carbon::now()->addDay($package->duration),
+                    ]);
+                    // $vendor = Vendors::where('user_id',$user->id)->first();
+                    if($user->vendor){
+                        $user->vendor->update([
+                            'package_id' => $package->id
+                        ]);
+                        $this->sendSmsCode($user->mobile, $package->title,$user->name);
+        
+                    }else{
+                        $vendor = Vendors::create([
+                            'user_id' => $user->id,
+                            'mobile' => $user->mobile,
+                            'package_id' => $package->id,
+                            'email' => $user->email,
+                            'identityNumber' => mt_rand(10000,9999999),
+                        ]);
+                        $user->roles()->sync('2');
+                        $this->sendSmsCode($user->mobile, $package->title,$user->name);
+                       
+                    }
+                   
+                }
+                // $orders = Order::where('cart_id',$request->cart_id)->first();
+                // $purchasedServicesSuccess = PurchasedService::where('cart_id',$request->cart_id)->get();
+                // $purchasedServicesSuccess->each->update([
+                //     'status' => Transaction::STATUS_SUCCESS,
+                // ]);
+               $date = Verta::now();
+               $date = date('d m Y',strtotime($date));
+               $status = 'FREE';
+               auth()->logout();
+              // return redirect()->url('');
+               return redirect()->route('payment.success')->with( ['status' => $status,'date'=>$date] );
+
+          
+            }
+    
+    
     public function successPayment(){
         
         return view('admin.payment-success');

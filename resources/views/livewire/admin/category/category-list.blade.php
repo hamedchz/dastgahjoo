@@ -44,7 +44,7 @@
 
                                          </td>        
                                          <td >
-                                            <a href="{{route('admin.subcategories-List',$category)}}" class="bg-warning text-white p-1 mb-1" style="font-size:12px;">شاخه ها</a>
+                                            <a href="{{route('admin.subcategories-List',$category)}}" class="bg-warning text-white p-1 mb-1" style="font-size:12px;"> زیر مجموعه گروه</a>
                                             <a href="" wire:click.prevent="editcategory({{$category}})" style="font-size:20px;"><i class="fa fa-edit" style="color:#04a9f5;"></i></a>
                                             <a href="" wire:click.prevent="removeConfirmation({{$category->id}})" style="font-size:20px;"><i class="fa fa-trash" style="color:#dc3545;"></i></a>
                                        

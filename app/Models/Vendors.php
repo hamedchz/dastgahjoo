@@ -29,6 +29,7 @@ class Vendors extends Model
         'lat',
         'long',
         'identityNumber',
+        'isQualified'
     ];
 
     public function package(){

@@ -1,8 +1,9 @@
 <nav class="navbar top-nav navbar-expand-lg navbar-dark  ">
     <div class="container">
       <a class="logo" href="{{route('index')}}"><img src="{{asset('admin\img\core-img\logo.png')}}" ></a>
-      <a id="sell-machinary" href="{{route('membership')}}" class="btn-all btn-green " >ماشین خود را بفروشید 
-        <i class="fas fa-check fa-sm"></i></a>
+      <a id="sell-machinary" href="{{route('membership')}}" class="btn-all btn-green " >دستگاه و ماشین آلات  خود را بفروشید 
+        {{-- <i class="fas fa-check fa-sm"></i> --}}
+      </a>
       <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navSmall" aria-controls="navSmall" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -21,8 +22,14 @@
             <a class="nav-link" href="{{route('register')}}">ثبت نام</a>
           </li>
           <li class="nav-item ">
-            <a id="login" class="nav-link" href="{{route('login')}}">ورود
-                <i class="fas fa-sign-in-alt" aria-hidden="true"></i>  </a>
+            <a id="login" class="nav-link" href="{{route('login')}}">
+            @auth
+            {{ auth()->user()->name}}-{{auth()->user()->roles[0]->description}}
+            @endauth
+            @guest
+            ورود<i class="fas fa-sign-in-alt" aria-hidden="true"></i>
+            @endguest 
+                  </a>
           </li>
          </ul>
       </div>

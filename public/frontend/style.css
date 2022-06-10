@@ -129,13 +129,6 @@
 
 
 
-    nav.top-nav-2 {
-        background-color: #5FAEFF;
-        min-height: 28px;
-    }
-    .top-nav-2 {
-        margin-top: 96px;
-    }
     .top-nav {
         position: fixed;
         top: 0;
@@ -1204,6 +1197,12 @@ ul.dynkeywords {
     margin-top: 11px;
 }
 
+
+#navSmall2 .navbar-nav{
+    margin-top: 90px;
+}
+
+
 .abc {
     font-size: 12px !important;
     color: black !important;
@@ -1303,11 +1302,7 @@ ul.dynkeywords {
     }
     }
 
-    @media (max-width: 336px) {
-        nav.top-nav-2 {
-            margin-top: 136px;
-        }
-        }
+  
         
          .top-group {
           min-height: 200px;
@@ -1849,15 +1844,23 @@ ul.dynkeywords {
    }
  }
  
- .top-nav-2 {
-     margin-top: 96px;
- }
+
  
  nav.top-nav-2 {
    background-color: #5FAEFF;
-   min-height: 46px;
+   min-height: 126px;
+   padding-bottom: 0;
  }
  
+   @media (max-width: 991px) {
+    nav.top-nav-2 {
+
+      min-height: 142px;
+      }
+#navSmall2 .navbar-nav{
+    margin-top: 0;
+}
+}
  
  #navSmall2 .nav-link {
    color: #fff !important;
@@ -1870,6 +1873,8 @@ ul.dynkeywords {
     align-items: center;
   }
  }
+
+ 
 
  #navSmall2 .dropdown-menu {
    top: 25px;
@@ -1888,9 +1893,13 @@ ul.dynkeywords {
  #navItem14,
  #navItemweitere
  {
-   padding-top: 0;
+   padding-top: 0px;
    padding-bottom: 0;
  }
+ 
+ 
+ 
+ 
  
  .portfolio-item {
    margin-bottom: 30px;
@@ -1939,17 +1948,43 @@ ul.dynkeywords {
   
  .navbar-light .navbar-toggler {
      color: #fff;
+         margin-top: 100px;
+ }
+ 
+ 
+ 
+  @media screen and (max-width: 991px){
+
+ nav.top-nav-2{
+ padding-bottom: 15px;
+ }
+ }
+ 
+   @media screen and (max-width: 767px){
+ nav.top-nav-2{
+     margin-top: 46px;}
  }
  
  @media screen and (max-width: 502px){
   .navbar-light .navbar-toggler {
     margin-top: 45px;
 }
+
+nav.top-nav-2 {
+    margin-top: 95px;
+    min-height: 90px;
+    }
+
  }
 
  @media screen and (max-width: 336px){
   .navbar-light .navbar-toggler {
     margin-top: 0;
+}
+
+nav.top-nav-2 {
+    margin-top: 136px;
+    min-height: 45px;
 }
  }
 

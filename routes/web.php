@@ -2,9 +2,12 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Livewire\Admin\Aboutus\AboutUs as AboutusAboutUs;
+use App\Http\Livewire\Admin\Aboutus\AboutUsAdmin;
 use App\Http\Livewire\Admin\Advertises\AdverisesList;
 use App\Http\Livewire\Admin\Category\CategoryList;
 use App\Http\Livewire\Admin\Category\SubcategoryList;
+use App\Http\Livewire\Admin\Faq\FaqList;
 use App\Http\Livewire\Admin\IndexEdit\IndexEdit;
 use App\Http\Livewire\Admin\Location\City\CityList;
 use App\Http\Livewire\Admin\Location\Province\ProvinceList;
@@ -86,6 +89,9 @@ Route::group(['namespace'=> '','prefix'=> 'dashboard','middleware' => [ 'auth' ]
     Route::get('orders',OrderList::class)->name('admin.orders');
     Route::get('index-edit',IndexEdit::class)->name('admin.index-edit');
     Route::get('advetises',AdverisesList::class)->name('admin.advertises');
+    Route::get('faq',FaqList::class)->name('admin.faq');
+    Route::get('about-us',AboutUsAdmin::class)->name('admin.about-us');
+
 
     //sellers
     Route::get('user-product',UserProductsLists::class)->name('user.products');
@@ -103,6 +109,7 @@ Route::group(['namespace'=> '','prefix'=> 'dashboard','middleware' => [ 'auth' ]
     Route::get('package-order',OrderPakage::class)->name('user.packageorder');
     Route::get('package/{package}/purchase','App\Http\Controllers\PurchaseController@purchase')->name('payment.package');
     Route::get('package/{package}/purchase/result','App\Http\Controllers\PurchaseController@result')->name('payment.package.result');
+    Route::get('package/{package}/free-package','App\Http\Controllers\PurchaseController@freePackage')->name('payment.freepackage');
 
     //
 
