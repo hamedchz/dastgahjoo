@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Admin\IndexEdit;
 
 use App\Models\IndexText;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
 
 class IndexEdit extends Component
@@ -18,11 +19,15 @@ class IndexEdit extends Component
         $this->state = $data->toArray();
     }
     public function update(){
-        
-       $update = $this->indexText->update([
-        'first_part' => $this->state['first_part'],
-        'second_part' => $this->state['second_part'],
-       ]);
+        $validatedData = Validator::make($this->state,[
+            'first_part' => 'required',
+            'second_part' => 'required',
+        ],[
+            'first_part.required' => 'این فیلد نمیتواند خالی باشد',
+            'second_part.required' => 'این فیلد نمیتواند خالی باشد'
+
+        ])->validate();
+       $update = $this->indexText->update($validatedData);
        if($update){
         $this->state = "";
         $this->resetValidation();

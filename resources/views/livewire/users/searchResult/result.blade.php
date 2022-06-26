@@ -263,11 +263,13 @@
     <!-- صفحه بندی -->
               {{$products->links()}}
       </div>
-            <div class="col-lg-2 text center-align mx-auto ver-margin">
-               <a class="btn-all btn-all-small btn-danger" href="watchlist.html" style="cursor: pointer; min-width: 100px;" target="TOP">
-                 <i class="fas fa-star" style="color: #f0b000;"></i> 
-                 لیست دلخواه </a>
-            </div>
+      @auth
+      <div class="col-lg-2 text center-align mx-auto ver-margin">
+         <a class="btn-all btn-all-small btn-danger" href="{{route('watch-list')}}" style="cursor: pointer; min-width: 100px;" target="TOP">
+           <i class="fas fa-star" style="color: #f0b000;"></i> 
+           لیست دلخواه </a>
+      </div>
+      @endauth
           </div>
         </div>
 
@@ -285,10 +287,24 @@
         <div class="col-lg-5 machine-top py-1">
           <span class="category-code">تاریخ: {{$product->created_at}}</span>
           <span style="float: left;">
-            <a href="#" title="" class="btn-all btn-light btn-all-small openPopup" style="font-weight: 600; font-size: 0.8rem;">
-              <i class="fas fa-star" style="color: #f0b000;"></i>
-               کد دستگاه: {{$product->itemNo}}</a>
-              </span>
+            @auth
+            {{-- @if($product->favorites->user_id == auth()->user()->id) --}}
+            @if(in_array(auth()->user()->id,$product->favorites()->pluck('user_id')->toArray()))
+            <a   class="btn-all btn-light btn-all-small " style="font-weight: 600; font-size: 0.8rem;">
+              <i class="fas fa-star" style="color: #f0b000;"></i> 
+              کد دستگاه: {{$product->itemNo}} </a>
+        
+            @else
+            <a  wire:click="storeWatchList({{$product}})"  class="btn-all btn-light btn-all-small " style="font-weight: 600; font-size: 0.8rem;cursor:pointer;">
+              <i class="far fa-star" style="color: #f0b000;"></i> 
+              
+              کد دستگاه: {{$product->itemNo}} </a>
+            @endif
+              @endauth
+              @guest
+              کد دستگاه: {{$product->itemNo}} 
+              @endguest
+            </span>
             </div>
               </div>
       <div class="display-align top-group-verified">

@@ -157,7 +157,7 @@
                                             <label for="about"> درباره من:</label>
                                             <textarea class="form-control" id="about" rows="5" wire:model.defer="state.about"></textarea>
                                         </div>
-                                        <button type="submit" class="btn btn-outline-success mb-2 mr-2" style="float:right;"  wire:loading.class="d-none"><i class="fa fa-save"></i> ویرایش</button>
+                                        <button type="submit" class="btn btn-outline-success mb-2 mr-2" style="float:right;"  wire:loading.class="d-none"><i class="fa fa-save"></i> ذخیره</button>
                                         <div class="la-ball-beat la-dark la-sm " wire:loading  style="float:right;">
                                             <div></div>
                                             <div></div>

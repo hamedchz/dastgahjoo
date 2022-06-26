@@ -40,8 +40,10 @@ class SearchResultController extends Controller
         ])->thenReturn()->with('images')->with('category')->where('status','verified')
         ->where('isSold',0)->where('isActive',1)->latest()->paginate(20);
             // return $products;
-        $categories = ModelsCategory::with('parents')->with('products')->with('subproducts')->where('isActive',1)->where('parent',0)->get();
+        $categories = ModelsCategory::with('parents')->with('products')->with('subproducts')->where('isActive',1)->where('parent',0)->take(4)->get();
+        $categoriesCount = ModelsCategory::with('parents')->with('products')->with('subproducts')->where('isActive',1)->where('parent',0)->get();
+        $categories_second = ModelsCategory::with('parents')->with('products')->where('isActive',1)->where('parent',0)->with('subproducts')->skip(4)->take($categoriesCount->count() - 4)->get();
 
-        return view('livewire.users.searchResult.result',compact('products','categories')); 
+        return view('livewire.users.searchResult.result',compact('categoriesCount','categories_second','products','categories')); 
      }
 }

@@ -49,37 +49,37 @@
                                 </div>
                                 <div class="form-group col-md-6">
                                   <label for="slug">نام دستگاه</label>
-                                  <input type="text" name="name" wire:model.defer="state.name" value="{{$product->name}}" class="form-control @error('name') is-invalid @enderror" id="name" placeholder="نام دستگاه">
+                                  <input type="text" name="name" wire:model.defer="state.name" value="{{$product->name}}" class="form-control @error('name') is-invalid @enderror" id="name" placeholder="نام دستگاه" oninput="removeError('#name')">
                                   @error('name')<div class="invalid-feedback">{{ $message }}</div> @enderror
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="quantity"> تعداد</label>
-                                    <input type="number" wire:model.defer="state.quantity"  class="form-control @error('quantity') is-invalid @enderror" id="quantity" >
+                                    <input type="number" wire:model.defer="state.quantity"  class="form-control @error('quantity') is-invalid @enderror" id="quantity" oninput="removeError('#quantity')">
                                     @error('quantity')<div class="invalid-feedback">{{ $message }}</div> @enderror
                                   </div>
                                   <div class="form-group col-md-6">
                                     <label for="year_of_manufacture"> سال ساخت</label>
-                                    <input type="text" wire:model.defer="state.year_of_manufacture" value="{{$product->year_of_manufacture}}" class="form-control @error('year_of_manufacture') is-invalid @enderror" id="year_of_manufacture" placeholder="سال ساخت ">
+                                    <input type="text" wire:model.defer="state.year_of_manufacture" value="{{$product->year_of_manufacture}}" class="form-control @error('year_of_manufacture') is-invalid @enderror" id="year_of_manufacture" placeholder="سال ساخت " oninput="removeError('#year_of_manufacture')">
                                     @error('year_of_manufacture')<div class="invalid-feedback">{{ $message }}</div> @enderror
                                   </div>
                                   <div class="form-group col-md-6">
                                     <label for="price"> قیمت</label>
-                                    <input type="text" wire:model.defer="state.price" value="{{$product->price}}"  class="form-control @error('price') is-invalid @enderror" id="price" placeholder="قیمت ">
+                                    <input type="text" wire:model.defer="state.price" value="{{$product->price}}"  class="form-control @error('price') is-invalid @enderror" id="price" placeholder="قیمت " oninput="removeError('#price')">
                                     @error('price')<div class="invalid-feedback">{{ $message }}</div> @enderror
                                   </div>
                                   <div class="form-group col-md-6">
                                     <label for="manufacturer"> شرکت سازنده</label>
-                                    <input type="text"  wire:model.defer="state.manufacturer" value="{{$product->manufacturer}}"  class="form-control @error('manufacturer') is-invalid @enderror" id="manufacturer" placeholder="شرکت سازنده ">
+                                    <input type="text"  wire:model.defer="state.manufacturer" value="{{$product->manufacturer}}"  class="form-control @error('manufacturer') is-invalid @enderror" id="manufacturer" placeholder="شرکت سازنده " oninput="removeError('#manufacturer')">
                                     @error('manufacturer')<div class="invalid-feedback">{{ $message }}</div> @enderror
                                   </div>
                                   <div class="form-group col-md-6">
                                     <label for="model"> نام مدل</label>
-                                    <input type="text" wire:model.defer="state.model" value="{{$product->model}}" class="form-control @error('model') is-invalid @enderror" id="model" placeholder=" نام مدل ">
+                                    <input type="text" wire:model.defer="state.model" value="{{$product->model}}" class="form-control @error('model') is-invalid @enderror" id="model" placeholder=" نام مدل " oninput="removeError('#model')">
                                     @error('model')<div class="invalid-feedback">{{ $message }}</div> @enderror
                                   </div>
                                   <div class="form-group col-md-6">
                                     <label for="type_of_machine"> نوع ماشین</label>
-                                    <input type="text" wire:model.defer="state.type_of_machine" value="{{$product->type_of_machine}}" class="form-control @error('type_of_machine') is-invalid @enderror" id="type_of_machine" placeholder=" نام مدل ">
+                                    <input type="text" wire:model.defer="state.type_of_machine" value="{{$product->type_of_machine}}" class="form-control @error('type_of_machine') is-invalid @enderror" id="type_of_machine" placeholder=" نام مدل " oninput="removeError('#type_of_machine')">
                                     @error('type_of_machine')<div class="invalid-feedback">{{ $message }}</div> @enderror
                                   </div>
                                   <div class="form-group col-md-6">
@@ -110,7 +110,7 @@
                                   </div>
                                   <div class="form-group col-md-6">
                                     <label for="location"> موقعیت</label>
-                                    <input type="text" wire:model.defer="state.location" value="{{$product->location}}" class="form-control @error('location') is-invalid @enderror" id="location" placeholder=" موقعیت  ">
+                                    <input type="text" wire:model.defer="state.location" value="{{$product->location}}" class="form-control @error('location') is-invalid @enderror" id="location" placeholder=" موقعیت  " oninput="removeError('#location')">
                                     @error('location')<div class="invalid-feedback">{{ $message }}</div> @enderror
                                 </div>
                                 @if(auth()->user()->vendor->package->packageHistories->site == 'YES')
@@ -127,7 +127,7 @@
                                   </div>
                               
                                   <div class="form-group col-md-12">
-                                    <button type="submit" class="btn btn-success">ویرایش</button>
+                                    <button type="submit" class="btn btn-success">ذخیره</button>
                                   </div>
                               </div>
                               </form>
@@ -147,6 +147,16 @@
     {{-- @include('livewire.admin.product.create') --}}
     
     @push('scripts')
+    <script>
+      function removeError(par){
+        console.log(par)
+        const name = document.querySelector(par)
+        name.addEventListener('input',(e)=>{
+        name.classList.remove('is-invalid')
+      })
+      }
+    
+    </script>
     <script src="{{asset("admin/ckeditor5/ckeditor.js")}}"></script>
     <script>
        

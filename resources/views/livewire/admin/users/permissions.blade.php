@@ -31,7 +31,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">بستن</button>
-        <button type="submit" class="btn btn-primary">ویرایش</button>
+        <button type="submit" class="btn btn-primary">ذخیره</button>
       </div>
     </div>
   </form>

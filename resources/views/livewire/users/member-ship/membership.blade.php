@@ -62,6 +62,13 @@
       @endpush
     @push('styles')
     <style>
+      .question-hover{
+        cursor:pointer;
+
+      }
+      .question-hover:hover{
+        color:red;
+      }
       .inner-bg {
         padding: 0;
     }
@@ -333,7 +340,7 @@
                     <div class="table-row" style="display: flex; justify-content: center; line-height: 4;
                    ">
                       <div class="table-title-lg" style="width: 20%;border-left: 1px solid #CCC;border-right: 1px solid #CCC;">تعداد   کالا <span data-title="(همزمان)" tabindex="0">
-                        <i class="far fa-question-circle fa-sm" title="تعداد کالاهای قابل آپلود هر پکیج"></i></span></div>
+                        <i class="far fa-question-circle fa-sm question-hover" title="تعداد کالاهای قابل آپلود هر پکیج" ></i></span></div>
                         @foreach($packages as $package)
                       <div style="width: 20%;border-left: 1px solid #CCC;"><strong>{{$package->products}}</strong></div>
                     
@@ -370,7 +377,7 @@
                     <div class="table-row" style="display: flex;justify-content: center;  line-height: 4;
                     ">
                       <div class="table-title-lg" style="width: 20%;border-left: 1px solid #CCC;border-right: 1px solid #CCC;">  ویدیو  <span data-title="(حداکثر 8 عکس برای هر دستگاه)" tabindex="0">
-                                 <i class="far fa-question-circle fa-sm" title="تعداد ویدیوهای قابل آپلود هر پکیج"></i></span></div>
+                                 <i class="far fa-question-circle fa-sm question-hover" title="تعداد ویدیوهای قابل آپلود هر پکیج"></i></span></div>
                                  @foreach($packages as $package)
                                  @if($package->video == 'YES')
                                  <div style="width: 20%;border-left: 1px solid #CCC;"><img alt="check" src="{{asset('frontend/img/check-mark-16.png')}}"></div>

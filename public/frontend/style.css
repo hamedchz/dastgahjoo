@@ -140,8 +140,10 @@
     
     .nav-item-text {
         display: inline-block;
-        max-width: 68px;
-        overflow: hidden;
+        /* max-width: 68px; */
+         max-width: 100%; 
+
+        /* overflow: hidden; */
         text-overflow: ellipsis;
         white-space: nowrap;
         margin-left: 3px;
@@ -156,10 +158,17 @@
     }}
 
     
+    .page-head{
+      position:relative;
+      height: auto;
+    padding-bottom: 20px;
+    }
+
+
     header.page-head .overlay {
         position: absolute;
         background-color: #212529;
-        height: 525px;
+        height: 100%;
         min-height: 300px;
         width: 100%;
         top: 0;
@@ -168,21 +177,25 @@
     }
 
     .page-head .head-title {
-        padding-top: 50px;
+        padding-top: 150px;
     }
     
-    @media (min-width: 993px){
-    }
+    
 
-    @media (min-width: 993px){
+    @media (max-width: 767px){
 
     .page-head .head-title {
-      margin-top: 126px;
-      padding-top: 50px;
+      /* margin-top: 126px; */
+      padding-top: 75px;
   }
     }
 
+    @media (max-width: 502px){
 
+      .page-head .head-title {
+        padding-top: 126px;
+    }
+      }
 
     p {
         margin-top: 0;
@@ -1298,7 +1311,7 @@ ul.dynkeywords {
     
     }
     header.page-head .overlay{
-        height: 542px;
+        height: 100%;
     }
     }
 
@@ -1802,7 +1815,7 @@ ul.dynkeywords {
    }
  
    .page-head {
-     height: 460px;
+     /* height: 460px; */
      min-height: 300px;
      background: url('https://www.resale.info/img/Resale-Hintergrund.jpg') center center no-repeat scroll;
          background-size: auto auto;
@@ -1810,18 +1823,20 @@ ul.dynkeywords {
      -moz-background-size: cover;
      background-size: cover;
      -o-background-size: cover;
+
+
    } 
  } 
  
  @media screen and (min-width: 991px) and (max-width: 992px){
   header.page-head .overlay{
-    height: 542px;
+    height: 100%;
 }
 }
 
  @media (min-width: 541px) {
    .page-head {
-       height: 400px;
+       /* height: 400px; */
        min-height: 300px;
        background: url('https://www.resale.info/img/Resale-Hintergrund.jpg') center center no-repeat scroll;
            background-size: auto auto;
@@ -1834,7 +1849,7 @@ ul.dynkeywords {
  
   @media (max-width: 540px){
     header.page-head .overlay{
-      height: 603px;
+      height: 100%;
   }
   }
 
@@ -1850,12 +1865,16 @@ ul.dynkeywords {
    background-color: #5FAEFF;
    min-height: 126px;
    padding-bottom: 0;
+   margin-top: 15px;
+
  }
  
    @media (max-width: 991px) {
     nav.top-nav-2 {
 
       min-height: 142px;
+      margin-top: 15px;
+
       }
 #navSmall2 .navbar-nav{
     margin-top: 0;
@@ -1865,7 +1884,9 @@ ul.dynkeywords {
  #navSmall2 .nav-link {
    color: #fff !important;
    height: 28px;
- }
+   display: flex;
+   align-items: center;
+}
  
  @media (min-width: 1200px) {
   #navSmall2 .nav-link {
@@ -1962,7 +1983,7 @@ ul.dynkeywords {
  
    @media screen and (max-width: 767px){
  nav.top-nav-2{
-     margin-top: 46px;}
+     margin-top: 70px;}
  }
  
  @media screen and (max-width: 502px){
@@ -1971,7 +1992,7 @@ ul.dynkeywords {
 }
 
 nav.top-nav-2 {
-    margin-top: 95px;
+    margin-top: 125px;
     min-height: 90px;
     }
 
@@ -2251,8 +2272,13 @@ overflow: hidden;
  
  #login.nav-link {
    color: #fff !important;
+   display:flex;
+   align-items:center;
  }
  
+ #login.nav-link i {
+  margin-right:5px;
+ }
  @media (min-width:992px) {
  
    #login.nav-link:hover {
@@ -3502,3 +3528,19 @@ h2 {
   float: left;
   font-size: 16px;
 }
+
+@media screen and (min-width: 503px) and (max-width: 549px){
+  nav.top-nav-2 {
+      margin-top: 75px;
+  }}
+
+@media screen and (max-width: 352px){
+nav.top-nav-2 {
+    margin-top: 165px;
+}}
+
+@media screen and (max-width: 336px){
+  nav.top-nav-2 {
+      margin-top: 222px;
+  }}
+

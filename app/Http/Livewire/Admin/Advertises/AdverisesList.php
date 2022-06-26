@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Admin\Advertises;
 use App\Models\Advertises;
 use App\Models\Category;
 use Carbon\Carbon;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
@@ -15,7 +16,7 @@ use Illuminate\Support\Str;
 
 class AdverisesList extends Component
 {
-    use WithPagination,WithFileUploads;
+    use WithPagination,WithFileUploads,AuthorizesRequests;
 
     public $paginationTheme = 'bootstrap';
     public  $editStatus = false;
@@ -132,7 +133,9 @@ class AdverisesList extends Component
 
     }
     public function render()
-    {   $categories = Category::where('parent',0)->where('isActive',1)->get();
+    {  
+        $this->authorize('advertise');
+        $categories = Category::where('parent',0)->where('isActive',1)->get();
         $advertises = Advertises::latest()->paginate(21);
         return view('livewire.admin.advertises.adverises-list',['advertises'=>$advertises,'categories'=>$categories])->layout('layouts.admin.app');
     }

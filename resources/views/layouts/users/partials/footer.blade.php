@@ -19,7 +19,7 @@
               <ul>
                   <li><a href="{{route('contact-us')}}">ارتباط با ما</a></li>                
                   <li><a href="{{route('about-us')}}">درباره ما</a></li>
-                  <li><a href="{{route('sitemap')}}l">نقشه سایت</a></li>
+                  {{-- <li><a href="{{route('sitemap')}}l">نقشه سایت</a></li> --}}
               </ul>
           </div>
           <div class="col-sm-3">
@@ -37,7 +37,7 @@
                   {{-- <li><a href="watchlist.html" target="TOP"> فهرست دلخواه </a></li>             --}}
                   {{-- <li><a href="newsletter.html">خبرنامه</a></li> --}}
                   {{-- <li><a href="manufacturers.html">تولیدکنندگان</a></li> --}}
-                  <li><a href="{{route('dealers')}}">فروشندگان</a></li>
+                  {{-- <li><a href="{{route('dealers')}}">فروشندگان</a></li> --}}
                   <li><a href="{{route('sold-products')}}">    محصولات فروخته شده</a></li>
               </ul>
           </div>

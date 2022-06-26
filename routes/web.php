@@ -12,11 +12,13 @@ use App\Http\Livewire\Admin\IndexEdit\IndexEdit;
 use App\Http\Livewire\Admin\Location\City\CityList;
 use App\Http\Livewire\Admin\Location\Province\ProvinceList;
 use App\Http\Livewire\Admin\Logs\LogsList;
+use App\Http\Livewire\Admin\MachineSearch\MachineSearch;
 use App\Http\Livewire\Admin\Messages\Contactus\ContactList;
 use App\Http\Livewire\Admin\Messages\Products\ProductMessageLists;
 use App\Http\Livewire\Admin\Messages\Tickets\TicketsList;
 use App\Http\Livewire\Admin\Orders\OrderList;
 use App\Http\Livewire\Admin\Packages\PackagesList;
+use App\Http\Livewire\Admin\Policy\PolicyList;
 use App\Http\Livewire\Admin\Product\ProductInfo;
 use App\Http\Livewire\Admin\Product\ProductList;
 use App\Http\Livewire\Admin\ProductsMessages\InquiriesList;
@@ -89,8 +91,11 @@ Route::group(['namespace'=> '','prefix'=> 'dashboard','middleware' => [ 'auth' ]
     Route::get('orders',OrderList::class)->name('admin.orders');
     Route::get('index-edit',IndexEdit::class)->name('admin.index-edit');
     Route::get('advetises',AdverisesList::class)->name('admin.advertises');
-    Route::get('faq',FaqList::class)->name('admin.faq');
+    Route::get('faq',FaqList::class)->name('admin.faq');  
     Route::get('about-us',AboutUsAdmin::class)->name('admin.about-us');
+    Route::get('policy',PolicyList::class)->name('admin.policy');
+    //search
+    Route::get('search-edit',MachineSearch::class)->name('admin.search-machine');
 
 
     //sellers
@@ -111,7 +116,7 @@ Route::group(['namespace'=> '','prefix'=> 'dashboard','middleware' => [ 'auth' ]
     Route::get('package/{package}/purchase/result','App\Http\Controllers\PurchaseController@result')->name('payment.package.result');
     Route::get('package/{package}/free-package','App\Http\Controllers\PurchaseController@freePackage')->name('payment.freepackage');
 
-    //
+
 
 
 });

@@ -53,14 +53,20 @@
                             <label class="label-input" for="form-repeat-password">تایید رمز عبور</label>
                             <input type="password" name="password_confirmation" placeholder="تایید رمز عبور..." class="form-repeat-password form-control" id="form-repeat-password">
                           </div>
-                          @if(isset($error))
+                          <div><input type="checkbox" id="policyCheck" name="policyCheck" value="1">
+                            <label for="vehicle1">با<a href="" data-toggle="modal" data-target="#policy">   شرایط و قوانین </a> سایت موافقم </label><br></div>
+                            @if(isset($errorPolicy))
+                            <div class="alert alert-danger" id="error">لطفا  شرایط و قوانین سایت را تائید نمایید!</div>
+                           @endif
+
+                            @if(isset($error))
                           <div class="alert alert-danger" id="error">لطفا در سایت ثبت نام و موبایل خود را تائید نمایید!</div>
                          @endif
                          @if(isset($errorUnq))
                          <div class="alert alert-danger" id="error">این شماره قبلا ثبت  شده است</div>
                         @endif
                  
-                          <button type="submit" class="btn-all btn-primary btn-next">ثبت نام</button>
+                          <button type="submit" class="btn-all btn-primary btn-next mt-2">ثبت نام</button>
                         </div>
                       </fieldset>
                     </form>
@@ -85,5 +91,8 @@
       }
     </script>
     @endpush
+
+    <!-- Modal -->
+<x-policy-modal :policy="$policy"/>
 </x-user-layout>
 

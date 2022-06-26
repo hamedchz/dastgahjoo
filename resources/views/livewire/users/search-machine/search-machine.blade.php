@@ -32,12 +32,7 @@
           <div class="container">   
           <div class="display-align">
             <div class="col-md-12">
-              <h2 class="center-align"> ماشین‌های مورد استفاده در  اما چگونه آنها را پیدا کنیم؟</h2>
-              <p>
-                 گزینه های مختلفی را برای جستجوی ماشینی به شما ارائه می دهد تا در صورت ارائه، بتوانید ماشین دست دوم مورد نظر خود را پیدا کنید.
-                  اگر نمی توانید دستگاه دست دوم مورد نظر خود را پیدا کنید، این فرصت را دارید که یک 
-                 <a href="#" target="">درخواست</a> به همه فروشندگان ماشین های کارکرده در یک دسته ماشین،
-                  همچنین در پایین لیست گزینه های جستجو در زیر ببینید. </p>
+             {!!$searchTitle->firstSection!!}
               <h3 class="center-align" style="color: #888;">
                 می‌توانید ماشین‌ها را در  به روش‌های زیر جستجو کنید:</h3>
             </div>
@@ -47,12 +42,7 @@
           <div class="container head-title">
             <div class="display-align">
               <div class="col-lg-12">
-            <h2 class="right-align">
-              <strong style="font-weight: 700;">1. جستجوی ماشینی با کلمه کلیدی</strong>
-            </h2>
-                 <p>
-              می توانید حداکثر سه عبارت جستجو (کلمات یا قسمت هایی از کلمات) را در قسمت جستجوی زیر وارد کنید.
-               این جستجو به ویژه در صورتی مناسب است که دقیقاً بدانید به دنبال چه هستید، نام دقیق سازنده و مدل را بدانید. </p>
+                {!!$searchTitle->secondSection!!}
           </div>
             </div>
           </div>
@@ -80,11 +70,7 @@
           <div class="container head-title">
             <div class="display-align">
               <div class="col-lg-12">
-                <h2 class="right-align">
-                  <strong style="font-weight: 700;">2. جستجوی ماشینی با جستجوی پیشرفته</strong>
-                </h2>
-                <p>
-           این گزینه جستجوی ماشینی مناسب است، اگر با گزینه 1 در بالا تعداد بازدیدهای زیادی بدست آورید یا خیلی نادقیق باشید. می توانید عبارات جستجوی خود را به فیلدهای جداگانه (تولیدکننده، مدل، نوع ماشین و غیره) اختصاص دهید و در نتیجه نتایج جستجو را محدود کنید. شما همچنین گزینه های انتخاب دیگری دارید. عیب این گزینه جستجو این است که زمان بیشتری می برد. </p>
+                {!!$searchTitle->thirdSection!!}
           </div>
             </div>
           </div>              
@@ -267,36 +253,40 @@
           <div class="container head-title">
             <div class="display-align">
               <div class="col-lg-12">
-                <h2 class="right-align">
-                  <strong style="font-weight: 700;">3. جستجوی ماشین بر اساس دسته بندی</strong></h2>
-                <p>
-                  این گزینه جستجوی ماشینی ایده آل است 
-                  اگر به سازنده و مدل محدود نیستید یا می خواهید دید کلی از پیشنهادات دستگاه داشته باشید. 25 دسته اصلی، بیش از 250 زیرمجموعه و بیش از 
-                  <b>2500 دسته ماشین</b> در سطح دسته 3 وجود دارد.
-                      </p>            
+                {!!$searchTitle->forthSection!!}          
               </div>
             </div>
           </div>              
     
           <div class="container">      
-          <div class="display-align top-pad">
-            <div class="col-lg-12">
-                <div class="display-align bottom-pad">
-                  @foreach ($categories as $category )
-          
-                  <div class="col-lg-6 mx-auto">
-                    <ul class="catlistall list-group">
-                      <li class="list-group-item list-group-item-action">
-                        <span style="color: #acacac;">{{$loop->iteration}}.</span>
-                        <a href="{{route('product-list',$category->slug)}}">{{$category->title}} </a>
-                        <span class="machine-no">({{$category->products->count()}})</span></li>
-                       
-                      </ul>
-                    </div>
-                 @endforeach
-                </div>     
+            <div class="display-align bottom-pad">
+              @if($categoriesFirsthalf->count() > 0)
+              <div class="col-lg-6 ">
+                  <div class="table table-hover table-bordered table-sm tablecat" style="display:flex;flex-direction:column;">
+                    @foreach ($categoriesFirsthalf as $category )
+                    <div class="col-12" style="display:flex;border-bottom:1px solid #e9ecef;padding: 0.3rem;">
+                          <span style="color: #acacac;">{{$category->id}}.</span>
+                          <a href="{{route('product-list',$category->slug)}}"> {{$category->title}} </a>
+                          <span class="badge badge-secondary" style="margin-right: auto;">{{$category->products->count()}}</span>
+                        </div>
+                        @endforeach 
+                      </div>
+                   </div>
+                   @endif
+              @if($categoriesFirsthalf->count() > 0)
+              <div class="col-lg-6 ">
+                  <div class="table table-hover table-bordered table-sm tablecat" style="display:flex;flex-direction:column;">
+                    @foreach ($categoriesSecondhalf as $category )
+                    <div class="col-12" style="display:flex;border-bottom:1px solid #e9ecef;padding: 0.3rem;">
+                          <span style="color: #acacac;">{{$category->id}}.</span>
+                          <a href="{{route('product-list',$category->slug)}}"> {{$category->title}} </a>
+                          <span class="badge badge-secondary" style="margin-right: auto;">{{$category->products->count()}}</span>
+                        </div>
+                          @endforeach
+                      </div>
+                   </div>
+                @endif
             </div>
-          </div>   
           </div>     
 {{--            
           <div class="container head-title">
@@ -330,12 +320,7 @@
           <div class="container head-title">
             <div class="display-align">
               <div class="col-lg-12">
-                <h2 class="right-align">
-                  <strong style="font-weight: 700;">5. درخواست استعلام</strong>
-                </h2>
-                <p>
-                  اگر هنوز نتوانستید ماشین مورد نظر خود را پیدا کنید، می توانید درخواست ماشین یا سیستم دست دوم خود را ارسال کنید.
-                   فروشندگان ماشین های دسته ماشینی که می توان درخواست ماشین شما را به آنها اختصاص داد این را دریافت خواهند کرد. برنامه <b>رایگان</b> است. </p>
+                {!!$searchTitle->fifthSection!!}
               </div>
             </div>
           </div>              
@@ -352,11 +337,7 @@
           <div class="container head-title">
             <div class="display-align">
               <div class="col-lg-12">
-                <h3 class="right-align" style="font-weight: 700;">یادداشت های بیشتر:</h3>
-                <p>
-                  اگر در مورد ماشین های ارائه شده سوالی دارید، لطفا فقط با ارائه دهنده دستگاه مربوطه تماس بگیرید.
-                   لطفاً درک کنید که ما نمی‌توانیم اطلاعاتی در مورد اینکه آیا ماشین‌های خاصی در پلتفرم ما هستند یا نه ارائه کنیم و نمی‌توانیم در جستجو به شما کمک کنیم.
-              </p>           
+                {!!$searchTitle->sixthSection!!}         
               </div>
             </div>
           </div>                    

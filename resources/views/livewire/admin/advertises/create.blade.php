@@ -60,7 +60,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">بستن</button>
-              <button type="submit" class="btn btn-primary" wire:loading.class="d-none" >{{$editStatus ?'ویرایش':'ذخیره'}}</button>
+              <button type="submit" class="btn btn-primary" wire:loading.class="d-none" >ذخیره</button>
               <div class="la-ball-beat la-dark la-sm " wire:loading wire.target="photo" style="float:left;">
                 <div></div>
                 <div></div>

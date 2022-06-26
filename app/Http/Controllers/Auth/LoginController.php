@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ForgetPasswordRequest;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
+use App\Models\Policy;
 use App\Models\Setting;
 use App\Models\Token;
 use App\Models\User;
@@ -45,17 +46,20 @@ class LoginController extends Controller
     public function showRegisterForm()
     {
         $this->seo()->setTitle("ثبت نام جدید");
-        return view('auth.register');
+        $policy = Policy::first();
+        return view('auth.register',compact('policy'));
     }
     public function postRegisterForm(RegisterRequest $request){
+     if($request->policyCheck){
         $user = User::where('mobile',$request->mobile)->first();
         $token = mt_rand(1000,9999);
         if($user){
             if($user->mobile_verified_at == null){
                 DB::table('users')->where('mobile',$user->mobile)->delete();
             }else{
+                $policy = Policy::first();
                 $errorUnq = true;
-                return view('auth.register',compact('errorUnq'));
+                return view('auth.register',compact('errorUnq','policy'));
             }
         }
         
@@ -78,6 +82,11 @@ class LoginController extends Controller
       
         $userStore->roles()->sync('5');
         return view('auth.verifyToken',compact('userStore'));
+         }else{
+            $policy = Policy::first();
+            $errorPolicy = true;
+            return view('auth.register',compact('errorPolicy','policy'));
+         }
     }
     public function sendSmsCode($mobile,$code)
     {

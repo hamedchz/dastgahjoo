@@ -61,7 +61,7 @@
             </li> --}}
 
             <li class="nav-item dropdown">
-                <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> @if(auth()->user()->avatar <> 'N/A')
+                {{auth()->user()->name}}<button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> @if(auth()->user()->avatar <> 'N/A')
                     <img class="chat-img mr-2" src="{{asset(auth()->user()->avatar)}}" alt="">
                     @else
                     <img class="chat-img mr-2" src="{{asset('admin/img/member-img/3.png')}}" alt="">

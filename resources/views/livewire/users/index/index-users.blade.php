@@ -69,25 +69,35 @@
   
               <div class="hide-mobile" style="margin-bottom:30px;">
                 {!!$firstPage->first_part!!}
-              <div class="display-align bottom-pad">
-                <div class="col-lg-6   mx-auto">
-    <table class="table table-hover table-bordered table-sm tablecat">
-      <tbody>
-          @foreach ($categories as $category )
-          
-                    <tr>
-                      <td>
-                        <span style="color: #acacac;">{{$loop->iteration}}.</span>
-                      <a href="{{route('product-list',$category->slug)}}"> {{$category->title}} </a>
-                   <span class="badge badge-secondary">{{$category->products->count()}}</span>
-                  </td>
-                </tr>
-           @endforeach
-
-      </tbody>
-    </table>
+                <div class="display-align bottom-pad">
+                  @if($categoriesFirsthalf->count() > 0)
+                  <div class="col-lg-6 ">
+                      <div class="table table-hover table-bordered table-sm tablecat" style="display:flex;flex-direction:column;">
+                        @foreach ($categoriesFirsthalf as $category )
+                        <div class="col-12" style="display:flex;border-bottom:1px solid #e9ecef;padding: 0.3rem;">
+                              <span style="color: #acacac;">{{$category->id}}.</span>
+                              <a href="{{route('product-list',$category->slug)}}"> {{$category->title}} </a>
+                              <span class="badge badge-secondary" style="margin-right: auto;">{{$category->products->count()}}</span>
+                            </div>
+                            @endforeach 
+                          </div>
+                       </div>
+                       @endif
+                  @if($categoriesFirsthalf->count() > 0)
+                  <div class="col-lg-6 ">
+                      <div class="table table-hover table-bordered table-sm tablecat" style="display:flex;flex-direction:column;">
+                        @foreach ($categoriesSecondhalf as $category )
+                        <div class="col-12" style="display:flex;border-bottom:1px solid #e9ecef;padding: 0.3rem;">
+                              <span style="color: #acacac;">{{$category->id}}.</span>
+                              <a href="{{route('product-list',$category->slug)}}"> {{$category->title}} </a>
+                              <span class="badge badge-secondary" style="margin-right: auto;">{{$category->products->count()}}</span>
+                            </div>
+                              @endforeach
+                          </div>
+                       </div>
+                    @endif
                 </div>
-              </div>
+       
   
               <p>
                 علاوه بر این، می توانید زیر شاخه های پویا ما را نیز مرور کنید. 
@@ -220,49 +230,15 @@
          <hr>
 
    <!-- بنر تبلیغات -->
+   @if($advertises->count() > 0)
    <div id="jssor_1" >
     <div class="slides" data-u="slides" >
+      @foreach($advertises as $advertise)
         <div >
-            <img data-u="image" src="{{asset('frontend/img/logoPagus.jpg')}}" />
-            <div data-u="thumb">اطلاعات بنری تبلیغاتی</div>
+            <img data-u="image" src="{{asset($advertise->banner)}}" />
+            <div data-u="thumb">{{$advertise->description}}</div>
         </div>
-        <div>
-            <img data-u="image" src="{{asset('frontend/img/bannerhoechsmann.gif')}}" />
-            <div data-u="thumb"> اطلاعات بنری تبلیغاتی</div>
-        </div>
-        <div>
-            <img data-u="image" src="{{asset('frontend/img/bannerIVW.jpg')}}" />
-            <div data-u="thumb"> اطلاعات بنری تبلیغاتی</div>
-        </div>
-        <div>
-            <img data-u="image" src="{{asset('frontend/img/logoMaynards.gif')}}" />
-            <div data-u="thumb"> اطلاعات بنری تبلیغاتی</div>
-        </div>
-        <div>
-            <img data-u="image" src="{{asset('frontend/img/logoUSEDMarket.jpg')}}" />
-            <div data-u="thumb"> اطلاعات بنری تبلیغاتی</div>
-        </div>
-        <div>
-            <img data-u="image" src="{{asset('frontend/img/banner_hamburg-machinery.jpg')}}" />
-            <div data-u="thumb"> اطلاعات بنری تبلیغاتی</div>
-        </div>
-        <div>
-            <img data-u="image" src="{{asset('frontend/img/logoKnauff.gif')}}" />
-            <div data-u="thumb"> اطلاعات بنری تبلیغاتی</div>
-        </div>
-        <div>
-            <img data-u="image" src="{{asset('frontend/img/bannerREWA.jpg')}}" />
-            <div data-u="thumb"> اطلاعات بنری تبلیغاتی</div>
-        </div>
-        <div>
-            <img data-u="image" src="{{asset('frontend/img/banner_dataTec.gif')}}" />
-            <div data-u="thumb"> اطلاعات بنری تبلیغاتی</div>
-        </div>
-        <div>
-            <img data-u="image" src="{{asset('frontend/img/bannerEPS.jpg')}}" />
-            <div data-u="thumb"> اطلاعات بنری تبلیغاتی</div>
-        </div>
-     
+        @endforeach
     </div>
     <!-- متن تبلیغات اسلایدر -->
     <div class="jssor-thumbnavigator" data-u="thumbnavigator" >
@@ -284,7 +260,7 @@
       </svg>
   </div>
 </div>
-
+@endif
 <!-- آخر اسلایدر تبلیغات -->
 
       <div class="container des-text">

@@ -38,7 +38,10 @@ class ProductUserList extends Component
     {
         $cat = Category::with('parents')->where('slug',$this->slug)->where('parent',0)->first();
         $advertise = Advertises::where('category_id', $cat->id)->where('expire_at','>=',Carbon::now())->get();
-        $categories = Category::with('parents')->with('subproducts')->where('isActive',1)->where('parent',0)->get();
+        $categories = Category::with('parents')->with('products')->with('subproducts')->where('isActive',1)->where('parent',0)->take(4)->get();
+        $categoriesCount = Category::with('parents')->with('products')->with('subproducts')->where('isActive',1)->where('parent',0)->get();
+        $categories_second = Category::with('parents')->with('products')->where('isActive',1)->where('parent',0)->with('subproducts')->skip(4)->take($categoriesCount->count() - 4)->get();
+
         //  $products = Category::with('products')->whereHas('products' , function($q){
         //      $q->where('status','verified')->where('isSold',0);
         //  })->where('slug',$slug)->orderBy('id','desc')->paginate(4);
@@ -48,6 +51,6 @@ class ProductUserList extends Component
         $this->seo()
         ->setTitle($cat->metaTitle,false)
         ->setDescription($cat->metaDescription);
-        return view('livewire.users.product-list.product-user-list',['products' => $products,'categories' => $categories,'cat' => $cat,'advertise' => $advertise])->layout('layouts.users.app');
+        return view('livewire.users.product-list.product-user-list',['categoriesCount'=>$categoriesCount,'categories_second'=>$categories_second,'products' => $products,'categories' => $categories,'cat' => $cat,'advertise' => $advertise])->layout('layouts.users.app');
     }
 }

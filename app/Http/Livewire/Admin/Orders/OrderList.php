@@ -3,10 +3,12 @@
 namespace App\Http\Livewire\Admin\Orders;
 
 use App\Models\Order;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\Component;
 
 class OrderList extends Component
 {
+    use AuthorizesRequests;
 
     public $removeId;
 
@@ -45,6 +47,7 @@ class OrderList extends Component
     }
     public function render()
     {
+        $this->authorize('orders');
         $orders  = Order::where('isActive',1)->get();
         return view('livewire.admin.orders.order-list',['orders'=> $orders])->layout('layouts.admin.app');
     }

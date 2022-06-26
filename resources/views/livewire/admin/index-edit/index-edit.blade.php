@@ -31,7 +31,7 @@
                                   </div>
                               
                                   <div class="form-group col-md-12">
-                                    <button type="submit" class="btn btn-success" >ویرایش</button>
+                                    <button type="submit" class="btn btn-success" >ذخیره</button>
                              
                                   </div>
                               </div>
@@ -58,7 +58,12 @@
   
          $(document).ready(function(){
           ClassicEditor
-            .create( document.querySelector( '#first' ) )
+            .create( document.querySelector( '#first' ),{
+                language: {
+                      ui: 'en',
+                     content: 'ar'
+                          }
+            } )
             .then( editor => {
               
                 editor.model.document.on('change:data', () => {
@@ -71,7 +76,12 @@
                 console.error( error );
             } );
             ClassicEditor
-            .create( document.querySelector( '#second' ) )
+            .create( document.querySelector( '#second' ),{
+                language: {
+                     ui: 'en',
+                     content: 'ar'
+                          }
+            } )
             .then( editor => {
               
                 editor.model.document.on('change:data', () => {

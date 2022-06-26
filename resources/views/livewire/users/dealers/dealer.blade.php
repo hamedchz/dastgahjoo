@@ -151,49 +151,15 @@
                   <div style="background-color: #fff;">
              <div style="background-color: #fff;">
       <!-- بنر تبلیغات -->
+      @if($advertises->count() > 0)
               <div id="jssor_1" >
           <div class="slides" data-u="slides" >
-              <div >
-                  <img data-u="image" src="img/logoPagus.jpg" />
-                  <div data-u="thumb">اطلاعات بنری تبلیغاتی</div>
-              </div>
-              <div>
-                  <img data-u="image" src="img/bannerhoechsmann.gif" />
-                  <div data-u="thumb"> اطلاعات بنری تبلیغاتی</div>
-              </div>
-              <div>
-                  <img data-u="image" src="img/bannerIVW.jpg" />
-                  <div data-u="thumb"> اطلاعات بنری تبلیغاتی</div>
-              </div>
-              <div>
-                  <img data-u="image" src="img/logoMaynards.gif" />
-                  <div data-u="thumb"> اطلاعات بنری تبلیغاتی</div>
-              </div>
-              <div>
-                  <img data-u="image" src="img/logoUSEDMarket.jpg" />
-                  <div data-u="thumb"> اطلاعات بنری تبلیغاتی</div>
-              </div>
-              <div>
-                  <img data-u="image" src="img/banner_hamburg-machinery.jpg" />
-                  <div data-u="thumb"> اطلاعات بنری تبلیغاتی</div>
-              </div>
-              <div>
-                  <img data-u="image" src="img/logoKnauff.gif" />
-                  <div data-u="thumb"> اطلاعات بنری تبلیغاتی</div>
-              </div>
-              <div>
-                  <img data-u="image" src="img/bannerREWA.jpg" />
-                  <div data-u="thumb"> اطلاعات بنری تبلیغاتی</div>
-              </div>
-              <div>
-                  <img data-u="image" src="img/banner_dataTec.gif" />
-                  <div data-u="thumb"> اطلاعات بنری تبلیغاتی</div>
-              </div>
-              <div>
-                  <img data-u="image" src="img/bannerEPS.jpg" />
-                  <div data-u="thumb"> اطلاعات بنری تبلیغاتی</div>
-              </div>
-           
+            @foreach($advertises as $advertise)
+            <div >
+                <img data-u="image" src="{{asset($advertise->banner)}}" />
+                <div data-u="thumb">{{$advertise->description}}</div>
+            </div>
+            @endforeach
           </div>
           <!-- متن تبلیغات اسلایدر -->
           <div class="jssor-thumbnavigator" data-u="thumbnavigator" >
@@ -215,7 +181,7 @@
             </svg>
         </div>
       </div>
-      
+      @endif
   <!-- آخر اسلایدر تبلیغات -->
         
   <!-- جدول اطلاعات شرکتها -->
@@ -242,7 +208,7 @@
       </tr>
     @endforeach --}}
   <!-- خانه های جدول -->
-        @foreach ($dealers as $dealer)
+        @forelse ($dealers as $dealer)
           <tr class="company-cells">
            <td class="company-brand ">
              <a  target="TOP" name="" href="{{route('vendor-detail',$dealer->slug)}}">{{$dealer->user->name}}re</a>
@@ -251,8 +217,10 @@
              <td class="country-brand"> {{$dealer->province->title}} </td>
              <td class="logo-brand"><a target="TOP" name="" href="{{route('vendor-detail',$dealer->slug)}}" >
                <img src="{{asset('storage/logos/'.$dealer->logo)}}" alt="" align="middle" border="0"></a></td>
+          @empty
+          <td  align="center" colspan="4">فروشنده ای وجود ندارد</td>     
           </tr>
-          @endforeach
+          @endforelse
          
 
 

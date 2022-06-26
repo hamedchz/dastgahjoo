@@ -4,11 +4,11 @@
       <div class="display-align">
         <div class="col-lg-12 d-flex justify-content-center align-items-center" style="flex-direction: column;">
           <h1 class="center-align text-white">
-            <strong>بازار ماشین آلات دسته دوم</strong>
+            <strong></strong>
           </h1>
           <h2 class="center-align text-white" id="machine-number"><strong>
-            <span class="text-white">133,125</span>
-             <a class="text-dark" href="{{route('sitemap')}}">ماشین آلات دست دوم برای فروش</a>
+            <span class="text-white"></span>
+             <span class="text-dark">     </span> 
             </strong>
           </h2>
         </div>

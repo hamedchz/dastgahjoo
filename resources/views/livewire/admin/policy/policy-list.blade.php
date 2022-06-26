@@ -2,7 +2,7 @@
     <nav aria-label="خرده نان" class="container-fluid">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{route('admin.dashboard.index')}}">داشبورد</a></li>
-            <li class="breadcrumb-item active" aria-current="page">درباره ما</li>
+            <li class="breadcrumb-item active" aria-current="page">حریم خصوصی</li>
         </ol>
     </nav>
     
@@ -13,7 +13,7 @@
                     <div class="card">
                         <div class="card-body">
                         <div class="d-flex justify-content-between ">
-                            <h4 class="card-title mb-2">درباره ما</h4>
+                            <h4 class="card-title mb-2">حریم خصوصی</h4>
                         </div>
                             <hr>
                             <form wire:submit.prevent="update"   >
@@ -208,7 +208,7 @@
                      "positionClass": "toast-bottom-right",
                 
                  }
-                 window.addEventListener('aboutus', event => {
+                 window.addEventListener('edit-page', event => {
                      
                      if(event.detail['action'] == 'success'){ 
                       toastr.success(event.detail.message,'عملیات موفق!')

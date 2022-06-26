@@ -33,9 +33,7 @@ class UserAddProduct extends Component
         if(Carbon::now() > auth()->user()->vendor->package->packageHistories->endDate || auth()->user()->vendor->isApproved <> 2 || Product::whereBetween('created_at',[auth()->user()->vendor->package->packageHistories->startDate,auth()->user()->vendor->package->packageHistories->endDate])->count() >= auth()->user()->vendor->package->packageHistories->products){
            return abort(401);
         }
-
     }
-
     public function addNew(){
         $ValidateData = Validator::make($this->state,[
             'category_id' => 'required',
