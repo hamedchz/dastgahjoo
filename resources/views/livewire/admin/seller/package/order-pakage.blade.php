@@ -59,9 +59,14 @@
         /*#endregion responsive code end*/
     };
 </script>
+
+
     @endpush
   @push('styles')
   <style>
+
+
+
       .question-hover{
         cursor:pointer;
 
@@ -158,6 +163,52 @@
     font-weight: 400;
     line-height: 20px;
 }
+
+
+.mobile-row{
+  border-left: 1px solid #CCC;
+}
+.table-row-mobile{
+  display: flex; 
+  justify-content: center;
+   line-height: 4;
+}
+@media (max-width: 767px){
+  .mobile-row{
+  border-left: none;
+}
+.table-row-mobile{
+  display: flex; 
+  justify-content: space-between;
+   line-height: 4;
+   border-left: 1px solid #CCC;
+}
+}
+
+.table-title-lg{
+  position: relative;
+}
+    
+span[data-title]:hover{
+  cursor:pointer;
+}
+span[data-title]:hover::after, span[data-title]:focus::after {
+    content: attr(data-title);
+    position: absolute;
+    left: 30px;
+    bottom: 0;
+    width: auto;
+    white-space: nowrap;
+    background-color: #1e1e1e;
+    color: #fff;
+    border-radius: 3px;
+    box-shadow: 1px 1px 5px 0 rgb(0 0 0 / 40%);
+    font-size: 14px;
+    padding: 3px 5px;
+    line-height:1;
+}
+
+
   </style>
   @endpush
        <!-- بدنه محتوا -->
@@ -184,7 +235,7 @@
                       <span style="color: Green;">
                       <i class="fas fa-phone"></i>
                     </span> 
-                    0933333333333</p>
+                   <a href="tel:00989171175834" class="text-dark"> 09171175834</a></p>
             </div>
       </div>
   
@@ -273,21 +324,19 @@
                     <div colspan="3" class="qbo t-head2" style="padding: 10px 0;">
                       برای فروشندگان ماشین آلات                  </div>
                   </div>
-                  <div class="table-row" style="display: flex;justify-content: center;">
+                  <div class="table-row table-row-mobile" >
                     <div class="tl table-head1" style="width: 20%;padding: 10px 0;border-right: 1px solid #CCC;">
                       <div class="contact-info" style="color: black;">ما با کمال میل به سوالات شما پاسخ خواهیم داد:</div>
-                      <div class="contact-info" style="color: black;"> 0933333333 <span style="color: green;">
+                      <div class="contact-info" style="color: black;">  <a href="tel:00989171175834" class="text-dark"> 09171175834</a> <span style="color: green;">
                         <i class="fas fa-phone-square fa-lg"></i> </span></div>
                     </div>
                     @foreach($packages as $package)
-                    <div class="compare-heading" style="width: 20%;border-left: 1px solid #CCC;">
+                    <div class="compare-heading mobile-row" style="width: 20%;">
                       {{$package->title}}  
                     </div>
                    @endforeach
                   </div>
-                  <div class="table-row" style="display: flex;
-                   justify-content: center;
-                     ">
+                  <div class="table-row table-row-mobile">
                     <div class="contact-info-col " style="width: 20%;border-left: 1px solid #CCC;border-bottom: 1px solid #CCC;border-right: 1px solid #CCC;">
                       <div class="contact-info " style="margin-top: -10px;">
                         <button  class="px-2" style=" padding-right: 0.5rem!important; padding-left: 0.5rem!important;font-size: 0.8em; border: 2px solid #0888d3; border-radius: 10px; width: auto;height: 45px;  background-image: linear-gradient(#3ac0f3, #0888d3);color:white;">
@@ -295,23 +344,27 @@
                             post@resale.info
                           </button>
                              </div>
-                      <div class="contact-info" style="font-weight: 600; margin-top: 60px;">بسته عضویت خود را انتخاب کنید 
+                      <div class="contact-info" style="font-weight: 600; margin-top: 60px;padding: 0 7px;">بسته عضویت خود را انتخاب کنید 
                         <i class="fas fa-arrow-left"></i> </div>
                     </div>
                
                      @foreach($packages as $package)
-                    <div class="cost-info" style="padding: 5px 0px 15px 0px;border-left: 1px solid #CCC;">
-                      <div class="cost-now">
+                    <div class="cost-info mobile-row" style="padding: 5px 0px 15px 0px;">
+                      <div class="cost-now" style="line-height:1.2;display:flex;flex-direction:column;">
                         @if($package->discount->percentage <> 0)
-                        <span class="onsale">{{$package->price}} تومان</span>
+                        <span class="onsale">{{$package->price}} </span>
+                        <span class="onsale"> تومان</span>
                         @else
-                        <span class="onsale" style="opacity:0;">{{$package->price}} تومان</span>
+                        <span class="onsale" style="opacity:0;">{{$package->price}} </span>
+                        <span class="onsale" style="opacity:0;">تومان</span>
                         @endif
-                        <span>{{($package->price)-(($package->price)*($package->discount->percentage/100))}} تومان</span></div>
-                      <div class="cost-try mb-2"><b>در هر آگهی ماهانه</b></div>
-                      <div class="cost-try mb-2">({{($package->price)-(($package->price)*($package->discount->percentage/100))}} تومان در ماه)</div>
+                        <span>{{($package->price)-(($package->price)*($package->discount->percentage/100))}}</span>
+
+                        <span>تومان</span></div>
+                      <div class="cost-try mb-2"><b> ماهانه</b></div>
+                      <div class="cost-try mb-2" style="line-height: 2;height: 75px;">({{($package->price)-(($package->price)*($package->discount->percentage/100))}} تومان در ماه)</div>
                    
-                        <div><a class="btn btn-sm cost-buy" href="{{route('payment.package',$package)}}">سفارش </a> <a class="hide-desktop" href="{{route('register')}}" > سفارش 
+                        <div><a class="btn btn-sm cost-buy" href="{{route('payment.package',$package)}}">سفارش </a> <a class="hide-desktop" href="{{route('payment.package',$package)}}" > سفارش 
                       
                       </a></div>
                       <div class="cost-try" style="margin-top: 10px;"><a href="#dealerstandard" data-toggle="modal" data-target="#dealerstandard"></a> </div>
@@ -323,12 +376,11 @@
                   <div class="table-title-sm">
                     <div>تعداد   کالا</div>
                   </div>
-                  <div class="table-row" style="display: flex; justify-content: center; line-height: 4;
-                 ">
-                    <div class="table-title-lg" style="width: 20%;border-left: 1px solid #CCC;border-right: 1px solid #CCC;">تعداد   کالا <span data-title="(همزمان)" tabindex="0">
-                      <i class="far fa-question-circle fa-sm question-hover" title="تعداد کالاهای قابل آپلود هر پکیج"></i></span></div>
+                  <div class="table-row table-row-mobile">
+                    <div class="table-title-lg" style="width: 20%;border-left: 1px solid #CCC;border-right: 1px solid #CCC;">تعداد   کالا <span data-title="تعداد کالاهای قابل آپلود هر پکیج" tabindex="0">
+                      <i class="far fa-question-circle fa-sm question-hover"></i></span></div>
                       @foreach($packages as $package)
-                    <div style="width: 20%;border-left: 1px solid #CCC;"><strong>{{$package->products}}</strong></div>
+                    <div class="mobile-row" style="width: 20%;"><strong>{{$package->products}}</strong></div>
                   
                     @endforeach
                     {{-- <div style="width: 20%;"><strong></strong></div> --}}
@@ -336,11 +388,10 @@
                   <div class="table-title-sm">
                     <div> مدت زمان </div>
                   </div>
-                  <div class="table-row" style="display: flex; justify-content: center; 
-                  ">
+                  <div class="table-row table-row-mobile">
                   <div class="table-title-lg" style="width: 20%;border-left: 1px solid #CCC;line-height: 4;border-right: 1px solid #CCC;"> مدت زمان </div>
                   @foreach($packages as $package)
-                  <div style="width: 20%;border-left: 1px solid #CCC;"><strong>{{$package->duration}} روز</strong></div>
+                  <div class="mobile-row" style="width: 20%;"><strong>{{$package->duration}} روز</strong></div>
                 
                   @endforeach
                     {{-- <div style="width: 20%;"></div> --}}
@@ -349,26 +400,24 @@
                   <div class="table-title-sm">
                     <div>  تعداد عکس</div>
                   </div>
-                  <div class="table-row" style="display: flex; justify-content: center; line-height: 4;
-                 ">
+                  <div class="table-row table-row-mobile">
                     <div class="table-title-lg" style="width: 20%;border-left: 1px solid #CCC;border-right: 1px solid #CCC;"> تعداد عکس </div>
                     @foreach($packages as $package)
-                    <div style="width: 20%;border-left: 1px solid #CCC;"><strong>{{$package->images}} </strong></div>
+                    <div class="mobile-row" style="width: 20%;"><strong>{{$package->images}} </strong></div>
                   
                     @endforeach
                   </div>
                   <div class="table-title-sm">
-                    <div> ویدیو </div>
+                    <div > ویدیو </div>
                   </div>
-                  <div class="table-row" style="display: flex;justify-content: center;  line-height: 4;
-                  ">
-                    <div class="table-title-lg" style="width: 20%;border-left: 1px solid #CCC;border-right: 1px solid #CCC;">  ویدیو  <span data-title="(حداکثر 8 عکس برای هر دستگاه)" tabindex="0">
-                               <i class="far fa-question-circle fa-sm question-hover" title="تعداد ویدیوهای قابل آپلود هر پکیج"></i></span></div>
+                  <div class="table-row table-row-mobile">
+                    <div class="table-title-lg" style="width: 20%;border-left: 1px solid #CCC;border-right: 1px solid #CCC;">  ویدیو  <span data-title="تعداد ویدیوهای قابل آپلود هر پکیج" tabindex="0">
+                               <i class="far fa-question-circle fa-sm question-hover"></i></span></div>
                                @foreach($packages as $package)
                                @if($package->video == 'YES')
-                               <div style="width: 20%;border-left: 1px solid #CCC;"><img alt="check" src="{{asset('frontend/img/check-mark-16.png')}}"></div>
+                               <div class="mobile-row" style="width: 20%;"><img alt="check" src="{{asset('frontend/img/check-mark-16.png')}}"></div>
                               @else
-                              <div style="width: 20%;border-left: 1px solid #CCC;">-</div>
+                              <div class="mobile-row" style="width: 20%;">-</div>
                                @endif
                                @endforeach         
             
@@ -381,31 +430,29 @@
                   <div class="table-title-sm">
                     <div>ارتباط با سایت فروشنده</div>
                   </div>
-                  <div class="table-row" style="display: flex; justify-content: center; line-height: 4;
-                 ">
+                  <div class="table-row table-row-mobile">
                     <div class="table-title-lg" style="width: 20%;border-left: 1px solid #CCC;border-right: 1px solid #CCC;">ارتباط با سایت فروشنده  </div>
                     {{-- <div style="width: 20%;border-left: 1px solid #CCC;"></div> --}}
                     @foreach($packages as $package)
                     @if($package->site == 'YES')
-                    <div style="width: 20%;border-left: 1px solid #CCC;"><img alt="check" src="{{asset('frontend/img/check-mark-16.png')}}"></div>
+                    <div class="mobile-row" style="width: 20%;"><img alt="check" src="{{asset('frontend/img/check-mark-16.png')}}"></div>
                    @else
-                   <div style="width: 20%;border-left: 1px solid #CCC;">-</div>
+                   <div class="mobile-row" style="width: 20%;">-</div>
                     @endif
                     @endforeach  
                   </div>
                   <div class="table-title-sm">
                     <div >امکان اضافه کردن لوگو</div>
                   </div>
-                  <div class="table-row" style="display: flex; justify-content: center; line-height: 4;
-                  ">
-                    <div class="table-title-lg" style="width: 20%;border-left: 1px solid #CCC;border-right: 1px solid #CCC;">امکان اضافه کردن لوگو  <span data-title="(پیوندی به لیست ماشین شما در پست های شما نمایش داده می شود)" tabindex="0">
-                      <i class="far fa-question-circle fa-sm" title="امکان اضافه کردن لوگوی فروشنده"></i></span></div>
+                  <div class="table-row table-row-mobile">
+                    <div class="table-title-lg" style="width: 20%;border-left: 1px solid #CCC;border-right: 1px solid #CCC;">امکان اضافه کردن لوگو  <span data-title="امکان اضافه کردن لوگوی فروشنده" tabindex="0">
+                      <i class="far fa-question-circle fa-sm" ></i></span></div>
                     {{-- <div style="width: 20%;border-left: 1px solid #CCC;"></div> --}}
                     @foreach($packages as $package)
                     @if($package->logo == 'YES')
-                    <div style="width: 20%;border-left: 1px solid #CCC;"><img alt="check" src="{{asset('frontend/img/check-mark-16.png')}}"></div>
+                    <div class="mobile-row" style="width: 20%;"><img alt="check" src="{{asset('frontend/img/check-mark-16.png')}}"></div>
                     @else
-                    <div style="width: 20%;border-left: 1px solid #CCC;">-</div>
+                    <div class="mobile-row" style="width: 20%;">-</div>
                     @endif
                     @endforeach                     
                        {{-- <div style="width: 20%;border-left: 1px solid #CCC;"></div>

@@ -23,6 +23,7 @@ class DashboardController extends Controller
      */
     public function __invoke(Request $request)
     {
+        $products = Product::where('isActive',1)->where('status','pending')->take(5)->get();
         $unreadMessages = Contactus::where('seen','unread')->latest()->take(5)->get();
         $newUsers = User::with('roles')->where('isActive',1)->where('mobile_verified_at','!=',"")->where('isAdmin',0)->latest()->take(5)->get();
         $paidOrders = Order::with('user')->where('status','PAID')->where('isActive',1)->latest()->take(5)->get();
@@ -49,7 +50,7 @@ class DashboardController extends Controller
         )->latest()->take(5)->get();
         return view('admin.dashboard',compact('vendororders','vendorInqueries','userTicket','userOrders','packages','logs','roles','unansweredComment','tickets','paidOrders','newUsers','unreadMessages'));
        }else{
-        return view('admin.dashboard',compact('newProducts','userTicket','userOrders','packages','logs','roles','unansweredComment','tickets','paidOrders','newUsers','unreadMessages'));
+        return view('admin.dashboard',compact('products','newProducts','userTicket','userOrders','packages','logs','roles','unansweredComment','tickets','paidOrders','newUsers','unreadMessages'));
    
        }
     }

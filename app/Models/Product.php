@@ -58,7 +58,7 @@ class Product extends Model
     public function getCreatedAtAttribute($created_at)
     {
         $v1 = new Verta($created_at);
-        $v1 = $v1->format('j-n-Y');
+        $v1 = $v1->format('Y-n-j');
         return $v1;
     }
  

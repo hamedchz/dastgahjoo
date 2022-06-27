@@ -127,10 +127,11 @@
                                   <label for="image">عکس  :(شما مجاز به آپلود {{$vendor->package->packageHistories->images}} عکس هستید)</label>
                                   <div class="input-group cust-file-button mb-3">
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input form-control  @error('image') is-invalid @enderror" id="inputGroupFile03" multiple wire:model.defer="state.image">
+                                        <input type="file" class="custom-file-input form-control  @error('image') is-invalid @enderror" id="f_p_v_up1" multiple wire:model.defer="state.image">
                                         <label class="custom-file-label" for="inputGroupFile03">عکس محصولات </label>
                                       </div>
                                 </div>
+                                <div class="filearray row mt-5 justify-content-center align-items-center" wire:ignore></div>
                                 {{-- @error('image')<div class="text-danger">{{ $message }}</div> @enderror
                                 <div class="col-md-12 mt-2">
                                   @if ($state->image)
@@ -337,9 +338,29 @@
     </script>
     <script src="{{asset("admin/ckeditor5/ckeditor.js")}}"></script>
     <script>
+        $(document).on('ready',()=>{
+        $("#f_p_v_up1").on('change',function(){
+
+            $(".filearray").empty();//you can remove this code if you want previous user input
+            for(let i=0;i<this.files.length;++i){
+                let filereader = new FileReader();
+                let $img=jQuery.parseHTML("<img src='' class='pr-2 mt-2 shadow' style='width:200px;height:200px;' >");
+                filereader.onload = function(){
+                    $img[0].src=this.result;
+                };
+                filereader.readAsDataURL(this.files[i]);
+                $(".filearray").append($img);
+            }
+
+
+        });
+    });
+    </script>
+    <script>
        
   
          $(document).ready(function(){
+          
           ClassicEditor
             .create( document.querySelector( '#description' ) )
             .then( editor => {

@@ -12,6 +12,7 @@ use Livewire\Component;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
 use Illuminate\Support\Str;
+use Intervention\Image\ImageManagerStatic as Image;
 
 
 class AdverisesList extends Component
@@ -64,17 +65,20 @@ class AdverisesList extends Component
         (new \App\Models\Log)->storeLog($validatedData['description'],'خطا در اضافه کردن بنر','ایجاد');
        }
     }
-    public function uploadImage($image)
-    {
-        $year = now()->year;
-        $month = now()->month;
-      //   $directory = "/storage/images/products/$year/$month";
-        $directory = "/images/banner/$year/$month";
-        $name = time() . '-' . Str::random(15).$image->getClientOriginalName();
-        $name = str_replace(' ', '-', $name);
-        $image->storeAs($directory, $name);
-        return "/storage$directory/$name";
-    }
+         public function uploadImage($image)
+      {
+        //   $year = now()->year;
+        //   $month = now()->month;
+        //   $directory = "/storage/images/products/$year/$month";
+        //   $directory = "/images/products/$year/$month/";
+          $name = time() . '-' . Str::random(15).$image->getClientOriginalName();
+          $name = str_replace(' ', '-', $name);
+          Image::make($image)->resize(800,80)->save(public_path("/images/banner/" . $name));
+
+        //   $image->storeAs($directory, $name);
+          return "/images/banner/$name";
+      }
+
     public function edit(Advertises $advertise){
         $this->editStatus = true;
         $this->advertise = $advertise;
@@ -96,6 +100,9 @@ class AdverisesList extends Component
     //    $save =  Advertises::create($validatedData);
        if (!is_null($this->photo)) {
        $fileName = $this->uploadImage($this->photo);
+       $image_path = public_path().'/'.$this->advertise->banner;
+       unlink($image_path);
+
        $this->advertise->update([
             'banner'=> $fileName
         ]);
@@ -105,11 +112,13 @@ class AdverisesList extends Component
         $this->resetValidation();
         $this->dispatchBrowserEvent('addBanner', ['message' => 'بنر  با موفقیت ویرایش شد','action'=>'success']);
         (new \App\Models\Log)->storeLog($validatedData['description'],'ویرایش کردن بنر','ویرایش');
+        return redirect()->to(route('admin.advertises'));
        }else{
         $this->resetInputForm();
         $this->resetValidation();
         $this->dispatchBrowserEvent('addBanner', ['message' => 'مشکلی وجود دارد','action'=>'error']);
         (new \App\Models\Log)->storeLog($validatedData['description'],'خطا در ویرایش کردن بنر','ویرایش');
+        return redirect()->to(route('admin.advertises'));
        }
     }
     public function removeConfirmation($id){
@@ -122,13 +131,16 @@ class AdverisesList extends Component
         $image_path = public_path().'/'.$prov->banner;
         unlink($image_path);
         if($delete){
+            $this->resetInputForm();
             $this->dispatchBrowserEvent('hidedelete', ['message' => 'بنر  با موفقیت حذف شد','action'=>'success']);
             (new \App\Models\Log)->storeLog( $prov->description,'حذف کردن بنر','حذف');
+            return redirect()->to(route('admin.advertises'));
            }else{
             $this->resetInputForm();
             $this->resetValidation();
             $this->dispatchBrowserEvent('hidedelete', ['message' => 'مشکلی وجود دارد','action'=>'error']);
             (new \App\Models\Log)->storeLog( $prov->description,'خطا در حذف کردن بنر','حذف');
+            return redirect()->to(route('admin.advertises'));
            }
 
     }

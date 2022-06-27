@@ -8,6 +8,49 @@
         <div class="row">
             {{-- admin dashboard --}}
         @if(auth()->user()->isAdmin == 1)
+        @can('products')
+        <div class="col-md-12 box-margin">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title"> محصولات جدید</h4>
+                    <div class="table-responsive" id=" ">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th> عنوان</th>
+                                    <th> دسته بندی</th>
+                                    <th>نام فروشنده </th>
+                                    <th>تاریخ</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse($products as $product)
+                                <tr>
+                                    <td>{{$product->name}}</td>
+                                    <td>{{$product->category->title}}</td>
+                                    <td>{{$product->vendor->user->name}}</td>
+                           
+                                    <td>{{$product->created_at}}</td>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <div class="progress progress-sm">
+                                                <div class="progress-bar bg-success" style="width: 82%"></div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    @empty
+                                    <td align="center" colspan="4" >محصولی وجود ندارد</td>
+                                </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+                    </div>
+                    <hr>
+                    <a href="{{route('admin.products')}}" class="text-center font-weight-bold"><span>مشاهده همه</span></a>
+                </div>
+            </div>
+        </div>
+        @endcan
             @can('inquiries')
             <div class="col-md-12 box-margin">
                 <div class="card">

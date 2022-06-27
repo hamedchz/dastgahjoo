@@ -14,7 +14,7 @@
               <div class="row">
                 <div class="form-group col-md-12">
                   <label for="category">دسته بندی</label>
-                  <select class="custom-select" id="category" wire:model = "state.category_id">
+                  <select class="custom-select  @error('category_id') is-invalid @enderror" id="category" wire:model = "state.category_id">
                       <option selected>انتخاب کنید</option>
                       @forelse($categories as $category)
                       <option value="{{$category->id}}">{{$category->title}}</option>
@@ -22,10 +22,10 @@
                       <option>دسته بندی وجود ندارد</option>
                       @endforelse
                   </select>
-                  @error('category')<div class="invalid-feedback">{{ $message }}</div> @enderror
+                  @error('category_id')<div class="invalid-feedback">{{ $message }}</div> @enderror
               </div>
               <div class="form-group col-md-12">
-                <label for="description">نام تبلیغ</label>
+                <label for="description">عنوان  تبلیغ</label>
                 <input type="text" wire:model="state.description" class="form-control @error('description') is-invalid @enderror" id="description" placeholder="نام تبلیغ">
                 @error('description')<div class="invalid-feedback">{{ $message }}</div> @enderror
             </div>
