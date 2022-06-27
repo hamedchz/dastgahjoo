@@ -33,7 +33,7 @@
                                         <td>{{$prov->category->title}}</td>
                                         <td>{{$prov->expired_at}}</td>
                                         <td>
-                                            <div  style="width: 50px;"><img class="rounded-circle" src="{{asset($prov->banner)}}" alt="avatar"></div>
+                                            <div  style="width: 100px;"><img  src="{{asset($prov->banner)}}" alt="avatar"></div>
                                         </td>
                                       
                                         <td>

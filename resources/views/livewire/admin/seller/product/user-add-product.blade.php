@@ -36,9 +36,9 @@
                     
                                 <div class="form-group col-md-6">
                                   <label for="subcategory"> زیر دسته بندی</label>
-                                  <select class="custom-select" wire:model.defer="state.subcategory_id">
+                                  <select class="custom-select" id="subcategory" wire:model.defer="state.subcategory_id">
+                                    <option  value="0" selected>انتخاب کنید</option>
                                     @if($subCategory <> null)
-                                      <option  value="" selected>انتخاب کنید</option>
                                       @forelse($subCategory as $category)
                                       <option value="{{$category->id}}">{{$category->title}}</option>
                                       @empty
@@ -378,7 +378,7 @@
                 @this.set('state.category', $(this).val())
             });
             $('#subcategory').on('change', function(){
-                @this.set('state.subcategory', $(this).val())
+                @this.set('state.subcategory_id', $(this).val())
             });
             $('#isStock').on('change', function(){
                 @this.set('state.isStock', $(this).val())

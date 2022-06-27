@@ -37,6 +37,7 @@ class UserAddProduct extends Component
     public function addNew(){
         $ValidateData = Validator::make($this->state,[
             'category_id' => 'required',
+            'subcategory_id' => 'sometimes',
             'quantity' => 'required',
             'year_of_manufacture' => 'required',
             'price' => 'required',
@@ -89,7 +90,7 @@ class UserAddProduct extends Component
             $ValidateData['category_id'] = $this->state['category'];
             $cat = Category::where('id',$this->state['category'])->first();
             $ValidateData['slug'] = $cat->slug.'/'. $this->slugify($ValidateData['name']);
-            if($this->state['subcategory_id']){ 
+            if($this->state['subcategory_id'] <> 0){ 
                 $ValidateData['subcategory_id'] = $this->state['subcategory_id'];
             }else{
                 $ValidateData['subcategory_id'] = null;

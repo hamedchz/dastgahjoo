@@ -35,7 +35,7 @@
          <div style="background-color: #fff;">
       
    <!-- بنر تبلیغات -->
-   <div id="jssor_1" >
+   {{-- <div id="jssor_1" >
     <div class="slides" data-u="slides" >
         <div >
             <img data-u="image" src="img/logoPagus.jpg" />
@@ -98,7 +98,7 @@
           <path class="a" d="M5869,1919l5984.1,5852.7c127.9,125.5,127.9,329.1,0,454.9L5869,14079"></path>
       </svg>
   </div>
-</div>
+</div> --}}
 <!-- آخر اسلایدر تبلیغات -->
  </div>
 
@@ -113,7 +113,7 @@
                    </div>         
                       </div>
       
-              <form action="" method="get" name="">
+              {{-- <form action="" method="get" name="">
                 <input type="hidden" name="" value="">
                 <input type="hidden" name="" value="">
                 <input type="hidden" name="" value="">
@@ -150,7 +150,7 @@
                   </div>
                 </div>
               </div>
-              </form>
+              </form> --}}
               </header>
             </div>
       

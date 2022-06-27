@@ -370,8 +370,17 @@ span[data-title]:hover::after, span[data-title]:focus::after {
                           <span> تومان</span></div>
                         <div class="cost-try mb-2"><b>   ماهانه</b></div>
                         <div class="cost-try mb-2" style="line-height: 2;height: 75px;">({{($package->price)-(($package->price)*($package->discount->percentage/100))}} تومان در ماه)</div>
-                        <div><a class="btn btn-sm cost-buy" href="{{route('register')}}">سفارش </a> <a class="hide-desktop" href="{{route('register')}}" > سفارش 
-                        </a></div>
+                       @auth
+                       <div><a class="btn btn-sm cost-buy" href="{{route('payment.package',$package)}}">سفارش </a> <a class="hide-desktop" href="{{route('register')}}" > سفارش 
+                      </a></div>
+
+                       @endauth
+                       @guest
+                       <div><a class="btn btn-sm cost-buy" href="{{route('register')}}">سفارش </a> <a class="hide-desktop" href="{{route('register')}}" > سفارش 
+                      </a></div>
+
+                       @endguest
+
                         <div class="cost-try" style="margin-top: 10px;"><a href="#dealerstandard" data-toggle="modal" data-target="#dealerstandard"></a> </div>
                       </div>
                       @endforeach

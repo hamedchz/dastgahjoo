@@ -193,12 +193,12 @@
                     <div class="input-group">
                       <input class="form-control" placeholder="جستجو در دسته " value="" maxlength="40" name="name" type="text" required="" title="">
       
-                      <select class="custom-select" name="category" style="border-radius: 0px; width: 120px;">
+                      {{-- <select class="custom-select" name="category" style="border-radius: 0px; width: 120px;">
                         <option disabled value="" selected="selected">دسته بندی</option>
                         @foreach($categories as $category)
                         <option value="{{$category->id}}">{{$category->title}}</option>
                         @endforeach
-                      </select>
+                      </select> --}}
                       <span class="input-group-btn">
                         <button id="search-button" class="btn-all btn-primary" type="submit" name="">
                            <i class="fas fa-search"></i>
@@ -647,7 +647,7 @@
         <div class="display-align">
           <div class="col-12 mx-auto">
             @if($advertise->count()>0)
-            <div style="background-color: #fff;">
+            <div style="background-color: #fff;" wire:ignore>
           
               <div id="jssor_1" style="position:relative;margin:0 auto;top:0px;left:0px;width:1110px;height:150px;overflow:hidden;visibility:hidden;">
                 <div data-u="slides" style="cursor:default;position:relative;top:0px;left:0px;width:1110px;height:150px;overflow:hidden;object-fit: cover;">
