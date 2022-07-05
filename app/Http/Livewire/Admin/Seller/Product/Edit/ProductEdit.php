@@ -6,7 +6,7 @@ use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
-
+use Illuminate\Support\Str;
 class ProductEdit extends Component
 {
     public $state = [];
@@ -67,23 +67,25 @@ class ProductEdit extends Component
         ])->validate();  
         
 
-        if(!empty($this->state['subcategory_id'])){
-            $ValidateData['category_id'] = $this->state['category_id'];
+        $ValidateData['category_id'] = $this->state['category_id'];
+        $cat = Category::where('id',$this->state['category_id'])->first();
+
+        if($this->state['subcategory_id'] <> 0){ 
+            $subcat = Category::where('id',$this->state['subcategory_id'])->first();
             $ValidateData['subcategory_id'] = $this->state['subcategory_id'];
-            $sub = Category::where('id',$this->state['subcategory_id'])->first();
-            $cat = Category::where('id',$this->state['category_id'])->first();
-            $ValidateData['slug'] = '/'.$cat->title.'/'.$sub->title;
+            $ValidateData['slug'] = $cat->slug.'/'.$subcat->slug.'/'. Str::slug($ValidateData['name']);
         }else{
-            $ValidateData['category_id'] = $this->state['category_id'];
-            $cat = Category::where('id',$this->state['category_id'])->first();
-            $ValidateData['slug'] = '/'.$cat->title;
             $ValidateData['subcategory_id'] = null;
+            $ValidateData['slug'] = $cat->slug.'/'. Str::slug($ValidateData['name']);
+
         }
         //$ValidateData['vandor_id'] = $this->vendor->id;
         if(empty($ValidateData['site_url'])){
             $ValidateData['site_url'] = null;
         }
-        
+        if(empty($ValidateData['description'])){
+            $ValidateData['description'] = null;
+        }
         $store = $this->product->update($ValidateData);
         if ($store) {
             

@@ -328,7 +328,7 @@
           <div class="display-align top-pad">
             <div class="col-lg-12">            
                 <div class="col-lg-12 text center-align mx-auto">
-                    <a class="btn-all btn-green" href="{{route('contact-us')}}" target="_blank">درخواست ارسال استعلام</a>
+                    <a class="btn-all btn-green" href="{{route('contact-us')}}" target="_blank">ارتباط با مدیر سایت</a>
                 </div>          
             </div>
           </div>    

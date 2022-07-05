@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="container" style="width:100vw; height:100vh;display: flex;justify-content: center;align-items: center;position: relative;text-align: center; overflow:hidden;">
-        <p style=" border-radius:5px;position: absolute;bottom:50%; padding:3vmin 12vmin 3vmin 3vmin; font-weight:600; font-size: 20px; color: #721c24; background-color: #f8d7da; padding: 1rem 2.5rem;">پکیج شما به پایان رسیده است</p>
+        <p style=" border-radius:5px;position: absolute;bottom:50%; padding:3vmin 12vmin 3vmin 3vmin; font-weight:600; font-size: 20px; color: #721c24; background-color: #f8d7da; padding: 1rem 2.5rem;"> پکیج شما به پایان رسیده است و یا از تمام قابلیتهای پکیج استفاده کرده اید.</p>
         <a href="{{route('admin.dashboard.index')}}" style=" margin-top:40px;color: #fff;background-color: #10db4d;border-color: #dc3545;display: inline-block;font-weight: 500;text-align: center; border: 1px solid transparent;
         padding: 0.375rem 0.75rem;border-radius: 0.25rem;  font-size: 15px;">برگشت</a>
       </div>

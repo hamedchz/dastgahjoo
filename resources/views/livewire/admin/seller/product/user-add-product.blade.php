@@ -112,8 +112,8 @@
                                     @error('isSold')<div class="invalid-feedback">{{ $message }}</div> @enderror
                                   </div>
                                   <div class="form-group col-md-6">
-                                    <label for="location"> موقعیت</label>
-                                    <input type="text" wire:model.defer="state.location" class="form-control @error('location') is-invalid @enderror" id="location" placeholder=" موقعیت  " oninput="removeError('#location')">
+                                    <label for="location"> موقعیت دستگاه</label>
+                                    <input type="text" wire:model.defer="state.location" class="form-control @error('location') is-invalid @enderror" id="location" placeholder=" موقعیت دستگاه  " oninput="removeError('#location')">
                                     @error('location')<div class="invalid-feedback">{{ $message }}</div> @enderror
                                 </div>
                                 @if($vendor->package->packageHistories->site == 'YES')
@@ -175,12 +175,24 @@
                                   </div>
                               
                                   <div class="form-group col-md-12">
+                                    @if($errors->any())
+                                    <div class="alert alert-danger text-right" role="alert" id="fieldError" style="text-align:right !important;width:100%;color:#721c24;background-color:#f8d7da;border-color:#f5c6cb;">
+                                      لطفا فیلدها را کنترل کنید
+                                    </div>
+                                    <script>
+                                      const errorField = document.querySelector('#fieldError')
+                                      setTimeout(() => {
+                                        errorField.classList.add('d-none')
+                                      }, 3000);
+                                    </script>
+                                    @endif
                                     <button type="submit" class="btn btn-success" wire:loading.class="d-none">ثبت</button>
                                     <div class="la-ball-beat la-dark la-sm " wire:loading  style="float:right;">
                                       <div></div>
                                       <div></div>
                                       <div></div>
                                   </div>
+
                                   </div>
                               </div>
                               </form>

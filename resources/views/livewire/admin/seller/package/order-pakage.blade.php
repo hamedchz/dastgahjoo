@@ -217,19 +217,13 @@ span[data-title]:hover::after, span[data-title]:focus::after {
           <div class="container" >
             <div class="display-align top-titr">
               <div class="col-lg-8 text center-align mx-auto">
-                  <h1>
-                    <strong style="color:#444;">قیمت و سفارش عضویت</strong>
-                  </h1>
-                  <div class="description2">
-                      <p>
-                        <strong>عضویت مناسب خود را سفارش دهید و مانند هزاران فروشنده قبل از شما بهره مند شوید!</strong>
-                    </p>
+                   {!!$membershipBody->first_part!!}
                   </div>
               </div>
             </div>
           </div>
   
-      <div class=" top-margin">
+      {{-- <div class=" top-margin">
             <div class="col-xl-8 text center-align mx-auto">
                     <p class="top-margin" style="color:#555555;" >سوالی دارید؟ 
                       <span style="color: Green;">
@@ -237,7 +231,7 @@ span[data-title]:hover::after, span[data-title]:focus::after {
                     </span> 
                    <a href="tel:00989171175834" class="text-dark"> 09171175834</a></p>
             </div>
-      </div>
+      </div> --}}
   
       {{-- <div class="counters section">
         <div class="container">
@@ -327,8 +321,8 @@ span[data-title]:hover::after, span[data-title]:focus::after {
                   <div class="table-row table-row-mobile" >
                     <div class="tl table-head1" style="width: 20%;padding: 10px 0;border-right: 1px solid #CCC;">
                       <div class="contact-info" style="color: black;">ما با کمال میل به سوالات شما پاسخ خواهیم داد:</div>
-                      <div class="contact-info" style="color: black;">  <a href="tel:00989171175834" class="text-dark"> 09171175834</a> <span style="color: green;">
-                        <i class="fas fa-phone-square fa-lg"></i> </span></div>
+                      {{-- <div class="contact-info" style="color: black;">  <a href="tel:00989171175834" class="text-dark"> 09171175834</a> <span style="color: green;">
+                        <i class="fas fa-phone-square fa-lg"></i> </span></div> --}}
                     </div>
                     @foreach($packages as $package)
                     <div class="compare-heading mobile-row" style="width: 20%;">
@@ -424,9 +418,6 @@ span[data-title]:hover::after, span[data-title]:focus::after {
                     {{-- <div style="width: 20%;"></div> --}}
                   </div>
                 
-              
-                 
-                
                   <div class="table-title-sm">
                     <div>ارتباط با سایت فروشنده</div>
                   </div>
@@ -466,6 +457,13 @@ span[data-title]:hover::after, span[data-title]:focus::after {
           </div>
   
 <!-- end table -->
+        <div class="grey-back section">
+          <div class="container">
+            <div class="comment more">
+              {!!$membershipBody->second_part!!}
+            </div>
+          </div>
+        </div>
         </div>
     </div>
 </div>

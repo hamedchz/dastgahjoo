@@ -99,12 +99,12 @@
                 </div>
        
   
-              <p>
+              {{-- <p>
                 علاوه بر این، می توانید زیر شاخه های پویا ما را نیز مرور کنید. 
                 <b>اگر آنچه را که در بازار ماشین آلات دست دوم ما به دنبال آن هستید کشف نکردید، می‌توانید درخواستی را نیز ارسال کنید:</b>      
-                      </p>
+                      </p> --}}
               <div class="col-lg-12   text center-align mx-auto">
-                 <a class="btn-all btn-green" href="{{route('contact-us')}}" >ارسال درخواست استعلام</a>
+                 <a class="btn-all btn-green" href="{{route('contact-us')}}" >تماس با مدیریت سایت</a>
               </div>
         </div>
       </div>

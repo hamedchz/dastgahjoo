@@ -15,16 +15,14 @@
      
           <nav aria-label="breadcrumb" class="address-bar">
             <ol class="address-crumb" >
-              <li class="address-crumb-item"><a href="#">
+              <li class="address-crumb-item"><a href="{{url('/')}}">
                 <i class="fa fa-home" aria-hidden="true"></i>
               </a>
             </li>
               <li class="address-crumb-item">
-                <a href="advanced-search.html">جستجوی پیشرفته</a>
+                <a href="#">جستجوی پیشرفته</a>
               </li>
-              <li class="address-crumb-item">
-                <a href="#" style="cursor: pointer;">بازگشت</a>
-              </li>
+           
             </ol>
           </nav>
     

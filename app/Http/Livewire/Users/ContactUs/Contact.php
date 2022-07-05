@@ -4,10 +4,11 @@ namespace App\Http\Livewire\Users\ContactUs;
 
 use App\Models\Category;
 use App\Models\Contactus;
+use App\Models\Setting;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
 use Artesaos\SEOTools\Traits\SEOTools as SEOToolsTrait;
-
+use SoapClient;
 
 class Contact extends Component
 {
@@ -24,9 +25,8 @@ class Contact extends Component
             'mobile' => 'required|min:11',
             'subject' => 'required',
             'description' => 'required',
-            'address' => 'required',
-            'postal' => 'required',
-            'address' => 'required',
+            'postal' => 'sometimes',
+            'address' => 'sometimes',
 
             
          
@@ -46,10 +46,26 @@ class Contact extends Component
           
         $store  = Contactus::create($validatedData);
         if($store){
+            $this->sendSmsCode($this->state['mobile']);
             $this->state = "";
             $this->addError('storeMessage', 'پیام شما فرستاده شد با شما تماس میگیریم','action');
 
         }
+    }
+    public function sendSmsCode($mobile)
+    {
+        $client = new SoapClient("http://188.0.240.110/class/sms/wsdlservice/server.php?wsdl");
+        $user = Setting::where('name','user_panel_for_sms')->pluck('value')->first();
+        $pass = Setting::where('name','password_panel_for_sms')->pluck('value')->first();
+        $fromNum = Setting::where('name','lineNumber_panel_for_sms')->pluck('value')->first();
+        $toNum = Setting::where('name','owner_phone')->pluck('value')->first();
+        // $toNum = $mobile;
+        $pattern_code = "ilkwjwdcmhfn91o";
+        $input_data = array(
+            "mobile" => $mobile,
+            
+        );
+        return $client ->sendPatternSms($fromNum, $toNum, $user, $pass, $pattern_code, $input_data);
     }
     public function render()
     {

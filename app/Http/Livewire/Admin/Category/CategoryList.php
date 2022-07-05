@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 use Livewire\WithPagination;
-
+use Illuminate\Support\Str;
 class CategoryList extends Component
 {
     use WithPagination,AuthorizesRequests;
@@ -31,10 +31,11 @@ class CategoryList extends Component
     }
 
     public function store(){
+        $this->state['slug'] = Str::slug($this->state['slug']);
         $validateData = Validator::make($this->state,
         [
             'title' => 'required',
-            'slug' => 'required|unique:categories',
+            'slug' => 'required|unique:categories,slug',
             'description' => 'required',
             'metaDescription' => 'required|max:160',
             'metaTitle' => 'required|max:60',
@@ -50,7 +51,7 @@ class CategoryList extends Component
             'metaTitle.max' =>  'تعداد کاراکترها زیاد است',
       
         ])->validate();
-        $validateData['slug'] = $this->slugify($validateData['slug']);
+        // $validateData['slug'] = $this->slugify($validateData['slug']);
         $save = Category::create($validateData);
         if($save){
             $this->resetValidation();
@@ -109,12 +110,15 @@ class CategoryList extends Component
     }
 
     public function update(){
+        $this->state['slug'] = Str::slug($this->state['slug']);
         $validateData = Validator::make($this->state,
         [
             'title' => 'required',
             'description' => 'required',
             'metaDescription' => 'required|max:160',
             'metaTitle' => 'required|max:60',
+            'slug' => ['required', Rule::unique('categories')->ignore($this->category['id'])],
+
         ],
         [
             'title.required' =>  'این فیلد نمیتواند خالی باشد',
@@ -123,6 +127,9 @@ class CategoryList extends Component
             'metaDescription.max' =>  'تعداد کاراکترها زیاد است',
             'metaTitle.required' =>  'این فیلد نمیتواند خالی باشد',
             'metaTitle.max' =>  'تعداد کاراکترها زیاد است',
+            'slug.required' =>  'این فیلد نمیتواند خالی باشد',
+            'slug.unique' =>  'این نام تکراری است',
+
       
         ])->validate();
         $this->category->slug = null;

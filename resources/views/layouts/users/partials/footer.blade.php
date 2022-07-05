@@ -2,12 +2,12 @@
     <div class="second-bar">
        <div class="container">
             <div class="social-icons">
-                <span>از فروشگاه ما بازدید کنید: </span>
-                <a href="#" class="social" target="_blank" >
+                <span>ما را در شبکه های اجتماعی دنبال کنید: </span>
+                {{-- <a href="#" class="social" target="_blank" >
                   <i class="fab fa-facebook-square" ></i>
-                 </a>
+                 </a> --}}
                  <a href="#" class="social" target="_blank">
-                   <i class="fab fa-linkedin " ></i> 
+                   <i class="fab fa-instagram " ></i> 
                     </a>
             </div>
         </div>

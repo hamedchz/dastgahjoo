@@ -13,6 +13,7 @@ use App\Http\Livewire\Admin\Location\City\CityList;
 use App\Http\Livewire\Admin\Location\Province\ProvinceList;
 use App\Http\Livewire\Admin\Logs\LogsList;
 use App\Http\Livewire\Admin\MachineSearch\MachineSearch;
+use App\Http\Livewire\Admin\MembershipBody\MemebershipBody;
 use App\Http\Livewire\Admin\Messages\Contactus\ContactList;
 use App\Http\Livewire\Admin\Messages\Products\ProductMessageLists;
 use App\Http\Livewire\Admin\Messages\Tickets\TicketsList;
@@ -58,6 +59,7 @@ use App\Http\Livewire\Users\Registration\Form;
 use App\Http\Livewire\Users\SearchMachine\SearchMachine;
 use App\Http\Livewire\Users\Sitmap\Sitemap;
 use App\Http\Livewire\Users\WatchList\WachList;
+use App\Models\MembershipBody;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -94,6 +96,8 @@ Route::group(['namespace'=> '','prefix'=> 'dashboard','middleware' => [ 'auth' ]
     Route::get('faq',FaqList::class)->name('admin.faq');  
     Route::get('about-us',AboutUsAdmin::class)->name('admin.about-us');
     Route::get('policy',PolicyList::class)->name('admin.policy');
+    Route::get('membership-body',MemebershipBody::class)->name('admin.membershipBody');
+
     //search
     Route::get('search-edit',MachineSearch::class)->name('admin.search-machine');
 

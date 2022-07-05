@@ -127,6 +127,17 @@
                                   </div>
                               
                                   <div class="form-group col-md-12">
+                                    @if($errors->any())
+                                    <div class="alert alert-danger text-right" role="alert" id="fieldError" style="text-align:right !important;width:100%;color:#721c24;background-color:#f8d7da;border-color:#f5c6cb;">
+                                      لطفا فیلدها را کنترل کنید
+                                    </div>
+                                    <script>
+                                      const errorField = document.querySelector('#fieldError')
+                                      setTimeout(() => {
+                                        errorField.classList.add('d-none')
+                                      }, 3000);
+                                    </script>
+                                    @endif
                                     <button type="submit" class="btn btn-success">ذخیره</button>
                                   </div>
                               </div>

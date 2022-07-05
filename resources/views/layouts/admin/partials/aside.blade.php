@@ -57,9 +57,9 @@
                 <li class="{{ request()->is('dashboard/users') == true ? 'active':''}}"><a href="{{route('admin.users')}}"><i class="fa fa-users"></i><span>کاربران</span></a></li>
                 @endcanany
                 @canany(['settings','location','edit-homepage','faq','aboutus','edit-serachpage'])
-                <li class="treeview {{ request()->is('dashboard/policy') == true ? 'menu-open':''}} {{ request()->is('dashboard/search-edit') == true ? 'menu-open':''}} {{ request()->is('dashboard/search-edit') == true ? 'menu-open':''}} {{ request()->is('dashboard/about-us') == true ? 'menu-open':''}} {{ request()->is('dashboard/faq') == true ? 'menu-open':''}}  {{ request()->is('dashboard/index-edit') == true ? 'menu-open':''}}  {{ request()->is('dashboard/provinces') == true ? 'menu-open':''}}  {{ request()->is('dashboard/cities/*') == true ? 'menu-open':''}} ">
-                    <a href="javascript:void(0)"><i class="zmdi zmdi-settings" ></i> <span>تنظیمات</span> <i class="fa fa-angle-left"></i></a>
-                    <ul class="treeview-menu" {{ request()->is('dashboard/policy') == true ? "style=display:block;":''}} {{ request()->is('dashboard/about-us') == true ? "style=display:block;":''}} {{ request()->is('dashboard/faq') == true ? "style=display:block;":''}} {{ request()->is('dashboard/index-edit') == true ? "style=display:block;":''}} {{ request()->is('dashboard/provinces') == true ? "style=display:block;":''}}  {{ request()->is('dashboard/cities/*') == true ? "style=display:block;":''}}>
+                <li class="treeview {{ request()->is('dashboard/membership-body') == true ? 'menu-open':''}} {{ request()->is('dashboard/policy') == true ? 'menu-open':''}} {{ request()->is('dashboard/search-edit') == true ? 'menu-open':''}} {{ request()->is('dashboard/search-edit') == true ? 'menu-open':''}} {{ request()->is('dashboard/about-us') == true ? 'menu-open':''}} {{ request()->is('dashboard/faq') == true ? 'menu-open':''}}  {{ request()->is('dashboard/index-edit') == true ? 'menu-open':''}}  {{ request()->is('dashboard/provinces') == true ? 'menu-open':''}}  {{ request()->is('dashboard/cities/*') == true ? 'menu-open':''}} ">
+                    <a href="javascript:void(0)"><i class="zmdi zmdi-settings" ></i> <span>تنظیمات متون</span> <i class="fa fa-angle-left"></i></a>
+                    <ul class="treeview-menu"  {{ request()->is('dashboard/membership-body') == true ? "style=display:block;":''}} {{ request()->is('dashboard/policy') == true ? "style=display:block;":''}} {{ request()->is('dashboard/about-us') == true ? "style=display:block;":''}} {{ request()->is('dashboard/faq') == true ? "style=display:block;":''}} {{ request()->is('dashboard/index-edit') == true ? "style=display:block;":''}} {{ request()->is('dashboard/provinces') == true ? "style=display:block;":''}}  {{ request()->is('dashboard/cities/*') == true ? "style=display:block;":''}}>
                         <!-- تنظیمات فوتر-برچسب ها-تنظیمات عمومی(لوگو و ...) -  -->
                         @can('edit-homepage')
                         <li  class="{{ request()->is('dashboard/index-edit') == true ? 'active':''}}"><a href="{{route('admin.index-edit')}}">تنظیمات صفحه اول</a></li>
@@ -68,7 +68,10 @@
                         <li  class="{{ request()->is('dashboard/search-edit') == true ? 'active':''}}"><a href="{{route('admin.search-machine')}}">تنظیمات صفحه جستجو</a></li>
                         @endcan
                         @can('policy')
-                        <li class="{{ request()->is('dashboard/policy') == true ? 'active':''}}"><a href="{{route('admin.policy')}}"> حریم خصوصی  </a></li>
+                        <li class="{{ request()->is('dashboard/policy') == true ? 'active':''}}"><a href="{{route('admin.policy')}}"> شرایط و قوانین سایت  </a></li>
+                        @endcan
+                        @can('membershipBody')
+                        <li  class="{{ request()->is('dashboard/membership-body') == true ? 'active':''}}"><a href="{{route('admin.membershipBody')}}">تنظیمات صفحه عضویت</a></li>
                         @endcan
                         @can('location')
                         <!-- استان و شهر و ... -  -->

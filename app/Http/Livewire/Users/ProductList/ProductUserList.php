@@ -36,7 +36,7 @@ class ProductUserList extends Component
     }
     public function render()
     {
-        $cat = Category::with('parents')->where('slug',$this->slug)->where('parent',0)->first();
+        $cat = Category::with('parents')->where('slug',$this->slug)->where('isActive',1)->first();
         $advertise = Advertises::where('category_id', $cat->id)->where('expire_at','>=',Carbon::now())->get();
         $categories = Category::with('parents')->with('products')->with('subproducts')->where('isActive',1)->where('parent',0)->take(4)->get();
         $categoriesCount = Category::with('parents')->with('products')->with('subproducts')->where('isActive',1)->where('parent',0)->get();
@@ -45,7 +45,7 @@ class ProductUserList extends Component
         //  $products = Category::with('products')->whereHas('products' , function($q){
         //      $q->where('status','verified')->where('isSold',0);
         //  })->where('slug',$slug)->orderBy('id','desc')->paginate(4);
-        $products = Product::with('images')->where('category_id',$cat->id)->
+        $products = Product::with('images')->where('subcategory_id',$cat->id)->
         where('status','verified')->where('isSold',0)->where('isActive',1)->latest()->paginate(21);
         // $advertise = Advertises::where('expire_at','>=',Carbon\Carbon::now())
         $this->seo()

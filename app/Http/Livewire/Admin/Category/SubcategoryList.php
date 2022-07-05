@@ -7,6 +7,8 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 class SubcategoryList extends Component
 {
@@ -59,12 +61,17 @@ class SubcategoryList extends Component
 
     }
     public function update(){
+        $this->state['slug'] = Str::slug($this->state['slug']);
         $validateData = Validator::make($this->state,
         [
             'title' => 'required',
             'description' => 'required',
             'metaDescription' => 'required|max:160',
             'metaTitle' => 'required|max:60',
+            'slug' => ['required', Rule::unique('categories')->ignore($this->category['id'])],
+           
+
+
         ],
         [
             'title.required' =>  'این فیلد نمیتواند خالی باشد',
@@ -73,6 +80,9 @@ class SubcategoryList extends Component
             'metaDescription.max' =>  'تعداد کاراکترها زیاد است',
             'metaTitle.required' =>  'این فیلد نمیتواند خالی باشد',
             'metaTitle.max' =>  'تعداد کاراکترها زیاد است',
+            'slug.required' =>  'این فیلد نمیتواند خالی باشد',
+            'slug.unique' =>  'این نام تکراری است',
+
       
         ])->validate();
         $this->category->slug = null;
@@ -109,13 +119,14 @@ class SubcategoryList extends Component
         }
 
     public function store(){
+        $this->state['slug'] = Str::slug($this->state['slug']);
         $validateData = Validator::make($this->state,
         [
             'title' => 'required',
             'description' => 'required',
             'metaDescription' => 'required|max:160',
             'metaTitle' => 'required|max:60',
-            'slug' => 'required|unique:categories',
+            'slug' => 'required|unique:categories,slug',
 
         ],
         [
@@ -131,7 +142,7 @@ class SubcategoryList extends Component
       
         ])->validate();
         $validateData['parent'] = $this->categoryId;
-        $validateData['slug'] = $this->slugify($validateData['slug']);
+        //$validateData['slug'] = $this->slugify($validateData['slug']);
         $save = Category::create($validateData);
         if($save){
             $this->resetValidation();

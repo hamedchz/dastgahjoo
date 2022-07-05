@@ -89,16 +89,23 @@ class UserAddProduct extends Component
         // }else{
             $ValidateData['category_id'] = $this->state['category'];
             $cat = Category::where('id',$this->state['category'])->first();
-            $ValidateData['slug'] = $cat->slug.'/'. $this->slugify($ValidateData['name']);
+ 
             if($this->state['subcategory_id'] <> 0){ 
+                $subcat = Category::where('id',$this->state['subcategory_id'])->first();
                 $ValidateData['subcategory_id'] = $this->state['subcategory_id'];
+                $ValidateData['slug'] = $cat->slug.'/'.$subcat->slug.'/'. Str::slug($ValidateData['name']);
             }else{
                 $ValidateData['subcategory_id'] = null;
+                $ValidateData['slug'] = $cat->slug.'/'. Str::slug($ValidateData['name']);
+
             }
         // }
         //$ValidateData['vandor_id'] = $this->vendor->id;
         if(empty($ValidateData['site_url'])){
             $ValidateData['site_url'] = null;
+        }
+        if(empty($ValidateData['description'])){
+            $ValidateData['description'] = null;
         }
         $store = Product::create([
             'category_id' => $ValidateData['category_id'] ,

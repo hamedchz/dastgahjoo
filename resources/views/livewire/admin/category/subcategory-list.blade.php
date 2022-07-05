@@ -156,7 +156,7 @@
      <script src="/admin/js/default-assets/datatables.select.min.js"></script>
      <script src="/admin/js/default-assets/demo.datatable-init.js"></script>
      <script src="/admin/js/default-assets/bootstrap-growl.js"></script>
-     <script src="/admin/js/default-assets/notification-active.js"></script>
+     {{-- <script src="/admin/js/default-assets/notification-active.js"></script> --}}
      <script src="/admin/js/MaxLength.min.js"></script>
 
     @endpush

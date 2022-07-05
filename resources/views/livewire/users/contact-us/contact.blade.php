@@ -138,7 +138,7 @@
                             <div class="input-group-addon" style="width: 2.6rem">
                               <i class="fas fa-home fa-lg"></i>
                             </div>
-                            <input type="number" name="" class="form-control  @error('postal') is-invalid @enderror" wire:model = "state.postal" placeholder="  کدپستی" required="">
+                            <input type="number" name="" class="form-control  @error('postal') is-invalid @enderror" wire:model = "state.postal" placeholder="  کدپستی" >
                             {{-- @error('postal')<div class="invalid-feedback">{{ $message }}</div> @enderror --}}
 
                           </div>

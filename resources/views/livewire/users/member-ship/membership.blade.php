@@ -220,19 +220,13 @@ span[data-title]:hover::after, span[data-title]:focus::after {
             <div class="container" >
               <div class="display-align top-titr">
                 <div class="col-lg-8 text center-align mx-auto">
-                    <h1>
-                      <strong style="color:#444;">قیمت و سفارش عضویت</strong>
-                    </h1>
-                    <div class="description2">
-                        <p>
-                          <strong>عضویت مناسب خود را سفارش دهید و مانند هزاران فروشنده قبل از شما بهره مند شوید!</strong>
-                      </p>
+                   {!!$membershipBody->first_part!!}
                     </div>
                 </div>
               </div>
             </div>
     
-        <div class=" top-margin">
+        {{-- <div class=" top-margin">
               <div class="col-xl-8 text center-align mx-auto">
                       <p class="top-margin" style="color:#555555;" >سوالی دارید؟ 
                         <span style="color: Green;">
@@ -240,7 +234,7 @@ span[data-title]:hover::after, span[data-title]:focus::after {
                       </span> 
                       <a href="tel:00989171175834" class="text-dark"> 09171175834</a></p>
                     </div>
-        </div>
+        </div> --}}
     
         {{-- <div class="counters section">
           <div class="container">
@@ -330,8 +324,8 @@ span[data-title]:hover::after, span[data-title]:focus::after {
                     <div class="table-row table-row-mobile" >
                       <div class="tl table-head1" style="width: 20%;padding: 10px 0;border-right: 1px solid #CCC;">
                         <div class="contact-info" style="color: black;">ما با کمال میل به سوالات شما پاسخ خواهیم داد:</div>
-                        <div class="contact-info" style="color: black;">  <a href="tel:00989171175834" class="text-dark"> 09171175834</a> <span style="color: green;">
-                          <i class="fas fa-phone-square fa-lg"></i> </span></div>
+                        {{-- <div class="contact-info" style="color: black;">  <a href="tel:00989171175834" class="text-dark"> 09171175834</a> <span style="color: green;">
+                          <i class="fas fa-phone-square fa-lg"></i> </span></div> --}}
                       </div>
                       @foreach($packages as $package)
                       <div class="compare-heading mobile-row" style="width: 20%;">
@@ -341,11 +335,11 @@ span[data-title]:hover::after, span[data-title]:focus::after {
                     </div>
                     <div class="table-row table-row-mobile">
                       <div class="contact-info-col " style="width: 20%;border-left: 1px solid #CCC;border-bottom: 1px solid #CCC;border-right: 1px solid #CCC;">
-                        <div class="contact-info " style="margin-top: -10px;">
+                        {{-- <div class="contact-info " style="margin-top: -10px;">
                           <button  class="px-2" style=" padding-right: 0.5rem!important; padding-left: 0.5rem!important;font-size: 0.8em; border: 2px solid #0888d3; border-radius: 10px; width: auto;height: 45px;  background-image: linear-gradient(#3ac0f3, #0888d3);color:white;">
                               post@resale.info
                             </button>
-                               </div>
+                               </div> --}}
                         <div class="contact-info" style="font-weight: 600; margin-top: 60px;padding: 0 7px;">بسته عضویت خود را انتخاب کنید 
                           <i class="fas fa-arrow-left"></i> </div>
                       </div>
@@ -1008,18 +1002,8 @@ span[data-title]:hover::after, span[data-title]:focus::after {
         <div class="grey-back section">
           <div class="container">
             <div class="comment more">
-                <h3 class="title-font" >ما اصیل هستیم</h3>
-                پس از چندین سال توسعه، RESALE در سال 1996 آنلاین شد. بنابراین ما قدیمی ترین و اولین بازار ماشین آلات مستعمل در سراسر جهان هستیم. از آن زمان ما رفت و آمد مداوم مقلدین مختلف را دنبال کردیم. آنها با نیروی کار عظیم خود توانستند اقلام ماشین آلات زیادی را از دلالان خریداری کنند.
-                در نهایت آنها از صحنه ناپدید شدند، اما به دلیل عدم تامین هزینه های زیاد.
-                <br><br>
-                در طی دو سال گذشته موج دومی از رقبا به وجود آمدند که کمتر در خرید اقلام ماشین آلات برای بازار خود مراقبت می کردند. آنها ترجیح می دهند فقط تبلیغات ما را بدون هیچ مجوزی کپی کنند. بنابراین ما از همه فروشندگان می خواهیم که مراقب باشند و یا حتی اجازه این روش را بدهند.
-                با توجه به نرم افزارهای خودکار که برای کپی استفاده می شود، نمی توان از کپی صحیح اطمینان حاصل کرد. اغلب جزئیات فنی کاملا نادرست منتشر می شود. این امر منجر به سردرگمی خریداران احتمالی می شود. اگر برخی از رقبا یک کمیسیون پنهان اضافه کنند، قیمت های متفاوتی برای یک ماشین وجود دارد.
-                بنابراین ما به همه خریداران احتمالی توصیه می کنیم که منحصراً از طریق RESALE با ارائه دهنده تماس بگیرند. به این ترتیب می توان از پرداخت کمیسیون پنهان یا هزینه اضافی سایر رقبا جلوگیری کرد.
-                <h3 class="title-font ver-margin" >وعده ما به شما</h3>
-                در مقایسه با مدعیانی که هدفشان کسب امتیاز بزرگ بود، هدف ما کارآمد بودن بوده است. از آنجایی که ما همیشه هزینه ها را پایین نگه می داریم، می توانیم به طور مداوم قیمت های مطلوبی را به شما ارائه دهیم. هزینه های مشتریان فعلی هرگز افزایش نیافته است. از نظر افزایش شدید قیمت ها نباید از غافلگیری ناخوشایند بترسید.
-                <br><br>
-                علاوه بر این، ما قول می دهیم که پلتفرم خود را به طور پیوسته توسعه دهیم. این جایی است که منابع ما در آن سرمایه گذاری می شود. ما همیشه مشغول بهبود دامنه عملکردها و نمایش بصری وب سایت هستیم. مهمتر از همه، بازار و به طور کلی توسعه تجارت موتور مبتنی بر وب، به قلب بنیانگذار و مدیر عامل شرکت ما که یک مهندس مکانیک است نزدیک است.
-                             </div>
+              {!!$membershipBody->second_part!!}
+            </div>
           </div>
         </div>
           </div>
