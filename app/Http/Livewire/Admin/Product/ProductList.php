@@ -4,7 +4,9 @@ namespace App\Http\Livewire\Admin\Product;
 
 use App\Models\Images;
 use App\Models\Product;
+use App\QueryFilters\Vendor;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Pipeline\Pipeline;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
@@ -99,7 +101,13 @@ class ProductList extends Component
     public function render()
     {
         $this->authorize('products',Product::class);
-        $products = Product::with('category')->where('isActive',1)->latest()->paginate(21);
+
+        $products = app(Pipeline::class)->send(Product::query())
+        ->through([
+                     Vendor::class
+        ])->thenReturn()->with('category')->where('isActive',1)->orderBy('id','desc')->paginate(21);
+        
+        // $products = Product::with('category')->where('isActive',1)->latest()->paginate(21);
         return view('livewire.admin.product.product-list',['products'=>$products])->layout('layouts.admin.app');
     }
 }

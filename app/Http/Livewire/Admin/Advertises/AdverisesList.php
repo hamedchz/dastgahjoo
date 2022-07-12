@@ -26,6 +26,7 @@ class AdverisesList extends Component
     public function resetInputForm(){
         $this->state['description'] = "";
         $this->state['expire_at'] = "";
+        $this->state['link'] = "";
         $this->photo = null;
 
     }
@@ -39,7 +40,8 @@ class AdverisesList extends Component
         $validatedData = Validator::make($this->state,[
             'duration' => 'required',
             'description' => 'required',
-            'category_id' => 'required'
+            'category_id' => 'required',
+            'link' => 'sometimes'
         ],[
             'duration.required' => 'این فیلد نمیتواند خالی باشد',
             'description.required' => 'این فیلد نمیتواند خالی باشد',
@@ -58,11 +60,15 @@ class AdverisesList extends Component
         $this->resetValidation();
         $this->dispatchBrowserEvent('addBanner', ['message' => 'بنر جدید با موفقیت اضافه شد','action'=>'success']);
         (new \App\Models\Log)->storeLog($validatedData['description'],'اضافه کردن بنر','ایجاد');
+        return redirect()->to(route('admin.advertises'));
+
        }else{
         $this->resetInputForm();
         $this->resetValidation();
         $this->dispatchBrowserEvent('addBanner', ['message' => 'مشکلی وجود دارد','action'=>'error']);
         (new \App\Models\Log)->storeLog($validatedData['description'],'خطا در اضافه کردن بنر','ایجاد');
+        return redirect()->to(route('admin.advertises'));
+
        }
     }
          public function uploadImage($image)
@@ -83,13 +89,14 @@ class AdverisesList extends Component
         $this->editStatus = true;
         $this->advertise = $advertise;
         $this->state = $advertise->toArray();
-        $this->dispatchBrowserEvent('showNew');
+        
     }
     public function update(){
         $validatedData = Validator::make($this->state,[
             'duration' => 'required',
             'description' => 'required',
-            'category_id' => 'required'
+            'category_id' => 'required',
+            'link' => 'sometimes'
         ],[
             'duration.required' => 'این فیلد نمیتواند خالی باشد',
             'description.required' => 'این فیلد نمیتواند خالی باشد',
@@ -143,6 +150,14 @@ class AdverisesList extends Component
             return redirect()->to(route('admin.advertises'));
            }
 
+    }
+    public function changeStatus(){
+        $this->reset();
+        $this->editStatus = false;
+
+        $this->resetInputForm();
+        $this->resetValidation();
+        
     }
     public function render()
     {  

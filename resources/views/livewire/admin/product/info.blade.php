@@ -52,8 +52,12 @@
                 <input type="text"  class="form-control" id="view" value="{{$productInfo->view}}" readonly>
               </div>
               <div class="form-group col-md-6">
-                <label for="location">آدرس</label>
-                <input type="text"  class="form-control" id="location" value="{{$productInfo->location}}" readonly>
+                <label for="location">استان</label>
+                <input type="text"  class="form-control" id="location" value="{{$productInfo->province->title}}" readonly>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="location">شهر</label>
+                <input type="text"  class="form-control" id="location" value="{{$productInfo->city->title}}" readonly>
               </div>
               <div class="form-group col-md-6">
                 <label for="stock">دسته دوم</label>

@@ -264,8 +264,8 @@
                     <div class="button-bar">
                       <div class="display-align bottom-margin">
                         <div class="col-xs-4 center-align mx-auto bottom-margin">
-                          <a class="btn-all btn-all-small btn-light openPopup">
-                            <i class="fas fa-star" style="color: #f0b000;"></i> کد: {{$product->itemNo}}</a>
+                          
+                            <i class="fas fa-star" style="color: #f0b000;"></i> کد: {{$product->itemNo}}
                         </div>
                         <div class="col-xs-4 center-align mx-auto bottom-margin">
                           <a class="btn-all btn-all-small btn-green  " href="#inquiry-form">
@@ -284,14 +284,14 @@
                       <table class="table table-striped">
                         <tbody>
                           <tr>
-                            <td>
+                            {{-- <td>
                               <b>کد دستگاه:</b>
-                              {{$product->itemNo}}</td>
+                              {{$product->itemNo}}</td> --}}
                             <td>
                               <b>تعداد:</b>
                               {{$product->quantity}}</td>
                             <td><b>تاریخ:</b>
-                                {{$product->created_at}}</td>
+                                {{date('d-m-Y', strtotime($product->created_at))}}</td>
                           </tr>
                           <tr>
                             <td>
@@ -299,7 +299,7 @@
                               {{$product->year_of_manufacture}}  </td>
                             <td>
                               <b>موقعیت:</b>
-                              <span> {{$product->location}} </span>
+                              <span> {{$product->province->title}}-{{$product->city->title}} </span>
                             </td>
                           </tr>
                         </tbody>
@@ -310,13 +310,14 @@
                       <table class="table table-striped">
                         <tbody>
                           <tr>
-                            <th scope="row">قیمت:</th>
-                            <td class="three-button display-align">
-                              <button href="" class="btn-all btn-primary btn-all-small my-1"  >
+                            <th scope="row">قیمت:  </th>
+                            <td class="three-button display-align justify-content-start">
+                              {{number_format($product->price)}} تومان 
+                              {{-- <button href="" class="btn-all btn-primary btn-all-small my-1"  >
                                 <a href="{{route('dealer-inquiry',$product->itemNo)}}" class="text-white ">
                                درخواست مظنه
                               </a>
-                            </button> 
+                            </button>  --}}
                              {{-- <button class="btn-all btn-primary btn-all-small" data-toggle="modal" data-target="#modalForm" style="cursor: pointer;"> پیشنهاد قیمت    </button> --}}
                             {{-- <button class="btn-all btn-all-small btn-green my-1">
                               <a href="escrew-payment.html" class="text-white">پرداخت امانی</a>
@@ -377,10 +378,10 @@
                     
                     <div class="display-align">
                       <div class="col-12 center-align">
-                        <span>این دستگاه را در فیس بوک به اشتراک بگذارید: </span>
+                        <span> </span>
                         <div class="fb-share-btn">
                           <span>
-                        <iframe name="" width="100px" height="30px" data-testid="fb:share_button Facebook Social Plugin" title="fb:share_button Facebook Social Plugin" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" allow="encrypted-media" src="https://www.facebook.com/v2.5/plugins/share_button.php?app_id=838753719527316&amp;channel=https%3A%2F%2Fstaticxx.facebook.com%2Fx%2Fconnect%2Fxd_arbiter%2F%3Fversion%3D46%23cb%3Df6ddd9854e9f54%26domain%3Dwww.resale.info%26is_canvas%3Dfalse%26origin%3Dhttps%253A%252F%252Fwww.resale.info%252Ff2bc96a1d90e13c%26relation%3Dparent.parent&amp;container_width=1054&amp;href=https%3A%2F%2Fwww.resale.info%2Fostas-3r-ohs-2570-x-1316-sheet-metal-bending-machine-3-rollers%2FNo-156640261&amp;layout=button&amp;locale=en_US&amp;sdk=joey" ></iframe>
+                        {{-- <iframe name="" width="100px" height="30px" data-testid="fb:share_button Facebook Social Plugin" title="fb:share_button Facebook Social Plugin" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" allow="encrypted-media" src="https://www.facebook.com/v2.5/plugins/share_button.php?app_id=838753719527316&amp;channel=https%3A%2F%2Fstaticxx.facebook.com%2Fx%2Fconnect%2Fxd_arbiter%2F%3Fversion%3D46%23cb%3Df6ddd9854e9f54%26domain%3Dwww.resale.info%26is_canvas%3Dfalse%26origin%3Dhttps%253A%252F%252Fwww.resale.info%252Ff2bc96a1d90e13c%26relation%3Dparent.parent&amp;container_width=1054&amp;href=https%3A%2F%2Fwww.resale.info%2Fostas-3r-ohs-2570-x-1316-sheet-metal-bending-machine-3-rollers%2FNo-156640261&amp;layout=button&amp;locale=en_US&amp;sdk=joey" ></iframe> --}}
                         </span>
                       </div>
                       </div>

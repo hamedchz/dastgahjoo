@@ -76,7 +76,7 @@
                         @foreach ($categoriesFirsthalf as $category )
                         <div class="col-12" style="display:flex;border-bottom:1px solid #e9ecef;padding: 0.3rem;">
                               <span style="color: #acacac;">{{$category->id}}.</span>
-                              <a href="{{route('product-list',$category->slug)}}"> {{$category->title}} </a>
+                              <a href="{{route('subcategory.product-list',$category->slug)}}"> {{$category->title}} </a>
                               <span class="badge badge-secondary" style="margin-right: auto;">{{$category->products->count()}}</span>
                             </div>
                             @endforeach 
@@ -89,7 +89,7 @@
                         @foreach ($categoriesSecondhalf as $category )
                         <div class="col-12" style="display:flex;border-bottom:1px solid #e9ecef;padding: 0.3rem;">
                               <span style="color: #acacac;">{{$category->id}}.</span>
-                              <a href="{{route('product-list',$category->slug)}}"> {{$category->title}} </a>
+                              <a href="{{route('subcategory.product-list',$category->slug)}}"> {{$category->title}} </a>
                               <span class="badge badge-secondary" style="margin-right: auto;">{{$category->products->count()}}</span>
                             </div>
                               @endforeach
@@ -231,11 +231,12 @@
 
    <!-- بنر تبلیغات -->
    @if($advertises->count() > 0)
+   <div class="container jssor-container">
    <div id="jssor_1" >
     <div class="slides" data-u="slides" >
       @foreach($advertises as $advertise)
         <div >
-            <img data-u="image" src="{{asset($advertise->banner)}}" />
+            <a href="{{asset($advertise->link)}}"><img data-u="image" src="{{asset($advertise->banner)}}" /></a>
             <div data-u="thumb">{{$advertise->description}}</div>
         </div>
         @endforeach
@@ -259,6 +260,7 @@
           <path class="a" d="M5869,1919l5984.1,5852.7c127.9,125.5,127.9,329.1,0,454.9L5869,14079"></path>
       </svg>
   </div>
+</div>
 </div>
 @endif
 <!-- آخر اسلایدر تبلیغات -->

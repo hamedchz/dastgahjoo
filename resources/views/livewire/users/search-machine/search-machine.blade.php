@@ -2,6 +2,14 @@
     @push('categoriesheader')
     @include('layouts.users.partials.underheader')
     @endpush
+    @push('styles')
+    <style>
+      @media screen and (max-width: 336px){
+.itemslist {
+    padding-top: 95px;
+}}
+    </style>
+    @endpush
     <div class="itemslist">
         <div id="overlay"></div>
         <div class="container" id="page-container">
@@ -22,7 +30,7 @@
               </a>
             </li>
               <li class="address-crumb-item">
-                <a href="#">جستجوی ماشین آلات</a>
+                جستجوی ماشین آلات
               </li>
            
             </ol>
@@ -111,7 +119,7 @@
                   <span class="input-group-addon" style="min-width: 160px;"><small>دسته:</small></span>
                   <select name="category" class="url_params custom-select form-control" style="font-size: 0.8rem;">
                     <option value="" selected="">همه دسته ها</option>
-                    @foreach($categories as $category)
+                    @foreach($categoriesCount as $category)
                     <option value="{{$category->id}}">{{$category->title}}</option>
                     @endforeach
                   </select>
@@ -132,14 +140,14 @@
                 </div>
               </div>
     
-              <div class="align-form">
+              {{-- <div class="align-form">
                 <div class="input-group">
                   <span class="input-group-addon" style="min-width: 120px;">
                     <small>آدرس :</small>
                   </span>
                   <input type="text" name="location"  class="url_params form-control form-control-sm" placeholder="">
                 </div>
-              </div>
+              </div> --}}
               <div class="align-form">
                 <div class="input-group">
                   <span class="input-group-addon" style="min-width: 120px;">

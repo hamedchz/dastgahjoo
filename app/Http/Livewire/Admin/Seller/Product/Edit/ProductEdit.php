@@ -3,7 +3,9 @@
 namespace App\Http\Livewire\Admin\Seller\Product\Edit;
 
 use App\Models\Category;
+use App\Models\City;
 use App\Models\Product;
+use App\Models\Province;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
 use Illuminate\Support\Str;
@@ -13,6 +15,7 @@ class ProductEdit extends Component
     public $categories;
     public $subcategories;
     public $product;
+    
 
 
     public function mount($id){
@@ -40,15 +43,17 @@ class ProductEdit extends Component
             'model' => 'required',
             'category_id' => 'required',
             'name' => 'required',
-            'type_of_machine' => 'required',
+            'type_of_machine' => 'sometimes',
             'isStock' => 'required|in:1,2',
             'isInstallments' => 'required|in:0,1',
             'isSold' => 'required|in:0,1',
-            'location' => 'required',
+            'province_id' => 'required',
+            'city_id' => 'sometimes',
             'description' => 'sometimes',
             'site_url' => 'sometimes'
         ],[
            'quantity.required' => 'این فیلد نمیتواند خالی باشد',
+           'province_id.required' => 'این فیلد نمیتواند خالی باشد',
            'year_of_manufacture.required' => 'این فیلد نمیتواند خالی باشد',
            'price.required' => 'این فیلد نمیتواند خالی باشد',
            'manufacturer.required' => 'این فیلد نمیتواند خالی باشد',
@@ -78,6 +83,10 @@ class ProductEdit extends Component
             $ValidateData['subcategory_id'] = null;
             $ValidateData['slug'] = $cat->slug.'/'. Str::slug($ValidateData['name']);
 
+            
+        }
+        if(empty($ValidateData['city_id'])){
+            $ValidateData['city_id'] = null;
         }
         //$ValidateData['vandor_id'] = $this->vendor->id;
         if(empty($ValidateData['site_url'])){
@@ -103,8 +112,15 @@ class ProductEdit extends Component
 
         }
     }
+    public function changeProvince($id){
+        $city = City::where('province_id',$id)->get();
+        $this->cities = $city;
+    }
     public function render()
     {
-        return view('livewire.admin.seller.product.edit.product-edit')->layout('layouts.admin.app');
+        $provinces = Province::all();
+        $cities = City::where('province_id',$this->product->province_id)->get();
+        
+        return view('livewire.admin.seller.product.edit.product-edit',['provinces'=>$provinces,'cities'=>$cities])->layout('layouts.admin.app');
     }
 }

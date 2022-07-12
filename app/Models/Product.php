@@ -15,6 +15,8 @@ class Product extends Model
     protected $fillable = [
 
         'category_id',
+        'province_id',
+        'city_id',
         'subcategory_id',
         'itemNo',
         'name',
@@ -54,7 +56,12 @@ class Product extends Model
     public function images(){
         return $this->hasMany(Images::class,'product_id','id');
     }
-
+    public function province(){
+        return $this->hasOne(Province::class,'id','province_id');
+    }
+    public function city(){
+        return $this->hasOne(City::class,'id','city_id');
+    }
     public function getCreatedAtAttribute($created_at)
     {
         $v1 = new Verta($created_at);

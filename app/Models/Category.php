@@ -36,6 +36,9 @@ class Category extends Model
     public function parents(){
         return $this->hasMany(Category::class,'parent');
     }
+    public function child(){
+     return $this->hasOne(Category::class,'id','parent');
+    }
     public function getCreatedAtAttribute($created_at)
     {
         $v1 = new Verta($created_at);

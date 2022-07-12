@@ -37,6 +37,8 @@ class UserAddProduct extends Component
     public function addNew(){
         $ValidateData = Validator::make($this->state,[
             'category_id' => 'required',
+            'province_id' => 'required',
+            'city_id' => 'sometimes',
             'subcategory_id' => 'sometimes',
             'quantity' => 'required',
             'year_of_manufacture' => 'required',
@@ -45,17 +47,17 @@ class UserAddProduct extends Component
             'model' => 'required',
             'category' => 'required',
             'name' => 'required',
-            'type_of_machine' => 'required',
+            'type_of_machine' => 'sometimes',
             'isStock' => 'required|in:1,2',
             'isInstallments' => 'required|in:0,1',
             'isSold' => 'required|in:0,1',
-            'location' => 'required',
             'image.*' => 'image',
             'image' => 'max:'.$this->vendor->package->packageHistories->images,
             'description' => 'sometimes',
             'site_url' => 'sometimes'
         ],[
            'category_id.required' => 'این فیلد نمیتواند خالی باشد',
+           'province_id.required' => 'این فیلد نمیتواند خالی باشد',
            'quantity.required' => 'این فیلد نمیتواند خالی باشد',
            'year_of_manufacture.required' => 'این فیلد نمیتواند خالی باشد',
            'price.required' => 'این فیلد نمیتواند خالی باشد',
@@ -67,7 +69,6 @@ class UserAddProduct extends Component
            'isStock.required' => 'این فیلد نمیتواند خالی باشد',
            'isInstallments.required' => 'این فیلد نمیتواند خالی باشد',
            'isSold.required' => 'این فیلد نمیتواند خالی باشد',
-           'location.required' => 'این فیلد نمیتواند خالی باشد',
            'isStock.in' => 'اطلاعات این فیلد اشتباه است',
            'isInstallments.in' => 'اطلاعات این فیلد اشتباه است',
            'isSold.in' => 'اطلاعات این فیلد اشتباه است',
@@ -107,8 +108,13 @@ class UserAddProduct extends Component
         if(empty($ValidateData['description'])){
             $ValidateData['description'] = null;
         }
+        if(empty($ValidateData['city_id'])){
+            $ValidateData['city_id'] = null;
+        }
         $store = Product::create([
             'category_id' => $ValidateData['category_id'] ,
+            'province_id' => $ValidateData['province_id'] ,
+            'city_id' => $ValidateData['city_id'] ,
             'subcategory_id' => $ValidateData['subcategory_id'] ,
             'itemNo' => $ValidateData['itemNo'] ,
             'name' => $ValidateData['name'] ,
@@ -120,7 +126,6 @@ class UserAddProduct extends Component
             'type_of_machine' => $ValidateData['type_of_machine'] ,
             'description' => $ValidateData['description'] ,
             'isStock' => $ValidateData['isStock'] ,
-            'location' => $ValidateData['location'] ,
             'isInstallments' => $ValidateData['isInstallments'] ,
             'isSold' => $ValidateData['isSold'] ,
             'vendor_id' => $this->vendor->id,

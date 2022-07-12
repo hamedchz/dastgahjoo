@@ -1,5 +1,5 @@
 <x-user-layout>
-    <div>
+    <div class="itemslist">
         <div class="top-content">
             <div id="overlay"></div>
             <div class="inner-bg">

@@ -13,7 +13,7 @@ class AboutUsAdmin extends Component
     public $state = [];
 
     public function mount(){
-        $aboutus = Aboutus::findOrFail(1);
+        $aboutus = Aboutus::first();
         $this->state = $aboutus->toArray();
     }
     public function update(){
@@ -26,11 +26,11 @@ class AboutUsAdmin extends Component
         ]);
     
         if($update){
-            $this->reset();
+           
             $this->dispatchBrowserEvent('aboutus', ['message' => '  با موفقیت ویرایش شد','action'=>'success']);
             (new \App\Models\Log)->storeLog( 'درباره ما','ویرایش کردن ','ویرایش');
            }else{
-            $this->reset();
+           
             $this->resetValidation();
             $this->dispatchBrowserEvent('aboutus', ['message' => 'مشکلی وجود دارد','action'=>'error']);
             (new \App\Models\Log)->storeLog( 'درباره ما','خطا در ویرایش کردن ','ویرایش');

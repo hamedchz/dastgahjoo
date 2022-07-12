@@ -52,13 +52,13 @@
               <div class="card" style="background-color: rgba(95, 174, 255, 0.2); margin-top: 10px;">
                 <div class="card-body" style="padding: 0.5rem;">
                   <div class="input-group">
-                    <input class="form-control"  maxlength="40" name="name" type="text" required="" title="" placeholder="ماشین تراش ">
-                    <select class="custom-select" name="category" style="border-radius: 0px; width: 120px;">
+                    <input class="form-control"  maxlength="40" name="name" type="text" required="" title="" placeholder="دستگاه تزریق پلاستیک  ">
+                    {{-- <select class="custom-select" name="category" style="border-radius: 0px; width: 120px;">
                       <option disabled value="" selected="selected">دسته بندی</option>
                       @foreach($categories as $category)
                       <option value="{{$category->id}}">{{$category->title}}</option>
                       @endforeach
-                    </select>
+                    </select> --}}
 
                     <span class="input-group-btn">
                       <button id="search-button" class="btn-all btn-primary" type="submit" >
@@ -158,14 +158,14 @@
                 <input type="text" name="" value="" class="form-control form-control-sm" placeholder="تا">
               </div>
             </div> --}}
-            <div class="align-form">
+            {{-- <div class="align-form">
               <div class="input-group">
                 <span class="input-group-addon" style="min-width: 120px;">
                   <small>آدرس :</small>
                 </span>
                 <input type="text" name="location"  class="url_params form-control form-control-sm" placeholder="">
               </div>
-            </div>
+            </div> --}}
             <div class="align-form">
               <div class="input-group">
                 <span class="input-group-addon" style="min-width: 120px;">

@@ -1,4 +1,4 @@
-<div>
+<div >
     <div class="top-content">
         <div id="overlay"></div>
         <div class="inner-bg">

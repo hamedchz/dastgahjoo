@@ -212,7 +212,7 @@ span[data-title]:hover::after, span[data-title]:focus::after {
   </style>
   @endpush
        <!-- بدنه محتوا -->
-       <div class="top-content" style="min-height: 400px;">
+       <div class="top-content itemslist" style="min-height: 400px;">
         <div class="inner-bg">
           <div class="container" >
             <div class="display-align top-titr">
@@ -332,12 +332,12 @@ span[data-title]:hover::after, span[data-title]:focus::after {
                   </div>
                   <div class="table-row table-row-mobile">
                     <div class="contact-info-col " style="width: 20%;border-left: 1px solid #CCC;border-bottom: 1px solid #CCC;border-right: 1px solid #CCC;">
-                      <div class="contact-info " style="margin-top: -10px;">
+                      {{--<div class="contact-info " style="margin-top: -10px;">
                         <button  class="px-2" style=" padding-right: 0.5rem!important; padding-left: 0.5rem!important;font-size: 0.8em; border: 2px solid #0888d3; border-radius: 10px; width: auto;height: 45px;  background-image: linear-gradient(#3ac0f3, #0888d3);color:white;">
 
                             post@resale.info
                           </button>
-                             </div>
+                             </div>--}}
                       <div class="contact-info" style="font-weight: 600; margin-top: 60px;padding: 0 7px;">بسته عضویت خود را انتخاب کنید 
                         <i class="fas fa-arrow-left"></i> </div>
                     </div>

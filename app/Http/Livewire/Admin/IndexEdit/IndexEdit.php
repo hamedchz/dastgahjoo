@@ -29,13 +29,13 @@ class IndexEdit extends Component
         ])->validate();
        $update = $this->indexText->update($validatedData);
        if($update){
-        $this->state = "";
+        
         $this->resetValidation();
         $this->dispatchBrowserEvent('edit-firstpage', ['message' => 'اطلاعات  با موفقیت ویرایش شد','action'=>'success']);
         (new \App\Models\Log)->storeLog( 'صفحه اول','ویرایش کردن اطلاعات','ویرایش');
         // return redirect()->to('dashboard/cities/'.$this->city->province_id);
        }else{
-        $this->state = "";
+        
         $this->resetValidation();
         $this->dispatchBrowserEvent('edit-firstpage', ['message' => 'مشکلی وجود دارد','action'=>'error']);
         (new \App\Models\Log)->storeLog( 'صفحه اول','خطا در ویرایش کردن اطلاعات','ویرایش');

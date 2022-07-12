@@ -6,7 +6,7 @@
                 {{-- <a href="#" class="social" target="_blank" >
                   <i class="fab fa-facebook-square" ></i>
                  </a> --}}
-                 <a href="#" class="social" target="_blank">
+                 <a href="https://www.instagram.com/p/Cfyr935tUR0/?igshid=YmMyMTA2M2Y=" class="social" target="_blank">
                    <i class="fab fa-instagram " ></i> 
                     </a>
             </div>
@@ -17,7 +17,7 @@
           <div class="col-sm-3">
               <h5>شرکت</h5>
               <ul>
-                  <li><a href="{{route('contact-us')}}">ارتباط با ما</a></li>                
+                  <li><a href="{{route('users.policy')}}"> قوانین و مقررات سایت </a></li>                
                   <li><a href="{{route('about-us')}}">درباره ما</a></li>
                   {{-- <li><a href="{{route('sitemap')}}l">نقشه سایت</a></li> --}}
               </ul>
@@ -53,7 +53,8 @@
      <!-- کپی رایت -->
       <div class="container">
         <p id="copyright" >
-          Copyright 2022 All rights reserved</p>
+        کلیه حقوق این سایت متعلق به دستگاه جو میباشد.  
+        </p>
       </div>
     </div>
   </footer>  

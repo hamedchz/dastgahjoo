@@ -80,7 +80,12 @@
                                             @foreach($users as $user)
                                             @foreach($user->users as $us)
                                             <tr>
+                                                @if($user->name == 'seller')
+                                                <td class="account"> <a href="{{route('admin.products')}}?vendor={{$us->vendor->id}}" target="_blank"> {{$us->name}}</a></td>
+                                                @else
                                                 <td class="account">{{$us->name}}</td>
+                                                @endif
+                                               
                                                 <td class="semat">  
                                                  <select class="form-control" wire:change = "changeRole({{$us}},event.target.value)" disabled>
                                                     @foreach($userRoles as $role)

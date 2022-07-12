@@ -15,7 +15,7 @@ class PolicyList extends Component
     public $policy;
 
     public function mount(){
-        $policy = Policy::findOrFail(1);
+        $policy = Policy::first();
         $this->policy = $policy;
         $this->state = $policy->toArray();
     }
@@ -30,13 +30,13 @@ class PolicyList extends Component
         $validatedData['user_id'] = auth()->user()->id;
         $update = $this->policy->update($validatedData);
         if($update){
-         $this->state = "";
+        
          $this->resetValidation();
          $this->dispatchBrowserEvent('edit-page', ['message' => 'اطلاعات  با موفقیت ویرایش شد','action'=>'success']);
          (new \App\Models\Log)->storeLog( 'صفحه حریم خصوصی','ویرایش کردن اطلاعات','ویرایش');
          // return redirect()->to('dashboard/cities/'.$this->city->province_id);
         }else{
-         $this->state = "";
+        
          $this->resetValidation();
          $this->dispatchBrowserEvent('edit-page', ['message' => 'مشکلی وجود دارد','action'=>'error']);
          (new \App\Models\Log)->storeLog( 'صفحه حریم خصوصی','خطا در ویرایش کردن اطلاعات','ویرایش');

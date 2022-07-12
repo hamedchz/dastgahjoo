@@ -83,7 +83,7 @@
                                     @error('type_of_machine')<div class="invalid-feedback">{{ $message }}</div> @enderror
                                   </div>
                                   <div class="form-group col-md-6">
-                                    <label for="isStock">نوع کالا</label>
+                                    <label for="isStock"> وضعیت دستگاه </label>
                                     <select class="custom-select" id="isStock" wire:model.defer="state.isStock">
                                       
                                       <option value="1" {{$product->isStock == 1 ?'selected':''}}>نو</option>
@@ -109,9 +109,31 @@
                                     @error('isSold')<div class="invalid-feedback">{{ $message }}</div> @enderror
                                   </div>
                                   <div class="form-group col-md-6">
-                                    <label for="location"> موقعیت</label>
-                                    <input type="text" wire:model.defer="state.location" value="{{$product->location}}" class="form-control @error('location') is-invalid @enderror" id="location" placeholder=" موقعیت  " oninput="removeError('#location')">
-                                    @error('location')<div class="invalid-feedback">{{ $message }}</div> @enderror
+                                    <label for="province">استان </label>
+                                    <select class="custom-select @error('province_id') is-invalid @enderror" id="province" wire:model.defer="state.province_id" wire:change.defer = "changeProvince(event.target.value)">
+                                        <option selected>انتخاب کنید</option>
+                                        @forelse($provinces as $province)
+                                        <option value="{{$province->id}}" {{$product->province_id == $province->id ? 'selected' :''}}>{{$province->title}}</option>
+                                        @empty
+                                        <option>دسته بندی وجود ندارد</option>
+                                        @endforelse
+                                    </select>
+                                    @error('province_id')<div class="invalid-feedback">{{ $message }}</div> @enderror
+                                </div>
+                    
+                                <div class="form-group col-md-6">
+                                  <label for="city">شهر</label>
+                                  <select class="custom-select" id="city" wire:model.defer="state.city_id">
+                                    <option  value="" selected>انتخاب کنید</option>
+                                    @if($cities->count() > 0)
+                                      @forelse($cities as $city)
+                                      <option value="{{$city->id}}" {{$product->city_id == $city->id ? 'selected' :''}}>{{$city->title}}</option>
+                                      @empty
+                                      <option value="">  شهری وجود ندارد</option>
+                                      @endforelse
+                                    @endif
+                                </select>
+                                 @error('city_id')<div class="invalid-feedback">{{ $message }}</div> @enderror
                                 </div>
                                 @if(auth()->user()->vendor->package->packageHistories->site == 'YES')
                                 <div class="form-group col-md-6">

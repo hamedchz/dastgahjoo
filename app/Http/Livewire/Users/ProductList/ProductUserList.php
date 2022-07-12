@@ -37,7 +37,7 @@ class ProductUserList extends Component
     public function render()
     {
         $cat = Category::with('parents')->where('slug',$this->slug)->where('isActive',1)->first();
-        $advertise = Advertises::where('category_id', $cat->id)->where('expire_at','>=',Carbon::now())->get();
+        $advertise = Advertises::where('category_id', $cat->child->id)->where('expire_at','>=',Carbon::now())->get();
         $categories = Category::with('parents')->with('products')->with('subproducts')->where('isActive',1)->where('parent',0)->take(4)->get();
         $categoriesCount = Category::with('parents')->with('products')->with('subproducts')->where('isActive',1)->where('parent',0)->get();
         $categories_second = Category::with('parents')->with('products')->where('isActive',1)->where('parent',0)->with('subproducts')->skip(4)->take($categoriesCount->count() - 4)->get();

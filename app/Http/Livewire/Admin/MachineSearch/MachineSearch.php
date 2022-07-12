@@ -28,13 +28,13 @@ class MachineSearch extends Component
         'sixthSection' => $this->state['sixthSection'],
        ]);
        if($update){
-        $this->state = "";
+        
         $this->resetValidation();
         $this->dispatchBrowserEvent('edit-firstpage', ['message' => 'اطلاعات  با موفقیت ویرایش شد','action'=>'success']);
         (new \App\Models\Log)->storeLog( 'صفحه جستجو','ویرایش کردن اطلاعات','ویرایش');
         // return redirect()->to('dashboard/cities/'.$this->city->province_id);
        }else{
-        $this->state = "";
+        
         $this->resetValidation();
         $this->dispatchBrowserEvent('edit-firstpage', ['message' => 'مشکلی وجود دارد','action'=>'error']);
         (new \App\Models\Log)->storeLog( 'صفحه جستجو','خطا در ویرایش کردن اطلاعات','ویرایش');

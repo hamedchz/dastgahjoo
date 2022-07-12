@@ -12,9 +12,9 @@
           <li class="nav-item  hidden-mobile">
             <a class="nav-link mb-3"  href="{{route('search-machine')}}">جستجوی دستگاه</a>
           </li>
-          {{-- <li class="nav-item " >
-            <a class="nav-link" href="{{route('dealers')}}">فروشندگان</a>
-          </li> --}}
+          <li class="nav-item " >
+            <a class="nav-link" href="{{route('advance-search')}}">جستجوی پیشرفته</a>
+          </li>
           <li class="nav-item ">
             <a class="nav-link" href="{{route('membership')}}">عضویت</a>
           </li>

@@ -50,6 +50,7 @@ use App\Http\Livewire\Users\Faq\Faq;
 use App\Http\Livewire\Users\Index\IndexUsers;
 use App\Http\Livewire\Users\Manufaturer\Manufaturer;
 use App\Http\Livewire\Users\MemberShip\Membership;
+use App\Http\Livewire\Users\Policy\Policy;
 use App\Http\Livewire\Users\ProductList\ProductDetail;
 use App\Http\Livewire\Users\ProductList\ProductUserList;
 use App\Http\Livewire\Users\ProductList\SoldProducts;
@@ -157,6 +158,7 @@ Route::namespace('App\Http\Controllers\Auth')->group(function () {
     Route::get('/faq',Faq::class)->name('faq');
     Route::get('/sold-products',SoldProducts::class)->name('sold-products');
     Route::get('/watchlist',WachList::class)->name('watch-list');
+    Route::get('/policy',Policy::class)->name('users.policy');
 
     Route::get('/result','\App\Http\Controllers\SearchResultController@result')->name('user.search');
     Route::get('success-payment','App\Http\Controllers\PurchaseController@successPayment')->name('payment.success');

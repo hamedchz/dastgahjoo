@@ -56,7 +56,7 @@
                                             @endif --}}
                                             {{-- <a href="{{route('user.editProductImage',$product->id)}}" style="font-size:20px;"><i class="fa fa-image"  style="color:#000000;" title="انتخاب عکس کاور"></i></a> --}}
                                             <a href="{{route('user.editProduct',$product->id)}}"  style="font-size:20px;"><i class="fa fa-edit"  style="color:#0468aa;"  title="ویرایش"></i></a>
-                                            <a href="" style="font-size:20px;"><i class="fa fa-trash" style="color:#dc3545;"  title="حذف"></i></a>
+                                           {{-- <a href="" style="font-size:20px;"><i class="fa fa-trash" style="color:#dc3545;"  title="حذف"></i></a>--}}
                                             </td>
                                         @empty
                                         <td align="center" colspan="4" style="background-color:#e1e1e1;">داده ای وجود ندارد</td>

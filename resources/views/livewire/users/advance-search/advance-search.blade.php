@@ -20,7 +20,7 @@
               </a>
             </li>
               <li class="address-crumb-item">
-                <a href="#">جستجوی پیشرفته</a>
+                جستجوی پیشرفته
               </li>
            
             </ol>
@@ -62,7 +62,7 @@
                       <span class="input-group-addon" style="min-width: 160px;"><small>دسته بندی:</small></span>
                       <select name="category" class="url_params custom-select form-control" style="font-size: 0.8rem;">
                         <option value="" selected="">همه دسته ها</option>
-                        @foreach($categories as $category)
+                        @foreach($categoriesCount as $category)
                         <option value="{{$category->id}}">{{$category->title}}</option>
                         @endforeach
                       </select>
@@ -82,14 +82,14 @@
                     </div>
                   </div>
         
-                  <div class="align-form">
+                  {{-- <div class="align-form">
                     <div class="input-group">
                       <span class="input-group-addon" style="min-width: 120px;">
                         <small>آدرس :</small>
                       </span>
                       <input type="text" name="location"  class="url_params form-control form-control-sm" placeholder="">
                     </div>
-                  </div>
+                  </div> --}}
                   <div class="align-form">
                     <div class="input-group">
                       <span class="input-group-addon" style="min-width: 120px;">

@@ -15,7 +15,7 @@ class Faq extends Component
         $this->seo()
         ->setTitle('پرسشهای متداول ',false)
         ->setDescription('پرسشهای متداول');
-        $faqs = ModelsFaq::where('isActive',1)->orderBy('id','desc')->get();
+        $faqs = ModelsFaq::where('isActive',1)->orderBy('id','asc')->get();
         return view('livewire.users.faq.faq',['faqs'=>$faqs])->layout('layouts.users.app');
     }
 }

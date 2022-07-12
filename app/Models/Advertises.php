@@ -15,7 +15,8 @@ class Advertises extends Model
         'banner',
         'expire_at',
         'description',
-        'duration'
+        'duration',
+        'link'
     ];
 
     public function category(){

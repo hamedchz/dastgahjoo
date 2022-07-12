@@ -215,7 +215,7 @@ span[data-title]:hover::after, span[data-title]:focus::after {
     </style>
     @endpush
          <!-- بدنه محتوا -->
-         <div class="top-content" style="min-height: 400px;">
+         <div class="top-content itemslist" style="min-height: 400px;">
           <div class="inner-bg">
             <div class="container" >
               <div class="display-align top-titr">
