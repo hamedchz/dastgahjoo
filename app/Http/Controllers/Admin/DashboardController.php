@@ -38,8 +38,7 @@ class DashboardController extends Controller
         $userOrders = Order::where('user_id',auth()->user()->id)->latest()->take(5)->get();
         //vendor
         if(auth()->user()->vendor){
-        $productCount = Product::whereBetween('created_at',[auth()->user()->vendor->package->packageHistories->startDate,auth()->user()->vendor->package->packageHistories->endDate])->get();
-        //dd($productCount->count());
+        $productCount = Product::whereBetween('created_at',[auth()->user()->vendor->package->packageHistories->startDate,auth()->user()->vendor->package->packageHistories->endDate])->where('vendor_id',auth()->user()->vendor->id)->get();
         $vendorInqueries = Inquiries::where('parent',0)->where('vendor_id',auth()->user()->vendor->id)->latest()->take(5)->get();
         $vendororders  =  Order::whereHasMorph(
             'orderable',

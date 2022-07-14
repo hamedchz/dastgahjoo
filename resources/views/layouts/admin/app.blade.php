@@ -38,7 +38,7 @@
             
             <div class="main-content">
                 @if(auth()->user()->vendor)
-                @if(Carbon\Carbon::now() > auth()->user()->vendor->package->packageHistories->endDate)
+                @if(Carbon\Carbon::now() > App\Models\PackageHistory::where('user_id',auth()->user()->id)->where('package_id',auth()->user()->vendor->package->id)->first()->endDate)
                 <div class="notification_modal_access " style=" padding: 1rem 2rem;   box-shadow: 0 2px 7px rgb(0 0 0 / 25%);border-radius: 0.375rem;position: fixed;bottom: 1.25rem;margin: auto;z-index: 100;background-color: rgb(241, 119, 119);">
                     <div  style="display: flex;align-items: center;">
                         <p style="font-weight: 700;color: #000;margin-bottom:0;">  تاریخ پکیج شما به پایان رسیده است</p>
@@ -63,7 +63,8 @@
                     
                 </div> --}}
                 @endif
-                @if(App\Models\Product::whereBetween('created_at',[auth()->user()->vendor->package->packageHistories->startDate,auth()->user()->vendor->package->packageHistories->endDate])->count() >= auth()->user()->vendor->package->packageHistories->products)
+
+                @if(App\Models\Product::whereBetween('created_at',[App\Models\PackageHistory::where('user_id',auth()->user()->id)->where('package_id',auth()->user()->vendor->package->id)->first()->startDate,App\Models\PackageHistory::where('user_id',auth()->user()->id)->where('package_id',auth()->user()->vendor->package->id)->first()->endDate])->count() >= App\Models\PackageHistory::where('user_id',auth()->user()->id)->where('package_id',auth()->user()->vendor->package->id)->first()->products)
                 <div class="notification_modal_access " style=" padding: 1rem 2rem;   box-shadow: 0 2px 7px rgb(0 0 0 / 25%);border-radius: 0.375rem;position: fixed;bottom: 1.25rem;margin: auto;z-index: 100;background-color: rgb(241, 119, 119);">
                     <div  style="display: flex;align-items: center;">
                         <p style="font-weight: 700;color: black;margin-bottom:0;">

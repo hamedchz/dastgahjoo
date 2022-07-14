@@ -9,11 +9,16 @@
                 <div class="col-6 text center-align top-margin2 mx-auto">
                     @if($status == 'FREE')
                     <h1 class="text-success">پرداخت شما با موفقیت انجام شد</h1>
-                    <div><span> تاریخ :{{$date}}</span></div>
+                    <div class="mt-2"><span>  نام پکیج :{{$package_title}}</span></div>
+                    <div class="mt-2"><span> تاریخ پرداخت :{{$date}}</span></div>
+                    <a class="btn btn-primary mt-3" href="{{route('admin.dashboard.index')}}">پنل کاربری</a>
                     @else
                     <h1 class="text-success">پرداخت شما با موفقیت انجام شد</h1>
-                    <div><span> شماره پیگیری :{{$receipt->getReferenceId()}}</span></div>
-                    <div><span> تاریخ :{{$date}}</span></div>
+                    <div class="mt-2"><span>  نام پکیج :{{$package_title}}</span></div>
+                    <div class="mt-2"><span> شماره پیگیری :{{$reciept->getReferenceId()}}</span></div>
+                    <div class="mt-2"><span> تاریخ پرداخت :{{$date}}</span></div>
+                    <a class="btn btn-primary mt-3" href="{{route('admin.dashboard.index')}}">پنل کاربری</a>
+
                     @endif
                   </div>
               </div>

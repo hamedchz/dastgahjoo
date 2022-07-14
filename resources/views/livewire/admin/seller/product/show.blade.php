@@ -83,9 +83,13 @@
             </select>                                  
             </div>
             <div class="form-group col-md-6">
-              <label for="location"> موقعیت</label>
-              <input type="text" wire:model.defer="state.location" class="form-control @error('location') is-invalid @enderror" id="location" disabled>
-          </div>
+              <label for="location">استان</label>
+              <input type="text"  class="form-control" id="location" value="{{$product->province->title}}" readonly>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="location">شهر</label>
+              <input type="text"  class="form-control" id="location" value="{{$product->city->title}}" readonly>
+            </div>
           @if($product->site !== null)
           <div class="form-group col-md-6">
             <label for="site_url"> آدرس سایت</label>

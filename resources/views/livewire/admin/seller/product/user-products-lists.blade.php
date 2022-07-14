@@ -14,7 +14,7 @@
                         <div class="card-body">
                             <div class="d-flex justify-content-between ">
                             <h4 class="card-title mb-2">لیست محصولات</h4>
-                            @if(Carbon\Carbon::now() < auth()->user()->vendor->package->packageHistories->endDate && auth()->user()->vendor->isApproved == 2 && App\Models\Product::whereBetween('created_at',[auth()->user()->vendor->package->packageHistories->startDate,auth()->user()->vendor->package->packageHistories->endDate])->count() <= auth()->user()->vendor->package->packageHistories->products)
+                            @if(Carbon\Carbon::now() < App\Models\PackageHistory::where('user_id',auth()->user()->id)->where('package_id',auth()->user()->vendor->package->id)->first()->endDate &&  App\Models\Product::whereBetween('created_at',[App\Models\PackageHistory::where('user_id',auth()->user()->id)->where('package_id',auth()->user()->vendor->package->id)->first()->startDate,App\Models\PackageHistory::where('user_id',auth()->user()->id)->where('package_id',auth()->user()->vendor->package->id)->first()->endDate])->count() <= App\Models\PackageHistory::where('user_id',auth()->user()->id)->where('package_id',auth()->user()->vendor->package->id)->first()->products)
                             <a href="{{route('user.addProduct')}}" class="btn btn-success mb-2 mr-2" style="float:left;"><i class="fa fa-plus-square"></i> افزودن</a>
                             @endif
                         </div>

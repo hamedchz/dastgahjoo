@@ -6,6 +6,7 @@
 <div class="dashboard-area">
     <div class="container-fluid">
         <div class="row">
+            {{-- {{App\Models\Product::whereBetween('created_at',[auth()->user()->vendor->package->packageHistories->startDate,auth()->user()->vendor->package->packageHistories->endDate])->count()}} --}}
             {{-- admin dashboard --}}
         @if(auth()->user()->isAdmin == 1)
         @can('products')

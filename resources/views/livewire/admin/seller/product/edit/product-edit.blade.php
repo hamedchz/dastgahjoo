@@ -63,7 +63,7 @@
                                     @error('year_of_manufacture')<div class="invalid-feedback">{{ $message }}</div> @enderror
                                   </div>
                                   <div class="form-group col-md-6">
-                                    <label for="price"> قیمت</label>
+                                    <label for="price"> قیمت (تومان)</label>
                                     <input type="text" wire:model.defer="state.price" value="{{$product->price}}"  class="form-control @error('price') is-invalid @enderror" id="price" placeholder="قیمت " oninput="removeError('#price')">
                                     @error('price')<div class="invalid-feedback">{{ $message }}</div> @enderror
                                   </div>

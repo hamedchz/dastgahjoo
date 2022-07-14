@@ -35,7 +35,7 @@ class Vendors extends Model
     public function package(){
         return $this->belongsTo(Packages::class,'package_id','id');
     }
-
+   
     public function products(){
         return $this->hasMany(Product::class,'vendor_id','id');
     }

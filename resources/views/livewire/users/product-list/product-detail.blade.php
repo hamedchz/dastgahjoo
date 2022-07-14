@@ -143,14 +143,14 @@
             </a>
           </li>
           <li class="address-crumb-item">
-            <a  href="{{route('product-list',$product->category->slug)}}">
+            <a  href="{{route('subcategory.product-list',$product->category->slug)}}">
               <span >{{$product->category->title}}</span>
             </a>
           </li>
           <li class="address-crumb-item">
-            <a  href="#">
+           
               <span>{{$product->name}}</span>
-            </a>
+           
            </li>
          
         </ol>

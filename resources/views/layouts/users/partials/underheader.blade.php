@@ -36,7 +36,7 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navItemweitere">
               @foreach ($categories_second as $key=>$category)
-              <a class="dropdown-item" href="{{route('subcategory.product-list',$category->slug)}}">{{$category->title}}<b></b> ({{$category->parents->count()}}) </a>
+              <a class="dropdown-item" href="{{route('subcategory.product-list',$category->slug)}}">{{$category->title}}<b></b> ({{$category->subproducts->count()}}) </a>
               @endforeach
          
                </div>
@@ -44,7 +44,7 @@
           @endif
           <li class="nav-item hidden-desktop">
             @foreach($categoriesCount as $category)
-            <a class="nav-link" href="{{route('subcategory.product-list',$category->slug)}}">{{$category->title}}<b></b> ({{$category->parents->count()}}) </a>
+            <a class="nav-link" href="{{route('subcategory.product-list',$category->slug)}}">{{$category->title}}<b></b> ({{$category->subproducts->count()}}) </a>
             @endforeach
           </li>
         </ul>

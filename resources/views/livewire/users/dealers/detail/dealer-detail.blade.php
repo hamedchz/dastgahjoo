@@ -51,12 +51,14 @@
                             </tr>
                              <tr>
                               <th scope="display-align">نام فروشنده:</th>
-                              <td>{{$vendor->contactPerson}}</td>
+                              <td>{{$vendor->contactPerson ? $vendor->contactPerson : $vendor->user->name}}</td>
                             </tr>
                           <tr>
                             <th scope="display-align">وضعیت:   </th>
                             <td>
+                              @if ($vendor->isQualified == 1)
                               <img src="{{asset('frontend/img/verified-user-logo.png')}}" alt="" style="width: 40px;">
+                              @endif
                               <span style="margin-left: 10px;">عضو از سال {{$vendor->created_at}}</span>
       
                             </td>

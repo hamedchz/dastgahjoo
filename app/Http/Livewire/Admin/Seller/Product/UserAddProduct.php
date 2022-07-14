@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Admin\Seller\Product;
 use App\Http\Requests\Admin\ProductRequest;
 use App\Models\Category;
 use App\Models\City;
+use App\Models\PackageHistory;
 use App\Models\Product;
 use App\Models\Province;
 use App\Models\Vendors;
@@ -30,7 +31,7 @@ class UserAddProduct extends Component
     public $video;
 
     public function mount(){
-        if(Carbon::now() > auth()->user()->vendor->package->packageHistories->endDate || auth()->user()->vendor->isApproved <> 2 || Product::whereBetween('created_at',[auth()->user()->vendor->package->packageHistories->startDate,auth()->user()->vendor->package->packageHistories->endDate])->count() >= auth()->user()->vendor->package->packageHistories->products){
+        if(Carbon::now() > PackageHistory::where('user_id',auth()->user()->id)->where('package_id',auth()->user()->vendor->package->id)->first()->endDate|| auth()->user()->vendor->isApproved <> 2 ||Product::whereBetween('created_at',[PackageHistory::where('user_id',auth()->user()->id)->where('package_id',auth()->user()->vendor->package->id)->first()->startDate,PackageHistory::where('user_id',auth()->user()->id)->where('package_id',auth()->user()->vendor->package->id)->first()->endDate])->count() >= PackageHistory::where('user_id',auth()->user()->id)->where('package_id',auth()->user()->vendor->package->id)->first()->products){
            return abort(401);
         }
     }

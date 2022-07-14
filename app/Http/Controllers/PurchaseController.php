@@ -46,6 +46,13 @@ class PurchaseController extends Controller
         $discount = Discounts::select('percentage')->where('package_id',$package->id)->first();
         if(($package->price)-(($package->price)*($discount->percentage/100)) == 0){
         $this->freePackage($package->id);
+        $date = Verta::now();
+        $date = date('Y/m/d',strtotime($date));
+        $status = 'FREE';
+        $package_title = $package->title;
+        return view('admin.payment-success',compact('package_title','date','status'));
+
+
         }else{
         
         // $package = Packages::findOrFail($id);
@@ -126,10 +133,10 @@ class PurchaseController extends Controller
             $callbackUrl = route('payment.package.result',['package'=>$package->id,'payment_id'=>$paymentId]);
             $payment = Payment::callbackUrl($callbackUrl);
             $payment->config('description','خرید پکیج' .$package->title);
-            // $payment->purchase($invoice, function($driver,$transactionId) use ($transaction,$paymentId){
-            //     $transaction->transaction_id = $transactionId;
-            //     $transaction->save();
-            // });
+             $payment->purchase($invoice, function($driver,$transactionId) use ($transaction,$paymentId){
+                 $transaction->transaction_id = $transactionId;
+               $transaction->save();
+            });
             
             return $payment->pay()->render();
          }catch(ModelNotFoundException|PurchaseFailedException|Exception|SoapFault $e){
@@ -141,7 +148,8 @@ class PurchaseController extends Controller
             // ];
             $transaction->status = Transaction::STATUS_FAILED;
             $transaction->save();
-            return 'خطا در پرداخت وجود دارد';
+            return view('admin.payment-fail');
+
 
           }
          }
@@ -154,24 +162,20 @@ class PurchaseController extends Controller
            $price = ($package->price)-(($package->price)*($discount->percentage/100));
             $user_id = $request->user_id;
             if($request->missing('payment_id')){
-                return 'خطا در پرداخت وجود دارد';
+                return view('admin.payment-fail');
             }
             $transaction = Transaction::where('payment_id',$request->payment_id)->first();
             //$transaction = Transaction::where('payment_id',$request->payment_id)->get();
             if(empty($transaction)){
-                return 'خطا در پرداخت وجود دارد';
+                return view('admin.payment-fail');
            }
 
              if($transaction->user_id <> Auth::id()){
-                return 'خطا در پرداخت وجود دارد';
+                return view('admin.payment-fail');
                 }
 
-             if($transaction->package_id <> $package->id){
-                return 'خطا در پرداخت وجود دارد';
-
-            }
              if($transaction->status <> Transaction::STATUS_PENDING){
-                return 'خطا در پرداخت وجود دارد';
+                return view('admin.payment-fail');
 
             }
           
@@ -259,11 +263,14 @@ class PurchaseController extends Controller
                 // $purchasedServicesSuccess->each->update([
                 //     'status' => Transaction::STATUS_SUCCESS,
                 // ]);
-                auth()->logout();
+                // dd(7);
+                // Auth::loginUsingId(Auth::id());
                $date = Verta::now();
-               $date = date('d m Y',strtotime($date));
+               $date = date('Y/m/d',strtotime($date));
                $status = 'PAID';
-               return view('admin.payment-success',compact('reciept',$package->title,'date','status'));
+               $package_title = $package->title;
+               return view('admin.payment-success',compact('reciept','package_title','date','status'));
+               
 
             }catch(Exception|InvalidPaymentException $e){
                 if($e->getCode() < 0 ){
@@ -275,8 +282,9 @@ class PurchaseController extends Controller
                     $transaction->save();
                     
                 }
-                return 'خطا در پرداخت وجود دارد';
-            }
+               
+                return view('admin.payment-fail');
+               }
 
 
     }
@@ -360,12 +368,8 @@ class PurchaseController extends Controller
                 // $purchasedServicesSuccess->each->update([
                 //     'status' => Transaction::STATUS_SUCCESS,
                 // ]);
-               $date = Verta::now();
-               $date = date('d m Y',strtotime($date));
-               $status = 'FREE';
-               auth()->logout();
+            //    Auth::loginUsingId(Auth::id());
               // return redirect()->url('');
-               return redirect()->route('payment.success')->with( ['status' => $status,'date'=>$date] );
 
           
             }
