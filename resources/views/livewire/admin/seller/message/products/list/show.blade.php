@@ -11,38 +11,31 @@
         <div class="modal-body">
 
           <div class="row">
-          
-            <div class="form-group col-md-6">
-              @if($message->isPrice == 1)
-              <div class="badge badge-primary">  قیمت  </div>
-              @endif
-              @if($message->morePhotos == 1)
-              <div class="badge badge-info"> عکس </div>
-              @endif
-              @if($message->moreInformation == 1)
-              <div class="badge badge-danger"> اطلاعات </div>
-              @endif
-              @if($message->offer == 1)
-              <div class="badge badge-warning">  تخفیف </div>
-              @endif 
-            </div>
-            <div class="form-group col-md-6">
-              <label for="category">دسته بندی</label>
-              <input type="text"  class="form-control" value="{{$message->title}}" disabled>
-          </div>
           <div class="form-group col-md-6">
-            <label for="category">دسته بندی</label>
-            <input type="text"  class="form-control" value="{{$message->comment}}" disabled>
+            <label for="category"> ایمیل </label>
+            <input class="form-control" id="exampleFormControlTextarea1" value="{{$message->email}}" disabled>
+          </div>
+           <div class="form-group col-md-6">
+            <label for="category"> آدرس </label>
+            <input class="form-control" id="exampleFormControlTextarea1" value="{{$message->address}}" disabled>
+          </div>
+              <div class="form-group col-md-6">
+            <label for="category"> کدپستی </label>
+            <input class="form-control" id="exampleFormControlTextarea1" value="{{$message->postal}}" disabled>
+          </div>
+              <div class="form-group col-md-6">
+            <label for="category"> نام محصول </label>
+            <input class="form-control" id="exampleFormControlTextarea1" value="{{$message->products->name}}" disabled>
+          </div>
+              <div class="form-group col-md-6">
+            <label for="category"> قیمت </label>
+            <input class="form-control" id="exampleFormControlTextarea1" value="{{$message->price}}" disabled>
+          </div>
+          
+        <div class="form-group col-md-12">
+          <label for="category">متن </label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" disabled>{{$message->comment}}</textarea>
         </div>
-        <div class="form-group col-md-6">
-          <label for="category">دسته بندی</label>
-          <input type="text"  class="form-control" value="{{$message->user->name}}" disabled>
-      </div>
-        <div class="form-group col-md-6">
-          <label for="category">دسته بندی</label>
-          <input type="text"  class="form-control" value="{{$message->title}}" disabled>
-      </div>
-     
           </div>
          </div>
         <div class="modal-footer">

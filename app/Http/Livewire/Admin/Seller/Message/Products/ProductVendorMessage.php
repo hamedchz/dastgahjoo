@@ -13,16 +13,15 @@ class ProductVendorMessage extends Component
 
     public $paginationTheme = 'bootstrap';
 
-    public $message;
+    public $message = null;
 
     public function showMessage($id){
-        $inquiries = Inquiries::where('id',$id)->first();
+    
+        $inquiries = Inquiries::whereId($id)->first();
         $this->message = $inquiries;
-       
-        
-        
         $this->dispatchBrowserEvent('show-message');
     }
+    
     public function changeStatus(Inquiries $inq, $status){
         $update = $inq->update([
             'status' => $status
@@ -41,8 +40,9 @@ class ProductVendorMessage extends Component
     }
     public function render()
     {
-        $messages = Inquiries::where('parent',0)->where('vendor_id',auth()->user()->vendor->id)->paginate(21);
-
+    
+        $messages = Inquiries::where('parent',0)->where([['vendor_id',auth()->user()->vendor->id]
+        ,['sender_id','!=',auth()->user()->id]])->get();
         return view('livewire.admin.seller.message.products.product-vendor-message',['messages'=>$messages])->layout('layouts.admin.app');
     }
 }

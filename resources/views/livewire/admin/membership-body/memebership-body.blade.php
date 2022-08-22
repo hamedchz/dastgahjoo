@@ -52,6 +52,7 @@
     {{-- @include('livewire.admin.product.create') --}}
    
     @push('scripts')
+    {{--<script src="{{asset("admin/ckeditor5/src/ckeditor.js")}}"></script>--}}
     <script src="{{asset("admin/ckeditor5/ckeditor.js")}}"></script>
     <script>
        
@@ -131,6 +132,6 @@
  <script src="/admin/js/default-assets/datatables.select.min.js"></script> 
  <script src="/admin/js/default-assets/demo.datatable-init.js"></script> 
 <script src="/admin/js/default-assets/bootstrap-growl.js"></script>
-<script src="/admin/js/default-assets/notification-active.js"></script>
+{{--<script src="/admin/js/default-assets/notification-active.js"></script>--}}
     @endpush
 </div>

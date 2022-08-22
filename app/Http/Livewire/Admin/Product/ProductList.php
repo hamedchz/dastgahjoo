@@ -4,6 +4,9 @@ namespace App\Http\Livewire\Admin\Product;
 
 use App\Models\Images;
 use App\Models\Product;
+use App\Models\Video;
+use App\Models\Logo;
+use App\Models\Category;
 use App\QueryFilters\Vendor;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Pipeline\Pipeline;
@@ -21,9 +24,11 @@ class ProductList extends Component
     public $removeId = null;
     public $productInfo= null;
     public $staus= null;
-    public $productsImages=[];
+    public $productsImages=[],$productLogos=[],$productVideo=[];
+    public $subcategories,$categories;
+    public $state=[];
+    
    
-
     public function changeStatus($id,$value){
         $validateData = Validator::make(
             ['value' => $value],
@@ -64,14 +69,52 @@ class ProductList extends Component
         }
     }
     public function getInformation($id){
+        
         $pro = Product::with('category')->with('vendor')->where('id',$id)->first();
         $this->productInfo = $pro;
+        $categories = Category::where('parent',0)->get();
+        $this->categories = $categories;
+        $subcategories = Category::where('parent',$pro->category_id)->get();
+        $this->subcategories = $subcategories;
         $this->dispatchBrowserEvent('show-productInformation');
     }
+     public function updateCategory($id){
+    
+     $update = $this->productInfo->update([
+     'subcategory_id' => $id,
+     ]);
+     
+      if($update){
+            (new \App\Models\Log)->storeLog($this->productInfo->itemNo,' ویرایش  محصول','ویرایش ');
+            $this->dispatchBrowserEvent('hide-productDelete',['message'=>' زیر دسته بندی ماشین  با موفقیت ویرایش شد', 'action'=>'success']);
+        }else{
+            (new \App\Models\Log)->storeLog($this->productInfo->itemNo,'خطا  ویرایش  محصول','ویرایش ');
+            $this->dispatchBrowserEvent('hide-productDelete',['message'=>'مشکلی وجود دارد', 'action'=>'error']);
 
+        }
+    }
+    public function changeCategory($id){
+    $subcategories = Category::where('parent',$id)->get();
+    $this->subcategories = $subcategories;
+     $update = $this->productInfo->update([
+     'category_id' => $id,
+     ]);
+      if($update){
+            (new \App\Models\Log)->storeLog($this->productInfo->itemNo,' ویرایش  محصول','ویرایش ');
+            $this->dispatchBrowserEvent('hide-productDelete',['message'=>' دسته بندی ماشین  با موفقیت ویرایش شد', 'action'=>'success']);
+        }else{
+            (new \App\Models\Log)->storeLog($this->productInfo->itemNo,'خطا  ویرایش  محصول','ویرایش ');
+            $this->dispatchBrowserEvent('hide-productDelete',['message'=>'مشکلی وجود دارد', 'action'=>'error']);
+
+        }
+    }
     public function showImage($id){
-        $productsImage = Images::where('product_id',$id)->get();
+        $productsImage = Images::where('product_id',$this->productInfo->id)->get();
         $this->productsImages = $productsImage->toArray();
+        $productVideos = Video::where('product_id',$this->productInfo->id)->get();
+        $this->productVideo = $productVideos->toArray();
+        $productLogos = Logo::where('product_id',$this->productInfo->id)->get();
+        $this->productLogos = $productLogos->toArray();
         // foreach($this->productsImages as $image){
         //     dd($image['image']);
         // }
@@ -105,9 +148,10 @@ class ProductList extends Component
         $products = app(Pipeline::class)->send(Product::query())
         ->through([
                      Vendor::class
-        ])->thenReturn()->with('category')->where('isActive',1)->orderBy('id','desc')->paginate(21);
+        ])->thenReturn()->with('category')->where('isActive',1)->orderBy('id','desc')->get();
         
         // $products = Product::with('category')->where('isActive',1)->latest()->paginate(21);
+   
         return view('livewire.admin.product.product-list',['products'=>$products])->layout('layouts.admin.app');
     }
 }

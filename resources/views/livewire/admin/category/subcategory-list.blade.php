@@ -9,7 +9,7 @@
     <div class="data-table-area">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-12 box-margin">
+                <div class="col-12 box-margin" wire:ignore>
                     <div class="card">
                         <div class="card-body">
                             <div class="row" style="display: flex;align-items: center;justify-content: space-around;">
@@ -21,21 +21,32 @@
                             <table id="datatable-buttons" class="table table-striped dt-responsive nowrap w-100">
                                 <thead>
                                     <tr>
-                                        <th>نام</th>
+                                        <th id="edit-cat1">نام</th>
+                                     <th id="edit-cat2"><a id="edit-cat2">نام</a> </th>
                                         <th class="status-semat">توضیحات</th>
-                                        <th class="status-semat">عنوان موتور جستجو </th>
-                                        <th class="status-semat">توضیحات موتور جستجو </th>
                                         <th class="status-semat">وضعیت</th>
-                                        <th>عملیات</th>
+                                        <th id="edit-cat2">عملیات</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody wire:sortable="updateCategoryPosition">
                                     @forelse($subcategory as $category)
-                                    <tr class="justify-content-center align-items-center">
-                                        <td>{{$category->title}}</td>
+                                    <tr class="justify-content-center align-items-center"  wire:key="categoryphp artisan se-{{ $category->id }}" wire:sortable.item="{{ $category->id }}">
+                                      <td id="edit-cat1"> 
+                                         
+                                         <i style="margin-left:15px;width: 10px;cursor:move;" wire:sortable.handle class="fa fa-arrows-alt text-muted"></i>
+                                       {{$category->title}}
+                                       <div style="margin-right: 50px;">
+                                            <a href="" wire:click.prevent="edit({{$category}})" style="font-size:20px;margin-right:15px;"><i class="fa fa-edit" style="color:#04a9f5;"></i></a>
+                                            <a href="" wire:click.prevent="removeConfirmation({{$category->id}})" style="font-size:20px;"><i class="fa fa-trash" style="color:#dc3545;"></i></a>
+                                       </div>
+                                        </td>
+                                        
+                                         <td >
+                                        <i id="edit-cat2" style="width: 10px;cursor:move;" wire:sortable.handle class="fa fa-arrows-alt text-muted"></i>
+                                       <a id="edit-cat2">{{$category->title}}</a>
+                                        </td>
+                                        
                                         <td class="status-semat">{{$category->description}}</td>
-                                        <td class="status-semat">{{$category->metaTitle}}</td>
-                                        <td class="status-semat">{{$category->metaDescription}}</td>
                                         <td class="status-semat">
                                             <select class="form-control @error('status') is-invalid @enderror" wire:change = "changeStatus({{$category}},event.target.value)">
                                                 <option value="1" {{$category->isActive == 1 ? 'selected':''}} >فعال</option>
@@ -44,7 +55,7 @@
                                             @error('status')<div class="invalid-feedback">{{ $message }}</div> @enderror
 
                                          </td>        
-                                         <td>
+                                         <td id="edit-cat2">
 
                                             <a href="" wire:click.prevent="edit({{$category}})" style="font-size:20px;"><i class="fa fa-edit" style="color:#04a9f5;"></i></a>
                                             <a href="" wire:click.prevent="removeConfirmation({{$category->id}})" style="font-size:20px;"><i class="fa fa-trash" style="color:#dc3545;"></i></a>
@@ -78,11 +89,45 @@
     <link rel="stylesheet" href="{{asset('admin/css/default-assets/select.bootstrap4.css')}}">
     <link rel="stylesheet" href="{{asset('admin/css/default-assets/notification.css')}}">
     <style>
-         @media only screen and (max-width: 767px){
-        .status-semat{
-            display: none !important;
+          .draggable-mirror{
+            background-color:white;
+            display:flex;
+            width: 80%;
+            justify-content: space-around !important;
+            box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;
+            align-items:center;
+
         }
+        
+         #edit-cat1{
+        display:none;
+        }
+        
+          @media only screen and (max-width: 767px){
+      
+ table.dataTable.dtr-inline.collapsed>tbody>tr[role=row]>td:first-child:before,
+             table.dataTable.dtr-inline.collapsed>tbody>tr[role=row]>th:first-child:before {
+                top: 70%;
+                left: 90%;
+                z-index: 100;    
+                display:block;
+        } 
+        
+        #edit-cat2{
+        display:none;
+        }
+         #edit-cat1{
+        display:block;
+        
+        }
+        
+     
+     table.dataTable>tbody>tr.child ul.dtr-details>li:last-child {
+    display: none;
+}
+        
     }
+        
 
     </style>
     @endpush
@@ -154,10 +199,13 @@
      <script src="/admin/js/default-assets/button.print.min.js"></script>
      <script src="/admin/js/default-assets/datatables.keytable.min.js"></script>
      <script src="/admin/js/default-assets/datatables.select.min.js"></script>
-     <script src="/admin/js/default-assets/demo.datatable-init.js"></script>
+     {{--<script src="/admin/js/default-assets/demo.datatable-init.js"></script>--}}
      <script src="/admin/js/default-assets/bootstrap-growl.js"></script>
      {{-- <script src="/admin/js/default-assets/notification-active.js"></script> --}}
      <script src="/admin/js/MaxLength.min.js"></script>
 
+    @endpush
+     @push('after-scripts')
+    <script src="https://cdn.jsdelivr.net/gh/livewire/sortable@v0.x.x/dist/livewire-sortable.js"></script>
     @endpush
 </div>

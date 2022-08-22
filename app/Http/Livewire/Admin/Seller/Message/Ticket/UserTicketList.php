@@ -57,9 +57,11 @@ class UserTicketList extends Component
                 if ($save) {
                     $this->dispatchBrowserEvent('hide-newTicket',['message'=> 'تیکت با موفقیت فرستاده شد','action'=>'success']);
                     (new \App\Models\Log)->storeLog($this->state['title'],'تیکت جدید','ایجاد');
+                    return redirect()->to(route('user.ticketist'));
                 }else{
                     $this->dispatchBrowserEvent('hide-newTicket',['message'=> 'مشکلی وجود دارد','action'=>'error']);
                     (new \App\Models\Log)->storeLog($this->state['title'],'خطا در تیکت جدید','ایجاد');
+                     return redirect()->to(route('user.ticketist'));
                 }
         
 

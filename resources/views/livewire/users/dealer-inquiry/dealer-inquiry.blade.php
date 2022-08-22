@@ -8,7 +8,7 @@
             <div class="col-lg-8 text center-align mx-auto">
                 <h1><b>استعلام </b></h1>
                 <div class="description">
-                  <p>لطفاً برای هرگونه سؤالی با ما تماس بگیرید!</p>
+                  <p>        لطفا مشخصات خود را وارد کنید!</p>
               </div>
             </div>
           </div>
@@ -54,7 +54,7 @@
                               <option value="Mr" selected="">آقا</option>
                               <option value="Ms">خانم</option>
                             </select>
-                            <input type="text" name="" wire:model.defer="state.title" class="form-control" placeholder="نام" required="">
+                            <input type="text" name="" wire:model.defer="state.title" class="form-control" placeholder="نام" required="" oninvalid="this.setCustomValidity('لطفا  نام خود را وارد کنید!')"  oninput="this.setCustomValidity('')">
                           </div>
                         </div>
                         <div class="align-form">
@@ -77,7 +77,7 @@
                               {{-- <i class="fas fa-mailbox fa-lg"></i> --}}
                               <i class="fas fa-mailbox fa-lg"></i>
                             </div>
-                            <input type="number" name="" class="form-control  @error('postal') is-invalid @enderror" wire:model = "state.postal" placeholder="  کدپستی" required="">
+                            <input type="number" name="" class="form-control  @error('postal') is-invalid @enderror" wire:model = "state.postal" placeholder="  کدپستی" >
                             {{-- @error('postal')<div class="invalid-feedback">{{ $message }}</div> @enderror --}}
 
                           </div>
@@ -90,7 +90,7 @@
                             <div class="input-group-addon" style="width: 2.6rem">
                               <i class="fas fa-home fa-lg"></i>
                             </div>
-                            <input type="text" name="" class="form-control" placeholder="آدرس" required="">
+                            <input type="text" name="" class="form-control" placeholder="آدرس" >
                           </div>
                         </div> --}}
                         {{-- <div class="align-form">
@@ -99,7 +99,7 @@
                             <div class="input-group-addon" style="width: 2.6rem">
                               <i class="fas fa-home fa-lg"></i>
                             </div>
-                            <input type="text" name="" class="form-control" placeholder="کد و شهر" required="">
+                            <input type="text" name="" class="form-control" placeholder="کد و شهر" >
                           </div>
                         </div> --}}
                       </div>
@@ -110,7 +110,7 @@
                             <div class="input-group-addon" style="width: 2.6rem">
                               <i class="fas fa-at fa-lg"></i>
                             </div>
-                            <input type="email" name="" wire:model.defer="state.email" class="form-control  @error('email') is-invalid @enderror" placeholder="ایمیل" required="">
+                            <input type="email" name="" wire:model.defer="state.email" class="form-control  @error('email') is-invalid @enderror" placeholder="ایمیل">
                             {{-- @error('email')<div class="invalid-feedback">{{ $message }}</div> @enderror --}}
 
                           </div>
@@ -123,7 +123,7 @@
                             <div class="input-group-addon" style="width: 2.6rem">
                               <i class="fas fa-phone fa-lg"></i>
                             </div>
-                            <input type="number" name="" wire:model.defer="state.phone" class="form-control  @error('phone') is-invalid @enderror" placeholder="موبایل" required="">
+                            <input type="number" name="" wire:model.defer="state.phone" class="form-control  @error('phone') is-invalid @enderror" placeholder="موبایل" required="" oninvalid="this.setCustomValidity('لطفا  شماره موبایل خود را وارد کنید!')"  oninput="this.setCustomValidity('')">
                             {{-- @error('phone')<div class="invalid-feedback">{{ $message }}</div> @enderror --}}
 
                           </div>

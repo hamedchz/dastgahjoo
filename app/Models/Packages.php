@@ -47,7 +47,9 @@ class Packages extends Model
     //     $date = $date->addDays($daysToAdd);
     //     return $date;
     // }
-
+    public function userDiscount(){
+        return $this->hasMany(UserDiscounts::class,'package_id','id');
+    }
     public function discount(){
         return $this->hasOne(Discounts::class,'package_id','id');
     }

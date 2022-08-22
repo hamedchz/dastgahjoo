@@ -43,9 +43,9 @@
                   </form>
                 </div>
               </div> --}}
-                <div class="fields col-lg-4 text center-align mx-auto" >
+                <div class="fields col-lg-4 text center-align mx-auto d-none" id="requiredError">
                 <span>
-                  <small>فیلدها اجباری نیست!</small>
+                  <small >فیلدهای دسته بندی و زیر دسته بندی الزامیست !</small>
                 </span>
               </div>
               </div>
@@ -59,16 +59,24 @@
                 <div class="col-md-6 mx-auto">
                   <div class="align-form">
                     <div class="input-group">
-                      <span class="input-group-addon" style="min-width: 160px;"><small>دسته بندی:</small></span>
-                      <select name="category" class="url_params custom-select form-control" style="font-size: 0.8rem;">
+                      <span class="input-group-addon" style="min-width: 120px;"><small>دسته بندی:</small></span>
+                      <select name="category" id="category" class="url_params custom-select form-control  @error('category_id') is-invalid @enderror" wire:change="changeCategory(event.target.value)" style="font-size: 0.8rem;" required="">
                         <option value="" selected="">همه دسته ها</option>
                         @foreach($categoriesCount as $category)
                         <option value="{{$category->id}}">{{$category->title}}</option>
                         @endforeach
                       </select>
+                      @error('category_id')<div class="invalid-feedback">{{ $message }}</div> @enderror
                     </div>
                   </div>
-        
+                  <div class="align-form">
+                    <div class="input-group">
+                      <span class="input-group-addon" style="min-width: 120px;">
+                        <small>کد دستگاه:</small>
+                      </span>
+                      <input type="text" name="itemNo" value="" class="url_params form-control form-control-sm" placeholder="">
+                    </div>
+                  </div>
                   <div class="align-form">
                     <div class="input-group">
                       <span class="input-group-addon" style="min-width: 120px;">
@@ -99,14 +107,7 @@
                     </div>
                   </div>
         
-                  <div class="align-form">
-                    <div class="input-group">
-                      <span class="input-group-addon" style="min-width: 120px;">
-                        <small>مدل:</small>
-                      </span>
-                      <input type="text" name="model" value="" class="url_params form-control form-control-sm" placeholder="">
-                    </div>
-                  </div>
+                
 {{--         
                   <div class="align-form">
                     <div class="input-group">
@@ -143,15 +144,24 @@
         
                 </div>
                 <div class="col-md-6 mx-auto">
-             
                   <div class="align-form">
                     <div class="input-group">
-                      <span class="input-group-addon" style="min-width: 120px;">
-                        <small>کد دستگاه:</small>
-                      </span>
-                      <input type="text" name="itemNo" value="" class="url_params form-control form-control-sm" placeholder="">
+                      <span class="input-group-addon" style="min-width: 120px;"><small>دسته بندی:</small></span>
+                      <select name="subcategory" class=" w-100 custom-select url_params @error('subcategory_id') is-invalid @enderror" id="subcategory" required="">
+                        <option  value="" selected>انتخاب کنید</option>
+                        @if($subCategory <> null)
+                          @forelse($subCategory as $category)
+                          <option value="{{$category->id}}">{{$category->title}}</option>
+                          @empty
+                          <option value="">زیر دسته بندی وجود ندارد</option>
+                          @endforelse
+                        @endif
+                    </select>
+                     @error('subcategory_id')<div class="invalid-feedback">{{ $message }}</div> @enderror
                     </div>
                   </div>
+
+              
         
                   <div class="align-form">
                     <div class="input-group">
@@ -174,7 +184,14 @@
                       </select>
                     </div>
                   </div>
-        
+                  <div class="align-form">
+                    <div class="input-group">
+                      <span class="input-group-addon" style="min-width: 120px;">
+                        <small>مدل:</small>
+                      </span>
+                      <input type="text" name="model" value="" class="url_params form-control form-control-sm" placeholder="">
+                    </div>
+                  </div>
                   {{-- <div class="align-form">
                     <div class="input-group">
                       <span class="input-group-addon" style="min-width: 160px;"><small>کد فروشنده:</small></span>
@@ -213,8 +230,15 @@
         <script>
           $(document).ready(function () {
        $("#submitSearch").on("click", function(e) {
-           e.preventDefault();
-           var url = '{{ url("/result") }}?';
+         e.preventDefault();
+         const subcategory = document.querySelector('#subcategory')
+         const category = document.querySelector('#category')
+         if(subcategory.value ==  "" || category.value ==  ""){
+          document.querySelector('#requiredError').classList.remove('d-none')
+          subcategory.classList.add('is-invalid') 
+          category.classList.add('is-invalid') 
+         }else{
+          var url = '{{ url("/result") }}?';
            var total = $(".url_params").length;
            $(".url_params").each(function (index) {
                if ($(this).val().trim().length) {
@@ -226,6 +250,8 @@
                }
            });
            window.location.href = url;
+         }
+       
        });
    });
        </script>

@@ -6,17 +6,25 @@ use App\Models\Category;
 use App\Models\MachineSearch;
 use Livewire\Component;
 use Artesaos\SEOTools\Traits\SEOTools as SEOToolsTrait;
+use App\Repositories\HeaderRepository;
 
 class SearchMachine extends Component
 {
     use SEOToolsTrait;
+    public $subCategory= null;
+
+    public function changeCategory($id){
+        $subcategory = Category::where('parent',$id)->where('isActive',1)->get();
+        $this->subCategory = $subcategory;
+    }
+    
     public function render()
     {
-        $categories = Category::with('parents')->with('products')->with('subproducts')->where('isActive',1)->where('parent',0)->take(4)->get();
-        $categoriesCount = Category::with('parents')->with('products')->with('subproducts')->where('isActive',1)->where('parent',0)->get();
-        $categoriesFirsthalf = Category::with('parents')->with('products')->with('subproducts')->where('isActive',1)->where('parent',0)->take($categoriesCount->count()/2)->get();
-        $categoriesSecondhalf = Category::with('parents')->with('products')->with('subproducts')->where('isActive',1)->where('parent',0)->skip($categoriesCount->count()/2)->take($categoriesCount->count()-$categoriesCount->count()/2)->get();
-        $categories_second = Category::with('parents')->with('products')->where('isActive',1)->where('parent',0)->with('subproducts')->skip(4)->take($categoriesCount->count() - 4)->get();
+        $categories = resolve(HeaderRepository::class)->categories();
+        $categoriesCount = resolve(HeaderRepository::class)->categoriesCount();
+        $categories_second = resolve(HeaderRepository::class)->categories_second();   
+        $categoriesFirsthalf = resolve(HeaderRepository::class)->categoriesFirsthalf();
+        $categoriesSecondhalf =resolve(HeaderRepository::class)->categoriesSecondhalf();
         $this->seo()
         ->setTitle('جستجوی ماشین آلات',false)
         ->setDescription('جستجوی ماشین آلات');

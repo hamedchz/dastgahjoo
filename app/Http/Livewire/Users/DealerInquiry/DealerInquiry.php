@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
 use SoapClient;
 use Artesaos\SEOTools\Traits\SEOTools as SEOToolsTrait;
+use Illuminate\Support\Facades\Auth;
 
 
 class DealerInquiry extends Component
@@ -26,10 +27,9 @@ class DealerInquiry extends Component
     public function store(){
         $validatedData = Validator::make($this->state,[
             'title' => 'required',
-            'address' => 'required',
-            'postal' => 'required',
-            'title' => 'required',
-            'email' => 'required|email',
+            'address' => 'sometimes',
+            'postal' => 'sometimes',
+            'email' => 'sometimes',
             'phone' => 'required|min:11',
             'isPrice' => 'sometimes',
             'moreInformation' => 'sometimes',
@@ -38,14 +38,13 @@ class DealerInquiry extends Component
             'comment' => 'sometimes'
         ],[
             'title.required' => 'این فیلد نمیتواند خالی باشد',
-            'address.required' => 'این فیلد نمیتواند خالی باشد',
-            'postal.required' => 'این فیلد نمیتواند خالی باشد',
-            'email.required' => 'این فیلد نمیتواند خالی باشد',
-            'email.email' => 'لطفا ایمیل صحیح وارد کنید',
-            'phone.required' => 'این فیلد نمیتواند خالی باشد',
-            'phone.numeric' => 'لطفا تلفن صحیح وارد کنید',
-            'phone.min' => ' تلفن باید 11 عدد باشد  ',
+            'phone.required' => 'لطفا تلفن خود را وارد کنید',
+            'phone.numeric' => 'لطفا تلفن خود را وارد کنید',
+            'phone.min' => ' لطفا تلفن خود را وارد کنید ',
         ])->validate();
+         if (Auth::check()) {
+            $validatedData['sender_id'] = auth()->user()->id;
+        }
         $validatedData['product_id'] = $this->productInfo->id;
         $validatedData['vendor_id'] = $this->productInfo->vendor_id;
         $validatedData['status'] = 'PENDING';
@@ -55,7 +54,7 @@ class DealerInquiry extends Component
              $this->sendSmsCode($vendor->mobile, $this->productInfo->name,$vendor->user->name);
 
             $this->state = "";
-            $this->addError('storeMessage', 'پیام شما فرستاده شد با شما تماس میگیریم','action');
+            $this->addError('storeMessage', 'پیام شما ارسال گردید فروشنده با شما تماس خواهد گرفت','action');
 
         }
     }

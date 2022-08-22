@@ -51,7 +51,7 @@
                               <option value="" selected="">آقا</option>
                               <option value="">خانم</option>
                             </select>
-                            <input type="text" wire:model = "state.name" name="" class="form-control  @error('name') is-invalid @enderror" placeholder="نام شما" required="">
+                            <input type="text" wire:model = "state.name" name="" class="form-control  @error('name') is-invalid @enderror" placeholder="نام شما" required="" oninvalid="this.setCustomValidity('لطفا  نام خود را وارد کنید!')"  oninput="this.setCustomValidity('')">
                             {{-- @error('name')<div class="invalid-feedback">{{ $message }}</div> @enderror --}}
                           </div>
                           @error('name')<div class="text-danger " style="text-align:right;padding-top:5px;padding-right:10px;">{{ $message }}</div> @enderror
@@ -112,7 +112,7 @@
                             <div class="input-group-addon" style="width: 2.6rem">
                               <i class="fas fa-at fa-lg"></i>
                             </div>
-                            <input type="email" wire:model = "state.email" name="" class="form-control  @error('email') is-invalid @enderror" placeholder="ایمیل" required="">
+                            <input type="email" wire:model = "state.email" name="" class="form-control  @error('email') is-invalid @enderror" placeholder="ایمیل" required="" oninvalid="this.setCustomValidity('لطفا ایمیل خود را وارد کنید!')"  oninput="this.setCustomValidity('')">
                             {{-- @error('email')<div class="invalid-feedback">{{ $message }}</div> @enderror --}}
 
                           </div>
@@ -126,7 +126,7 @@
                             <div class="input-group-addon" style="width: 2.6rem">
                               <i class="fas fa-phone fa-lg"></i>
                             </div>
-                            <input type="number" name="" wire:model = "state.mobile" class="form-control  @error('mobile') is-invalid @enderror" placeholder="تلفن" required="">
+                            <input type="number" name="" wire:model = "state.mobile" class="form-control  @error('mobile') is-invalid @enderror" placeholder="تلفن" required="" oninvalid="this.setCustomValidity('لطفا  شماره مویایل خود را وارد کنید!')"  oninput="this.setCustomValidity('')">
 
                           </div>
                           @error('mobile')<div class="text-danger " style="text-align:right;padding-top:5px;padding-right:10px;">{{ $message }}</div> @enderror

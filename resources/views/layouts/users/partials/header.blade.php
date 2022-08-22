@@ -9,12 +9,12 @@
       </button>
       <div class="collapse navbar-collapse" id="navSmall">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item  hidden-mobile">
-            <a class="nav-link mb-3"  href="{{route('search-machine')}}">جستجوی دستگاه</a>
+          <li class="nav-item  ">
+            <a class="nav-link "  href="{{route('search-machine')}}">جستجوی دستگاه</a>
           </li>
-          <li class="nav-item " >
+          {{--<li class="nav-item " >
             <a class="nav-link" href="{{route('advance-search')}}">جستجوی پیشرفته</a>
-          </li>
+          </li>--}}
           <li class="nav-item ">
             <a class="nav-link" href="{{route('membership')}}">عضویت</a>
           </li>
@@ -24,7 +24,7 @@
           <li class="nav-item ">
             <a id="login" class="nav-link" href="{{route('login')}}">
             @auth
-            {{ auth()->user()->name}}-{{auth()->user()->roles[0]->description}}
+             ورود به حساب کاربری
             @endauth
             @guest
             ورود<i class="fas fa-sign-in-alt" aria-hidden="true"></i>

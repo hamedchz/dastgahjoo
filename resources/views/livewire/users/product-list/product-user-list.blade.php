@@ -224,7 +224,7 @@
                                     <div class="card-body" style="padding: 0.5rem;">
                                         <div class="input-group">
                                             <input class="form-control" placeholder=" مثال : دستگاه تزریق پلاستیک  "
-                                                value="" maxlength="40" name="name" type="text"
+                                                value="" maxlength="40" name="queryTerm" type="text"
                                                 required="" title="">
 
                                             {{-- <select class="custom-select" name="category" style="border-radius: 0px; width: 120px;">
@@ -286,7 +286,7 @@
                                             style="cursor:default;position:relative;top:0px;left:0px;width:1110px;height:150px;overflow:hidden;object-fit: cover;">
                                             @foreach ($advertise as $ad)
                                                 <div>
-                                                    <a href="{{asset($ad->link)}}"><img data-u="image" src="{{ asset($ad->banner) }}" /></a>
+                                                    <a target="_blank" href="{{asset($ad->link)}}"><img data-u="image" src="{{ asset($ad->banner) }}" /></a>
                                                     <div data-u="thumb">{{ $ad->description }}</div>
                                                 </div>
                                             @endforeach
@@ -558,9 +558,8 @@
                                 <div class="container top-group" style="background-color: white;">
                                     <div class="display-align">
                                         <div class="col-lg-7 machine-top py-1">
-                                            <span class="category-code">{{ $product->category->id }}
-                                                <a href="{{ route('product-list', $product->category->slug) }}"
-                                                    style="color: #5faeff;">{{ $product->category->title }} </a>
+                                            <span class="category-code">{{ $loop->iteration }}
+                                                   {{ $product->category->title }} 
                                             </span>
                                         </div>
                                         <div class="col-lg-5 machine-top py-1">
@@ -626,13 +625,13 @@
                                                                     درخواست استعلام
                                                                 </a>
                                                             </button>
-
-                                                            <a href="tel:{{ $product->vendor->phone }}"
+                                                            @auth
+                                                            <a href="tel:@if($product->vendor->phone <> null){{$product->vendor->phone}}@else{{$product->vendor->user->mobile}}@endif"
                                                                 class="btn-all btn-all-small btn-green text-white"
                                                                 style="margin: 10px;font-weight: 600;">
                                                                 <i class="fas fa-phone"></i>
                                                             </a>
-
+                                                            @endauth
                                                         </div>
                                                     </div>
                                                 </div>
@@ -718,10 +717,10 @@
                 </div>
             </div>
         </div>
-           <a href="{{ route('subcategory.product-list', $cat->child->slug) }}" class="btn btn-primary back-to-previous"">
+           {{-- <a href="{{ route('subcategory.product-list', $cat->child->slug) }}" class="btn btn-primary back-to-previous"">
                 <svg class="svg-inline--fa fa-arrow-left fa-w-14" aria-hidden="true" data-prefix="fas" data-icon="arrow-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
                   <path fill="currentColor" d="M257.5 445.1l-22.2 22.2c-9.4 9.4-24.6 9.4-33.9 0L7 273c-9.4-9.4-9.4-24.6 0-33.9L201.4 44.7c9.4-9.4 24.6-9.4 33.9 0l22.2 22.2c9.5 9.5 9.3 25-.4 34.3L136.6 216H424c13.3 0 24 10.7 24 24v32c0 13.3-10.7 24-24 24H136.6l120.5 114.8c9.8 9.3 10 24.8.4 34.3z"></path>
-              </svg>بازگشت</a>
+              </svg>بازگشت</a> --}}
     </div>
     @push('footer-scripts')
         <div class="parallax-background">

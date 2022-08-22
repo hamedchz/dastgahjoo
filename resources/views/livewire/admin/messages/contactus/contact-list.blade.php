@@ -8,13 +8,13 @@
     <div class="data-table-area">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-12 box-margin">
+                <div class="col-12 box-margin"  wire:ignore>
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex justify-content-between ">
                             <h4 class="card-title mb-2">پیامها </h4>
                             <div class="btn-group">
-                                <button type="button" class="btn {{is_null($status) ? 'btn-secondary' : 'btn-light'}} " wire:click.prevent="filterMessagesByStatus">
+                               {{-- <button type="button" class="btn {{is_null($status) ? 'btn-secondary' : 'btn-light'}} " wire:click.prevent="filterMessagesByStatus">
                                     <span class="mr-1">همه</span>
                                     <span class="badge badge-pill badge-info">{{$allMessagesCount}}</span>
                                 </button>
@@ -25,7 +25,7 @@
                                  <button type="button" class="btn {{$status=='unread' ? 'btn-secondary' : 'btn-light'}} "  wire:click.prevent="filterMessagesByStatus('unread')">
                                     <span class="mr-1">خوانده نشده</span>
                                     <span class="badge badge-pill badge-primary">{{$unreadMessagesCount}}</span>
-                                    </button>
+                                    </button>--}}
                             </div>
                         </div>
                       
@@ -34,18 +34,21 @@
                                 <thead>
                                     <tr>
                                         <th class="status-semat">نام</th>
-                                        <th class="status-semat">موبایل</th>
+                                        <th id="see-msg1">#</th>
+                                         <th class="status-semat">موبایل</th>
                                         <th>موضوع</th>
+                                        <th>وضعیت</th>
                                         <th class="status-semat">
-                                            <span wire:click="sortBy('id')" class="text-sm" style="cursor: pointer;">
+                                            {{--<span wire:click="sortBy('id')" class="text-sm" style="cursor: pointer;">
                                                 <i class="fa fa-arrow-up  {{ $sortColumnName === 'id' && $sortDirection === 'asc' ? '' : 'text-muted' }}"></i>
                                                 <i class="fa fa-arrow-down  {{ $sortColumnName === 'id' && $sortDirection === 'desc' ? '' : 'text-muted' }}"></i>
-                                            </span>
+                                            </span>--}}
                                             تاریخ
                                             
                                         </th>
-                                        <th>#</th>
-                                        <th>عملیات</th>
+                                        <th id="see-msg2">#</th>
+                                        <th id="see4">عملیات</th>
+
                                     </tr>
                                 </thead>
 
@@ -53,26 +56,30 @@
                                     @forelse($messages as $msg)
                                     <tr>
                                         <td class="status-semat">{{$msg->name}}</td>
+                                           <td id="see-msg1">
+                                            <a href="" wire:click.prevent="getInfo({{$msg}})" class="btn btn-success" style="font-size:10px;">متن پیام</a>
+                                            <a href=""  wire:click.prevent="removeConfirmation({{$msg->id}})" style="font-size:20px;"><i class="fa fa-trash" style="color:#dc3545;"></i></a>
+                                        </td>
                                         <td class="status-semat">{{$msg->mobile}}</td>
                                         <td>{{$msg->subject}}</td>
+                                        <td style="font-size:8px;" class="badge  p-1 {{ $msg->seen == 'read' ? 'badge-success': 'badge-danger'}}">{{$msg->seen == 'read' ? 'خوانده شده': 'خوانده نشده'}}</td>
                                         <td class="status-semat">
                                             {{$msg->created_at}}
-        
                                         </td>
-                                        <td>
+                                        <td id="see-msg2">
                                             <a href="" wire:click.prevent="getInfo({{$msg}})" class="btn btn-success" style="font-size:10px;">متن پیام</a>
                                         </td>
-                                        <td>
+                                        <td id="see4">
                                             <a href=""  wire:click.prevent="removeConfirmation({{$msg->id}})" style="font-size:20px;"><i class="fa fa-trash" style="color:#dc3545;"></i></a>
                                         </td>
                                         @empty
-                                        <td align="center" colspan="6" style="background-color:#e1e1e1;">داده ای وجود ندارد</td>
+                                        <td align="center" colspan="7" style="background-color:#e1e1e1;">داده ای وجود ندارد</td>
                                     </tr>
                                     @endforelse
                                 </tbody>
                             </table>
                             <div class="d-flex align-items-center justify-content-center">
-                               {{$messages->links()}}
+                              {{-- {{$messages->links()}}--}}
                             </div>
                         </div> <!-- end card body-->
                     </div> <!-- end card -->
@@ -85,12 +92,53 @@
      @include('livewire.admin.messages.contactus.delete')
 </div>
 @push('styles')
+     <link rel="stylesheet" href="{{asset('admin/css/default-assets/datatables.bootstrap4.css')}}">
+     <link rel="stylesheet" href="{{asset('admin/css/default-assets/responsive.bootstrap4.css')}}">
+     <link rel="stylesheet" href="{{asset('admin/css/default-assets/buttons.bootstrap4.css')}}">
+     <link rel="stylesheet" href="{{asset('admin/css/default-assets/select.bootstrap4.css')}}">
+     <link rel="stylesheet" href="{{asset('admin/css/default-assets/notification.css')}}">
+
 <style>
-    @media only screen and (max-width: 767px){
-   .status-semat{
-       display: none !important;
-   }
+
+  
+        
+     
+           #see-msg1{
+        display:none;
+        }
+        
+          
+        
+    @media only screen and (max-width: 514px){
+    table.dataTable.dtr-inline.collapsed>tbody>tr[role=row]>td:first-child:before,
+             table.dataTable.dtr-inline.collapsed>tbody>tr[role=row]>th:first-child:before {
+                top: 70%;
+                left: 90%;
+                z-index: 100;       
+        } 
+        
+        
+        #see-msg1{
+        display:block;
+        }
+        
+          #see-msg2{
+        display:none;
+        }
+     
+       
+             #see4{
+        display:none;
+        }
+      table.dataTable>tbody>tr.child ul.dtr-details>li:last-child,
+      table.dataTable>tbody>tr.child ul.dtr-details>li:nth-last-child(2)
+   {
+      display:none;
+      }
+     
 }
+
+  
 
 </style> 
 @endpush
@@ -121,4 +169,19 @@
             $('#deleteContact').modal('show')
         })
     </script>
+    
+         <script src="/admin/js/default-assets/jquery.datatables.min.js"></script>
+     <script src="/admin/js/default-assets/datatables.bootstrap4.js"></script>
+     <script src="/admin/js/default-assets/datatable-responsive.min.js"></script>
+     <script src="/admin/js/default-assets/responsive.bootstrap4.min.js"></script>
+     <script src="/admin/js/default-assets/datatable-button.min.js"></script>
+     <script src="/admin/js/default-assets/button.bootstrap4.min.js"></script>
+     <script src="/admin/js/default-assets/button.html5.min.js"></script>
+     <script src="/admin/js/default-assets/button.flash.min.js"></script>
+     <script src="/admin/js/default-assets/button.print.min.js"></script>
+     <script src="/admin/js/default-assets/datatables.keytable.min.js"></script>
+     <script src="/admin/js/default-assets/datatables.select.min.js"></script>
+     <script src="/admin/js/default-assets/demo.datatable-init.js"></script>
+     <script src="/admin/js/default-assets/bootstrap-growl.js"></script>
+
 @endpush

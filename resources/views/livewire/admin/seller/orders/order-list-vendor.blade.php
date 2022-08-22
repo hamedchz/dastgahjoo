@@ -2,16 +2,16 @@
     <nav aria-label="خرده نان" class="container-fluid">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{route('admin.dashboard.index')}}">داشبورد</a></li>
-            <li class="breadcrumb-item active" aria-current="page">  لیست سفارشات</li>
+            <li class="breadcrumb-item active" aria-current="page">   پکیجهای خریداری شده  </li>
         </ol>
     </nav>
     <div class="data-table-area">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-12 box-margin">
+                <div class="col-12 box-margin" wire:ignore>
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title mb-2"> لیست  سفارشات</h4>
+                            <h4 class="card-title mb-2">    پکیجهای خریداری شده </h4>
                             {{-- <button type="button" class="btn btn-danger mb-2 mr-2" style="float:left;margin-top:-37px;"><i class="fa fa-refresh"></i> سطل زباله</button> --}}
                             {{-- <button type="button" class="btn btn-success mb-2 mr-2" style="float:left;margin-top:-37px;" wire:click.prevent="addNew()" ><i class="fa fa-plus-square"></i> افزودن</button> --}}
                             {{-- <button type="button" class="btn btn-primary mb-2 mr-2" style="float:left;margin-top:-37px;"><i class="fa fa-file-excel-o"></i> خروجی اکسل</button> --}}
@@ -20,19 +20,18 @@
                             <table id="datatable-buttons" class="table table-striped dt-responsive nowrap w-100">
                                 <thead>
                                     <tr>
-                                        <th> آیدی سفارش</th>
-                                     
+                                        <th>  نوع پکیج</th>
                                         <th>    وضعیت پرداخت</th>
-                                        <th>    وضعیت ارسال</th>
                                         <th>  مبلغ سفارش</th>
-                                      
+                                        <th>    تاریخ </th> 
+                                        
                                     </tr>
                                 </thead>
 
                                 <tbody>
                                     @forelse($orders as $order)
                                     <tr>
-                                        <td>{{$order->id}}</td>
+                                        <td>{{$order->orderable->title}}</td>
                                        
                                         <td >
                                            
@@ -51,29 +50,26 @@
                                             @endswitch
                                             {{-- <span class="pr-5"><a href="{{route('admin.cities',$prov->id)}}" class="badge badge-success p-1" style="font-size:10px;" >لیست </a></span> --}}
                                         </td>
-                                        <td >
-                                            <select class="form-select form-select-sm form-control" aria-label=".form-select-sm example" disabled >
+                                        {{-- <td >
+                                            <select class="form-select form-select-sm form-control" aria-label=".form-select-sm example" wire:change="changeDeliveryStatus({{$order}},event.target.value)">
                                                 
                                                 <option value="DELIVERED" {{$order->delivery == 'DELIVERED' ? 'selected': ''}}>تحویل شده</option>
                                                 <option value="UNDELIVERED" {{$order->delivery == 'UNDELIVERED' ? 'selected': ''}}>در حال پردازش</option>
                                                
                                               </select>
                                             
-                                            {{-- <span class="pr-5"><a href="{{route('admin.cities',$prov->id)}}" class="badge badge-success p-1" style="font-size:10px;" >لیست </a></span> --}}
-                                        </td>
-                                        <td>{{$order->price}}</td>
-                                        <td>
-                                            {{-- <a href=""  style="font-size:20px;"><i class="fa fa-edit"  style="color:#04a9f5;"></i></a> --}}
-                                            {{-- <a href="" wire:click.prevent="removeConfirmation({{$order->id}})" style="font-size:20px;"><i class="fa fa-trash" style="color:#dc3545;"></i></a> --}}
-                                         </td>
+                                        </td> --}}
+                                        <td>{{$order->price}} تومان</td>
+                                         <td>{{$order->created_at}} </td>
+                                   
                                         @empty
-                                        <td align="center" colspan="4"  style="background-color:#e1e1e1;">داده ای وجود ندارد</td>
+                                        <td align="center" colspan="6" style="background-color:#e1e1e1;">داده ای وجود ندارد</td>
                                     </tr>
                                     @endforelse
                                 </tbody>
                             </table>
                             <div class="d-flex align-items-center justify-content-center">
-                               {{-- {{$orders->links()}} --}}
+                               {{-- {{$provinces->links()}} --}}
                             </div>
                         </div> <!-- end card body-->
                     </div> <!-- end card -->
@@ -84,7 +80,7 @@
         </div>
     </div>
     {{-- @include('livewire.admin.location.province.create') --}}
-    {{-- @include('livewire.admin.orders.delete') --}}
+    @include('livewire.admin.orders.delete')
 
 </div>
 @push('styles')
@@ -95,11 +91,16 @@
 {{-- <link rel="stylesheet" href="{{asset('admin/css/default-assets/notification.css')}}"> --}}
 <style>
      @media only screen and (max-width: 767px){
-   .status-semat{
-       display: none !important;
-   }
-
-}
+     
+     
+         table.dataTable.dtr-inline.collapsed>tbody>tr[role=row]>td:first-child:before,
+             table.dataTable.dtr-inline.collapsed>tbody>tr[role=row]>th:first-child:before {
+                top: 70%;
+                left: 90%;
+                z-index: 100;       
+        } 
+     
+  }
 
 </style>
 
@@ -150,7 +151,7 @@
          <script src="/admin/js/default-assets/datatables.select.min.js"></script>
          <script src="/admin/js/default-assets/demo.datatable-init.js"></script>
          <script src="/admin/js/default-assets/bootstrap-growl.js"></script>
-         {{-- <script src="/admin/js/default-assets/notification-active.js"></script> --}}
-         {{-- <script src="/admin/js/MaxLength.min.js"></script> --}}
+         <script src="/admin/js/default-assets/notification-active.js"></script>
+         <script src="/admin/js/MaxLength.min.js"></script>
     
 @endpush

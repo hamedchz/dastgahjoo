@@ -20,12 +20,19 @@ class Category extends Model
         'metaDescription',
         'slug',
         'isActive',
+        'order_position'
     ];
     public function products(){
         return $this->hasMany(Product::class,'category_id','id');
     }
      public function subcategoryproducts(){
         return $this->hasMany(Product::class,'subcategory_id','id');
+    }
+    public function productsVerified(){
+        return $this->hasMany(Product::class,'category_id','id')->where('status','verified')->where('isActive',1)->where('isSold',0)->latest();
+    }
+    public function subcategoryproductsVerified(){
+        return $this->hasMany(Product::class,'subcategory_id','id')->where('status','verified')->where('isActive',1)->where('isSold',0)->latest();
     }
     public function advertises(){
         return $this->belongsTo(Advertises::class,'id','category_id');
@@ -34,7 +41,7 @@ class Category extends Model
         return $this->hasMany(Product::class,'subcategory_id','id');
     }
     public function parents(){
-        return $this->hasMany(Category::class,'parent');
+        return $this->hasMany(Category::class,'parent')->orderBy('order_position','asc');
     }
     public function child(){
      return $this->hasOne(Category::class,'id','parent');

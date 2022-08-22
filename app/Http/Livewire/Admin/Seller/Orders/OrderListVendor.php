@@ -3,7 +3,7 @@
 namespace App\Http\Livewire\Admin\Seller\Orders;
 
 use App\Models\Order;
-use App\Models\Product;
+use App\Models\Packages;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -16,13 +16,13 @@ class OrderListVendor extends Component
     public function render()
     {
    
-        $orders  =  Order::whereHasMorph(
+      $orders  =  Order::whereHasMorph(
             'orderable',
-            [Product::class],
+            [Packages::class],
             function ($query) {
-                $query->where('vendor_id',auth()->user()->vendor->id);
+                $query->where('user_id',auth()->user()->id);
                 }
-        )->latest()->paginate(21);
+        )->where('isActive',1)->get();
         return view('livewire.admin.seller.orders.order-list-vendor',['orders'=>$orders])->layout('layouts.admin.app');
     }
 }

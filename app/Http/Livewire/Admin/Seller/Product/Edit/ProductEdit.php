@@ -20,6 +20,9 @@ class ProductEdit extends Component
 
     public function mount($id){
         $product = Product::where('id',$id)->first();
+             if($product->vendor_id <> auth()->user()->vendor->id){
+            return abort(403);
+        }else{ 
         $this->product = $product;
         $this->state = $product->toArray();
         $categories = Category::where('isActive',1)->where('parent',0)->get(); 
@@ -28,6 +31,7 @@ class ProductEdit extends Component
             $subcategories = Category::where('isActive',1)->where('parent',$product->category_id)->get(); 
             $this->subcategories = $subcategories;
             }
+        }
     }
     public function changeCategory($id){
         $subcategory = Category::where('parent',$id)->where('isActive',1)->get();
@@ -35,42 +39,46 @@ class ProductEdit extends Component
     }
     public function update(){
         
-        $ValidateData = Validator::make($this->state,[
+       $ValidateData = Validator::make($this->state,[
+            'category_id' => 'required',
+            'province_id' => 'required',
+            'city_id' => 'required',
+            'subcategory_id' => 'required',
             'quantity' => 'required',
             'year_of_manufacture' => 'required',
             'price' => 'required',
             'manufacturer' => 'required',
             'model' => 'required',
-            'category_id' => 'required',
+            
             'name' => 'required',
             'type_of_machine' => 'sometimes',
             'isStock' => 'required|in:1,2',
             'isInstallments' => 'required|in:0,1',
             'isSold' => 'required|in:0,1',
-            'province_id' => 'required',
-            'city_id' => 'sometimes',
             'description' => 'sometimes',
+             'extra_description' => 'sometimes',
             'site_url' => 'sometimes'
         ],[
-           'quantity.required' => 'این فیلد نمیتواند خالی باشد',
+           'category_id.required' => 'این فیلد نمیتواند خالی باشد',
+            'subcategory_id.required' => 'این فیلد نمیتواند خالی باشد',
            'province_id.required' => 'این فیلد نمیتواند خالی باشد',
+            'city_id.required' => 'این فیلد نمیتواند خالی باشد',
+           'quantity.required' => 'این فیلد نمیتواند خالی باشد',
            'year_of_manufacture.required' => 'این فیلد نمیتواند خالی باشد',
            'price.required' => 'این فیلد نمیتواند خالی باشد',
            'manufacturer.required' => 'این فیلد نمیتواند خالی باشد',
            'model.required' => 'این فیلد نمیتواند خالی باشد',
-           'category_id.required' => 'این فیلد نمیتواند خالی باشد',
            'name.required' => 'این فیلد نمیتواند خالی باشد',
-           'type_of_machine.required' => 'این فیلد نمیتواند خالی باشد',
            'isStock.required' => 'این فیلد نمیتواند خالی باشد',
            'isInstallments.required' => 'این فیلد نمیتواند خالی باشد',
            'isSold.required' => 'این فیلد نمیتواند خالی باشد',
-           'location.required' => 'این فیلد نمیتواند خالی باشد',
            'isStock.in' => 'اطلاعات این فیلد اشتباه است',
            'isInstallments.in' => 'اطلاعات این فیلد اشتباه است',
            'isSold.in' => 'اطلاعات این فیلد اشتباه است',
 
+
+
         ])->validate();  
-        
 
         $ValidateData['category_id'] = $this->state['category_id'];
         $cat = Category::where('id',$this->state['category_id'])->first();
@@ -95,6 +103,7 @@ class ProductEdit extends Component
         if(empty($ValidateData['description'])){
             $ValidateData['description'] = null;
         }
+        $ValidateData['status'] = 'pending';
         $store = $this->product->update($ValidateData);
         if ($store) {
             

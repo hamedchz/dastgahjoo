@@ -1,10 +1,12 @@
 <?php
 
+use App\Http\Livewire\Admin\CongMessage\CongList;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Livewire\Admin\Aboutus\AboutUs as AboutusAboutUs;
 use App\Http\Livewire\Admin\Aboutus\AboutUsAdmin;
 use App\Http\Livewire\Admin\Advertises\AdverisesList;
+use App\Http\Livewire\Admin\Background\BackgroundSite;
 use App\Http\Livewire\Admin\Category\CategoryList;
 use App\Http\Livewire\Admin\Category\SubcategoryList;
 use App\Http\Livewire\Admin\Faq\FaqList;
@@ -63,6 +65,10 @@ use App\Http\Livewire\Users\WatchList\WachList;
 use App\Models\MembershipBody;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Livewire\Admin\DiscountCode\DicountCodeList;
+use App\Http\Livewire\Admin\Seller\Message\Products\ProductVendorMessageRecieve;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -75,7 +81,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Auth::routes();
-Route::group(['namespace'=> '','prefix'=> 'dashboard','middleware' => [ 'auth' ]], function(){
+Route::group(['namespace'=> '','prefix'=> 'dashboard','middleware' => [ 'auth','user-block' ]], function(){
 
     Route::get('index', DashboardController::class)->name('admin.dashboard.index');
     Route::get('packages-list',PackagesList::class)->name('admin.packages-list');
@@ -98,6 +104,9 @@ Route::group(['namespace'=> '','prefix'=> 'dashboard','middleware' => [ 'auth' ]
     Route::get('about-us',AboutUsAdmin::class)->name('admin.about-us');
     Route::get('policy',PolicyList::class)->name('admin.policy');
     Route::get('membership-body',MemebershipBody::class)->name('admin.membershipBody');
+    Route::get('discount-code',DicountCodeList::class)->name('admin.discount-list');
+    Route::get('congratulation',CongList::class)->name('admin.cong-list');
+    Route::get('background',BackgroundSite::class)->name('admin.background-site');
 
     //search
     Route::get('search-edit',MachineSearch::class)->name('admin.search-machine');
@@ -117,9 +126,11 @@ Route::group(['namespace'=> '','prefix'=> 'dashboard','middleware' => [ 'auth' ]
     Route::get('vendor-orders',OrderListVendor::class)->name('vendor.orders');
     Route::get('user-orders',OrderUserList::class)->name('user.orders');
     Route::get('package-order',OrderPakage::class)->name('user.packageorder');
+    Route::get('vendor-product-list-send-messages',ProductVendorMessageRecieve::class)->name('vendor.send.message');
     Route::get('package/{package}/purchase','App\Http\Controllers\PurchaseController@purchase')->name('payment.package');
     Route::get('package/{package}/purchase/result','App\Http\Controllers\PurchaseController@result')->name('payment.package.result');
     Route::get('package/{package}/free-package','App\Http\Controllers\PurchaseController@freePackage')->name('payment.freepackage');
+    Route::get('vendor-product-list-send-messages',ProductVendorMessageRecieve::class)->name('vendor.send.message');
 
 
 
@@ -131,7 +142,7 @@ Route::namespace('App\Http\Controllers\Auth')->group(function () {
     Route::get('/register', 'LoginController@showRegisterForm')->name('register');
     Route::post('/register', 'LoginController@postRegisterForm')->name('post.register');
     Route::get('/login','LoginController@showLoginForm')->name('login');
-    Route::post('/login','LoginController@postLoginForm')->name('login');
+    Route::post('/login','LoginController@postLoginForm')->name('post.login');
     Route::post('/verify-code','LoginController@tokenVerify')->name('verify.token');
     Route::get('/reset-password','LoginController@resetPasswordForm')->name('reset.password');
     Route::post('/reset-password-code','LoginController@sendTokenResetPassword')->name('reset.sendToken');

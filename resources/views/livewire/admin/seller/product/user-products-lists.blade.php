@@ -2,19 +2,20 @@
     <nav aria-label="خرده نان" class="container-fluid">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{route('admin.dashboard.index')}}">داشبورد</a></li>
-            <li class="breadcrumb-item active" aria-current="page">لیست محصولات</li>
+            <li class="breadcrumb-item active" aria-current="page"> ماشین آلات و آگهی های من </li>
         </ol>
     </nav>
     
     <div class="data-table-area">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-12 box-margin">
+                <div class="col-12 box-margin" wire:ignore>
+                
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex justify-content-between ">
-                            <h4 class="card-title mb-2">لیست محصولات</h4>
-                            @if(Carbon\Carbon::now() < App\Models\PackageHistory::where('user_id',auth()->user()->id)->where('package_id',auth()->user()->vendor->package->id)->first()->endDate &&  App\Models\Product::whereBetween('created_at',[App\Models\PackageHistory::where('user_id',auth()->user()->id)->where('package_id',auth()->user()->vendor->package->id)->first()->startDate,App\Models\PackageHistory::where('user_id',auth()->user()->id)->where('package_id',auth()->user()->vendor->package->id)->first()->endDate])->count() <= App\Models\PackageHistory::where('user_id',auth()->user()->id)->where('package_id',auth()->user()->vendor->package->id)->first()->products)
+                            <h4 class="card-title mb-2"> ماشین آلات و آگهی های من </h4>
+                            @if(Carbon\Carbon::now() < App\Models\PackageHistory::where('user_id',auth()->user()->id)->where('package_id',auth()->user()->vendor->package->id)->first()->endDate && auth()->user()->vendor->isApproved == 2 && App\Models\Product::whereBetween('created_at',[App\Models\PackageHistory::where('user_id',auth()->user()->id)->where('package_id',auth()->user()->vendor->package->id)->first()->startDate,App\Models\PackageHistory::where('user_id',auth()->user()->id)->where('package_id',auth()->user()->vendor->package->id)->first()->endDate])->count() <= App\Models\PackageHistory::where('user_id',auth()->user()->id)->where('package_id',auth()->user()->vendor->package->id)->first()->products)
                             <a href="{{route('user.addProduct')}}" class="btn btn-success mb-2 mr-2" style="float:left;"><i class="fa fa-plus-square"></i> افزودن</a>
                             @endif
                         </div>
@@ -24,9 +25,13 @@
                                 <thead>
                                     <tr>
                                         <th>نام دستگاه</th>
-                                        <th>وضعیت</th>
-                                        <th>#</th>
+                                        <th id="status1">وضعیت</th>
+                                        <th>کد دستگاه</th>
+                                        <th>تاریخ</th>
+                                        <th id="more-info">#</th>
                                         <th>عملیات</th>
+                                        <th id="status2">وضعیت</th>
+
                                     </tr>
                                 </thead>
 
@@ -35,7 +40,7 @@
                                     <tr>
                                         <td>{{$product->name}}</td>
                                    
-                                        <td>
+                                        <td id="status1">
                                             <select class="form-control" disabled >
                                                 <option  {{$product->status == 'pending' ? 'selected':''}}>در حال بررسی</option>
                                                 <option {{$product->status == 'verified' ? 'selected':''}}>تایید شده</option>
@@ -44,8 +49,10 @@
                                             </select>
                                            
                                         </td>
-                                        <td>
-                                            <a href="" wire:click.prevent="moreInformationModal({{$product}})" class="btn btn-success" style="font-size:10px;">اطلاعات بیشتر</a>
+                                        <td>{{$product->itemNo}}</td>
+                                        <td>{{$product->created_at}}</td>
+                                        <td id="more-info">
+                                            <a href="" wire:click.prevent="moreInformationModal({{$product->id}})" class="btn btn-success" style="font-size:10px;">اطلاعات بیشتر</a>
                                         </td>
                                         <td>
                                             {{-- @if (auth()->user()->vendor->package->packageHistories->video = 'YES')
@@ -58,6 +65,15 @@
                                             <a href="{{route('user.editProduct',$product->id)}}"  style="font-size:20px;"><i class="fa fa-edit"  style="color:#0468aa;"  title="ویرایش"></i></a>
                                            {{-- <a href="" style="font-size:20px;"><i class="fa fa-trash" style="color:#dc3545;"  title="حذف"></i></a>--}}
                                             </td>
+                                              <td id="status2">
+                                            <select class="form-control" disabled >
+                                                <option  {{$product->status == 'pending' ? 'selected':''}}>در حال بررسی</option>
+                                                <option {{$product->status == 'verified' ? 'selected':''}}>تایید شده</option>
+                                                <option {{$product->status == 'rejected' ? 'selected':''}}>موافقت نشده</option>
+
+                                            </select>
+                                           
+                                        </td>
                                         @empty
                                         <td align="center" colspan="4" style="background-color:#e1e1e1;">داده ای وجود ندارد</td>
                                     </tr>
@@ -78,7 +94,75 @@
     {{-- @include('livewire.admin.product.delete') --}}
     @if($products->count()>0)
     @include('livewire.admin.seller.product.show')
+    @include('livewire.admin.seller.product.showImage')
     @endif
+    
+    
+    @push('styles')
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css"
+    />
+<link rel="stylesheet" href="{{asset('admin/css/default-assets/datatables.bootstrap4.css')}}">
+<link rel="stylesheet" href="{{asset('admin/css/default-assets/responsive.bootstrap4.css')}}">
+<link rel="stylesheet" href="{{asset('admin/css/default-assets/buttons.bootstrap4.css')}}">
+
+<style>
+.modal-fancy-img .card-img-top{
+ display:inline-block !important;
+ }
+
+     table.dataTable.nowrap td, table.dataTable.nowrap th {
+    white-space: inherit;
+}
+
+
+   
+     
+   table.dataTable.dtr-inline.collapsed>tbody>tr[role=row]>td:first-child:before,
+   table.dataTable.dtr-inline.collapsed>tbody>tr[role=row]>th:first-child:before  {
+         top: 70% ;
+    left: 90% ;
+z-index:100;
+     }
+     
+       #status2{
+display:none;
+
+}
+
+      
+     @media only screen and (max-width: 430px){
+     
+  #more-info{
+     display:block !important;
+     }
+ 
+         #status2{
+display:block;
+
+}
+
+#status1{
+display:none;
+
+}
+
+
+    table.dataTable>tbody>tr.child ul.dtr-details>li:nth-last-child(3) {
+    display: none;
+}
+    }
+    
+
+
+  
+
+
+</style> 
+@endpush
+
+    
     @push('scripts')
     <script>
          $(document).ready(function(){
@@ -101,8 +185,8 @@
             window.addEventListener('informationModal', event => {
                    $('#infoModal').modal('show')
             })
-            window.addEventListener('show-productDelete', event => {
-                   $('#productDelete').modal('show')
+            window.addEventListener('show-productImages', event => {
+                   $('#productShowImage').modal('show')
             })
 
   
@@ -124,5 +208,7 @@
  <script src="/admin/js/default-assets/demo.datatable-init.js"></script> 
 <script src="/admin/js/default-assets/bootstrap-growl.js"></script>
 {{-- <script src="/admin/js/default-assets/notification-active.js"></script> --}}
+ <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+     <script>  
     @endpush
 </div>

@@ -39,8 +39,8 @@ class UserAddProduct extends Component
         $ValidateData = Validator::make($this->state,[
             'category_id' => 'required',
             'province_id' => 'required',
-            'city_id' => 'sometimes',
-            'subcategory_id' => 'sometimes',
+            'city_id' => 'required',
+            'subcategory_id' => 'required',
             'quantity' => 'required',
             'year_of_manufacture' => 'required',
             'price' => 'required',
@@ -54,11 +54,15 @@ class UserAddProduct extends Component
             'isSold' => 'required|in:0,1',
             'image.*' => 'image',
             'image' => 'max:'.$this->vendor->package->packageHistories->images,
+            'image'=>'required',
             'description' => 'sometimes',
+             'extra_description' => 'sometimes',
             'site_url' => 'sometimes'
         ],[
            'category_id.required' => 'این فیلد نمیتواند خالی باشد',
+            'subcategory_id.required' => 'این فیلد نمیتواند خالی باشد',
            'province_id.required' => 'این فیلد نمیتواند خالی باشد',
+            'city_id.required' => 'این فیلد نمیتواند خالی باشد',
            'quantity.required' => 'این فیلد نمیتواند خالی باشد',
            'year_of_manufacture.required' => 'این فیلد نمیتواند خالی باشد',
            'price.required' => 'این فیلد نمیتواند خالی باشد',
@@ -76,11 +80,13 @@ class UserAddProduct extends Component
            'image.image' => 'فقط عکس آپلود کنید',
            'image.mimes' => '  عکس  باید پسوند jpeg,png,jpg باشد ',
            'image.max' => 'شما مجاز به آپلود این تعداد عکس نیستید',
+           'image.required' => 'این فیلد نمیتواند خالی باشد',
+
 
 
         ])->validate();  
         // $itemNo = Str::random(10);
-        $itemNo =  mt_rand(100000, 9999999999);
+        $itemNo =  mt_rand(100000, 1000000);
         $ValidateData['itemNo'] = $itemNo;
         // if(!empty($this->state['subcategory'])){
         //     $ValidateData['category_id'] = $this->state['category'];
@@ -112,6 +118,9 @@ class UserAddProduct extends Component
         if(empty($ValidateData['city_id'])){
             $ValidateData['city_id'] = null;
         }
+        if(empty($ValidateData['type_of_machine'])){
+            $ValidateData['type_of_machine'] = null;
+        }
         $store = Product::create([
             'category_id' => $ValidateData['category_id'] ,
             'province_id' => $ValidateData['province_id'] ,
@@ -126,6 +135,7 @@ class UserAddProduct extends Component
             'model' => $ValidateData['model'] ,
             'type_of_machine' => $ValidateData['type_of_machine'] ,
             'description' => $ValidateData['description'] ,
+            'extra_description' => $ValidateData['extra_description'] ,
             'isStock' => $ValidateData['isStock'] ,
             'isInstallments' => $ValidateData['isInstallments'] ,
             'isSold' => $ValidateData['isSold'] ,
@@ -209,7 +219,28 @@ class UserAddProduct extends Component
         //   $directory = "/images/products/$year/$month/";
           $name = time() . '-' . Str::random(15).$image->getClientOriginalName();
           $name = str_replace(' ', '-', $name);
-          Image::make($image)->resize(600,600)->insert(public_path('admin/img/watermarknew.png'),'center')->save(public_path("/images/products/" . $name));
+          //Image::make($image)->resize(600,600)->insert(public_path('admin/img/watermarknew.png'),'center')->save(public_path("/images/products/" . $name));
+        //   Image::make($image)->insert(public_path('admin/img/watermarknew.png'),'center')->save(public_path("/images/products/" . $name));
+        // $width = 600; // your max width
+        // $height = 600; // your max height
+        // $image->height() > $image->width() ? $width=null : $height=null;
+        // $image->resize($width, $height, function ($constraint) {
+        //     $constraint->aspectRatio();
+        // });
+          $thumbnail = Image::make($image);
+        //   $imageWidth = $thumbnail->width();
+          $imageHeight = $thumbnail->height();
+        //   $watermarkSource =  Image::make(public_path('admin/img/watermarknew.png'));
+        //   $watermarkSize = round(10 * $imageWidth / 50);
+        //   $watermarkSource->resize($watermarkSize, null, function ($constraint) {
+        //       $constraint->aspectRatio();
+        //   });
+          $thumbnail->resize(600,$imageHeight, function ($constraint) {
+               $constraint->aspectRatio();
+            })->insert(public_path('admin/img/watermarknew.png'),'center')->save(public_path("/images/products/" . $name));
+          
+
+
 
         //   $image->storeAs($directory, $name);
           return "/images/products/$name";

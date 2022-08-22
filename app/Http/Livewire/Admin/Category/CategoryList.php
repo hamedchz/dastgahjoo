@@ -165,11 +165,18 @@ class CategoryList extends Component
 
         }
     }
-    
+    public function updateCategoryPosition($items){
+        foreach ($items as $item) {
+            Category::find($item['value'])->update(['order_position' => $item['order']]);
+        }
+        (new \App\Models\Log)->storeLog('تغییر مکان دسته بندی','ویرایش دسته بندی','ویرایش');
+        $this->dispatchBrowserEvent('editcategoryStatus',['message'=>'دسته بندی با موفقیت ویرایش شد', 'action'=>'success']);
+
+    }
     public function render()
     {
         $this->authorize('category',Category::class);
-        $categories = Category::query()->where('title','Like','%'.$this->searchTerm.'%')->where('parent',0)->orderBy('id','desc')->paginate(21);
+        $categories = Category::query()->where('title','Like','%'.$this->searchTerm.'%')->where('parent',0)->orderBy('order_position','asc')->get();
         return view('livewire.admin.category.category-list',['categories'=>$categories])->layout('layouts.admin.app');
     }
 }

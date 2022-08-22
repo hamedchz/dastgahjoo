@@ -33,7 +33,10 @@ class User extends Authenticatable
         'isActive',
     ];
 
-
+    public function userDiscounts()
+    {
+        return $this->hasMany(UserDiscounts::class,'user_id','id');
+    }
 
     public function permissions()
     {
@@ -64,7 +67,6 @@ class User extends Authenticatable
     public function historyPackages(){
         return $this->hasMany(PackageHistory::class,'user_id','id');
     }
-   
     public function getCreatedAtAttribute($created_at)
     {
         $v1 = new Verta($created_at);

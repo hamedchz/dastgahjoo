@@ -11,6 +11,7 @@ class LoginRequest extends FormRequest
      *
      * @return bool
      */
+    protected $redirect = '/login';
     public function authorize()
     {
         return true;

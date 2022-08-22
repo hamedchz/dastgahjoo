@@ -123,7 +123,7 @@
 
     <div class="page-wrapper rtl">
 
-        <div>
+        <div class="itemslist">
             <div id="overlay"></div>
             <div class="container " id="page-container">
                 <div class="inner-block bg-white">
@@ -136,7 +136,7 @@
                                         <div class="slides" data-u="slides">
                                             @foreach ($advertise as $ad)
                                                 <div>
-                                                    <a href="{{asset($ad->link)}}"><img data-u="image" src="{{ asset($ad->banner) }}" /></a>
+                                                    <a target="_blank" href="{{asset($ad->link)}}"><img data-u="image" src="{{ asset($ad->banner) }}" /></a>
                                                     <div data-u="thumb">{{ $ad->description }}</div>
                                                 </div>
                                             @endforeach
@@ -177,7 +177,7 @@
                             @endif
                             <div class="display-align top-titr mb-3">
                                 <div class="col-lg-8 text center-align mx-auto">
-                                    <span class="text-muted" style="font-weight: 400;">سطح دسته اول </span>
+                                    <span class="text-muted" style="font-weight: 400;"> </span>
                                     <span class="text-muted" style="font-weight: 600;"></span>
                                     <h1 class="center-align" style="font-size: 24px;">
                                         <span class="text-danger"></span>
@@ -263,7 +263,7 @@
                                 @if ($subcategories->count() > 0)
                                     @foreach ($subcategories as $sub)
                                         <tr class="gray-bg-plus">
-                                            <td>
+                                            <td wire:ignore>
                                                 <span style="color: #acacac;"
                                                     class="product-title">{{ $sub->id }}</span>
                                             </td>
@@ -275,7 +275,7 @@
                                             </td>
                                             <td class="right-align d-flex justify-content-start " style="border-top:none;">
                                                 <span
-                                                    class="badge badge-secondary product-title2">{{ number_format(count($sub->subcategoryproducts)) }}</span>
+                                                    class="badge badge-secondary product-title2">{{ number_format(count($sub->subcategoryproductsVerified)) }}</span>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -319,21 +319,14 @@
                                         </h2>
                                     </div>
                                 </div>
-
-
-
-
-
-
-
                                 <!-- توضیحات -->
                                 @if ($products->count() > 0)
                                     @foreach ($products as $product)
                                     <div class="container top-group" style="background-color: white;">
                                       <div class="display-align">
                                         <div class="col-lg-7 machine-top py-1">
-                                          <span class="category-code">{{$product->category->id}} 
-                                            <a href="{{route('product-list',$product->category->slug)}}" style="color: #5faeff;">{{$product->category->title}} </a>
+                                          <span class="category-code">{{$loop->iteration}} 
+                                            {{$product->category->title}}
                                           </span>
                                         </div>
                                         <div class="col-lg-5 machine-top py-1">
@@ -391,11 +384,11 @@
                                                      درخواست استعلام
                                                    </a>
                                                   </button>
-                                
-                                                  <a href="tel:{{$product->vendor->phone}}" class="btn-all btn-all-small btn-green text-white" style="margin: 10px;font-weight: 600;">
+                                                    @auth
+                                                  <a href="tel:@if($product->vendor->phone <> null){{$product->vendor->phone}}@else{{$product->vendor->user->mobile}}@endif" class="btn-all btn-all-small btn-green text-white" style="margin: 10px;font-weight: 600;">
                                                     <i class="fas fa-phone"></i>
                                                   </a>   
-                                                               
+                                                     @endauth          
                                                 </div>
                                               </div>
                                             </div>
@@ -475,7 +468,7 @@
                 </div>
             </div>
 
-            <a href="{{route('index')}}" class="btn btn-primary back-to-previous"">
+            <a href="{{route('index')}}" class="btn btn-primary back-to-previous ">
                 <svg class="svg-inline--fa fa-arrow-left fa-w-14" aria-hidden="true" data-prefix="fas" data-icon="arrow-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
                   <path fill="currentColor" d="M257.5 445.1l-22.2 22.2c-9.4 9.4-24.6 9.4-33.9 0L7 273c-9.4-9.4-9.4-24.6 0-33.9L201.4 44.7c9.4-9.4 24.6-9.4 33.9 0l22.2 22.2c9.5 9.5 9.3 25-.4 34.3L136.6 216H424c13.3 0 24 10.7 24 24v32c0 13.3-10.7 24-24 24H136.6l120.5 114.8c9.8 9.3 10 24.8.4 34.3z"></path>
               </svg>بازگشت</a>

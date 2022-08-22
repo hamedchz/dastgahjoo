@@ -8,7 +8,7 @@
     <div class="data-table-area">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-12 box-margin">
+                <div class="col-12 box-margin" wire:ignore>
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex justify-content-between ">

@@ -178,7 +178,8 @@
         </style>
     @endpush
     @push('scripts')
-    <script src="{{asset("admin/ckeditor5/ckeditor.js")}}"></script>
+    {{--<script src="{{asset("admin/ckeditor5/src/ckeditor.js")}}"></script>--}}
+    <script src="{{asset("admin/ckeditor5/build/ckeditor.js")}}"></script>
     <script>
        
   

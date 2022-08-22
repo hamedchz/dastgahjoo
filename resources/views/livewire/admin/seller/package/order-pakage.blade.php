@@ -1,4 +1,5 @@
 <div>
+<x-discountModal :type="$type" :errorMsg="$errorMsg" />
   @push('header-scripts')
   <script src="/frontend/js/jssor.slider.min.js" type="text/javascript"></script>
   <script type="text/javascript">
@@ -119,7 +120,18 @@
    .cost-info{
       width: 20%;padding: 5px 0px 15px 0px;border-bottom: 1px solid #CCC; }
   
-  @media (max-width: 767px){
+  
+   .qbo t-head2{
+     width:60%;
+     }
+  
+     .comparison .cost-try {
+    padding: 0 4px;
+    height:auto !important;
+}
+    
+  
+  @media (max-width: 858px){
       .table-title-lg{
           display: none;
       }
@@ -153,6 +165,11 @@
     border-right: 1px solid #CCC;
     border-leftphp artisan serv: 1px solid #CCC;
    }
+   
+     .qbo t-head2{
+     width:100%;
+     }
+  
   }
   
   .onsale {
@@ -308,7 +325,7 @@ span[data-title]:hover::after, span[data-title]:focus::after {
 
               <div class="section" style="background-color: #323639;">
           <div class="container">
-            <div class="comparison" style="border: 2px solid #ccc!important; border-radius: 5px;">
+            <div class="comparison" style="border: 2px solid #ccc!important; border-radius: 5px;" wire:ignore>
               <table >
                 <thead>
                   <div style="display: flex;justify-content: center;">
@@ -319,14 +336,16 @@ span[data-title]:hover::after, span[data-title]:focus::after {
                       برای فروشندگان ماشین آلات                  </div>
                   </div>
                   <div class="table-row table-row-mobile" >
-                    <div class="tl table-head1" style="width: 20%;padding: 10px 0;border-right: 1px solid #CCC;">
-                      <div class="contact-info" style="color: black;">ما با کمال میل به سوالات شما پاسخ خواهیم داد:</div>
+                    <div class="tl table-head1" style="width: 20%;padding: 10px 0;border-right: 1px solid #CCC;border-top: 1px solid #CCC;">
+                      <div class="contact-info" style="color: black;"></div>
                       {{-- <div class="contact-info" style="color: black;">  <a href="tel:00989171175834" class="text-dark"> 09171175834</a> <span style="color: green;">
                         <i class="fas fa-phone-square fa-lg"></i> </span></div> --}}
                     </div>
                     @foreach($packages as $package)
                     <div class="compare-heading mobile-row" style="width: 20%;">
                       {{$package->title}}  
+                         <br>
+                    <div class="cost-try mb-2" style="line-height: 2;height: 75px;">({{$package->label}}) </div>
                     </div>
                    @endforeach
                   </div>
@@ -338,8 +357,11 @@ span[data-title]:hover::after, span[data-title]:focus::after {
                             post@resale.info
                           </button>
                              </div>--}}
-                      <div class="contact-info" style="font-weight: 600; margin-top: 60px;padding: 0 7px;">بسته عضویت خود را انتخاب کنید 
-                        <i class="fas fa-arrow-left"></i> </div>
+                             <div class="contact-info" style="font-weight: 600; margin-top: 60px;padding: 0 7px;">بسته فروش متناسب با نیاز  خود را انتخاب فرمایید 
+                                <i class="fas fa-arrow-left"></i> </div>
+                 
+                      <button type="button" class="btn bg-transparent text-danger" data-toggle="modal" data-target="#exampleModal"  >کوپن تخفیف دارم</button>
+                  
                     </div>
                
                      @foreach($packages as $package)
@@ -358,7 +380,8 @@ span[data-title]:hover::after, span[data-title]:focus::after {
                       <div class="cost-try mb-2"><b> ماهانه</b></div>
                       <div class="cost-try mb-2" style="line-height: 2;height: 75px;">({{($package->price)-(($package->price)*($package->discount->percentage/100))}} تومان در ماه)</div>
                    
-                        <div><a class="btn btn-sm cost-buy" href="{{route('payment.package',$package)}}">سفارش </a> <a class="hide-desktop" href="{{route('payment.package',$package)}}" > سفارش 
+                        <div><a class="btn btn-sm cost-buy" href="{{route('payment.package',$package)}}">سفارش </a> 
+                        <a class="hide-desktop" href="{{route('payment.package',$package)}}" > سفارش 
                       
                       </a></div>
                       <div class="cost-try" style="margin-top: 10px;"><a href="#dealerstandard" data-toggle="modal" data-target="#dealerstandard"></a> </div>
@@ -367,6 +390,10 @@ span[data-title]:hover::after, span[data-title]:focus::after {
                   </div>
                 </thead>
                 <div>
+                    <div class="table-title-sm">
+                      <div><button type="button" class="btn bg-transparent text-danger" data-toggle="modal" data-target="#exampleModal"  >کوپن تخفیف دارم</button>
+                      </div>
+                    </div>
                   <div class="table-title-sm">
                     <div>تعداد   کالا</div>
                   </div>
@@ -457,7 +484,7 @@ span[data-title]:hover::after, span[data-title]:focus::after {
           </div>
   
 <!-- end table -->
-        <div class="grey-back section">
+        <div class="grey-back section" style="padding:20px;">
           <div class="container">
             <div class="comment more">
               {!!$membershipBody->second_part!!}

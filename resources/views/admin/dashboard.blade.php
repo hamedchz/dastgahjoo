@@ -6,14 +6,14 @@
 <div class="dashboard-area">
     <div class="container-fluid">
         <div class="row">
-            {{-- {{App\Models\Product::whereBetween('created_at',[auth()->user()->vendor->package->packageHistories->startDate,auth()->user()->vendor->package->packageHistories->endDate])->count()}} --}}
+        
             {{-- admin dashboard --}}
         @if(auth()->user()->isAdmin == 1)
         @can('products')
         <div class="col-md-12 box-margin">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title"> محصولات جدید</h4>
+                    <h4 class="card-title"> ماشین آلات جدید</h4>
                     <div class="table-responsive" id=" ">
                         <table class="table table-hover">
                             <thead>
@@ -25,6 +25,7 @@
                                 </tr>
                             </thead>
                             <tbody>
+                           
                                 @forelse($products as $product)
                                 <tr>
                                     <td>{{$product->name}}</td>
@@ -56,14 +57,16 @@
             <div class="col-md-12 box-margin">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">پرسش محصولات جدید</h4>
-                        <div class="table-responsive" id=" ">
-                            <table class="table table-hover">
+                        <h4 class="card-title"> درخواستهای جدید</h4>
+                            <div class="table-responsive" id=" ">
+
+                        <table class="table table-hover">
+
                                 <thead>
                                     <tr>
-                                        <th> محصول</th>
+                                        <th> ماشین</th>
                                         <th>نام فروشنده </th>
-                                        <th> عنوان</th>
+                                        <th id="hide-mobile-title" > عنوان</th>
                                         <th> موضوع</th>
                                         <th>تاریخ</th>
                                     </tr>
@@ -71,9 +74,9 @@
                                 <tbody>
                                     @forelse($unansweredComment as $comment)
                                     <tr>
-                                        <td>{{$comment->products->type_of_machine}}</td>
+                                        <td>{{$comment->products->name}}</td>
                                         <td>{{$comment->vendor->user->name}}</td>
-                                        <td>{{$comment->title}}</td>
+                                        <td id="hide-mobile-title" >{{$comment->title}}</td>
                                         <td>@if($comment->isPrice == 1)
                                             <div class="badge badge-primary">  قیمت  </div>
                                             @endif
@@ -101,7 +104,7 @@
                                     @endforelse
                                 </tbody>
                             </table>
-                        </div>
+                             </div>
                         <hr>
                         <a href="{{route('admin.product-message-lists')}}" class="text-center font-weight-bold"><span>مشاهده همه</span></a>
                     </div>
@@ -308,8 +311,8 @@
                                             <th>نام  </th>
                                             <th>سمت</th>
                                             <th>موبایل</th>
-                                            <th>عکس</th>
-                                            <th>توضیحات</th>
+                                            <th id="new-user">عکس</th>
+                                            <th id="new-user">توضیحات</th>
                                             <th>تاریخ و ساعت</th>
                                         </tr>
                                     </thead>
@@ -325,9 +328,9 @@
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td  style="pointer:cursor !important;"  data-fancybox="images" role="button" data-src="{{asset($user->avatar)}}"><img  src="{{asset($user->avatar)}}" style="width: 21px;"></td>
+                                            <td id="new-user" style="pointer:cursor !important;"  data-fancybox="images" role="button" data-src="{{asset($user->avatar)}}">@if($user->avatar <> 'N/A')<img  src="{{asset($user->avatar)}}" style="width: 21px;">@else - @endif</td>
 
-                                            <td>{{$user->about}} </td>
+                                            <td id="new-user">@if($user->about){{$user->about}}@else - @endif </td>
                                             <td>{{$user->created_at}}  </td>
                                           
                                             @empty
@@ -364,7 +367,7 @@
                                         @forelse($packages as $package)
                                         <tr>
                                             <td>{{$package->title}}</td>
-                                            <td>{{$package->price}} تومان</td>
+                                            <td>{{number_format($package->price)}} تومان</td>
                                             <td>{{ $package->vendors()->count() }}</td>
                                             <td style="font-size:10px;" class="badge  p-3 {{$package->isActive == 1 ? 'badge-success': 'badge-danger'}}">{{$package->isActive == 1 ? 'فعال': 'غیرفعال'}}</td>
                                             @empty
@@ -381,70 +384,19 @@
                 </div>
             </div>
             @endcan
-             @can('system-logs')
-            <div class="col-md-12 box-margin">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">گزارشات سیستمی</h5>
-                        <div class="product-table-area">
-                            <div class="table-responsive" id=" ">
-                                <table class="table table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>آیپی کاربر</th>
-                                            <th>نام و سمت</th>
-                                            <th>موبایل</th>
-                                            <th>شرح عملیات</th>
-                                            <th>تاریخ و ساعت</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($logs as $index => $log)
-                                        <tr>
-                                            <td>
-                                                <div class="media align-items-center">
-                                                    <div>
-                                                        <span>{{$log->ip}}</span>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>{{$log->user->name}} - {{$log->user->roles[0]->description}}</td>
-                                            <td>{{$log->user->mobile}}</td>
-                                            <td>{{$log->description}}</td>
-                                            <td>
-                                                <div class="d-flex align-items-center">
-                                                    <div class="progress progress-sm">
-                                                        <div class="progress-bar bg-success" style="width: 82%"></div>
-                                                    </div>
-                                                    <div>
-                                                        {{$log->created_at}}
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        <hr>
-                        <a href="{{route('admin.logs-list')}}" class="text-center font-weight-bold"><span>مشاهده همه</span></a>
-                    </div>
-                </div>
-            </div>
-            @endcan
+           
             @else
             @if(auth()->user()->vendor)
             {{-- sellers dashboard --}}
             <div class="col-md-12 box-margin">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">پرسش محصولات  </h4>
+                        <h4 class="card-title"> درخواستها  </h4>
                         <div class="table-responsive" id=" ">
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
-                                        <th>محصول</th>
+                                        <th>نام ماشین</th>
                                         <th>وضعیت</th>
                                         <th>تاریخ</th>
                                     </tr>
@@ -548,13 +500,13 @@
             <div class="col-md-12 box-margin">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title"> آخرین سفارشات</h4>
+                        <h4 class="card-title"> آخرین پکیجهای خریداری شده</h4>
                         <div class="table-responsive" id=" ">
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
                                       
-                                        <th>محصول</th>
+                                        <th>پکیج</th>
                                         <th>وضعیت</th>
                                         <th>قیمت</th>
                                        
@@ -563,13 +515,21 @@
                                 <tbody>
                                     @forelse($vendororders as $order)
                                     <tr>
-                                        <td>{{$order->orderable->name}}</td>
+                                        <td>{{$order->orderable->title}}</td>
                                         <td>
-                                            @if($order->delivery == 'DELIVERED')
-                                            <div class="badge badge-success">تحویل شده</div>
-                                            @else
-                                            <div class="badge badge-warning">در حال پردازش </div>
-                                            @endif
+                                               @switch($order->status)
+                                                @case('PAID')
+                                                    <div class="badge badge-success">پرداخت شده </div>
+                                                    @break
+                                                @case('UNPAID')
+                                                <div class="badge badge-warning">در انتظار پرداخت</div>
+                                                    @break
+                                                @case('CANCELED')
+                                                <div class="badge badge-danger">کنسل شده </div>
+                                                @break   
+                                                @default
+                                                    
+                                            @endswitch
                                         </td>
                                         <td>{{$order->price}} تومان</td>
                                         <td>
@@ -596,37 +556,40 @@
            <div class="col-md-12 box-margin">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title"> آخرین خریدها</h4>
+                    <h4 class="card-title"> درخواستهای من </h4>
                     <div class="table-responsive" id=" ">
-                        <table class="table table-hover">
+                        <table class="table-hover table">
                             <thead>
                                 <tr>
                                   
-                                    <th>محصول</th>
-                                    <th>وضعیت</th>
-                                    <th>قیمت</th>
+                                       <th>نام ماشین</th>
+                                       <th>نام فروشنده </th>
+                                        <th> عنوان</th>
+                                        <th> موضوع</th>
+                                        <th id="date-hide-sm">تاریخ</th>
                                    
                                 </tr>
                             </thead>
                             <tbody>
                                 @forelse($userOrders as $order)
                                 <tr>
-                                    <td>{{$order->orderable->name}}</td>
-                                    <td>
-                                        @if($order->delivery == 'DELIVERED')
-                                        <div class="badge badge-success">تحویل شده</div>
-                                        @else
-                                        <div class="badge badge-warning">در حال پردازش </div>
-                                        @endif
-                                    </td>
-                                    <td>{{$order->price}} تومان</td>
-                                    <td>
-                                        <div class="d-flex align-items-center">
-                                            <div class="progress progress-sm">
-                                                <div class="progress-bar bg-success" style="width: 82%"></div>
-                                            </div>
-                                        </div>
-                                    </td>
+                                    <td>{{$order->products->name}}</td>
+                                     <td>{{$order->vendor->user->name}}</td>
+                                        <td>{{$order->title}}</td>
+                                        <td>@if($order->isPrice == 1)
+                                            <div class="badge badge-primary">  قیمت  </div>
+                                            @endif
+                                            @if($order->morePhotos == 1)
+                                            <div class="badge badge-info"> عکس </div>
+                                            @endif
+                                            @if($order->moreInformation == 1)
+                                            <div class="badge badge-danger"> اطلاعات </div>
+                                            @endif
+                                            @if($order->offer == 1)
+                                            <div class="badge badge-warning">  تخفیف </div>
+                                            @endif
+                                        </td>
+                                        <td id="date-hide-sm">{{$order->created_at}}</td>
                                     @empty
                                     <td align="center" colspan="3" >سفارشی وجود ندارد</td>
 
@@ -777,9 +740,53 @@
     </div>
 </div>
     </div>
+    
+    @push('styles')
+
+<style>
+
+     @media only screen and (max-width: 500px){
+
+#date-hide-sm{
+display:none;
+}
+
+}
+
+     @media only screen and (max-width: 767px){
+     
+     #hide-mobile-title{
+     display:none;
+     }
+     body{
+     overflow-x:hidden;
+     }
+ 
+        }
+        
+        
+             @media only screen and (max-width: 680px){
+
+        #new-user{
+        display:none;
+        
+        }
+        
+        .card-body{
+        padding: 1.25rem 0.5rem;}
+        }
+        
+        
+
+</style> 
+@endpush
+
+    
+    
     @push('scripts')
         <!-- These plugins only need for the run this page -->
-        <script src="/admin/js/default-assets/peity.min.js"></script>
+      
+          <script src="/admin/js/default-assets/peity.min.js"></script>
         <script src="/admin/js/default-assets/peity-demo.js"></script>
         <script src="/admin/js/default-assets/gauge.js"></script>
         <script src="/admin/js/default-assets/serial.js"></script>
@@ -788,6 +795,9 @@
         <script src="/admin/js/default-assets/worldlow.js"></script>
         <script src="/admin/js/default-assets/radar.js"></script>
         <script src="/admin/js/default-assets/dashboard-2.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  
+  
+  
     @endpush
 </x-admin-layout>

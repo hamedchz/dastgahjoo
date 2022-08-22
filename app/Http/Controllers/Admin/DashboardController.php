@@ -25,7 +25,8 @@ class DashboardController extends Controller
     {
         $products = Product::where('isActive',1)->where('status','pending')->take(5)->get();
         $unreadMessages = Contactus::where('seen','unread')->latest()->take(5)->get();
-        $newUsers = User::with('roles')->where('isActive',1)->where('mobile_verified_at','!=',"")->where('isAdmin',0)->latest()->take(5)->get();
+        $newUsers = User::with('roles')->where('isActive',1)->where('mobile_verified_at','!=',null)->where('isAdmin',0)->latest()->take(5)->get();
+        
         $paidOrders = Order::with('user')->where('status','PAID')->where('isActive',1)->latest()->take(5)->get();
         $packages = Packages::with('vendors')->where('isActive',1)->latest()->get();
         $logs = Log::with('user')->latest()->take(5)->get();
@@ -35,18 +36,20 @@ class DashboardController extends Controller
         $newProducts = Product::where('status','pending')->latest()->take(5)->get();
        //users
          $userTicket = Ticket::where('user_id',auth()->user()->id)->where('parent',0)->latest()->take(5)->get();
-        $userOrders = Order::where('user_id',auth()->user()->id)->latest()->take(5)->get();
+         $userOrders = Inquiries::where('parent',0)->where('sender_id',auth()->user()->id)->latest()->take(5)->get();
         //vendor
         if(auth()->user()->vendor){
-        $productCount = Product::whereBetween('created_at',[auth()->user()->vendor->package->packageHistories->startDate,auth()->user()->vendor->package->packageHistories->endDate])->where('vendor_id',auth()->user()->vendor->id)->get();
-        $vendorInqueries = Inquiries::where('parent',0)->where('vendor_id',auth()->user()->vendor->id)->latest()->take(5)->get();
+        $productCount = Product::whereBetween('created_at',[auth()->user()->vendor->package->packageHistories->startDate,auth()->user()->vendor->package->packageHistories->endDate])->get();
+        //dd($productCount->count());
+        $vendorInqueries = Inquiries::where('parent',0)->where([['vendor_id',auth()->user()->vendor->id]
+        ,['sender_id','!=',auth()->user()->id]])->latest()->take(5)->get();
         $vendororders  =  Order::whereHasMorph(
             'orderable',
-            [Product::class],
+         [Packages::class],
             function ($query) {
-                $query->where('vendor_id',auth()->user()->vendor->id);
+                $query->where('user_id',auth()->user()->id);
                 }
-        )->latest()->take(5)->get();
+        )->where('isActive',1)->latest()->take(5)->get();
         return view('admin.dashboard',compact('vendororders','vendorInqueries','userTicket','userOrders','packages','logs','roles','unansweredComment','tickets','paidOrders','newUsers','unreadMessages'));
        }else{
         return view('admin.dashboard',compact('products','newProducts','userTicket','userOrders','packages','logs','roles','unansweredComment','tickets','paidOrders','newUsers','unreadMessages'));

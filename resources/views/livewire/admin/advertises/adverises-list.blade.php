@@ -8,10 +8,10 @@
 <div class="data-table-area">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-12 col-lg-9 box-margin height-card">
+            <div class="col-12 col-lg-12 box-margin height-card">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-12 box-margin">
+                        <div class="col-12 box-margin" wire:ignore>
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="card-title mb-2"> لیست  تبلیغات</h4>
@@ -23,26 +23,43 @@
                                     <table id="datatable-buttons" class="table table-striped dt-responsive nowrap w-100">
                                         <thead>
                                             <tr>
-                                                <th>دسته بندی</th>
+                                                <th id="edit-ads1">دسته بندی</th>
+                                               <th id="edit-ads2">دسته بندی</th>
                                                 <th>تاریخ اتمام</th>
                                                 <th>عکس</th>
-                                                <th>عملیات</th>
+                                             <th id="edit-ads2">عملیات</th>
+
                                             </tr>
                                         </thead>
         
                                         <tbody>
                                             @forelse($advertises as $prov)
                                             <tr>
-                                                <td>{{$prov->category->title}}</td>
+                                                
+
+                                                      <td id="edit-ads1" >
+                                                      <div>
+                                                  {{$prov->category->title}}
+                                                 </div>
+                                                   <div style="margin-right: auto;margin-left: 20px;">
+                                                   <a  href="" wire:click.prevent = "edit({{$prov}})" style="font-size:20px;"><i class="fa fa-edit"  style="color:#04a9f5;"></i></a>
+                                                    <a  href="" wire:click.prevent="removeConfirmation({{$prov->id}})"  style="font-size:20px;"><i class="fa fa-trash" style="color:#dc3545;"></i></a>
+                                                   </div>
+                                                   </td>
+                                                   
+                                                   <td id="edit-ads2">
+                                                  {{$prov->category->title}}
+                                                   
+                                                   </td>
                                                 <td>{{$prov->expired_at}}</td>
                                                 <td>
                                                     <div  style="width: 100px;"><img  src="{{asset($prov->banner)}}" alt="avatar"></div>
                                                 </td>
-                                              
-                                                <td>
-                                                    <a href="" wire:click.prevent = "edit({{$prov}})" style="font-size:20px;"><i class="fa fa-edit"  style="color:#04a9f5;"></i></a>
+                                                <td id="edit-ads2">
+                                                   <a href="" wire:click.prevent = "edit({{$prov}})" style="font-size:20px;"><i class="fa fa-edit"  style="color:#04a9f5;"></i></a>
                                                     <a href="" wire:click.prevent="removeConfirmation({{$prov->id}})"  style="font-size:20px;"><i class="fa fa-trash" style="color:#dc3545;"></i></a>
-                                                 </td>
+                                                   </td>
+                                             
                                                 @empty
                                                 <td align="center" colspan="4" style="background-color:#e1e1e1;">داده ای وجود ندارد</td>
                                             </tr>
@@ -61,14 +78,14 @@
                 </div>
             </div>
 
-            <div class="col-12 col-lg-3 box-margin height-card">
+            <div class="col-12 col-lg-12 box-margin height-card">
                 <div class="card card-body">
                     <h4 class="card-title">{{ $editStatus ? 'ویرایش تبلیغ': 'تبلیغ جدید'}}   </h4>
                     <span style="color:red;font-size:12px;"> (اندازه عکس  برای  آپلود 150*1110 پیکسل باشد)</span>
                     <hr>
                     <div class="row">
                         <div class="col-sm-12 col-xs-12">
-                            <form wire:submit.prevent ="{{ $editStatus ? 'update': 'store'}}">
+                            <form wire:submit.prevent ="{{ $editStatus ? 'update': 'store'}}" enctype="multipart/form-data">
                                 <div class="form-group col-md-12">
                                     <label for="category">دسته بندی</label>
                                     <select class="custom-select  @error('category_id') is-invalid @enderror" id="category" wire:model = "state.category_id">
@@ -145,12 +162,38 @@
 <link rel="stylesheet" href="{{asset('admin/css/default-assets/select.bootstrap4.css')}}">
 <link rel="stylesheet" href="{{asset('admin/css/default-assets/notification.css')}}">
 <style>
-     @media only screen and (max-width: 767px){
-   .status-semat{
-       display: none !important;
-   }
 
-}
+
+  #edit-ads1{
+          display:none;
+
+     }
+
+     @media only screen and (max-width: 674px){
+     
+     
+     #edit-ads1{
+          display:flex;
+
+     }
+       #edit-ads2{
+     display:none;
+     }
+     
+    table.dataTable.dtr-inline.collapsed>tbody>tr[role=row]>td:first-child:before,
+             table.dataTable.dtr-inline.collapsed>tbody>tr[role=row]>th:first-child:before {
+                top: 70%;
+                left: 95%;
+                z-index: 100;       
+        } 
+        
+        
+          table.dataTable>tbody>tr.child ul.dtr-details>li:last-child
+   {
+      display:none;
+      }
+      }
+
 .la-ball-beat,
 .la-ball-beat > div {
     position: relative;

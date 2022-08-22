@@ -26,7 +26,7 @@
                                   </div>
                                   <div class="form-group col-md-12" wire:ignore>
                                     <label for="description">  قسمت پایین </label>
-                                    <textarea class="form-control" id="second" rows="15" cols="15" wire:model.defer="state.second_part" data-second="@this"></textarea>    
+                                    <textarea class="form-control" id="second"  wire:model.defer="state.second_part" data-second="@this"></textarea>    
                                    @error('second_part')<div class="invalid-feedback">{{ $message }}</div> @enderror
                                   </div>
                               
@@ -53,19 +53,18 @@
    
     @push('scripts')
     <script src="{{asset("admin/ckeditor5/ckeditor.js")}}"></script>
-    <script>
-       
-  
+      <script>
          $(document).ready(function(){
           ClassicEditor
             .create( document.querySelector( '#first' ),{
                 language: {
                       ui: 'en',
                      content: 'ar'
-                          }
+                          },
+                         
             } )
             .then( editor => {
-              
+           
                 editor.model.document.on('change:data', () => {
                     let first = $('#first').data('first');
                     
@@ -131,6 +130,6 @@
  <script src="/admin/js/default-assets/datatables.select.min.js"></script> 
  <script src="/admin/js/default-assets/demo.datatable-init.js"></script> 
 <script src="/admin/js/default-assets/bootstrap-growl.js"></script>
-<script src="/admin/js/default-assets/notification-active.js"></script>
+{{--<script src="/admin/js/default-assets/notification-active.js"></script>--}}
     @endpush
 </div>

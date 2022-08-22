@@ -13,6 +13,7 @@ use Livewire\WithPagination;
 use Artesaos\SEOTools\Traits\SEOTools as SEOToolsTrait;
 use Facade\Ignition\Support\Packagist\Package;
 use Illuminate\Support\Facades\Auth;
+use App\Repositories\HeaderRepository;
 
 class ProductUserList extends Component
 {
@@ -38,9 +39,9 @@ class ProductUserList extends Component
     {
         $cat = Category::with('parents')->where('slug',$this->slug)->where('isActive',1)->first();
         $advertise = Advertises::where('category_id', $cat->child->id)->where('expire_at','>=',Carbon::now())->get();
-        $categories = Category::with('parents')->with('products')->with('subproducts')->where('isActive',1)->where('parent',0)->take(4)->get();
-        $categoriesCount = Category::with('parents')->with('products')->with('subproducts')->where('isActive',1)->where('parent',0)->get();
-        $categories_second = Category::with('parents')->with('products')->where('isActive',1)->where('parent',0)->with('subproducts')->skip(4)->take($categoriesCount->count() - 4)->get();
+        $categories = resolve(HeaderRepository::class)->categories();
+        $categoriesCount = resolve(HeaderRepository::class)->categoriesCount();
+        $categories_second = resolve(HeaderRepository::class)->categories_second();   
 
         //  $products = Category::with('products')->whereHas('products' , function($q){
         //      $q->where('status','verified')->where('isSold',0);

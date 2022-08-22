@@ -37,7 +37,7 @@
               <input type="text" wire:model.defer="state.year_of_manufacture" class="form-control @error('year_of_manufacture') is-invalid @enderror" id="year_of_manufacture" disabled>
             </div>
             <div class="form-group col-md-6">
-              <label for="price"> قیمت</label>
+              <label for="price"> قیمت(تومان)</label>
               <input type="text" wire:model.defer="state.price"  class="form-control @error('price') is-invalid @enderror" id="price" disabled>
             </div>
             <div class="form-group col-md-6">
@@ -82,25 +82,34 @@
                 @endif
             </select>                                  
             </div>
-            <div class="form-group col-md-6">
-              <label for="location">استان</label>
-              <input type="text"  class="form-control" id="location" value="{{$product->province->title}}" readonly>
-            </div>
-            <div class="form-group col-md-6">
-              <label for="location">شهر</label>
-              <input type="text"  class="form-control" id="location" value="{{$product->city->title}}" readonly>
-            </div>
-          @if($product->site !== null)
+           <div class="form-group col-md-6">
+                <label for="location">استان</label>
+                <input type="text"  class="form-control" id="location" value="{{$province}}"   readonly>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="location">شهر</label>
+                <input type="text"  class="form-control" id="location" value="{{$city}}"   readonly>
+              </div>
+          
           <div class="form-group col-md-6">
             <label for="site_url"> آدرس سایت</label>
             <input type="text" wire:model.defer="state.site_url" class="form-control @error('site_url') is-invalid @enderror" id="site_url" disabled>
         </div>
-        @endif
+       
+        <div class="form-group col-md-12">
+            <label for="description"> توضیحات اضافی: </label>
+            <span>{!! $description !!}</span>
+        </div>
+        <div class="form-group col-md-12">
+            <label for="extra_description"> توضیحات(<span style="color:red;"> این توضیحات  در سایت نمایش داده نمیشود  و برای اطلاع خود فروشنده میباشد</span>)  </label>
+            <textarea  wire:model.defer="state.extra_description" class="form-control " id="extra_description" disabled></textarea>
+        </div>
           </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">بستن</button>
-       
+          <button type="button" class="btn btn-danger" wire:click.prevent="showImage({{$product->id}})" data-dismiss="modal">مشاهده گالری</button>
+
         </div>
       </div>
     </div>

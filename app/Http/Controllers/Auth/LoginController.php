@@ -50,6 +50,9 @@ class LoginController extends Controller
         return view('auth.register',compact('policy'));
     }
     public function postRegisterForm(RegisterRequest $request){
+   
+
+
      if($request->policyCheck){
         $user = User::where('mobile',$request->mobile)->first();
         $token = mt_rand(1000,9999);
@@ -62,7 +65,7 @@ class LoginController extends Controller
                 return view('auth.register',compact('errorUnq','policy'));
             }
         }
-        
+       
        $userStore =  User::create([
            'name' => $request->name,
            'mobile' => $request->mobile,
@@ -70,18 +73,20 @@ class LoginController extends Controller
            'avatar' => 'N/A',
          
        ]);
-    
+       
        $tokenSave = Token::create([
         'code' => $token,
         'user_id' => $userStore->id,
         'expired_at' => now()->addMinute(10)
        ]);
+       
        //send sms function
        
          $this->sendSmsCode($request->mobile, $token);
       
         $userStore->roles()->sync('5');
         return view('auth.verifyToken',compact('userStore'));
+       
          }else{
             $policy = Policy::first();
             $errorPolicy = true;

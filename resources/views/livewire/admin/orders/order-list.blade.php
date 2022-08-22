@@ -2,16 +2,16 @@
     <nav aria-label="خرده نان" class="container-fluid">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{route('admin.dashboard.index')}}">داشبورد</a></li>
-            <li class="breadcrumb-item active" aria-current="page">  لیست سفارشات</li>
+            <li class="breadcrumb-item active" aria-current="page">   پکیجهای فروخته شده   </li>
         </ol>
     </nav>
     <div class="data-table-area">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-12 box-margin">
+                <div class="col-12 box-margin" wire:ignore>
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title mb-2"> لیست  سفارشات</h4>
+                            <h4 class="card-title mb-2">  پکیجهای فروخته شده    </h4>
                             {{-- <button type="button" class="btn btn-danger mb-2 mr-2" style="float:left;margin-top:-37px;"><i class="fa fa-refresh"></i> سطل زباله</button> --}}
                             {{-- <button type="button" class="btn btn-success mb-2 mr-2" style="float:left;margin-top:-37px;" wire:click.prevent="addNew()" ><i class="fa fa-plus-square"></i> افزودن</button> --}}
                             {{-- <button type="button" class="btn btn-primary mb-2 mr-2" style="float:left;margin-top:-37px;"><i class="fa fa-file-excel-o"></i> خروجی اکسل</button> --}}
@@ -20,19 +20,28 @@
                             <table id="datatable-buttons" class="table table-striped dt-responsive nowrap w-100">
                                 <thead>
                                     <tr>
-                                        <th>  نوع سفارش</th>
+                                        <th>  نوع پکیج</th>
+                                        <th id="remove-order1">عملیات</th>
+
                                         <th> نام کاربر</th>
                                         <th>    وضعیت پرداخت</th>
-                                        {{-- <th>    وضعیت ارسال</th> --}}
                                         <th>  مبلغ سفارش</th>
-                                        <th>عملیات</th>
+                                        <th> کد تخفیف</th>
+                                        <th>    تاریخ </th> 
+                                        <th id="remove-order2">عملیات</th>
                                     </tr>
                                 </thead>
 
                                 <tbody>
                                     @forelse($orders as $order)
                                     <tr>
-                                        <td>{{$order->orderable->title}}</td>
+                                        <td>{{$order->orderable->title}}
+                                        </td>
+                                         <td id="remove-order1">
+                                          <a  href="" wire:click.prevent="removeConfirmation({{$order->id}})" style="font-size:20px;"><i class="fa fa-trash" style="color:#dc3545;"></i></a>
+
+                                        </td>
+                                        
                                         <td>{{$order->user->name}}</td>
                                         <td >
                                            
@@ -60,8 +69,11 @@
                                               </select>
                                             
                                         </td> --}}
-                                        <td>{{$order->price}}</td>
-                                        <td>
+                                        <td>{{$order->price}} تومان</td>
+                                        <td>{{$order->userDiscount ? $order->userDiscount->discountCode->code : '-'}}</td>
+
+                                         <td>{{$order->created_at}} </td>
+                                        <td id="remove-order2">
                                             {{-- <a href=""  style="font-size:20px;"><i class="fa fa-edit"  style="color:#04a9f5;"></i></a> --}}
                                             <a href="" wire:click.prevent="removeConfirmation({{$order->id}})" style="font-size:20px;"><i class="fa fa-trash" style="color:#dc3545;"></i></a>
                                          </td>
@@ -93,11 +105,33 @@
 <link rel="stylesheet" href="{{asset('admin/css/default-assets/select.bootstrap4.css')}}">
 {{-- <link rel="stylesheet" href="{{asset('admin/css/default-assets/notification.css')}}"> --}}
 <style>
-     @media only screen and (max-width: 767px){
-   .status-semat{
-       display: none !important;
-   }
 
+
+ #remove-order1{
+ display:none;
+ }
+ 
+     @media only screen and (max-width: 628px){
+     
+        table.dataTable.dtr-inline.collapsed>tbody>tr[role=row]>td:first-child:before,
+             table.dataTable.dtr-inline.collapsed>tbody>tr[role=row]>th:first-child:before {
+                top: 70%;
+                left: 90%;
+                z-index: 100;       
+        } 
+        
+          table.dataTable>tbody>tr.child ul.dtr-details>li:last-child  {
+      display:none;
+      }
+      
+       #remove-order2{
+ display:none;
+ }
+   
+ #remove-order1{
+ display:block;
+ }
+ 
 }
 
 </style>

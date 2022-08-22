@@ -51,7 +51,9 @@
                         </div>
                           <div class="align-form password-group">
                             <label class="label-input" for="form-repeat-password">تایید رمز عبور</label>
-                            <input type="password" name="password_confirmation" placeholder="تایید رمز عبور..." class="form-repeat-password form-control" id="form-repeat-password">
+                            <input type="password" name="password_confirmation" placeholder="تایید رمز عبور..." class="form-repeat-password @error('password_confirmation') is-invalid @enderror form-control" id="form-repeat-password">
+                            @error('password_confirmation')<div class="invalid-feedback">{{ $message }}</div> @enderror
+
                           </div>
                           <div><input type="checkbox" id="policyCheck" name="policyCheck" value="1">
                             <label for="vehicle1">با<a href="" data-toggle="modal" data-target="#policy">   شرایط و قوانین </a> سایت موافقم </label><br></div>

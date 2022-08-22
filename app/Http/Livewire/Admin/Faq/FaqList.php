@@ -105,7 +105,7 @@ class FaqList extends Component
     public function render()
     {
         $this->authorize('faq',Faq::class);
-        $faqLists =Faq::where('isActive',1)->orderBy('id','desc')->paginate(21);
+        $faqLists =Faq::where('isActive',1)->orderBy('id','desc')->get();
         return view('livewire.admin.faq.faq-list',['faqLists'=> $faqLists])->layout('layouts.admin.app');
     }
 }

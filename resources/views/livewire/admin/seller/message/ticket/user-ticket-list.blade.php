@@ -8,7 +8,7 @@
     <div class="data-table-area">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-12 box-margin">
+                <div class="col-12 box-margin" wire:ignore>
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex justify-content-between ">
@@ -37,9 +37,10 @@
                                 <thead>
                                     <tr>
                                         <th>عنوان</th>
+                                     <th id="see1">عملیات</th>
                                         <th class="status-semat">وضعیت</th>
                                         <th class="status-semat">تاریخ </th>
-                                        <th>عملیات</th>
+                                        <th id="see2">عملیات</th>
                                     </tr>
                                 </thead>
 
@@ -47,6 +48,12 @@
                                     @forelse($messages as $msg)
                                     <tr>
                                         <td>{{$msg->title}}</td>
+                                        
+                                         <td id="see1">
+                                            <a href="" class="bg-success p-1 text-white" wire:click.prevent="showTicket({{$msg}})" style="font-size:10px;">مشاهده</a>
+
+                                        </td>
+                                        
                                         <td class="status-semat">
                                             @switch($msg->status )
                                                 @case('OPEN')
@@ -73,7 +80,7 @@
                                               </select> --}}
                                         </td>
                                         <td class="status-semat">{{$msg->created_at}}</td>
-                                        <td>
+                                        <td id="see2">
                                             <a href="" class="bg-success p-1 text-white" wire:click.prevent="showTicket({{$msg}})" style="font-size:10px;">مشاهده</a>
 
                                         </td>
@@ -105,11 +112,35 @@
 <link rel="stylesheet" href="{{asset('admin/css/default-assets/select.bootstrap4.css')}}">
 
 <style>
-    @media only screen and (max-width: 767px){
-   .status-semat{
-       display: none !important;
-   }
-}
+
+ #see1{
+    
+    display:none;
+    }
+    
+    @media only screen and (max-width: 456px){
+    
+      #see2{
+    
+    display:none;
+    }
+    
+    #see1{
+    
+    display:block;
+    }
+    
+    table.dataTable.dtr-inline.collapsed>tbody>tr[role=row]>td:first-child:before,
+             table.dataTable.dtr-inline.collapsed>tbody>tr[role=row]>th:first-child:before {
+                top: 70%;
+                left: 90%;
+                z-index: 100;       
+        } 
+        
+        table.dataTable>tbody>tr.child ul.dtr-details>li:last-child{
+        display:none;
+        }
+        }
 
 </style>   
 @endpush

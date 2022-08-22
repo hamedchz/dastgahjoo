@@ -19,6 +19,7 @@ class PackagesList extends Component
 
     public function resetInputForm(){
         $this->state['title' ]= "";
+        $this->state['discount' ]= "";
         $this->state['price' ]= "";
         $this->state['label' ]= "";
         $this->state['products' ]= "";
@@ -49,6 +50,8 @@ class PackagesList extends Component
             'video'=>'required|in:YES,NO',
             'site'=>'required|in:YES,NO',
             'file'=>'required|numeric',
+            'discount' => 'required|integer|between:0,100',
+
          
         ],
         [
@@ -70,6 +73,9 @@ class PackagesList extends Component
             'site.in' => ' اطلاعات این فیلد اشتباه است ',
             'file.required' => 'این فیلد ضروری است',
             'file.numeric' => 'این فیلد ضروری است',
+            'discount.required' =>  'این فیلد نمیتواند خالی باشد',
+            'discount.between' =>  'این فیلد میتواند بین  0 تا 100 باشد',
+
         ])->validate();
 
         $packageStore = Packages::create($validatedData);
@@ -77,7 +83,7 @@ class PackagesList extends Component
             $discount = Discounts::create([
                 'package_id' => $packageStore->id,
                 'name' => $validatedData['title'],
-                'percentage' => $this->discount,
+                'percentage' => $this->state['discount'],
             ]);
             $this->resetInputForm();
             $this->dispatchBrowserEvent('closeNewPackage', ['message' => 'پکیج جدید با موفقیت اضافه شد','action'=>'success']);
@@ -91,10 +97,13 @@ class PackagesList extends Component
         
     }
     public function editPackage(Packages $package){
+       $this->resetValidation();
         $this->editStatus = true;
         $this->package = $package;
         $this->state = $package->toArray();
-        $this->discount = $package->discount->percentage;
+        // dd($package->discount->percentage);
+        $discountPackage = Discounts::where('package_id',$package->id)->first();
+        $this->state['discount'] = $discountPackage->percentage;
         $this->dispatchBrowserEvent('addNewPackage');
 
     }
@@ -111,7 +120,9 @@ class PackagesList extends Component
             'video'=>'required|in:YES,NO',
             'site'=>'required|in:YES,NO',
             'file'=>'required|numeric',
-            'isActive' => 'required|in:1,0'
+            'isActive' => 'required|in:1,0',
+            'discount' => 'required|integer|between:0,100',
+
          
         ],
         [
@@ -135,6 +146,9 @@ class PackagesList extends Component
             'file.numeric' => 'این فیلد ضروری است',
             'isActive.required' => 'این فیلد ضروری است',
             'isActive.in' => ' اطلاعات این فیلد اشتباه است ',
+            'discount.required' =>  'این فیلد نمیتواند خالی باشد',
+            'discount.between' =>  'این فیلد میتواند بین  0 تا 100 باشد',
+
 
         ])->validate();
 
@@ -143,7 +157,7 @@ class PackagesList extends Component
             $update = $this->package->discount->update([
                 'package_id' => $this->package->id,
                 'name' => $validatedData['title'],
-                'percentage' => $this->discount,
+                'percentage' => $this->state['discount'],
             ]);
             $this->resetInputForm();
             $this->dispatchBrowserEvent('closeNewPackage', ['message' => 'پکیج  با موفقیت ویرایش شد' ,'action' => 'success']);

@@ -20,7 +20,7 @@ class ProductMessageLists extends Component
     public $status;
     public $inquiry;
     public $states;
-    public $answer;
+    public $answer = null;
     public $removeId = null;
 
   
@@ -50,12 +50,13 @@ class ProductMessageLists extends Component
     public function getMessagesProperty(){
         return Inquiries::with('user')->with('products')->where('parent',0)->when($this->status,function($query,$status){
             return $query->where('status',$status);
-        })->latest()->paginate(20);
+        })->latest()->get();
     }
 
-    public function edit(Inquiries $inq){
-        $this->states = $inq->comment;
-        $this->inquiry = $inq;
+    public function edit($id){
+        $comment = Inquiries::findOrFail($id);
+        $this->states = $comment->comment;
+        $this->inquiry = $comment;
         $this->dispatchBrowserEvent('show-editproductMessage');
     }
     public function update(){

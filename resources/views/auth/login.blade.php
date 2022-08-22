@@ -12,13 +12,13 @@
                       <div class="icon-form">
                      <h2><strong>ورود</strong></h2>
                       <p><strong><a href="{{route('register')}}">اینجا ثبت نام کنید</a></strong></p>
-                      <p><small class="text-dark">لطفاً در صورت تایپ نام کاربری یا رمز عبور، از حروف بزرگ و کوچک  در نظر بگیرید</small></p>
+                      <p><small class="text-dark">لطفاً دقت فرمایید رمز عبور به زبان فارسی و یا انگلیسی بودن کیبورد و بزرگ و کوچکی حروف حساس است</small></p>
                       </div>
                       <div class="title-form">
                         <i class="fas fa-key"></i>
                       </div>
                     </div>
-                    <form method="POST" action="{{ route('login') }}">
+                    <form method="POST" action="{{ route('post.login') }}">
                       @csrf
                     <div class="form-bottom">
                       <div class="align-form">

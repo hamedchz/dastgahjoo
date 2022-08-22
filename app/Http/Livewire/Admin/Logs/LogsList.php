@@ -21,7 +21,7 @@ class LogsList extends Component
     public function getLogsProperty(){
         return Log::with('user')->when($this->status, function($query,$action){
             return $query->where('action',$action);
-        })->latest()->paginate(20);
+        })->latest()->get();
     }
 
     public function render()

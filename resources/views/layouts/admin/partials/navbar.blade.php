@@ -2,7 +2,7 @@
     <div class="left-side-content-area d-flex align-items-center">
         <!-- Mobile Logo -->
         <div class="mobile-logo mr-3 mr-sm-4">
-            <a href="{{route('index')}}"><img src="{{asset('admin/img/core-img/small-logo.png')}}" alt="آرم موبایل"></a>
+            <a href="{{route('index')}}"><img src="{{asset('admin/img/core-img/favicons.jpg')}}" alt="آرم موبایل"></a>
         </div>
 
         <!-- Triggers -->

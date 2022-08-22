@@ -73,15 +73,16 @@ class AdverisesList extends Component
     }
          public function uploadImage($image)
       {
-        //   $year = now()->year;
-        //   $month = now()->month;
-        //   $directory = "/storage/images/products/$year/$month";
-        //   $directory = "/images/products/$year/$month/";
-          $name = time() . '-' . Str::random(15).$image->getClientOriginalName();
+         $name = time() . '-' . Str::random(15).$image->getClientOriginalName();
           $name = str_replace(' ', '-', $name);
-          Image::make($image)->resize(800,80)->save(public_path("/images/banner/" . $name));
+          if ($image->getClientOriginalExtension() == 'gif') {
+            copy($image->getRealPath(), public_path("/images/banner/" . $name) );
+           }
+        else {
+            //$image->save(public_path("/images/banner/" . $name));
+            Image::make($image)->resize(1150,150)->save(public_path("/images/banner/" . $name));
 
-        //   $image->storeAs($directory, $name);
+        }
           return "/images/banner/$name";
       }
 
@@ -163,7 +164,7 @@ class AdverisesList extends Component
     {  
         $this->authorize('advertise');
         $categories = Category::where('parent',0)->where('isActive',1)->get();
-        $advertises = Advertises::latest()->paginate(21);
+        $advertises = Advertises::latest()->get();
         return view('livewire.admin.advertises.adverises-list',['advertises'=>$advertises,'categories'=>$categories])->layout('layouts.admin.app');
     }
 }

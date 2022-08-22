@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DiscountCode;
 use App\Models\Discounts;
 use App\Models\Order;
 use App\Models\PackageHistory;
@@ -9,6 +10,7 @@ use App\Models\Packages;
 use App\Models\Setting;
 use App\Models\Transaction;
 use App\Models\User;
+use App\Models\UserDiscounts;
 use App\Models\Vendors;
 use Carbon\Carbon;
 use Exception;
@@ -17,6 +19,7 @@ use Hekmatinasser\Verta\Verta;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Shetabit\Multipay\Exceptions\InvalidPaymentException;
 use Shetabit\Multipay\Exceptions\PurchaseFailedException;
 use Shetabit\Multipay\Invoice;
@@ -44,12 +47,34 @@ class PurchaseController extends Controller
     public function purchase(Packages $package){
         $user = Auth::user();
         $discount = Discounts::select('percentage')->where('package_id',$package->id)->first();
-        if(($package->price)-(($package->price)*($discount->percentage/100)) == 0){
-        $this->freePackage($package->id);
+        $userCoupon = DB::table('instant_user_discount')->where('user_id', '=', auth()->user()->id)->first();
+        if($userCoupon){
+            $checkDiscountCode = DiscountCode::where('id',$userCoupon->discount_id)->where('isActive',1)->first();
+            if($checkDiscountCode){
+                $firstPrice = ($package->price)-(($package->price)*($discount->percentage/100));
+                $price = $firstPrice-($firstPrice*$checkDiscountCode->percentage/100);
+            }else{
+                $price = ($package->price)-(($package->price)*($discount->percentage/100));
+          }
+        }else{
+            $price = ($package->price)-(($package->price)*($discount->percentage/100));
+       }
+        if($price == 0){
+        $orderInfo = $this->freePackage($package->id);
         $date = Verta::now();
         $date = date('Y/m/d',strtotime($date));
         $status = 'FREE';
         $package_title = $package->title;
+        $userCoupon = DB::table('instant_user_discount')->where('user_id', '=', auth()->user()->id)->first();
+        if($userCoupon){
+             UserDiscounts::create([
+                'user_id'=> auth()->user()->id,
+                'discount_id' => $userCoupon->discount_id,
+                'package_id' => $package->id,
+                'order_id' => $orderInfo->id
+            ]);
+         $userCoupon = DB::table('instant_user_discount')->where('user_id', '=', auth()->user()->id)->delete();
+        }
         return view('admin.payment-success',compact('package_title','date','status'));
 
 
@@ -65,7 +90,7 @@ class PurchaseController extends Controller
         // if($existPackage){
         //     return 'exist Package';
         // }
-         $price = ($package->price)-(($package->price)*($discount->percentage/100));
+        // $price = ($package->price)-(($package->price)*($discount->percentage/100));
         try{
             $invoice = new Invoice();
             $invoice->amount($price);
@@ -159,7 +184,19 @@ class PurchaseController extends Controller
             
            $package = Packages::findOrFail($id);
            $discount = Discounts::select('percentage')->where('package_id',$package->id)->first();
-           $price = ($package->price)-(($package->price)*($discount->percentage/100));
+           //$price = ($package->price)-(($package->price)*($discount->percentage/100));
+             $userCoupon = DB::table('instant_user_discount')->where('user_id', '=', auth()->user()->id)->first();
+            if($userCoupon){
+               $checkDiscountCode = DiscountCode::where('id',$userCoupon->discount_id)->where('isActive',1)->first();
+               if($checkDiscountCode){
+                   $firstPrice = ($package->price)-(($package->price)*($discount->percentage/100));
+                   $price = $firstPrice-($firstPrice*$checkDiscountCode->percentage/100);
+               }else{
+                $price = ($package->price)-(($package->price)*($discount->percentage/100));
+           }
+           }else{
+                 $price = ($package->price)-(($package->price)*($discount->percentage/100));
+           }
             $user_id = $request->user_id;
             if($request->missing('payment_id')){
                 return view('admin.payment-fail');
@@ -190,7 +227,7 @@ class PurchaseController extends Controller
                 //     'varient_id' => $service->varient_id,
 
                 // ]); 
-                $package->order()->create([ 
+                $orderInfo = $package->order()->create([ 
                     'user_id' => $user->id,
                     'price' => $price,
                     'status' => 'PAID'
@@ -250,7 +287,7 @@ class PurchaseController extends Controller
                             'mobile' => $user->mobile,
                             'package_id' => $package->id,
                             'email' => $user->email,
-                            'identityNumber' => mt_rand(10000,9999999),
+                            'identityNumber' => mt_rand(10000,100000),
                         ]);
                         $user->roles()->sync('2');
                         $this->sendSmsCode($user->mobile, $package->title,$user->name);
@@ -265,10 +302,21 @@ class PurchaseController extends Controller
                 // ]);
                 // dd(7);
                 // Auth::loginUsingId(Auth::id());
+
                $date = Verta::now();
                $date = date('Y/m/d',strtotime($date));
                $status = 'PAID';
                $package_title = $package->title;
+                $userCoupon = DB::table('instant_user_discount')->where('user_id', '=', auth()->user()->id)->first();
+               if($userCoupon){
+                UserDiscounts::create([
+                    'user_id'=> auth()->user()->id,
+                    'discount_id' => $userCoupon->discount_id,
+                    'package_id' => $package->id,
+                    'order_id' => $orderInfo->id
+                ]);
+                $userCoupon = DB::table('instant_user_discount')->where('user_id', '=', auth()->user()->id)->delete();
+               }
                return view('admin.payment-success',compact('reciept','package_title','date','status'));
                
 
@@ -291,15 +339,27 @@ class PurchaseController extends Controller
     public function freePackage($id){
           $package = Packages::findOrFail($id);
           $discount = Discounts::select('percentage')->where('package_id',$package->id)->first();
-           $price = ($package->price)-(($package->price)*($discount->percentage/100));
-
+           //$price = ($package->price)-(($package->price)*($discount->percentage/100));
+          $userCoupon = DB::table('instant_user_discount')->where('user_id', '=', auth()->user()->id)->first();
+          if($userCoupon){
+            $checkDiscountCode = DiscountCode::where('id',$userCoupon->discount_id)->where('isActive',1)->first();
+            if($checkDiscountCode){
+                $firstPrice = ($package->price)-(($package->price)*($discount->percentage/100));
+                $price = $firstPrice-($firstPrice*$checkDiscountCode->percentage/100);
+            }else{
+                $price = ($package->price)-(($package->price)*($discount->percentage/100));
+          }
+            }else{
+            $price = ($package->price)-(($package->price)*($discount->percentage/100));
+          }
             $user = Auth::user();
             
-                $package->order()->create([ 
+                $order = $package->order()->create([ 
                     'user_id' => $user->id,
                     'price' => $price,
                     'status' => 'PAID'
                 ]);
+                
                 $existPackage = PackageHistory::where('user_id',$user->id)->where('package_id',$package->id)->first();
        
                
@@ -355,7 +415,7 @@ class PurchaseController extends Controller
                             'mobile' => $user->mobile,
                             'package_id' => $package->id,
                             'email' => $user->email,
-                            'identityNumber' => mt_rand(10000,9999999),
+                            'identityNumber' => mt_rand(10000,100000),
                         ]);
                         $user->roles()->sync('2');
                         $this->sendSmsCode($user->mobile, $package->title,$user->name);
@@ -363,15 +423,9 @@ class PurchaseController extends Controller
                     }
                    
                 }
-                // $orders = Order::where('cart_id',$request->cart_id)->first();
-                // $purchasedServicesSuccess = PurchasedService::where('cart_id',$request->cart_id)->get();
-                // $purchasedServicesSuccess->each->update([
-                //     'status' => Transaction::STATUS_SUCCESS,
-                // ]);
-            //    Auth::loginUsingId(Auth::id());
-              // return redirect()->url('');
+                
+                return $order;
 
-          
             }
     
     

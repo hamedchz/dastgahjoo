@@ -1,4 +1,5 @@
 <div>
+
     @push('header-scripts')
     <script src="/frontend/js/jssor.slider.min.js" type="text/javascript"></script>
     <script type="text/javascript">
@@ -66,8 +67,8 @@
     <div class="container" id="resale-market">
         <div class="display-align top-pad">
           <div class="col-lg-12">
-  
-              <div class="hide-mobile" style="margin-bottom:30px;">
+   
+              <div  style="margin-bottom:30px;">
                 {!!$firstPage->first_part!!}
                 <div class="display-align bottom-pad">
                   @if($categoriesFirsthalf->count() > 0)
@@ -75,9 +76,9 @@
                       <div class="table table-hover table-bordered table-sm tablecat" style="display:flex;flex-direction:column;">
                         @foreach ($categoriesFirsthalf as $category )
                         <div class="col-12" style="display:flex;border-bottom:1px solid #e9ecef;padding: 0.3rem;">
-                              <span style="color: #acacac;">{{$category->id}}.</span>
+                              <span style="color: #acacac;">{{$loop->iteration}}.</span>
                               <a href="{{route('subcategory.product-list',$category->slug)}}"> {{$category->title}} </a>
-                              <span class="badge badge-secondary" style="margin-right: auto;">{{$category->products->count()}}</span>
+                              <span class="badge badge-secondary" style="margin-right: auto;">{{$category->productsVerified->count()}}</span>
                             </div>
                             @endforeach 
                           </div>
@@ -88,9 +89,9 @@
                       <div class="table table-hover table-bordered table-sm tablecat" style="display:flex;flex-direction:column;">
                         @foreach ($categoriesSecondhalf as $category )
                         <div class="col-12" style="display:flex;border-bottom:1px solid #e9ecef;padding: 0.3rem;">
-                              <span style="color: #acacac;">{{$category->id}}.</span>
+                              <span style="color: #acacac;">{{$categoriesFirsthalf->count()+$loop->iteration}}.</span>
                               <a href="{{route('subcategory.product-list',$category->slug)}}"> {{$category->title}} </a>
-                              <span class="badge badge-secondary" style="margin-right: auto;">{{$category->products->count()}}</span>
+                              <span class="badge badge-secondary" style="margin-right: auto;">{{$category->productsVerified->count()}}</span>
                             </div>
                               @endforeach
                           </div>
@@ -236,7 +237,7 @@
     <div class="slides" data-u="slides" >
       @foreach($advertises as $advertise)
         <div >
-            <a href="{{asset($advertise->link)}}"><img data-u="image" src="{{asset($advertise->banner)}}" /></a>
+            <a href="{{asset($advertise->link)}}" target="_blank"><img data-u="image" src="{{asset($advertise->banner)}}" /></a>
             <div data-u="thumb">{{$advertise->description}}</div>
         </div>
         @endforeach
@@ -265,14 +266,13 @@
 @endif
 <!-- آخر اسلایدر تبلیغات -->
 
-      <div class="container des-text">
+   <div class="container des-text">
         <div class="display-align">
           <div class="col-md-12 mt-3">
             {!!$firstPage->second_part!!}
           </div>
         </div>
       </div>
-  
         {{-- <!-- قسمت نظرات -->
         <div id="comments" class="display-align bottom-margin2" style="width:100%;">
           <div class="col-md-8 show-more" id="more">
@@ -485,5 +485,16 @@
       </div>
       @push('footer-scripts')
       <script>jssor_1_slider_init();</script>
+      @if ($congratualtion <> null)
+      <x-congModal :image="$congratualtion->image"/>
+       
+        <script type="text/javascript">
+          $(window).on('load', function() {
+              $('#congratulation').modal('show');
+          });
+      </script>
+  
+    @endif
       @endpush
+  
 </div>

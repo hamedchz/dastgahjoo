@@ -9,7 +9,7 @@
     <!-- Title -->
     <title>پنل مدیریت</title>
     <!-- Favicon -->
-    <link rel="icon" href="{{asset('admin/img/core-img/favicons.png')}}">
+    <link rel="icon" href="{{asset('admin/img/core-img/favicons.jpg')}}">
     @stack('before-styles')
     {{-- toast --}}
     <link rel="stylesheet" href="{{asset('admin/style.css')}}">
@@ -19,6 +19,7 @@
 
     @stack('styles')
     @livewireStyles
+    
 
 </head>
 
@@ -39,14 +40,21 @@
             <div class="main-content">
                 @if(auth()->user()->vendor)
                 @if(Carbon\Carbon::now() > App\Models\PackageHistory::where('user_id',auth()->user()->id)->where('package_id',auth()->user()->vendor->package->id)->first()->endDate)
-                <div class="notification_modal_access " style=" padding: 1rem 2rem;   box-shadow: 0 2px 7px rgb(0 0 0 / 25%);border-radius: 0.375rem;position: fixed;bottom: 1.25rem;margin: auto;z-index: 100;background-color: rgb(241, 119, 119);">
-                    <div  style="display: flex;align-items: center;">
+                <div class="notification_modal_access " id="endModal"  style=" padding: 1rem 2rem;   box-shadow: 0 2px 7px rgb(0 0 0 / 25%);border-radius: 0.375rem;position: fixed;bottom: 1.25rem;margin: auto;z-index: 110;background-color: rgb(241, 119, 119);">
+                    <div  style="display: flex;align-items: center;" id="notification-content">
                         <p style="font-weight: 700;color: #000;margin-bottom:0;">  تاریخ پکیج شما به پایان رسیده است</p>
-                        <div style="    margin-right: 1rem;">
-                            <a href="{{route('user.packageorder')}}" id="accept_access_notification" class="hover ">تمدید</a>
+                        <div style="margin-right: 1rem;display:flex;">
+                            <a href="{{route('user.packageorder')}}" id="accept_access_notification" class="hover btn btn-success my-1" style="margin-left:1rem;">تمدید</a>
+                            <a href="#" style="font-weight: 700;padding: 0.5rem 2.5rem;border-radius: 0.25rem;" id="endBtn" class="hover  btn btn-danger my-1">بستن</a>
                         </div>
                     </div>
                 </div> 
+                   <script>
+                    const closeBtn = document.querySelector('#endBtn')
+                    closeBtn.addEventListener('click', () =>{
+                        document.querySelector('#endModal').classList.add('d-none')
+                    })
+                </script>
                 @endif
                 @if(auth()->user()->vendor->isApproved == 1)
                 <div class="notification_modal_access " style=" padding: 1rem 1rem;   box-shadow: 0 2px 7px rgb(0 0 0 / 25%);border-radius: 0.375rem;position: fixed;bottom: 1.25rem;margin: auto;z-index: 100;background-color: rgb(241, 119, 119);">
@@ -55,26 +63,34 @@
                             حساب شما در انتظار تایید است
                         </p>
                         {{-- <div style="    margin-right: 1rem;">
-                            <a href="{{route('user.packageorder')}}" id="accept_access_notification" class="hover ">تمدید</a>
+                            <a href="{{route('user.packageorder')}}" id="accept_access_notification" class="hover btn btn-success" >تمدید</a>
                         </div> --}}
                     </div>
                 </div>
-                {{-- <div class="alert  fixed-bottom  text-dark bg-warning" role="alert" style="text-align: right; margin-bottom: 0;width:100% !important;font-size:18px;background-color:#000;">
+                {{-- <div class="alert  fixed-bottom  text-dark bg-danger" role="alert" style="text-align: right; margin-bottom: 0;width:100% !important;font-size:18px;background-color:#000;">
                     
                 </div> --}}
                 @endif
 
                 @if(App\Models\Product::whereBetween('created_at',[App\Models\PackageHistory::where('user_id',auth()->user()->id)->where('package_id',auth()->user()->vendor->package->id)->first()->startDate,App\Models\PackageHistory::where('user_id',auth()->user()->id)->where('package_id',auth()->user()->vendor->package->id)->first()->endDate])->count() >= App\Models\PackageHistory::where('user_id',auth()->user()->id)->where('package_id',auth()->user()->vendor->package->id)->first()->products)
-                <div class="notification_modal_access " style=" padding: 1rem 2rem;   box-shadow: 0 2px 7px rgb(0 0 0 / 25%);border-radius: 0.375rem;position: fixed;bottom: 1.25rem;margin: auto;z-index: 100;background-color: rgb(241, 119, 119);">
-                    <div  style="display: flex;align-items: center;">
+                <div class="notification_modal_access " id="uploadModal" style=" padding: 1rem 2rem;   box-shadow: 0 2px 7px rgb(0 0 0 / 25%);border-radius: 0.375rem;position: fixed;bottom: 1.25rem;margin: auto;z-index: 110;background-color: rgb(241, 119, 119);">
+                    <div  style="display: flex;align-items: center;" id="notification-content">
                         <p style="font-weight: 700;color: black;margin-bottom:0;">
                             شما از تمام قابلیت آپلود محصول پکیج استفاده کرده اید 
                         </p>
-                        <div style="    margin-right: 1rem;">
-                            <a href="{{route('user.packageorder')}}" id="accept_access_notification" class="hover ">تمدید</a>
+                        <div style="margin-right: 1rem;display:flex;">
+                            <a href="{{route('user.packageorder')}}" id="accept_access_notification" class="hover my-1"  style="margin-left:1rem;">تمدید</a>
+                            <a href="#" style="font-weight: 700;padding: 0.5rem 2.5rem;border-radius: 0.25rem;" id="uploadBtn" class="hover  btn btn-danger  my-1">بستن</a>
                         </div>
                     </div>
                 </div> 
+                <script>
+                    const uploadBtn = document.querySelector('#uploadBtn')
+                    uploadBtn.addEventListener('click', () =>{
+                        
+                        document.querySelector('#uploadModal').classList.add('d-none')
+                    })
+                </script>
                 {{-- <div class="alert  fixed-bottom  text-white" role="alert" style="text-align: right; margin-bottom: 0;width:100% !important;font-size:18px;background-color:#dc3545;">
                     <a class="btn btn-primary p-1 font-weight-bold text-white" href="{{route('user.packageorder')}}" style="width:70px;font-size:14px;">تمدید</a>
                 </div> --}}

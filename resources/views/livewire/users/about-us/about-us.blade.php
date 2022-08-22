@@ -1,3 +1,14 @@
+
+ @push('styles')
+ <style>
+.about-description .about-entry .about-entry-inner .about-icon{
+display:none !important;
+}
+</style>
+      @endpush
+      
+
+
 <div class="itemslist">
     <div class="top-content">
         <div id="overlay"></div>

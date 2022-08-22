@@ -52,7 +52,7 @@
               <div class="card" style="background-color: rgba(95, 174, 255, 0.2); margin-top: 10px;">
                 <div class="card-body" style="padding: 0.5rem;">
                   <div class="input-group">
-                    <input class="form-control"  maxlength="40" name="name" type="text" required="" title="" placeholder="دستگاه تزریق پلاستیک  ">
+                    <input class="form-control"  maxlength="40" name="queryTerm" type="text" required="" title="" placeholder="دستگاه تزریق پلاستیک  ">
                     {{-- <select class="custom-select" name="category" style="border-radius: 0px; width: 120px;">
                       <option disabled value="" selected="selected">دسته بندی</option>
                       @foreach($categories as $category)
@@ -76,7 +76,7 @@
 
     <nav aria-label="address-crumb" class="">
       <ol class="address-crumb" style="border-radius: 0">
-        <li class="address-crumb-item"><a href="#">
+        <li class="address-crumb-item"><a href="{{url('/')}}">
           <i class="fa fa-home" aria-hidden="true"></i>
         </a>
       </li>
@@ -285,7 +285,7 @@
           </span>
         </div>
         <div class="col-lg-5 machine-top py-1">
-          <span class="category-code">تاریخ: {{$product->created_at}}</span>
+          <span class="category-code">تاریخ: {{date('d-m-Y', strtotime($product->created_at))}} </span>
           <span style="float: left;">
             @auth
             {{-- @if($product->favorites->user_id == auth()->user()->id) --}}
@@ -326,7 +326,7 @@
                 </a>
                 <div class="bottom-center">
                   <a class="btn-all btn-all-small btn-green" href="{{route('dealer-inquiry',$product->itemNo)}}" target="TOP" style="margin: 10px; ">درخواست استعلام</a>
-                  <a class="btn-all btn-all-small btn-green" href="tel:{{$product->vendor->phone}}" target="TOP" style="margin: 10px; font-weight: 600;">
+                  <a class="btn-all btn-all-small btn-green" href="tel:@if($product->vendor->phone <> null){{$product->vendor->phone}}@else{{$product->vendor->user->mobile}}@endif" target="TOP" style="margin: 10px; font-weight: 600;">
                     <i class="fas fa-phone"></i>
                   </a>
                 </div>

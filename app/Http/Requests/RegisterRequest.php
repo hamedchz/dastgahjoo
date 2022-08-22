@@ -11,6 +11,8 @@ class RegisterRequest extends FormRequest
      *
      * @return bool
      */
+    protected $redirect = '/register';
+
     public function authorize()
     {
         return true;
@@ -26,7 +28,7 @@ class RegisterRequest extends FormRequest
         return [
                 
                 'name'     =>  'required',
-                'mobile'   => 'required|min:11|max:11',
+                'mobile'   => 'required|min:11|max:11|unique:users,mobile',
                 'password' => ['required', 'required_with:password_confirmation','same:password_confirmation','min:8'],
             ];
     }
@@ -40,7 +42,8 @@ class RegisterRequest extends FormRequest
             'max' => 'حداکثر کاراکتر برای موبایل 11 کاراکتر',
             'string' => 'کلمه عبور باید رشته باشد' ,
             'same' => 'کلمه عبور یکسان نیست',
-            'required_with' => 'تایید کلمه عبور الزامیست'
+            'required_with' => 'تایید کلمه عبور الزامیست',
+            'unique' => 'این اطلاعات تکراری است'
         ];
     }
 }

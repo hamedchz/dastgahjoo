@@ -1,7 +1,63 @@
 <div>
 @push('styles')
+  <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css"
+    />
 <style>
+ @media print {
+ #sendSmsToUser, .ribbon-card , .seller-header, footer , header, .font3 , 
+ .button-bar , #inquiry-form, nav ,.navbar , .carousel-indicators { display: none; }
+.carousel-inner .active.carousel-item img{
+width:150px !important;
+}
+.modal-fancy-img .card-img{
 
+display:inline-block !important;
+}
+.address-crumb, #overlay , .parallax-background {
+display:none !important;
+}
+
+.top-titr {
+    margin-top: 0 !important;
+}
+body {
+    padding-top: 0 !important;
+}
+
+.card-body{
+line-height: 0.7;
+padding-bottom:10px !important;
+}
+
+.card{
+border:none !important;
+}
+.inner-block{
+padding:0 !important;
+}
+
+.table td, .table th{
+border-top:none !important;
+}
+
+.machinery-des{
+padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+
+.profile-bottom{
+padding-top:0 !important;
+}
+
+.profile-title{
+padding-bottom:0 !important;
+
+}
+
+}
     /* کاروسل */
     #myCarousel .list-inline {
         white-space:nowrap;
@@ -113,6 +169,140 @@
     object-fit: cover
 }
 
+
+.la-ball-beat,
+.la-ball-beat > div {
+    position: relative;
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+}
+.la-ball-beat {
+    display: block;
+    font-size: 0;
+    color: #eb9094;
+}
+.la-ball-beat.la-dark {
+    color: #b30000;
+}
+.la-ball-beat > div {
+    display: inline-block;
+    float: none;
+    background-color: currentColor;
+    border: 0 solid currentColor;
+}
+.la-ball-beat {
+    width: 54px;
+    height: 18px;
+}
+.la-ball-beat > div {
+    width: 10px;
+    height: 10px;
+    margin: 4px;
+    border-radius: 100%;
+    -webkit-animation: ball-beat .7s -.15s infinite linear;
+       -moz-animation: ball-beat .7s -.15s infinite linear;
+         -o-animation: ball-beat .7s -.15s infinite linear;
+            animation: ball-beat .7s -.15s infinite linear;
+}
+.la-ball-beat > div:nth-child(2n-1) {
+    -webkit-animation-delay: -.5s;
+       -moz-animation-delay: -.5s;
+         -o-animation-delay: -.5s;
+            animation-delay: -.5s;
+}
+.la-ball-beat.la-sm {
+    width: 26px;
+    height: 8px;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.la-ball-beat.la-sm > div {
+    width: 4px;
+    height: 4px;
+    margin: 2px;
+}
+.la-ball-beat.la-2x {
+    width: 108px;
+    height: 36px;
+}
+.la-ball-beat.la-2x > div {
+    width: 20px;
+    height: 20px;
+    margin: 8px;
+}
+.la-ball-beat.la-3x {
+    width: 162px;
+    height: 54px;
+}
+.la-ball-beat.la-3x > div {
+    width: 30px;
+    height: 30px;
+    margin: 12px;
+}
+/*
+ * Animation
+ */
+@-webkit-keyframes ball-beat {
+    50% {
+        opacity: .2;
+        -webkit-transform: scale(.75);
+                transform: scale(.75);
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: scale(1);
+                transform: scale(1);
+    }
+}
+@-moz-keyframes ball-beat {
+    50% {
+        opacity: .2;
+        -moz-transform: scale(.75);
+             transform: scale(.75);
+    }
+    100% {
+        opacity: 1;
+        -moz-transform: scale(1);
+             transform: scale(1);
+    }
+}
+@-o-keyframes ball-beat {
+    50% {
+        opacity: .2;
+        -o-transform: scale(.75);
+           transform: scale(.75);
+    }
+    100% {
+        opacity: 1;
+        -o-transform: scale(1);
+           transform: scale(1);
+    }
+}
+@keyframes ball-beat {
+    50% {
+        opacity: .2;
+        -webkit-transform: scale(.75);
+           -moz-transform: scale(.75);
+             -o-transform: scale(.75);
+                transform: scale(.75);
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: scale(1);
+           -moz-transform: scale(1);
+             -o-transform: scale(1);
+                transform: scale(1);
+    }
+}
+
+
+
+.modal-fancy-img .card-img{
+display:inline-block !important;
+}
+
     </style>
 @endpush
    <!-- بدنه مختوا -->
@@ -150,7 +340,7 @@
           <li class="address-crumb-item">
            
               <span>{{$product->name}}</span>
-           
+            
            </li>
          
         </ol>
@@ -166,8 +356,8 @@
                                       <!-- اسلایدر آیتم ها -->
                                       <div class="carousel-inner" style="height:80%;">
                                           @foreach ($product->images as $image)
-                                          <div class="{{$loop->iteration == 1 ? 'active': ''}} carousel-item" data-slide-number="{{$loop->iteration - 1}}">
-                                              <img src="{{asset($image->image)}}" class="img-fluid">
+                                          <div class="{{$loop->iteration == 1 ? 'active': ''}} modal-fancy-img carousel-item" data-slide-number="{{$loop->iteration - 1}}">
+                                              <img data-fancybox="gallery" src="{{asset($image->image)}}" class="card-img img-fluid" style="height:auto;">
                                           </div>
                                           @endforeach
                                           <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
@@ -202,32 +392,38 @@
                  <div class="card-body">
         <p class="card-text">
          <b>{{$product->vendor->user->name}}</b>
+         @auth
            <a href="{{route('vendor-detail',$product->vendor->slug)}}" target="TOP"><br>
          <span class="font3" style="margin-left: 0.25em;">[ مشخصات فروشنده ]</span></a>
+         @endauth
+         @guest
+          <a href="{{route('register')}}" target="TOP" title="برای مشاهده مشخصات فروشنده ثبت نام کنید"><br>
+         <span class="font3" style="margin-left: 0.25em;">[ مشخصات فروشنده ]</span></a>
+         @endguest
         </p>
        <p class="card-text">
-        {{$product->vendor->user->name}} <br>
-        {{$product->location}}<br>
+        <br>
+        @if($product->location <> null){{$product->location}}@endif<br>
         <br>
         </p>
 
         <form method="post" target="TOP">
                 <input value="" type="hidden" name="">
             </form>        
-
+            @auth
             <ul style="padding:0;">
               <li style="list-style-type: none;">
-              <a href="tel:{{$product->vendor->phone}}" ><span>
+              <a href="tel:@if($product->vendor->phone <> null){{$product->vendor->phone}}@else{{$product->vendor->user->mobile}}@endif" ><span>
                 <i class="fa fa-phone fa-lg" style="color: #28a745;"></i> 
                 <span class="text-dark">تلفن</span>
                <span class="text-dark">
-                 {{$product->vendor->phone}} 
+                 @if($product->vendor->phone <> null){{$product->vendor->phone}}@else{{$product->vendor->user->mobile}}@endif 
                </span> 
               </span>
             </a>
               </li>
             </ul> 
-  
+            @endauth
         <div class="card ribbon-card mx-auto" >
           @if($product->vendor->isQualified == 1)
            <div class="ribbon-wrapper-red ribbon-dealer">
@@ -249,11 +445,25 @@
         </div>
           </div>
           <div class="card-footer">
-            <a class="btn-all btn-all-small btn-green ver-margin " href="#inquiry-form">
+            {{-- <a class="btn-all btn-all-small btn-green ver-margin " href="#inquiry-form">
               <i class="far fa-envelope fa-lg ">
-              </i> درخواست استعلام</a>
-            <a  href="tel:{{$product->vendor->phone}}" class="btn-all btn-primary btn-all-small ver-margin" >
-              <i class="fa fa-phone fa-lg" style="color: #ffffff;"></i> لطفا با من تماس بگیرید</a> 
+              </i> درخواست استعلام</a>--}}
+      @auth
+            <button type="button" id="sendSmsToUser" wire:click.prevent="sendSmsToUser({{auth()->user()->mobile}},{{$product->itemNo}},'{{auth()->user()->name}}',{{$product->vendor->user->mobile}})" class="btn-all btn-primary btn-all-small ver-margin" >
+              <i class="fa fa-phone fa-lg" style="color: #ffffff;"></i> لطفا با من تماس بگیرید</button> 
+              <script>
+                const sendSmsToUser = document.querySelector('#sendSmsToUser')
+                sendSmsToUser.addEventListener('click',() => {
+                  sendSmsToUser.innerHTML = " در حال فرستادن پیام ..."
+                  setTimeout(() => {
+                sendSmsToUser.innerHTML = " <i class='fa fa-phone fa-lg' style='color: #ffffff;'></i> لطفا با من تماس بگیرید "
+            
+                }, 3000);
+
+                })
+
+              </script>
+         @endauth
           </div>
         </div>
       </div>
@@ -423,7 +633,7 @@
                                 <option value="Mr" selected="">آقا</option>
                                 <option value="Ms">خانم</option>
                               </select>
-                              <input type="text" name="" wire:model.defer="state.title" class="form-control" placeholder="نام" required="">
+                              <input type="text" name="" wire:model.defer="state.title" class="form-control" placeholder="نام" required="" oninvalid="this.setCustomValidity('لطفا  نام خود را وارد کنید!')"  oninput="this.setCustomValidity('')">
                             </div>
                           </div>
                           <div class="align-form">
@@ -444,7 +654,7 @@
                                 {{-- <i class="fas fa-mailbox fa-lg"></i> --}}
                                 <i class="fas fa-mailbox fa-lg"></i>
                               </div>
-                              <input type="number" name="" class="form-control  @error('postal') is-invalid @enderror" wire:model = "state.postal" placeholder="  کدپستی" required="">
+                              <input type="number" name="" class="form-control  @error('postal') is-invalid @enderror" wire:model = "state.postal" placeholder="  کدپستی" >
                               @error('postal')<div class="invalid-feedback">{{ $message }}</div> @enderror
   
                             </div>
@@ -455,7 +665,7 @@
                             <div class="input-group-addon" style="width: 2.6rem">
                               <i class="fas fa-home fa-lg"></i>
                             </div>
-                            <input type="text" name="" class="form-control" placeholder="آدرس" required="">
+                            <input type="text" name="" class="form-control" placeholder="آدرس" >
                           </div>
                         </div> --}}
                         {{-- <div class=" align-form">
@@ -464,7 +674,7 @@
                             <div class="input-group-addon" style="width: 2.6rem">
                               <i class="fas fa-home fa-lg"></i>
                             </div>
-                            <input type="text" name="" class="form-control" placeholder="کد و شهر" required="">
+                            <input type="text" name="" class="form-control" placeholder="کد و شهر" >
                           </div>
                         </div> --}}
                       </div>
@@ -475,7 +685,7 @@
                             <div class="input-group-addon" style="width: 2.6rem">
                               <i class="fas fa-globe fa-lg"></i>
                             </div>
-                            <input type="text" name="" class="form-control" placeholder="کشور" required="">
+                            <input type="text" name="" class="form-control" placeholder="کشور" >
                           </div>
                         </div> --}}
                        <div class="align-form">
@@ -484,7 +694,7 @@
                             <div class="input-group-addon" style="width: 2.6rem">
                               <i class="fas fa-at fa-lg"></i>
                             </div>
-                            <input type="email" name="" wire:model.defer="state.email" class="form-control  @error('email') is-invalid @enderror" placeholder="ایمیل" required="">
+                            <input type="email" name="" wire:model.defer="state.email" class="form-control  @error('email') is-invalid @enderror" placeholder="ایمیل" >
                             @error('email')<div class="invalid-feedback">{{ $message }}</div> @enderror
 
                           </div>
@@ -495,7 +705,7 @@
                               <div class="input-group-addon" style="width: 2.6rem">
                                 <i class="fas fa-phone fa-lg"></i>
                               </div>
-                              <input type="number" name="" wire:model.defer="state.phone" class="form-control  @error('phone') is-invalid @enderror" placeholder="تلفن" required="">
+                              <input type="number" name="" wire:model.defer="state.phone" class="form-control  @error('phone') is-invalid @enderror" placeholder="تلفن" required="" oninvalid="this.setCustomValidity('لطفا شماره موبایل خود را وارد کنید!')"  oninput="this.setCustomValidity('')">
                               @error('phone')<div class="invalid-feedback">{{ $message }}</div> @enderror
   
                             </div>
@@ -705,9 +915,12 @@
            </div>
           </div>
           </div>
+    
           @push('footer-scripts')
           <div class="parallax-background" >
             <img src="{{asset('frontend/background.jpg')}}" ></div>
           <script>jssor_1_slider_init();</script>
-          @endpush
+            <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+              <script>
+    @endpush
 </div>

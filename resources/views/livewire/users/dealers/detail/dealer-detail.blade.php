@@ -41,13 +41,17 @@
                             </tr>
                             <tr>
                               <th scope="display-align"> استان و شهر:</th>
-                              <td>{{$vendor->province->title}} - {{$vendor->city->title}}</td>
+                              <td>@if($vendor->province <> null){{$vendor->province->title}} - {{$vendor->city->title}} @else - @endif</td>
                             </tr>
                             <tr>
                               <th scope="display-align">تلفن:</th>
                               <td>
+                              @auth
                               <i class="fa fa-phone" style="color: #28a745;"></i> 
-                             <a href="tel:{{$vendor->phone  ? $vendor->phone : $vendor->mobile}}" target="TOP" >{{$vendor->phone ? $vendor->phone : $vendor->mobile}}</a></td>
+                             <a href="tel:{{$vendor->phone  ? $vendor->phone : $vendor->mobile}}"  >{{$vendor->phone ? $vendor->phone : $vendor->mobile}}</a>
+                             @endauth
+                             </td>
+                           
                             </tr>
                              <tr>
                               <th scope="display-align">نام فروشنده:</th>
@@ -56,9 +60,9 @@
                           <tr>
                             <th scope="display-align">وضعیت:   </th>
                             <td>
-                              @if ($vendor->isQualified == 1)
+                            @if($vendor->isQualified == 1)
                               <img src="{{asset('frontend/img/verified-user-logo.png')}}" alt="" style="width: 40px;">
-                              @endif
+                             @endif
                               <span style="margin-left: 10px;">عضو از سال {{$vendor->created_at}}</span>
       
                             </td>

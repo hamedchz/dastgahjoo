@@ -23,8 +23,14 @@ class Order extends Model
     }
   
     public function user(){
-        return $this->belongsTo(User::class,'user_id','id');
+        return $this->hasOne(User::class,'id','user_id');
     }
+
+    public function userDiscount(){
+        return $this->hasOne(UserDiscounts::class,'order_id','id');
+
+    }
+  
     public function getCreatedAtAttribute($created_at)
     {
         $v1 = new Verta($created_at);

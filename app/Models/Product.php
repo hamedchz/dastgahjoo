@@ -38,7 +38,8 @@ class Product extends Model
         'status',
         'vendor_id',
         'site_url',
-        'isActive'
+        'isActive',
+        'extra_description',
     ];
 
     public function favorites(){
@@ -49,6 +50,9 @@ class Product extends Model
     }
     public function category(){
         return $this->belongsTo(Category::class,'category_id','id');
+    }
+    public function subcategory(){
+        return $this->belongsTo(Category::class,'subcategory_id','id');
     }
     public function vendor(){
         return $this->belongsTo(Vendors::class,'vendor_id','id');

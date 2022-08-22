@@ -1,24 +1,54 @@
       <!-- Modal -->
-      <div class="modal fade"  id="productInfos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal fade"  id="productInfos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" wire:ignore.self >
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel"> اطلاعات محصول</h5>
+              <h5 class="modal-title" id="exampleModalLabel">اطلاعات ماشین آلات</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             @if($productInfo <> null)
+            
             <div class="modal-body">
               <div class="row">
+            <div class="form-group col-md-6" >
+              <label for="category"> دسته بندی </label>
+                  <select class="form-control form-select @error('value') is-invalid @enderror" aria-label="Default select example"  wire:change.defer = "changeCategory(event.target.value)">
+                @foreach($categories as $category)
+                 <option value="{{ $category->id }}" {{$productInfo->category_id == $category->id ? 'selected':''}} >{{ $category->title }}</option>
+                @endforeach
+            </select>
+            @error('value')<div class="invalid-feedback">{{ $message }}</div> @enderror
+            </div>
+            
+            <div class="form-group col-md-6">
+              <label for="subcategory">  زیر دسته بندی </label>
+              <select class="form-control @error('value') is-invalid @enderror"  wire:change="updateCategory(event.target.value)" >
+                @foreach($subcategories as $category)
+                 <option value="{{ $category->id }}" {{$productInfo->subcategory_id == $category->id ? 'selected':''}} >{{ $category->title }}</option>
+                @endforeach
+            </select>
+            @error('value')<div class="invalid-feedback">{{ $message }}</div> @enderror
+          
+            </div>
+          
+
+              {{--  <div class="form-group col-md-6">
+                <label for="file"> وضعیت </label>
+                <select class="form-control @error('value') is-invalid @enderror" wire:change.defer = "changeStatus({{$productInfo->id}},event.target.value)" >
+                  <option value="pending" {{$productInfo->status == 'pending' ? 'selected':''}} >در حال بررسی</option>
+                  <option value="verified" {{$productInfo->status == 'verified' ? 'selected':''}}>تایید شده</option>
+                  <option value="rejected" {{$productInfo->status == 'rejected' ? 'selected':''}}>موافقت نشده</option>
+              </select>
+              @error('value')<div class="invalid-feedback">{{ $message }}</div> @enderror
+              </div> --}}
+           
                 <div class="form-group col-md-6">
                   <label for="vendor">نام کاربر </label>
                   <input type="text"  class="form-control" id="vendor" value="{{$productInfo->vendor->user->name}}" readonly>
               </div>
-              <div class="form-group col-md-6">
-                  <label for="category">دسته بندی </label>
-                  <input type="text"  class="form-control" id="category" value="{{$productInfo->category->title}}" readonly>
-              </div>
+             
               <div class="form-group col-md-6">
                   <label for="itemNo"> شماره محصول</label>
                   <input type="text"  class="form-control" id="itemNo" value="{{$productInfo->itemNo}}" readonly>
@@ -51,14 +81,7 @@
                 <label for="view">بازدید </label>
                 <input type="text"  class="form-control" id="view" value="{{$productInfo->view}}" readonly>
               </div>
-              <div class="form-group col-md-6">
-                <label for="location">استان</label>
-                <input type="text"  class="form-control" id="location" value="{{$productInfo->province->title}}" readonly>
-              </div>
-              <div class="form-group col-md-6">
-                <label for="location">شهر</label>
-                <input type="text"  class="form-control" id="location" value="{{$productInfo->city->title}}" readonly>
-              </div>
+         
               <div class="form-group col-md-6">
                 <label for="stock">دسته دوم</label>
                 @if($productInfo->isStock == 1)
@@ -83,40 +106,33 @@
                 <input type="text"  class="form-control" id="installments" value="خیر" readonly>
                 @endif             
                </div>
-               <div class="form-group col-md-6">
-                <label for="file"> وضعیت </label>
-                <select class="form-control @error('value') is-invalid @enderror" wire:change.defer = "changeStatus({{$productInfo->id}},event.target.value)" >
-                  <option value="pending" {{$productInfo->status == 'pending' ? 'selected':''}} >در حال بررسی</option>
-                  <option value="verified" {{$productInfo->status == 'verified' ? 'selected':''}}>تایید شده</option>
-                  <option value="rejected" {{$productInfo->status == 'rejected' ? 'selected':''}}>موافقت نشده</option>
-              </select>
-              @error('value')<div class="invalid-feedback">{{ $message }}</div> @enderror
+               
+                <div class="form-group col-md-6">
+                <label for="location">استان</label>
+                <input type="text"  class="form-control" id="location" value="{{$productInfo->province->title}}" readonly>
               </div>
-               <div class="form-group col-md-12" wire:ignore>
-                <label for="description">توضیحات </label>
+              <div class="form-group col-md-6">
+                <label for="location">شهر</label>
+                <input type="text"  class="form-control" id="location" value="{{$productInfo->city->title}}" readonly>
+              </div>
+          
+               <div class="form-group col-md-12" >
+                <label for="description"> توضیحات اضافی </label><br>
                 {{-- <input type="text"  class="form-control" id="description" value="{{$productInfo->description}}" readonly> --}}
-                <textarea class="form-control" id="description" rows="3" readonly>{{$productInfo->description}}</textarea>
-                <script> 
-                    $(document).ready(function(){
-                            
-                              ClassicEditor
-                              .create( document.querySelector( '#description' ) )
-                              
-                              .catch( error => {
-                                  console.error( error );
-                              } );
-                            
-                          } );
-                  </script>
-
+                <span>{!! $productInfo->description !!}</span>
             </div>
+                <div class="form-group col-md-12" >
+                   <label for="extra_description"> توضیحات(<span style="color:red;">این توضیحات در سایت نمایش داده نمیشود</span>)  </label>
+                    <textarea class="form-control" id="extra_description" rows="3" cols="15" readonly >{{$productInfo->extra_description}}</textarea>    
+               </div>
             </div>
             <div class="modal-footer">
+              <button type="button" wire:click.prevent="showImage({{$productInfo->id}})" class="btn btn-danger" data-dismiss="modal">مشاهده گالری</button>
               <button type="button" class="btn btn-secondary" data-dismiss="modal">بستن</button>
-              <button type="button" wire:click.prevent="showImage({{$productInfo->id}})" class="btn btn-danger" data-dismiss="modal">مشاهده عکس</button>
+
 
             </div>
-         </form>
+   
          @endif
           </div>
           </div>

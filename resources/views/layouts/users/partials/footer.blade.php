@@ -1,15 +1,22 @@
 <footer id="footer">
     <div class="second-bar">
-       <div class="container">
+       <div class="container" style="display: flex;justify-content: space-around;align-items: center;margin-bottom: 40px;">
             <div class="social-icons">
-                <span>ما را در شبکه های اجتماعی دنبال کنید: </span>
+                <span>ما را در شبکه های اجتماعی دنبال کنید </span>
                 {{-- <a href="#" class="social" target="_blank" >
                   <i class="fab fa-facebook-square" ></i>
                  </a> --}}
                  <a href="https://www.instagram.com/p/Cfyr935tUR0/?igshid=YmMyMTA2M2Y=" class="social" target="_blank">
                    <i class="fab fa-instagram " ></i> 
                     </a>
+                    
             </div>
+                       <div class="social-icons">
+                 <a referrerpolicy="origin" target="_blank" href="https://trustseal.enamad.ir/?id=291800&amp;Code=VvW0sCseJPYfRTssNSAM">
+                 <img referrerpolicy="origin" src="https://Trustseal.eNamad.ir/logo.aspx?id=291800&amp;Code=VvW0sCseJPYfRTssNSAM" alt="" style="cursor:pointer;width:150px;background:white;border-radius:10px;padding:10px 0;" id="VvW0sCseJPYfRTssNSAM">
+                 </a>
+            </div>
+            
         </div>
     </div>
     <div class="container">
@@ -44,11 +51,12 @@
           <div class="col-sm-3">
               <h5>پشتیبانی</h5>
               <ul>
-                  <li><a href="{{route('faq')}}">سوالات متداول و شرایط کسب و کار</a></li>
+                  <li><a href="{{route('faq')}}">  راهنمای سایت و سوالات متداول</a></li>
                   {{-- <li><a href="#">چاپ کردن</a></li> --}}
                   <li><a href="{{route('contact-us')}}">تماس با ما</a></li>
               </ul>
           </div>
+         
       </div>
      <!-- کپی رایت -->
       <div class="container">
@@ -56,5 +64,6 @@
         کلیه حقوق این سایت متعلق به دستگاه جو میباشد.  
         </p>
       </div>
+     
     </div>
   </footer>  

@@ -2,17 +2,17 @@
     <nav aria-label="خرده نان" class="container-fluid">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{route('admin.dashboard.index')}}">داشبورد</a></li>
-            <li class="breadcrumb-item active" aria-current="page">لیست محصولات</li>
+            <li class="breadcrumb-item active" aria-current="page">ماشین آلات موجود</li>
         </ol>
     </nav>
     <div class="data-table-area">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-12 box-margin">
+                <div class="col-12 box-margin" wire:ignore>
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex justify-content-between ">
-                            <h4 class="card-title mb-2">لیست محصولات</h4>
+                            <h4 class="card-title mb-2">ماشین آلات موجود</h4>
                             {{-- <div class="row btn-group">
                                 <div class="col-md-3 col-lg-3">
                                 <button type="button" class="btn  btn-secondary" wire:click.prevent="filterLogsByStatus">
@@ -35,25 +35,35 @@
                             </div> --}}
                         </div>
                             <hr>
-                            <table id="datatable-buttons" class="table table-striped dt-responsive nowrap w-100">
+                            <table wire:ignore  id="datatable-buttons" class="table table-striped dt-responsive nowrap w-100">
                                 <thead>
                                     <tr>
+                                      <th id="remove-device1">نام کاربر</th>
+                                        <th id="remove-device2" ><a id="remove-device2">نام کاربر</a></th>
                                         <th>دسته بندی</th>
                                         <th> نام محصول</th>
-                                        <th>سازنده</th>
                                         <th>وضعیت</th>
-                                        <th>#</th>
-                                        <th>عملیات</th>
+                                        <th id="remove-device2"><a id="remove-device2">اطلاعات</a></th>
+                                        <th>تاریخ</th>
+                                        <th id="remove-device2">عملیات</th>
                                     </tr>
                                 </thead>
 
                                 <tbody>
                                     @forelse($products as $product)
                                     <tr>
+                                    
+                                           <td id="remove-device1">
+                                           <a href="{{route('admin.products')}}?vendor={{$product->vendor->id}}" target="_blank">{{$product->vendor->user->name}}</a>
+                                            <a href="" wire:click.prevent = "getInformation({{$product->id}})" class="btn btn-success" style="font-size:10px;">اطلاعات بیشتر</a>
+                                            <a href="" wire:click.prevent="removalConfirmation({{$product->id}})" style="font-size:20px;"><i class="fa fa-trash" style="color:#dc3545;"></i></a>
+                                           </td>
+                                           
+                                        <td id="remove-device2"><a id="remove-device2" href="{{route('admin.products')}}?vendor={{$product->vendor->id}}" target="_blank">{{$product->vendor->user->name}}</a></td>
                                         <td>{{$product->category->title}}</td>
+                              
                                         <td>{{$product->name}}</td>
-                                        <td>{{$product->manufacturer}}</td>
-                                        <td>
+                                         <td>
                                             <select class="form-control @error('value') is-invalid @enderror"" wire:change.defer = "changeStatus({{$product->id}},event.target.value)">
                                                 <option value="pending" {{$product->status == 'pending' ? 'selected':''}} >در حال بررسی</option>
                                                 <option value="verified" {{$product->status == 'verified' ? 'selected':''}}>تایید شده</option>
@@ -62,10 +72,11 @@
                                             </select>
                                             @error('value')<div class="invalid-feedback">{{ $message }}</div> @enderror
                                         </td>
-                                        <td>
-                                            <a href="" wire:click.prevent = "getInformation({{$product->id}})" class="btn btn-success" style="font-size:10px;">اطلاعات بیشتر</a>
+                                        <td id="remove-device2">
+                                            <a id="remove-device2" href="" wire:click.prevent = "getInformation({{$product->id}})" class="btn btn-success" style="font-size:10px;">اطلاعات بیشتر</a>
                                         </td>
-                                        <td>
+                                        <td>{{$product->created_at}}</td>
+                                        <td id="remove-device2">
                                             {{-- <a href="" wire:click.prevent="showImage({{$product->id}})" style="font-size:20px;"><i class="fa fa-image"  style="color:#e1e1e1;"></i></a> --}}
                                             <a href="" wire:click.prevent="removalConfirmation({{$product->id}})" style="font-size:20px;"><i class="fa fa-trash" style="color:#dc3545;"></i></a>
                                             </td>
@@ -76,7 +87,7 @@
                                 </tbody>
                             </table>
                             <div class="d-flex align-items-center justify-content-center">
-                               {{$products->links()}}
+                              {{-- {{$products->links()}} --}}
                             </div>
                         </div> <!-- end card body-->
                     </div> <!-- end card -->
@@ -89,7 +100,56 @@
     @include('livewire.admin.product.delete')
     @include('livewire.admin.product.info')
     @include('livewire.admin.product.showImage') 
+         @push('styles')
+         
+     <link rel="stylesheet" href="{{asset('admin/css/default-assets/datatables.bootstrap4.css')}}">
+     <link rel="stylesheet" href="{{asset('admin/css/default-assets/responsive.bootstrap4.css')}}">
+     <link rel="stylesheet" href="{{asset('admin/css/default-assets/buttons.bootstrap4.css')}}">
+     <link rel="stylesheet" href="{{asset('admin/css/default-assets/select.bootstrap4.css')}}">
+     <link rel="stylesheet" href="{{asset('admin/css/default-assets/notification.css')}}">
+     <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css"
+    />
+    <style>
+         
+   
+         #remove-device1{
+        display:none;
+        }
+          @media only screen and (max-width: 809px){
+          table.dataTable.dtr-inline.collapsed>tbody>tr[role=row]>td:first-child:before,
+                    table.dataTable.dtr-inline.collapsed>tbody>tr[role=row]>th:first-child:before {
+                       top: 70%;
+                       z-index: 100;       
+               } 
+
+        
+        #remove-device2{
+        display:none;
+        }
+         #remove-device1{
+        display:block;
+        }
+     table.dataTable>tbody>tr.child ul.dtr-details>li:last-child,
+     table.dataTable>tbody>tr.child ul.dtr-details>li:nth-last-child(3) {
+    display: none;
+}
+        
+    }
     
+ .modal-fancy-img .card-img-top{
+ display:inline-block !important;
+ }
+
+
+.fancybox-container {
+    -webkit-backface-visibility: visible ;
+    backface-visibility: visible;}
+
+     </style>
+     @endpush
+
     @push('scripts')
     <script src="{{asset("admin/ckeditor5/ckeditor.js")}}"></script>
 
@@ -146,8 +206,9 @@
      <script src="/admin/js/default-assets/datatables.select.min.js"></script> 
      <script src="/admin/js/default-assets/demo.datatable-init.js"></script> 
     <script src="/admin/js/default-assets/bootstrap-growl.js"></script>
-    {{-- <script src="/admin/js/default-assets/notification-active.js"></script> --}}
-    
+     {{--<script src="/admin/js/default-assets/notification-active.js"></script> --}}
+     <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+     <script>    
     @endpush
 
 </div>

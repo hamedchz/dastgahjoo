@@ -62,7 +62,7 @@
             <div class="card ver-margin2" style="background: rgba(50, 54, 57, .5);">
               <div class="card-body">
                 <div class="input-group">
-                  <input class="form-control" name="name" placeholder="" maxlength="40" name="" type="text" required>
+                  <input class="form-control" name="queryTerm" placeholder="" maxlength="40" name="" type="text" required>
                   <span class="input-group-btn">
                     <button id="search-button" class="btn-all btn-primary" type="submit" name="">
                       <i class="fas fa-search"></i>
@@ -83,9 +83,9 @@
             </div>
           </div>              
           <div class="container">
-            <div class="display-align">
-              <div class="col-lg-4 text center-align mx-auto">     
-              </div>   
+            <div class="display-align ml-0">
+              {{-- <div class="col-lg-4 text center-align mx-auto">     
+              </div>    --}}
               {{-- <div class="col-lg-4 text center-align mx-auto">
                 <div class="hidden-mobile">
                   <form role="form-inline" style="text-align: center">
@@ -102,7 +102,12 @@
                 </div>  
               </div>    --}}
     
-              <div class="col-lg-4 text center-align mx-auto" style="display:table;">  
+              {{-- <div class="col-lg-4 text center-align mx-auto" style="display:table;">  
+              </div> --}}
+              <div class="fields col-lg-4 text center-align mx-auto d-none" id="requiredError">
+                <span>
+                  <small >فیلدهای دسته بندی و زیر دسته بندی الزامیست !</small>
+                </span>
               </div>
             </div>
           </div> 
@@ -117,7 +122,7 @@
               <div class="align-form">
                 <div class="input-group">
                   <span class="input-group-addon" style="min-width: 160px;"><small>دسته:</small></span>
-                  <select name="category" class="url_params custom-select form-control" style="font-size: 0.8rem;">
+                  <select name="category" class="url_params custom-select form-control" style="font-size: 0.8rem;" id="category" wire:change="changeCategory(event.target.value)" required="">
                     <option value="" selected="">همه دسته ها</option>
                     @foreach($categoriesCount as $category)
                     <option value="{{$category->id}}">{{$category->title}}</option>
@@ -125,7 +130,14 @@
                   </select>
                 </div>
               </div>          
-            
+              <div class="align-form">
+                <div class="input-group">
+                  <span class="input-group-addon" style="min-width: 120px;">
+                    <small>کد دستگاه:</small>
+                  </span>
+                  <input type="text" name="itemNo" value="" class="url_params form-control form-control-sm" placeholder="">
+                </div>
+              </div>
             
               <div class="align-form">
                 <div class="input-group">
@@ -157,14 +169,7 @@
                 </div>
               </div>
     
-              <div class="align-form">
-                <div class="input-group">
-                  <span class="input-group-addon" style="min-width: 120px;">
-                    <small>مدل:</small>
-                  </span>
-                  <input type="text" name="model" value="" class="url_params form-control form-control-sm" placeholder="">
-                </div>
-              </div>
+    
               
               {{-- <div class="align-form">
                 <div class="input-group">
@@ -199,12 +204,21 @@
             <div class="col-md-6 mx-auto">
               <div class="align-form">
                 <div class="input-group">
-                  <span class="input-group-addon" style="min-width: 120px;">
-                    <small>کد دستگاه:</small>
-                  </span>
-                  <input type="text" name="itemNo" value="" class="url_params form-control form-control-sm" placeholder="">
+                  <span class="input-group-addon" style="min-width: 120px;"><small> زیر دسته بندی:</small></span>
+                  <select name="subcategory" class=" w-100 custom-select url_params @error('subcategory_id') is-invalid @enderror" id="subcategory" required="">
+                    <option  value="" selected>انتخاب کنید</option>
+                    @if($subCategory <> null)
+                      @forelse($subCategory as $category)
+                      <option value="{{$category->id}}">{{$category->title}}</option>
+                      @empty
+                      <option value="">زیر دسته بندی وجود ندارد</option>
+                      @endforelse
+                    @endif
+                </select>
+                 @error('subcategory_id')<div class="invalid-feedback">{{ $message }}</div> @enderror
                 </div>
               </div>
+          
     
               <div class="align-form">
                 <div class="input-group">
@@ -227,7 +241,14 @@
                   </select>
                 </div>
               </div>
-              
+              <div class="align-form">
+                <div class="input-group">
+                  <span class="input-group-addon" style="min-width: 120px;">
+                    <small>مدل:</small>
+                  </span>
+                  <input type="text" name="model" value="" class="url_params form-control form-control-sm" placeholder="">
+                </div>
+              </div>
               {{-- <div class="align-form">
                 <div class="input-group">
                   <span class="input-group-addon" style="min-width: 160px;"><small>کد فروشنده:</small></span>
@@ -357,6 +378,13 @@
         $(document).ready(function () {
      $("#submitSearch").on("click", function(e) {
          e.preventDefault();
+         const subcategory = document.querySelector('#subcategory')
+         const category = document.querySelector('#category')
+         if(subcategory.value ==  "" || category.value ==  ""){
+          document.querySelector('#requiredError').classList.remove('d-none')
+          subcategory.classList.add('is-invalid') 
+          category.classList.add('is-invalid') 
+         }else{
          var url = '{{ url("/result") }}?';
          var total = $(".url_params").length;
          $(".url_params").each(function (index) {
@@ -369,6 +397,7 @@
              }
          });
          window.location.href = url;
+        }
      });
  });
      </script>

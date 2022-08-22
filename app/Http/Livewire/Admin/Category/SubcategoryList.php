@@ -26,8 +26,7 @@ class SubcategoryList extends Component
 
     public function mount($id){
         
-        $category = Category::where('parent',$id)->orderBy('id','desc')->get();
-        $this->subcategory = $category;
+     
         $this->categoryId = $id;
     }
     
@@ -178,9 +177,19 @@ class SubcategoryList extends Component
 
         }
     }
+   public function updateCategoryPosition($items){
+    foreach ($items as $item) {
+        Category::find($item['value'])->update(['order_position' => $item['order']]);
+    }
+    (new \App\Models\Log)->storeLog('تغییر مکان دسته بندی','ویرایش دسته بندی','ویرایش');
+    $this->dispatchBrowserEvent('editcategoryStatus',['message'=>'دسته بندی با موفقیت ویرایش شد', 'action'=>'success']);
+
+  }
     public function render()
     {
         $this->authorize('category',Category::class);
+        $category = Category::where('parent',$this->categoryId)->orderBy('order_position','asc')->get();
+        $this->subcategory = $category;
         return view('livewire.admin.category.subcategory-list')->layout('layouts.admin.app');
     }
 }

@@ -8,7 +8,7 @@
     <div class="data-table-area">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-12 box-margin">
+                <div class="col-12 box-margin" wire:ignore>
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title mb-2">لیست پکیج ها</h4>
@@ -20,7 +20,9 @@
                             <table id="datatable-buttons" class="table table-striped dt-responsive nowrap w-100">
                                 <thead>
                                     <tr>
-                                        <th>نام</th>
+                                        <th id="edit-pack1">نام</th>
+                                       <th id="edit-pack2">نام</th>
+
                                         <th class="status-semat">قیمت</th>
                                         <th  class="status-semat">برچسب</th>
                                         <th  class="status-semat">مدت زمان</th>
@@ -29,18 +31,25 @@
 
                                         <th  class="status-semat">تعداد بنر</th>
                                         <th  class="status-semat">  لوگو</th>
-                                        <th  class="status-semat">تعداد مجصول</th>
+                                        <th  class="status-semat">تعداد محصول</th>
 
                                         <th class="status-semat"> سایت</th>
                                         <th class="status-semat">تعداد فایل</th>
                                         <th class="status-semat"> وضعیت</th>
-                                        <th>عملیات</th>
+                                        <th id="edit-pack2">عملیات</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @forelse($packages as $package)
                                     <tr class="justify-content-center align-items-center">
-                                        <td>{{$package->title}}</td>
+                                        <td id="edit-pack1">
+                                        
+                                        {{$package->title}}
+                                            <a href="" wire:click.prevent="editPackage({{$package}})" style="font-size:20px;margin-right: 15px;margin-left: 15px;"><i class="fa fa-edit" style="color:#04a9f5;"></i></a>
+                                            <a href="" wire:click.prevent="removeConfirmation({{$package->id}})" style="font-size:20px;"><i class="fa fa-trash" style="color:#dc3545;"></i></a>
+                                       </td>
+                                        <td id="edit-pack2">{{$package->title}}</td>
+
                                         <td class="status-semat">{{$package->price}}</td>
                                         <td class="status-semat">{{$package->label}}</td>
                                         <td class="status-semat">{{$package->duration}}</td>
@@ -54,7 +63,7 @@
                                         <td style="font-size:10px;" class="status-semat badge  p-3 {{$package->site == 'YES' ? 'badge-success': 'badge-danger'}}">{{$package->site == 'YES' ? 'دارد': 'ندارد'}}</td>
                                         <td class="status-semat">{{$package->file}}</td>
                                         <td style="font-size:10px;" class="status-semat badge  p-3 {{$package->isActive == 1 ? 'badge-success': 'badge-danger'}}">{{$package->isActive == 1 ? 'فعال': 'غیرفعال'}}</td>
-                                        <td>
+                                        <td id="edit-pack2">
                                             {{-- <a href="" wire:click.prevent="editPackage({{$package}})" style="font-size:20px;"><i class="fa fa-percent" style="color:#0cf504;" title="اعمال تخفیف"></i></a> --}}
                                             <a href="" wire:click.prevent="editPackage({{$package}})" style="font-size:20px;"><i class="fa fa-edit" style="color:#04a9f5;"></i></a>
                                             <a href="" wire:click.prevent="removeConfirmation({{$package->id}})" style="font-size:20px;"><i class="fa fa-trash" style="color:#dc3545;"></i></a>
@@ -85,11 +94,29 @@
     <link rel="stylesheet" href="{{asset('admin/css/default-assets/select.bootstrap4.css')}}">
     <link rel="stylesheet" href="{{asset('admin/css/default-assets/notification.css')}}">
     <style>
-         @media only screen and (max-width: 767px){
-       .status-semat{
-           display: none !important;
-       }
     
+    
+       #edit-pack1{
+     display:none;
+     }
+         @media only screen and (max-width: 1227px){
+         
+           table.dataTable.dtr-inline.collapsed>tbody>tr[role=row]>td:first-child:before,
+             table.dataTable.dtr-inline.collapsed>tbody>tr[role=row]>th:first-child:before {
+                top: 70%;
+                left: 90%;
+                z-index: 100;       
+        } 
+        
+          table.dataTable>tbody>tr.child ul.dtr-details>li:last-child  {
+      display:none;
+      }
+     #edit-pack2{
+     display:none;
+     }
+       #edit-pack1{
+     display:flex;
+     }
     }
     
     </style>
@@ -145,7 +172,7 @@
                  <script src="/admin/js/default-assets/datatables.select.min.js"></script>
                  <script src="/admin/js/default-assets/demo.datatable-init.js"></script>
                  <script src="/admin/js/default-assets/bootstrap-growl.js"></script>
-                 <script src="/admin/js/default-assets/notification-active.js"></script>
+                 {{-- <script src="/admin/js/default-assets/notification-active.js"></script>--}}
                  <script src="/admin/js/MaxLength.min.js"></script>
         
     @endpush

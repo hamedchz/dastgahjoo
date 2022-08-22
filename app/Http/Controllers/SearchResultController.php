@@ -14,10 +14,13 @@ use App\QueryFilters\ProductModel;
 use App\QueryFilters\ProductNo;
 use App\QueryFilters\Sort;
 use App\QueryFilters\Stock;
+use App\QueryFilters\subCategory;
 use App\QueryFilters\Year;
+use App\QueryFilters\QuerySearch;
 use Illuminate\Http\Request;
 use Illuminate\Pipeline\Pipeline;
 use Livewire\WithPagination;
+use App\Repositories\HeaderRepository;
 
 class SearchResultController extends Controller
 {
@@ -36,13 +39,15 @@ class SearchResultController extends Controller
             ProductModel::class,
             ProductNo::class,
             Stock::class,
-            Sort::class
+            Sort::class,
+            subCategory::class,
+            QuerySearch::class
         ])->thenReturn()->with('images')->with('category')->where('status','verified')
         ->where('isSold',0)->where('isActive',1)->latest()->paginate(20);
             // return $products;
-        $categories = ModelsCategory::with('parents')->with('products')->with('subproducts')->where('isActive',1)->where('parent',0)->take(4)->get();
-        $categoriesCount = ModelsCategory::with('parents')->with('products')->with('subproducts')->where('isActive',1)->where('parent',0)->get();
-        $categories_second = ModelsCategory::with('parents')->with('products')->where('isActive',1)->where('parent',0)->with('subproducts')->skip(4)->take($categoriesCount->count() - 4)->get();
+        $categories = resolve(HeaderRepository::class)->categories();
+        $categoriesCount = resolve(HeaderRepository::class)->categoriesCount();
+        $categories_second = resolve(HeaderRepository::class)->categories_second($categoriesCount);
 
         return view('livewire.users.searchResult.result',compact('categoriesCount','categories_second','products','categories')); 
      }

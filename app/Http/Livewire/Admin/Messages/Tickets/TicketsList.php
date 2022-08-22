@@ -110,7 +110,7 @@ class TicketsList extends Component
     public function getTicketsProperty(){
         return Ticket::with('user')->where('parent',0)->when($this->status,function($query,$status){
            return $query->where('status',$status);
-        })->latest()->paginate(20);
+        })->latest()->get();
     }
     public function sendSmsCode($mobile,$subject,$name)
     {

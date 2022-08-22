@@ -37,17 +37,15 @@ class UserProfile extends Component
             'password.same' => 'کلمه عبور یکسان نیست'
 
         ])->validate();
-        $this->validate([
-            'avatar' => 'sometimes|image|max:2048', 
-        ],[
-            'avatar.image' => 'فایل مورد نظر باید عکس باشد',
-            'avatar.max' => 'حداکثر حجم فایل 1 مگا بایت است'
-        ]);
+        
+       
+     
         if($this->avatar){
-            if($this->oldAvatar <> 'N\A'){
-                Storage::disk('avatars')->delete($this->oldAvatar);
+            if($this->oldAvatar <> 'N/A'){
+                $image_path = public_path().'/'.$this->oldAvatar;
+                unlink($image_path);
             }
-            $validatedData['avatar'] =  $this->uploadVideo($this->avatar);
+            $validatedData['avatar'] =  $this->uploadImage($this->avatar);
 
 
         }
@@ -59,11 +57,11 @@ class UserProfile extends Component
             
             (new \App\Models\Log)->storeLog($validatedData['name'],'ویرایش کاربر ','ویرایش');
             $this->dispatchBrowserEvent('hide-newAdmin',['message'=>'کاربر با موفقیت ویرایش شد', 'action'=>'success']);
-            
+            return redirect()->to(route('user.profile'));
         }else{
             (new \App\Models\Log)->storeLog($validatedData['name'],'خطا ویرایش کاربر','ویرایش');
             $this->dispatchBrowserEvent('hide-newAdmin',['message'=>'مشکلی وجود دارد', 'action'=>'error']);
-            
+            return redirect()->to(route('user.profile'));
         }
     
     }

@@ -42,7 +42,9 @@ class ContactList extends Component
     }
 
     public function getMessagesProperty(){
+    
         return Contactus::when($this->status,function($query,$status){
+       
             return $query->where('seen',$status);
         })->orderBy($this->sortColumnName,$this->sortDirection)->paginate(21);
     }
@@ -82,7 +84,7 @@ class ContactList extends Component
     public function render()
     {
         $this->authorize('contactus',Contactus::class);
-        $messages = $this->messages ;
+        $messages = $this->messages;
         $allMessagesCount = Contactus::count();
         $unreadMessagesCount = Contactus::where('seen','unread')->count();
         $readMessagesCount = Contactus::where('seen','read')->count();

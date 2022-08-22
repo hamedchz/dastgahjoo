@@ -8,7 +8,7 @@
     <div class="data-table-area">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-12 box-margin">
+                <div class="col-12 box-margin" wire:ignore>
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex justify-content-between ">
@@ -34,11 +34,11 @@
                                 <thead>
                                     <tr>
                                         <th class="status-semat">فرستنده</th>
+                                         <th id="edit-ticket1">عملیات</th>
                                         <th>عنوان</th>
-                                       
-                                        <th class="status-semat">وضعیت</th>
+                                       <th class="status-semat">وضعیت</th>
                                         <th class="status-semat">تاریخ </th>
-                                        <th>عملیات</th>
+                                        <th id="edit-ticket2">عملیات</th>
                                     </tr>
                                 </thead>
 
@@ -46,6 +46,15 @@
                                     @forelse($messages as $msg)
                                     <tr>
                                         <td class="status-semat">{{$msg->user->name}}</td>
+                                        <td id="edit-ticket1">
+                                            @if($msg->status !== 'CLOSED')
+                                            <a href="" wire:click.prevent="editTicket({{$msg}})" style="font-size:20px;"><i class="fa fa-edit"  style="color:#04a9f5;"></i></a>
+                                            @else
+                                            <span  style="font-size:20px;"><i class="fa fa-edit"  style="color:#e1e1e1;"></i></span>
+
+                                            @endif
+                                            <a href=""  wire:click.prevent="removeConfirmation({{$msg->id}})" style="font-size:20px;"><i class="fa fa-trash" style="color:#dc3545;"></i></a>
+                                        </td>
                                         <td>{{$msg->title}}</td>
                                         <td class="status-semat">
                                             <select class="form-control form-select form-select-sm" aria-label=".form-select-sm example" wire:change="changeStatus({{$msg}},event.target.value)">
@@ -59,7 +68,7 @@
                                         </td>
                                         <td class="status-semat">{{$msg->created_at}}</td>
                                
-                                        <td>
+                                        <td id="edit-ticket2">
                                             @if($msg->status !== 'CLOSED')
                                             <a href="" wire:click.prevent="editTicket({{$msg}})" style="font-size:20px;"><i class="fa fa-edit"  style="color:#04a9f5;"></i></a>
                                             @else
@@ -75,7 +84,7 @@
                                 </tbody>
                             </table>
                             <div class="d-flex align-items-center justify-content-center">
-                               {{$messages->links()}}
+                            
                             </div>
                         </div> <!-- end card body-->
                     </div> <!-- end card -->
@@ -86,18 +95,58 @@
     </div>
      @include('livewire.admin.messages.tickets.answer')
      @include('livewire.admin.messages.tickets.delete')
+     
 </div>
 @push('styles')
+
+     <link rel="stylesheet" href="{{asset('admin/css/default-assets/datatables.bootstrap4.css')}}">
+     <link rel="stylesheet" href="{{asset('admin/css/default-assets/responsive.bootstrap4.css')}}">
+     <link rel="stylesheet" href="{{asset('admin/css/default-assets/buttons.bootstrap4.css')}}">
+     <link rel="stylesheet" href="{{asset('admin/css/default-assets/select.bootstrap4.css')}}">
+     <link rel="stylesheet" href="{{asset('admin/css/default-assets/notification.css')}}">
+
+
 <style>
-    @media only screen and (max-width: 767px){
-   .status-semat{
-       display: none !important;
-   }
+
+
+
+   #edit-ticket1{
+  display:none;
+
+}
+    @media only screen and (max-width: 388px){
+  
+   table.dataTable.dtr-inline.collapsed>tbody>tr[role=row]>td:first-child:before,
+             table.dataTable.dtr-inline.collapsed>tbody>tr[role=row]>th:first-child:before {
+                top: 70%;
+                left: 90%;
+                z-index: 100;       
+        } 
+  
+  #edit-ticket1{
+  display:block;
+  padding-top: 12px !important;
+  }
+  
+  
+    #edit-ticket2{
+  display:none;
+
+}
+
+  table.dataTable>tbody>tr.child ul.dtr-details>li:last-child{
+            display:none;
+      }
 }
 
 </style>   
 @endpush
 @push('scripts')
+
+
+
+
+
     <script>
         
         $(document).ready(function(){
@@ -139,4 +188,19 @@
             $('#deleteTicket').modal('show')
         })
     </script>
+    
+    
+       <script src="/admin/js/default-assets/jquery.datatables.min.js"></script>
+     <script src="/admin/js/default-assets/datatables.bootstrap4.js"></script>
+     <script src="/admin/js/default-assets/datatable-responsive.min.js"></script>
+     <script src="/admin/js/default-assets/responsive.bootstrap4.min.js"></script>
+     <script src="/admin/js/default-assets/datatable-button.min.js"></script>
+     <script src="/admin/js/default-assets/button.bootstrap4.min.js"></script>
+     <script src="/admin/js/default-assets/button.html5.min.js"></script>
+     <script src="/admin/js/default-assets/button.flash.min.js"></script>
+     <script src="/admin/js/default-assets/button.print.min.js"></script>
+     <script src="/admin/js/default-assets/datatables.keytable.min.js"></script>
+     <script src="/admin/js/default-assets/datatables.select.min.js"></script>
+     <script src="/admin/js/default-assets/demo.datatable-init.js"></script>
+     <script src="/admin/js/default-assets/bootstrap-growl.js"></script>
 @endpush

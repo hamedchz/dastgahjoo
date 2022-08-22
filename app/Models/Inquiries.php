@@ -24,6 +24,7 @@ class Inquiries extends Model
         'status',
         'parent',
         'user_id',
+        'sender_id',
         'email',
         'phone',
         'address',

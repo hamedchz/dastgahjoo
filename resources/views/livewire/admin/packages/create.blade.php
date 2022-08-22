@@ -24,7 +24,7 @@
               </div>
               <div class="form-group col-md-6">
                 <label for="discount">تخفیف</label>
-                <input type="number" wire:model.defer="discount" class="form-control @error('discount') is-invalid @enderror" id="discount" placeholder="تخفیف">
+                <input type="number" wire:model.defer="state.discount" class="form-control @error('discount') is-invalid @enderror" id="discount" placeholder="تخفیف">
                 @error('discount')<div class="invalid-feedback">{{ $message }}</div> @enderror
             </div>
               <div class="form-group col-md-6">
@@ -38,7 +38,7 @@
                   @error('duration')<div class="invalid-feedback">{{ $message }}</div> @enderror
               </div>
               <div class="form-group col-md-6">
-                  <label for="products">تعداد مجصول</label>
+                  <label for="products">تعداد محصول</label>
                   <input type="number" wire:model.defer="state.products" class="form-control @error('products') is-invalid @enderror" id="products" placeholder="تعداد مجصول">
                   @error('products')<div class="invalid-feedback">{{ $message }}</div> @enderror
               </div>
@@ -77,7 +77,7 @@
                 @error('logo')<div class="invalid-feedback">{{ $message }}</div> @enderror
               </div>
               <div class="form-group col-md-6">
-                <label for="site">امکان استفاده از سایت</label>
+                <label for="site">ارتباط به  سایت فروشنده</label>
                 <select class="form-control  @error('site') is-invalid @enderror" id="site" wire:model.defer="state.site">
                     <option selected>انتخاب کنید</option>
                     <option value="YES">بله</option>

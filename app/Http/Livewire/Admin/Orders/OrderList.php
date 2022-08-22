@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Admin\Orders;
 
 use App\Models\Order;
+use App\Models\Packages;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\Component;
 
@@ -48,7 +49,11 @@ class OrderList extends Component
     public function render()
     {
         $this->authorize('orders');
-        $orders  = Order::where('isActive',1)->get();
+        // $orders  = Order::where('isActive',1)->get();
+        $orders  =  Order::with('user')->whereHasMorph(
+            'orderable',
+            [Packages::class]
+        )->where('isActive',1)->get();
         return view('livewire.admin.orders.order-list',['orders'=> $orders])->layout('layouts.admin.app');
     }
 }

@@ -10,9 +10,12 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
+use App\Repositories\HeaderRepository;
+use Artesaos\SEOTools\Traits\SEOTools as SEOToolsTrait;
 
 class SubcategoryProducts extends Component
 {
+    use SEOToolsTrait;
     use WithPagination;
 
     public $cat;
@@ -36,17 +39,19 @@ class SubcategoryProducts extends Component
         //      $q->where('status','verified')->where('isSold',0);
         //  })->where('slug',$slug)->orderBy('id','desc')->paginate(4);
         $products = Product::with('images')->where('category_id',$this->cat->id)->where('status','verified')->where('isSold',0)->where('isActive',1)->take(10)->latest()->get();
-        $categories = Category::with('parents')->with('products')->with('subproducts')->where('isActive',1)->where('parent',0)->take(4)->get();
         $advertise = Advertises::where('category_id', $this->cat->id)->where('expire_at','>=',Carbon::now())->get();
-        $categoriesCount = Category::with('parents')->with('products')->with('subproducts')->where('isActive',1)->where('parent',0)->get();
-        $categoriesFirsthalf = Category::with('parents')->with('products')->with('subproducts')->where('isActive',1)->where('parent',0)->take($categoriesCount->count()/2)->get();
-        $categoriesSecondhalf = Category::with('parents')->with('products')->with('subproducts')->where('isActive',1)->where('parent',0)->skip($categoriesCount->count()/2)->take($categoriesCount->count()-$categoriesCount->count()/2)->get();
-        $categories_second = Category::with('parents')->with('products')->where('isActive',1)->where('parent',0)->with('subproducts')->skip(4)->take($categoriesCount->count() - 4)->get();
-        $subcategories = Category::with('subcategoryproducts')->where('isActive',1)->where('parent',$this->cat->id)->orderBy('id','desc')->paginate(21);
+        $subcategories = Category::with('subcategoryproductsVerified')->where('isActive',1)->where('parent',$this->cat->id)->orderBy('id','desc')->paginate(21);
+        $categories = resolve(HeaderRepository::class)->categories();
+        $categoriesCount = resolve(HeaderRepository::class)->categoriesCount();
+        $categories_second = resolve(HeaderRepository::class)->categories_second();   
+        $categoriesFirsthalf = resolve(HeaderRepository::class)->categoriesFirsthalf();
+        $categoriesSecondhalf =resolve(HeaderRepository::class)->categoriesSecondhalf();
         
         // $products = Product::with('images')->where('subcategory_id',$category->id)->
         // where('status','verified')->where('isSold',0)->where('isActive',1)->latest()->paginate(21);
-
+        $this->seo()
+        ->setTitle($this->cat->title,false)
+        ->setDescription($this->cat->title);
         return view('livewire.users.product-list.subcategory-products',['products' => $products,'advertise'=>$advertise,'subcategories'=>$subcategories,'categoriesSecondhalf'=>$categoriesSecondhalf,'categoriesFirsthalf'=>$categoriesFirsthalf,'categoriesCount'=>$categoriesCount,'categories_second'=>$categories_second,'categories'=>$categories])->layout('layouts.users.app');
     }
 }

@@ -8,7 +8,7 @@
     <div class="data-table-area">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-12 box-margin">
+                <div class="col-12 box-margin" wire:ignore>
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title mb-2">   سؤالات متداول </h4>
@@ -20,7 +20,6 @@
                             <table id="datatable-buttons" class="table table-striped dt-responsive nowrap w-100">
                                 <thead>
                                     <tr>
-                                        <th>#</th>
                                         <th>  سؤال</th>
                                         <th>  جواب</th>
                                         <th>عملیات</th>
@@ -30,7 +29,6 @@
                                 <tbody>
                                     @forelse($faqLists as $prov)
                                     <tr>
-                                        <td>{{$loop->iteration}}</td>
                                         <td>{{$prov->body}}</td>
                                         <td>{{$prov->answer}}</td>
                                         <td>
@@ -66,9 +64,9 @@
 <link rel="stylesheet" href="{{asset('admin/css/default-assets/notification.css')}}">
 <style>
      @media only screen and (max-width: 767px){
-   .status-semat{
-       display: none !important;
-   }
+ 
+ table.dataTable.nowrap td, table.dataTable.nowrap th {
+    white-space: inherit;}
 
 }
 
