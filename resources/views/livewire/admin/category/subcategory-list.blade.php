@@ -30,7 +30,7 @@
                                 </thead>
                                 <tbody wire:sortable="updateCategoryPosition">
                                     @forelse($subcategory as $category)
-                                    <tr class="justify-content-center align-items-center"  wire:key="categoryphp artisan se-{{ $category->id }}" wire:sortable.item="{{ $category->id }}">
+                                    <tr class="justify-content-center align-items-center"  wire:key="category{{ $category->id }}" wire:sortable.item="{{ $category->id }}">
                                       <td id="edit-cat1"> 
                                          
                                          <i style="margin-left:15px;width: 10px;cursor:move;" wire:sortable.handle class="fa fa-arrows-alt text-muted"></i>
